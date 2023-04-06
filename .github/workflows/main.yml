@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: jaxxstorm/scripts
@@ -32,15 +32,15 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v2
+      uses: pulumi/actions@v4
     - name: Setup Node
       uses: actions/setup-node@v2
       with:
@@ -100,9 +100,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: jaxxstorm/scripts
@@ -110,18 +110,18 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v2
+      uses: pulumi/actions@v4
     - if: github.event_name == 'pull_request'
       name: Install Schema Tools
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: mikhailshilkov/schema-tools
     - name: Build tfgen & provider binaries
@@ -167,19 +167,19 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps:
   #   - name: Checkout Repo
-  #     uses: actions/checkout@v2
+  #     uses: actions/checkout@v3
   #   - name: Unshallow clone for tags
   #     run: git fetch --prune --unshallow --tags
   #   - name: Install Go
-  #     uses: actions/setup-go@v2
+  #     uses: actions/setup-go@v4
   #     with:
   #       go-version: ${{matrix.goversion}}
   #   - name: Install pulumictl
-  #     uses: jaxxstorm/action-install-gh-release@v1.2.0
+  #     uses: jaxxstorm/action-install-gh-release@v1.10.0
   #     with:
   #       repo: pulumi/pulumictl
   #   - name: Install Pulumi CLI
-  #     uses: pulumi/action-install-pulumi-cli@v2
+  #     uses: pulumi/actions@v4
   #   - name: Set PreRelease Version
   #     run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
   #   - name: Run GoReleaser
@@ -205,9 +205,9 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps:
   #   - name: Checkout Repo
-  #     uses: actions/checkout@v2
+  #     uses: actions/checkout@v3
   #   - name: Checkout Scripts Repo
-  #     uses: actions/checkout@v2
+  #     uses: actions/checkout@v3
   #     with:
   #       path: ci-scripts
   #       repository: jaxxstorm/scripts
@@ -215,15 +215,15 @@ jobs:
   #   - name: Unshallow clone for tags
   #     run: git fetch --prune --unshallow --tags
   #   - name: Install Go
-  #     uses: actions/setup-go@v2
+  #     uses: actions/setup-go@v4
   #     with:
   #       go-version: ${{matrix.goversion}}
   #   - name: Install pulumictl
-  #     uses: jaxxstorm/action-install-gh-release@v1.2.0
+  #     uses: jaxxstorm/action-install-gh-release@v1.10.0
   #     with:
   #       repo: pulumi/pulumictl
   #   - name: Install Pulumi CLI
-  #     uses: pulumi/action-install-pulumi-cli@v2
+  #     uses: pulumi/actions@v4
   #   - name: Setup Node
   #     uses: actions/setup-node@v2
   #     with:
@@ -280,9 +280,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: jaxxstorm/scripts
@@ -290,15 +290,15 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v2
+      uses: pulumi/actions@v4
     - name: Setup Node
       uses: actions/setup-node@v2
       with:
