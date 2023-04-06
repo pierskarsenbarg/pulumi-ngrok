@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "outDir": "bin",
+        "target": "es2016",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true,
+        "stripInternal": true,
+        "experimentalDecorators": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true
+    },
+    "files": [
+        "agentIngress.ts",
+        "apiKey.ts",
+        "certificateAuthority.ts",
+        "config/index.ts",
+        "config/vars.ts",
+        "credential.ts",
+        "endpointConfiguration.ts",
+        "eventDestination.ts",
+        "eventSubscription.ts",
+        "index.ts",
+        "ipPolicy.ts",
+        "ipPolicyRule.ts",
+        "ipRestriction.ts",
+        "provider.ts",
+        "reservedAddress.ts",
+        "reservedDomain.ts",
+        "sshCertificateAuthority.ts",
+        "sshCredential.ts",
+        "sshHostCertificate.ts",
+        "sshUserCertificate.ts",
+        "tlsCertificate.ts",
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
+        "utilities.ts"
+    ]
+}

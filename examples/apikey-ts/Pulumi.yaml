@@ -1,0 +1,3 @@
+name: ngrok-apikey-ts
+runtime: nodejs
+description: A minimal TypeScript Pulumi program
