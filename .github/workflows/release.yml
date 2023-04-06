@@ -269,7 +269,7 @@ jobs:
     - name: Uncompress nodejs SDK
       run: tar -zxf ${{github.workspace}}/sdk/nodejs.tar.gz -C ${{github.workspace}}/sdk/nodejs
     - name: Publish NPM package
-      run: cd ${{github.workspace}}/sdk/nodejs/bin/ && npm publish --access public
+      run: cd ${{github.workspace}}/sdk/nodejs/bin/ && npm login && npm publish --access public
     # - name: Publish NPM package
     #   uses: JS-DevTools/npm-publish@v1
     #   with: 
