@@ -40,16 +40,16 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/actions@v4
     - name: Setup Node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{matrix.nodeversion}}
         registry-url: https://registry.npmjs.org
     - name: Setup DotNet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Download provider + tfgen binaries
@@ -221,16 +221,16 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/actions@v4
     - name: Setup Node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{matrix.nodeversion}}
         registry-url: https://registry.npmjs.org
     - name: Setup DotNet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Download python SDK
@@ -313,16 +313,16 @@ jobs:
   #   - name: Install Pulumi CLI
   #     uses: pulumi/actions@v4
   #   - name: Setup Node
-  #     uses: actions/setup-node@v2
+  #     uses: actions/setup-node@v3
   #     with:
   #       node-version: ${{matrix.nodeversion}}
   #       registry-url: https://registry.npmjs.org
   #   - name: Setup DotNet
-  #     uses: actions/setup-dotnet@v1
+  #     uses: actions/setup-dotnet@v3
   #     with:
   #       dotnet-version: ${{matrix.dotnetversion}}
   #   - name: Setup Python
-  #     uses: actions/setup-python@v2
+  #     uses: actions/setup-python@v3
   #     with:
   #       python-version: ${{matrix.pythonversion}}
   #   - name: Download provider + tfgen binaries
