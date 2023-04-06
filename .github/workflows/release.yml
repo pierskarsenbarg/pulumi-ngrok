@@ -13,6 +13,7 @@ env:
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
   PYPI_USERNAME: "__token__"
   TRAVIS_OS_NAME: "linux"
+  NGROK_API_KEY: ${{secrets.NGROK_API_KEY}}
 jobs:
   build_sdk:
     name: build_sdk
