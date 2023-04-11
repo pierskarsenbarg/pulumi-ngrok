@@ -31,6 +31,7 @@ func NewEventDestination(ctx *pulumi.Context,
 		args = &EventDestinationArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EventDestination
 	err := ctx.RegisterResource("ngrok:index/eventDestination:EventDestination", name, args, &resource, opts...)
 	if err != nil {

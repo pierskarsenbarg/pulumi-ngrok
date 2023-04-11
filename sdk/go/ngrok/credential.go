@@ -61,6 +61,7 @@ func NewCredential(ctx *pulumi.Context,
 		args = &CredentialArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Credential
 	err := ctx.RegisterResource("ngrok:index/credential:Credential", name, args, &resource, opts...)
 	if err != nil {

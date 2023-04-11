@@ -61,6 +61,7 @@ func NewApiKey(ctx *pulumi.Context,
 		args = &ApiKeyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ApiKey
 	err := ctx.RegisterResource("ngrok:index/apiKey:ApiKey", name, args, &resource, opts...)
 	if err != nil {

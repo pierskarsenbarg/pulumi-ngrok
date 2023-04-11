@@ -66,6 +66,7 @@ func NewSshCertificateAuthority(ctx *pulumi.Context,
 		args = &SshCertificateAuthorityArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SshCertificateAuthority
 	err := ctx.RegisterResource("ngrok:index/sshCertificateAuthority:SshCertificateAuthority", name, args, &resource, opts...)
 	if err != nil {

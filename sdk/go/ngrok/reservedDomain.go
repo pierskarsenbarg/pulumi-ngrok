@@ -76,6 +76,7 @@ func NewReservedDomain(ctx *pulumi.Context,
 		args = &ReservedDomainArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReservedDomain
 	err := ctx.RegisterResource("ngrok:index/reservedDomain:ReservedDomain", name, args, &resource, opts...)
 	if err != nil {

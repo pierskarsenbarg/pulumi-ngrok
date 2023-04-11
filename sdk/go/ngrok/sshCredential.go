@@ -68,6 +68,7 @@ func NewSshCredential(ctx *pulumi.Context,
 	if args.PublicKey == nil {
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SshCredential
 	err := ctx.RegisterResource("ngrok:index/sshCredential:SshCredential", name, args, &resource, opts...)
 	if err != nil {

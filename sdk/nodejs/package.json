@@ -24,6 +24,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "ngrok"
+        "name": "ngrok",
+        "server": "github://api.github.com/pierskarsenbarg/pulumi-ngrok"
     }
 }

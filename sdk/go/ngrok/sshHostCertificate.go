@@ -84,6 +84,7 @@ func NewSshHostCertificate(ctx *pulumi.Context,
 	if args.SshCertificateAuthorityId == nil {
 		return nil, errors.New("invalid value for required argument 'SshCertificateAuthorityId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SshHostCertificate
 	err := ctx.RegisterResource("ngrok:index/sshHostCertificate:SshHostCertificate", name, args, &resource, opts...)
 	if err != nil {

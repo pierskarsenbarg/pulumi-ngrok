@@ -30,6 +30,7 @@ func NewEventSubscription(ctx *pulumi.Context,
 		args = &EventSubscriptionArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EventSubscription
 	err := ctx.RegisterResource("ngrok:index/eventSubscription:EventSubscription", name, args, &resource, opts...)
 	if err != nil {

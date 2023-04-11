@@ -63,6 +63,7 @@ func NewReservedAddress(ctx *pulumi.Context,
 		args = &ReservedAddressArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReservedAddress
 	err := ctx.RegisterResource("ngrok:index/reservedAddress:ReservedAddress", name, args, &resource, opts...)
 	if err != nil {

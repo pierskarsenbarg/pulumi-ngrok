@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'ngrok', PLUGIN_VERSION])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'ngrok', PLUGIN_VERSION, '--server', 'github://api.github.com/pierskarsenbarg/pulumi-ngrok'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""

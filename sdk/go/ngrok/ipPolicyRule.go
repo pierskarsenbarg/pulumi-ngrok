@@ -70,6 +70,7 @@ func NewIpPolicyRule(ctx *pulumi.Context,
 	if args.IpPolicyId == nil {
 		return nil, errors.New("invalid value for required argument 'IpPolicyId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpPolicyRule
 	err := ctx.RegisterResource("ngrok:index/ipPolicyRule:IpPolicyRule", name, args, &resource, opts...)
 	if err != nil {

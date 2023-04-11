@@ -11,6 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`ngrok` Terraform Provider](https://github.com/ngrok/terraform-provider-ngrok).",
     "repository": "https://github.com/pierskarsenbarg/pulumi-ngrok",
+    "pluginDownloadURL": "github://api.github.com/pierskarsenbarg/pulumi-ngrok",
     "publisher": "Piers Karsenbarg",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"

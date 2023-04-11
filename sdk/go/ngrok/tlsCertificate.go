@@ -125,6 +125,7 @@ func NewTlsCertificate(ctx *pulumi.Context,
 	if args.PrivateKeyPem == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateKeyPem'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource TlsCertificate
 	err := ctx.RegisterResource("ngrok:index/tlsCertificate:TlsCertificate", name, args, &resource, opts...)
 	if err != nil {

@@ -94,6 +94,7 @@ func NewCertificateAuthority(ctx *pulumi.Context,
 	if args.CaPem == nil {
 		return nil, errors.New("invalid value for required argument 'CaPem'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CertificateAuthority
 	err := ctx.RegisterResource("ngrok:index/certificateAuthority:CertificateAuthority", name, args, &resource, opts...)
 	if err != nil {

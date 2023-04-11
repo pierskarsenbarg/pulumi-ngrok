@@ -97,6 +97,7 @@ func NewEndpointConfiguration(ctx *pulumi.Context,
 		args = &EndpointConfigurationArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointConfiguration
 	err := ctx.RegisterResource("ngrok:index/endpointConfiguration:EndpointConfiguration", name, args, &resource, opts...)
 	if err != nil {

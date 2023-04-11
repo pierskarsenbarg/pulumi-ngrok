@@ -207,8 +207,6 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     steps:
-    - name: NPM whoami
-      run: npm whoami
     - name: Checkout Repo
       uses: actions/checkout@v3
     - name: Checkout Scripts Repo
@@ -246,6 +244,8 @@ jobs:
       run: tar -zxf ${{github.workspace}}/sdk/nodejs.tar.gz -C ${{github.workspace}}/sdk/nodejs
     - name: Publish NPM package
       run: cd ${{github.workspace}}/sdk/nodejs/bin/ && npm publish --access public
+      env: 
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     # - name: Publish NPM package
     #   uses: JS-DevTools/npm-publish@v1
     #   with: 
