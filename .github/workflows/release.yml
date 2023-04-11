@@ -233,32 +233,6 @@ jobs:
       with:
         node-version: ${{matrix.nodeversion}}
         registry-url: https://registry.npmjs.org
-    - name: Setup DotNet
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{matrix.dotnetversion}}
-    - name: Setup Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{matrix.pythonversion}}
-    - name: Download python SDK
-      uses: actions/download-artifact@v3
-      with:
-        name: python.tar.gz
-        path: ${{ github.workspace}}/sdk/
-    - name: Create python directory
-      run: mkdir -p ${{github.workspace}}/sdk/python
-    - name: Uncompress python SDK
-      run: tar -zxf ${{github.workspace}}/sdk/python.tar.gz -C ${{github.workspace}}/sdk/python
-    - name: Download dotnet SDK
-      uses: actions/download-artifact@v3
-      with:
-        name: dotnet.tar.gz
-        path: ${{ github.workspace}}/sdk/
-    - name: Create dotnet directory
-      run: mkdir -p ${{github.workspace}}/sdk/dotnet
-    - name: Uncompress dotnet SDK
-      run: tar -zxf ${{github.workspace}}/sdk/dotnet.tar.gz -C ${{github.workspace}}/sdk/dotnet
     - name: Download nodejs SDK
       uses: actions/download-artifact@v3
       with:
@@ -276,16 +250,42 @@ jobs:
     #     access: "public"
     #     token: ${{ secrets.NPM_TOKEN }}
     #     package: ${{github.workspace}}/sdk/nodejs/bin/package.json
+    - name: Setup DotNet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{matrix.dotnetversion}}
+    - name: Download dotnet SDK
+      uses: actions/download-artifact@v3
+      with:
+        name: dotnet.tar.gz
+        path: ${{ github.workspace}}/sdk/
+    - name: Create dotnet directory
+      run: mkdir -p ${{github.workspace}}/sdk/dotnet
+    - name: Uncompress dotnet SDK
+      run: tar -zxf ${{github.workspace}}/sdk/dotnet.tar.gz -C ${{github.workspace}}/sdk/dotnet
+    - name: Publish Nuget package
+      env: 
+        NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
+      run: find "${{github.workspace}}/sdk/dotnet/bin/Debug/" -name 'PiersKarsenbarg.*.nupkg' -exec dotnet nuget push -k "${NUGET_PUBLISH_KEY}" -s https://api.nuget.org/v3/index.json {} ';'
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{matrix.pythonversion}}
+    - name: Download python SDK
+      uses: actions/download-artifact@v3
+      with:
+        name: python.tar.gz
+        path: ${{ github.workspace}}/sdk/
+    - name: Create python directory
+      run: mkdir -p ${{github.workspace}}/sdk/python
+    - name: Uncompress python SDK
+      run: tar -zxf ${{github.workspace}}/sdk/python.tar.gz -C ${{github.workspace}}/sdk/python
     - name: Publish PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: ${{ env.PYPI_USERNAME }}
         password: ${{ env.PYPI_PASSWORD }}
         packages_dir: ${{github.workspace}}/sdk/python/bin/dist
-    - name: Publish Nuget package
-      env: 
-        NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
-      run: find "${{github.workspace}}/sdk/dotnet/bin/Debug/" -name 'PiersKarsenbarg.*.nupkg' -exec dotnet nuget push -k "${NUGET_PUBLISH_KEY}" -s https://api.nuget.org/v3/index.json {} ';'
     strategy:
       fail-fast: true
       matrix:
