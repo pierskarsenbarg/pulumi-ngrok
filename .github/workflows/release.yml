@@ -207,6 +207,8 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     steps:
+    - name: NPM whoami
+      run: npm whoami
     - name: Checkout Repo
       uses: actions/checkout@v3
     - name: Checkout Scripts Repo
