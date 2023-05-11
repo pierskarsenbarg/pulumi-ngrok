@@ -9,7 +9,6 @@ env:
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
   PULUMI_TEST_OWNER: "pierskarsenbarg"
-  NGROK_API_KEY: ${{ secrets.NGROK_API_KEY }}
   # PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
   # PYPI_USERNAME: "__token__"
   # SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
@@ -231,6 +230,9 @@ jobs:
       run: make install_${{ matrix.language}}_sdk
     - name: Run tests
       run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language }} -parallel 4 .
+      with:
+        env:
+          NGROK_API_KEY: ${{ secrets.NGROK_API_KEY }}
     strategy:
       fail-fast: true
       matrix:
