@@ -371,7 +371,7 @@ jobs:
   #       dotnetversion:
   #       - 6.0.302
   #       goversion:
-  #       - 1.17.x
+  #       - 1.19.x
   #       language:
   #       - nodejs
   #       - python
