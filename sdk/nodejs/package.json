@@ -1,5 +1,5 @@
 {
-    "name": "@pierskarsenbarg/grok",
+    "name": "@pierskarsenbarg/ngrok",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing ngrok cloud resources.",
     "keywords": [
