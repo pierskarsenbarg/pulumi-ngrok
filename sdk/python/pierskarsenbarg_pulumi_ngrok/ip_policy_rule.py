@@ -204,7 +204,7 @@ class IpPolicyRule(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.IpPolicyRule("example",
             cidr="212.3.14.0/24",
@@ -234,7 +234,7 @@ class IpPolicyRule(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.IpPolicyRule("example",
             cidr="212.3.14.0/24",

@@ -209,7 +209,7 @@ class TlsCertificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.TlsCertificate("example",
             certificate_pem=\"\"\"-----BEGIN CERTIFICATE-----
@@ -288,7 +288,7 @@ class TlsCertificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.TlsCertificate("example",
             certificate_pem=\"\"\"-----BEGIN CERTIFICATE-----

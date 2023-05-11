@@ -28,10 +28,10 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumi_ngrok.config as __config
+    import pierskarsenbarg_pulumi_ngrok.config as __config
     config = __config
 else:
-    config = _utilities.lazy_import('pulumi_ngrok.config')
+    config = _utilities.lazy_import('pierskarsenbarg_pulumi_ngrok.config')
 
 _utilities.register(
     resource_modules="""
@@ -39,7 +39,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/agentIngress",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/agentIngress:AgentIngress": "AgentIngress"
   }
@@ -47,7 +47,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/apiKey",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/apiKey:ApiKey": "ApiKey"
   }
@@ -55,7 +55,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/certificateAuthority",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/certificateAuthority:CertificateAuthority": "CertificateAuthority"
   }
@@ -63,7 +63,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/credential",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/credential:Credential": "Credential"
   }
@@ -71,7 +71,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/endpointConfiguration",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/endpointConfiguration:EndpointConfiguration": "EndpointConfiguration"
   }
@@ -79,7 +79,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/eventDestination",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/eventDestination:EventDestination": "EventDestination"
   }
@@ -87,7 +87,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/eventSubscription",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/eventSubscription:EventSubscription": "EventSubscription"
   }
@@ -95,7 +95,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/ipPolicy",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/ipPolicy:IpPolicy": "IpPolicy"
   }
@@ -103,7 +103,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/ipPolicyRule",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/ipPolicyRule:IpPolicyRule": "IpPolicyRule"
   }
@@ -111,7 +111,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/ipRestriction",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/ipRestriction:IpRestriction": "IpRestriction"
   }
@@ -119,7 +119,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/reservedAddress",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/reservedAddress:ReservedAddress": "ReservedAddress"
   }
@@ -127,7 +127,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/reservedDomain",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/reservedDomain:ReservedDomain": "ReservedDomain"
   }
@@ -135,7 +135,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/sshCertificateAuthority",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/sshCertificateAuthority:SshCertificateAuthority": "SshCertificateAuthority"
   }
@@ -143,7 +143,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/sshCredential",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/sshCredential:SshCredential": "SshCredential"
   }
@@ -151,7 +151,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/sshHostCertificate",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/sshHostCertificate:SshHostCertificate": "SshHostCertificate"
   }
@@ -159,7 +159,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/sshUserCertificate",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/sshUserCertificate:SshUserCertificate": "SshUserCertificate"
   }
@@ -167,7 +167,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "mod": "index/tlsCertificate",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/tlsCertificate:TlsCertificate": "TlsCertificate"
   }
@@ -179,7 +179,7 @@ _utilities.register(
  {
   "pkg": "ngrok",
   "token": "pulumi:providers:ngrok",
-  "fqn": "pulumi_ngrok",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
   "class": "Provider"
  }
 ]

@@ -143,7 +143,7 @@ class ApiKey(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.ApiKey("example",
             description="ad-hoc dev testing",
@@ -173,7 +173,7 @@ class ApiKey(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.ApiKey("example",
             description="ad-hoc dev testing",

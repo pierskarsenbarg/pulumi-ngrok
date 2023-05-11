@@ -158,7 +158,7 @@ class Credential(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.Credential("example", description="development cred for alan@example.com")
         ```
@@ -185,7 +185,7 @@ class Credential(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.Credential("example", description="development cred for alan@example.com")
         ```

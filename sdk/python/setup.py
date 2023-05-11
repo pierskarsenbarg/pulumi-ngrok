@@ -37,7 +37,7 @@ def readme():
         return "ngrok Pulumi Package - Development Version"
 
 
-setup(name='pulumi_ngrok',
+setup(name='pierskarsenbarg_pulumi_ngrok',
       version=VERSION,
       description="A Pulumi package for creating and managing ngrok cloud resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='pulumi_ngrok',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_ngrok': [
+          'pierskarsenbarg_pulumi_ngrok': [
               'py.typed',
               'pulumi-plugin.json',
           ]

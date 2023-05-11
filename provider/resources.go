@@ -145,6 +145,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
+			PackageName: "pierskarsenbarg_pulumi_ngrok",
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},

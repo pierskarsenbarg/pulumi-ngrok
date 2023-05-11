@@ -605,7 +605,7 @@ class EndpointConfiguration(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.EndpointConfiguration("example",
             description="app servers",
@@ -653,7 +653,7 @@ class EndpointConfiguration(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.EndpointConfiguration("example",
             description="app servers",

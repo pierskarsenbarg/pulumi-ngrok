@@ -337,7 +337,7 @@ class SshHostCertificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.SshHostCertificate("example",
             description="personal server",
@@ -377,7 +377,7 @@ class SshHostCertificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.SshHostCertificate("example",
             description="personal server",

@@ -272,7 +272,7 @@ class SshCertificateAuthority(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.SshCertificateAuthority("example",
             description="Staging Environment Hosts",
@@ -303,7 +303,7 @@ class SshCertificateAuthority(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.SshCertificateAuthority("example",
             description="Staging Environment Hosts",

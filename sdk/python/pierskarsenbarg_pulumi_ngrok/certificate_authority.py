@@ -142,7 +142,7 @@ class CertificateAuthority(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.CertificateAuthority("example",
             ca_pem=\"\"\"-----BEGIN CERTIFICATE-----
@@ -197,7 +197,7 @@ class CertificateAuthority(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.CertificateAuthority("example",
             ca_pem=\"\"\"-----BEGIN CERTIFICATE-----

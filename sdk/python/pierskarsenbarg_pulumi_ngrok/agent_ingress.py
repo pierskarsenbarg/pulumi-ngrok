@@ -217,7 +217,7 @@ class AgentIngress(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.AgentIngress("example",
             description="acme devices",
@@ -242,7 +242,7 @@ class AgentIngress(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.AgentIngress("example",
             description="acme devices",

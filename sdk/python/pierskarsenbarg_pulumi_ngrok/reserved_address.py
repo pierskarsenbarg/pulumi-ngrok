@@ -207,7 +207,7 @@ class ReservedAddress(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.ReservedAddress("example",
             description="SSH for device #001",
@@ -237,7 +237,7 @@ class ReservedAddress(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ngrok as ngrok
+        import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.ReservedAddress("example",
             description="SSH for device #001",
