@@ -36,7 +36,7 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions()
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"@pierskarsenbarg/pulumi-ngrok",
+			"@pierskarsenbarg/ngrok",
 		},
 	})
 
