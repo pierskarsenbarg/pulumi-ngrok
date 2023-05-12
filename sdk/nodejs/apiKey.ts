@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.ApiKey("example", {
  *     description: "ad-hoc dev testing",
@@ -84,9 +84,11 @@ export class ApiKey extends pulumi.CustomResource {
             const args = argsOrState as ApiKeyArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ApiKey.__pulumiType, name, resourceInputs, opts);
     }
 }

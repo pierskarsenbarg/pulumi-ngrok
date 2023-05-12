@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -16,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.TlsCertificate("example", {
  *     certificatePem: `-----BEGIN CERTIFICATE-----
@@ -37,7 +38,8 @@ import * as utilities from "./utilities";
  * 2x1uZMyqjJFB5y/5EdnWQzD4WJkrsCkxsZHVMN1d+dqf2sf3dTRV8fzsFGOG17NS
  * 6u2n9iGcFdBA82XN8yeLIWhy1t3GWutG1sdxENbFRRXea+iUqzDsmRtkaBma2GLQ
  * d6JTpFbsCtwDjP23UEi7SZo=
- * -----END CERTIFICATE-----`,
+ * -----END CERTIFICATE-----
+ * `,
  *     privateKeyPem: `-----BEGIN PRIVATE KEY-----
  * MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDylZJCmDZd3fXK
  * q8+LSBZcLKIRA+VuMtXXAYscuBgDRRZ8ON53NsD8isGF7piaiSBa3FvzZFGS9O23
@@ -65,7 +67,8 @@ import * as utilities from "./utilities";
  * IbgQ9bV7VLIo+vKzOXE3trfzRJMgUosLTp+5wdSVSW/VBdYZ7Ir3n0bbpY/dGinI
  * VShxPbChhCZnhvG2lEEiekI44m5jHSA6hhtRdt/CrhL65Rw2SE5lMEe8htg1UGus
  * wzLHWHBl72FjbjdhvEgrq60W
- * -----END PRIVATE KEY-----`,
+ * -----END PRIVATE KEY-----
+ * `,
  * });
  * ```
  */

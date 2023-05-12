@@ -20,6 +20,7 @@ namespace PiersKarsenbarg.Ngrok
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ngrok = PiersKarsenbarg.Ngrok;
     /// 
@@ -84,6 +85,10 @@ namespace PiersKarsenbarg.Ngrok
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pierskarsenbarg/pulumi-ngrok",
+                AdditionalSecretOutputs =
+                {
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -163,11 +168,21 @@ namespace PiersKarsenbarg.Ngrok
         [Input("metadata")]
         public Input<string>? Metadata { get; set; }
 
+        [Input("token")]
+        private Input<string>? _token;
+
         /// <summary>
         /// the credential's authtoken that can be used to authenticate an ngrok client. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public CredentialState()
         {

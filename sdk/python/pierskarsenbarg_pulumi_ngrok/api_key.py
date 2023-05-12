@@ -209,7 +209,9 @@ class ApiKey(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["metadata"] = metadata
-            __props__.__dict__["token"] = token
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ApiKey, __self__).__init__(
             'ngrok:index/apiKey:ApiKey',
             resource_name,

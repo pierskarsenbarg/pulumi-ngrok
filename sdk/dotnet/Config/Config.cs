@@ -30,7 +30,7 @@ namespace PiersKarsenbarg.Ngrok
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("ngrok");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("ngrok");
 
         private static readonly __Value<string?> _apiBaseUrl = new __Value<string?>(() => __config.Get("apiBaseUrl"));
         /// <summary>

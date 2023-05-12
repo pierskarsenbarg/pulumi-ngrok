@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='pierskarsenbarg_pulumi_ngrok',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing ngrok cloud resources.",
       long_description=readme(),

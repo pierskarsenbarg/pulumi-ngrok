@@ -17,7 +17,16 @@ namespace PiersKarsenbarg.Ngrok.Inputs
         public Input<string>? ClientId { get; set; }
 
         [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        private Input<string>? _clientSecret;
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("emailAddresses")]
         private InputList<string>? _emailAddresses;

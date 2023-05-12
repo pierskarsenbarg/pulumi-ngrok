@@ -221,6 +221,8 @@ class Credential(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["token"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Credential, __self__).__init__(
             'ngrok:index/credential:Credential',
             resource_name,

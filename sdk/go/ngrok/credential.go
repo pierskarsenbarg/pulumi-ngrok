@@ -61,6 +61,10 @@ func NewCredential(ctx *pulumi.Context,
 		args = &CredentialArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"token",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Credential
 	err := ctx.RegisterResource("ngrok:index/credential:Credential", name, args, &resource, opts...)

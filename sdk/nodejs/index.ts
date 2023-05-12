@@ -5,24 +5,96 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./agentIngress";
-export * from "./apiKey";
-export * from "./certificateAuthority";
-export * from "./credential";
-export * from "./endpointConfiguration";
-export * from "./eventDestination";
-export * from "./eventSubscription";
-export * from "./ipPolicy";
-export * from "./ipPolicyRule";
-export * from "./ipRestriction";
-export * from "./provider";
-export * from "./reservedAddress";
-export * from "./reservedDomain";
-export * from "./sshCertificateAuthority";
-export * from "./sshCredential";
-export * from "./sshHostCertificate";
-export * from "./sshUserCertificate";
-export * from "./tlsCertificate";
+export { AgentIngressArgs, AgentIngressState } from "./agentIngress";
+export type AgentIngress = import("./agentIngress").AgentIngress;
+export const AgentIngress: typeof import("./agentIngress").AgentIngress = null as any;
+utilities.lazyLoad(exports, ["AgentIngress"], () => require("./agentIngress"));
+
+export { ApiKeyArgs, ApiKeyState } from "./apiKey";
+export type ApiKey = import("./apiKey").ApiKey;
+export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
+utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
+
+export { CertificateAuthorityArgs, CertificateAuthorityState } from "./certificateAuthority";
+export type CertificateAuthority = import("./certificateAuthority").CertificateAuthority;
+export const CertificateAuthority: typeof import("./certificateAuthority").CertificateAuthority = null as any;
+utilities.lazyLoad(exports, ["CertificateAuthority"], () => require("./certificateAuthority"));
+
+export { CredentialArgs, CredentialState } from "./credential";
+export type Credential = import("./credential").Credential;
+export const Credential: typeof import("./credential").Credential = null as any;
+utilities.lazyLoad(exports, ["Credential"], () => require("./credential"));
+
+export { EndpointConfigurationArgs, EndpointConfigurationState } from "./endpointConfiguration";
+export type EndpointConfiguration = import("./endpointConfiguration").EndpointConfiguration;
+export const EndpointConfiguration: typeof import("./endpointConfiguration").EndpointConfiguration = null as any;
+utilities.lazyLoad(exports, ["EndpointConfiguration"], () => require("./endpointConfiguration"));
+
+export { EventDestinationArgs, EventDestinationState } from "./eventDestination";
+export type EventDestination = import("./eventDestination").EventDestination;
+export const EventDestination: typeof import("./eventDestination").EventDestination = null as any;
+utilities.lazyLoad(exports, ["EventDestination"], () => require("./eventDestination"));
+
+export { EventSubscriptionArgs, EventSubscriptionState } from "./eventSubscription";
+export type EventSubscription = import("./eventSubscription").EventSubscription;
+export const EventSubscription: typeof import("./eventSubscription").EventSubscription = null as any;
+utilities.lazyLoad(exports, ["EventSubscription"], () => require("./eventSubscription"));
+
+export { IpPolicyArgs, IpPolicyState } from "./ipPolicy";
+export type IpPolicy = import("./ipPolicy").IpPolicy;
+export const IpPolicy: typeof import("./ipPolicy").IpPolicy = null as any;
+utilities.lazyLoad(exports, ["IpPolicy"], () => require("./ipPolicy"));
+
+export { IpPolicyRuleArgs, IpPolicyRuleState } from "./ipPolicyRule";
+export type IpPolicyRule = import("./ipPolicyRule").IpPolicyRule;
+export const IpPolicyRule: typeof import("./ipPolicyRule").IpPolicyRule = null as any;
+utilities.lazyLoad(exports, ["IpPolicyRule"], () => require("./ipPolicyRule"));
+
+export { IpRestrictionArgs, IpRestrictionState } from "./ipRestriction";
+export type IpRestriction = import("./ipRestriction").IpRestriction;
+export const IpRestriction: typeof import("./ipRestriction").IpRestriction = null as any;
+utilities.lazyLoad(exports, ["IpRestriction"], () => require("./ipRestriction"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { ReservedAddressArgs, ReservedAddressState } from "./reservedAddress";
+export type ReservedAddress = import("./reservedAddress").ReservedAddress;
+export const ReservedAddress: typeof import("./reservedAddress").ReservedAddress = null as any;
+utilities.lazyLoad(exports, ["ReservedAddress"], () => require("./reservedAddress"));
+
+export { ReservedDomainArgs, ReservedDomainState } from "./reservedDomain";
+export type ReservedDomain = import("./reservedDomain").ReservedDomain;
+export const ReservedDomain: typeof import("./reservedDomain").ReservedDomain = null as any;
+utilities.lazyLoad(exports, ["ReservedDomain"], () => require("./reservedDomain"));
+
+export { SshCertificateAuthorityArgs, SshCertificateAuthorityState } from "./sshCertificateAuthority";
+export type SshCertificateAuthority = import("./sshCertificateAuthority").SshCertificateAuthority;
+export const SshCertificateAuthority: typeof import("./sshCertificateAuthority").SshCertificateAuthority = null as any;
+utilities.lazyLoad(exports, ["SshCertificateAuthority"], () => require("./sshCertificateAuthority"));
+
+export { SshCredentialArgs, SshCredentialState } from "./sshCredential";
+export type SshCredential = import("./sshCredential").SshCredential;
+export const SshCredential: typeof import("./sshCredential").SshCredential = null as any;
+utilities.lazyLoad(exports, ["SshCredential"], () => require("./sshCredential"));
+
+export { SshHostCertificateArgs, SshHostCertificateState } from "./sshHostCertificate";
+export type SshHostCertificate = import("./sshHostCertificate").SshHostCertificate;
+export const SshHostCertificate: typeof import("./sshHostCertificate").SshHostCertificate = null as any;
+utilities.lazyLoad(exports, ["SshHostCertificate"], () => require("./sshHostCertificate"));
+
+export { SshUserCertificateArgs, SshUserCertificateState } from "./sshUserCertificate";
+export type SshUserCertificate = import("./sshUserCertificate").SshUserCertificate;
+export const SshUserCertificate: typeof import("./sshUserCertificate").SshUserCertificate = null as any;
+utilities.lazyLoad(exports, ["SshUserCertificate"], () => require("./sshUserCertificate"));
+
+export { TlsCertificateArgs, TlsCertificateState } from "./tlsCertificate";
+export type TlsCertificate = import("./tlsCertificate").TlsCertificate;
+export const TlsCertificate: typeof import("./tlsCertificate").TlsCertificate = null as any;
+utilities.lazyLoad(exports, ["TlsCertificate"], () => require("./tlsCertificate"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -32,25 +104,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { AgentIngress } from "./agentIngress";
-import { ApiKey } from "./apiKey";
-import { CertificateAuthority } from "./certificateAuthority";
-import { Credential } from "./credential";
-import { EndpointConfiguration } from "./endpointConfiguration";
-import { EventDestination } from "./eventDestination";
-import { EventSubscription } from "./eventSubscription";
-import { IpPolicy } from "./ipPolicy";
-import { IpPolicyRule } from "./ipPolicyRule";
-import { IpRestriction } from "./ipRestriction";
-import { ReservedAddress } from "./reservedAddress";
-import { ReservedDomain } from "./reservedDomain";
-import { SshCertificateAuthority } from "./sshCertificateAuthority";
-import { SshCredential } from "./sshCredential";
-import { SshHostCertificate } from "./sshHostCertificate";
-import { SshUserCertificate } from "./sshUserCertificate";
-import { TlsCertificate } from "./tlsCertificate";
 
 const _module = {
     version: utilities.getVersion(),
@@ -112,9 +165,6 @@ pulumi.runtime.registerResourceModule("ngrok", "index/sshCredential", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/sshHostCertificate", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/sshUserCertificate", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/tlsCertificate", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("ngrok", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

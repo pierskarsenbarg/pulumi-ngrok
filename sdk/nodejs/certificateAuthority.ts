@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.CertificateAuthority("example", {
  *     caPem: `-----BEGIN CERTIFICATE-----
@@ -41,7 +41,8 @@ import * as utilities from "./utilities";
  * nPsQr8x1RfLs2gbBwQ4MYVM3tQQbX0o+yve5nz/NCOq4vdG+eKON5u6VYMkOOg9F
  * VyNY1iISQkpNk/AF6Vi9BGuDb5Hg0phEl1Q0ntCO7ZHAUHjy0ucqXZiXoXdXZcs3
  * 3zKKLUKva59EDBZ5TUucvXh8VemBtNc6hd1mX4Tq7lAreG9pjQ==
- * -----END CERTIFICATE-----`,
+ * -----END CERTIFICATE-----
+ * `,
  *     description: "Internal Coprorates Services Authority",
  *     metadata: "{\"internal_id\": \"7d2caeee-cdc3-4b26-b2c2-b280b8287552\"}",
  * });

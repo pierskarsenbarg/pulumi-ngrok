@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.AgentIngress("example", {
  *     description: "acme devices",

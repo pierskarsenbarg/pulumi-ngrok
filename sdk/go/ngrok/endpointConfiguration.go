@@ -31,8 +31,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ngrok.NewEndpointConfiguration(ctx, "example", &ngrok.EndpointConfigurationArgs{
 //				Description: pulumi.String("app servers"),
-//				RequestHeaders: EndpointConfigurationRequestHeaderArray{
-//					&EndpointConfigurationRequestHeaderArgs{
+//				RequestHeaders: ngrok.EndpointConfigurationRequestHeaderArray{
+//					&ngrok.EndpointConfigurationRequestHeaderArgs{
 //						Add: pulumi.StringMap{
 //							"x-frontend": pulumi.String("ngrok"),
 //						},

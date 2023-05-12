@@ -25,11 +25,21 @@ namespace PiersKarsenbarg.Ngrok.Inputs
         [Input("provider")]
         public Input<string>? Provider { get; set; }
 
+        [Input("secret")]
+        private Input<string>? _secret;
+
         /// <summary>
         /// a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
         /// </summary>
-        [Input("secret")]
-        public Input<string>? Secret { get; set; }
+        public Input<string>? Secret
+        {
+            get => _secret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public EndpointConfigurationWebhookValidationGetArgs()
         {

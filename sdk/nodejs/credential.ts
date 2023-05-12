@@ -14,11 +14,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.Credential("example", {
- *     description: "development cred for alan@example.com",
- * });
+ * const example = new ngrok.Credential("example", {description: "development cred for alan@example.com"});
  * ```
  */
 export class Credential extends pulumi.CustomResource {
@@ -91,6 +89,8 @@ export class Credential extends pulumi.CustomResource {
             resourceInputs["token"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Credential.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.IpPolicyRule("example", {
  *     cidr: "212.3.14.0/24",
