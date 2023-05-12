@@ -51,7 +51,7 @@ jobs:
       with:
         dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Download provider + tfgen binaries
@@ -270,7 +270,7 @@ jobs:
         NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
       run: find "${{github.workspace}}/sdk/dotnet/bin/Debug/" -name 'PiersKarsenbarg.*.nupkg' -exec dotnet nuget push -k "${NUGET_PUBLISH_KEY}" -s https://api.nuget.org/v3/index.json {} ';'
     - name: Setup Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Download python SDK
@@ -334,7 +334,7 @@ jobs:
   #     with:
   #       dotnet-version: ${{matrix.dotnetversion}}
   #   - name: Setup Python
-  #     uses: actions/setup-python@v3
+  #     uses: actions/setup-python@v4
   #     with:
   #       python-version: ${{matrix.pythonversion}}
   #   - name: Download provider + tfgen binaries
