@@ -13,9 +13,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pierskarsenbarg/ngrok";
+ * import * as ngrok from "@pulumi/ngrok";
  *
- * const example = new ngrok.SshHostCertificate("example", {
+ * const example = new ngrok.index/sshHostCertificate.SshHostCertificate("example", {
  *     description: "personal server",
  *     principals: [
  *         "inconshreveable.com",

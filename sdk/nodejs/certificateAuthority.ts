@@ -15,9 +15,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pierskarsenbarg/ngrok";
+ * import * as ngrok from "@pulumi/ngrok";
  *
- * const example = new ngrok.CertificateAuthority("example", {
+ * const example = new ngrok.index/certificateAuthority.CertificateAuthority("example", {
  *     caPem: `-----BEGIN CERTIFICATE-----
  * MIIEETCCAvmgAwIBAgIUU3N6lNzPqar4400cLQMcVHFl+mEwDQYJKoZIhvcNAQEL
  * BQAwgZcxCzAJBgNVBAYTAkFVMQwwCgYDVQQIDANOU1cxDzANBgNVBAcMBlN5ZG5l

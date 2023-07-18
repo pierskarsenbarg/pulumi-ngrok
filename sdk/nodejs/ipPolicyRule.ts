@@ -12,9 +12,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pierskarsenbarg/ngrok";
+ * import * as ngrok from "@pulumi/ngrok";
  *
- * const example = new ngrok.IpPolicyRule("example", {
+ * const example = new ngrok.index/ipPolicyRule.IpPolicyRule("example", {
  *     cidr: "212.3.14.0/24",
  *     description: "nyc office",
  *     ipPolicyId: "ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm",

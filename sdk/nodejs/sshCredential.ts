@@ -12,9 +12,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pierskarsenbarg/ngrok";
+ * import * as ngrok from "@pulumi/ngrok";
  *
- * const example = new ngrok.SshCredential("example", {
+ * const example = new ngrok.index/sshCredential.SshCredential("example", {
  *     acls: [
  *         "bind:1.tcp.ngrok.io:20002",
  *         "bind:132.devices.company.com",

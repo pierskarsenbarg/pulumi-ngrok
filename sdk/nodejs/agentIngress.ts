@@ -9,9 +9,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pierskarsenbarg/ngrok";
+ * import * as ngrok from "@pulumi/ngrok";
  *
- * const example = new ngrok.AgentIngress("example", {
+ * const example = new ngrok.index/agentIngress.AgentIngress("example", {
  *     description: "acme devices",
  *     domain: "connect.acme.com",
  * });

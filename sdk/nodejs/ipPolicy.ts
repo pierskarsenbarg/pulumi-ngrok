@@ -14,9 +14,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pierskarsenbarg/ngrok";
+ * import * as ngrok from "@pulumi/ngrok";
  *
- * const example = new ngrok.IpPolicy("example", {
+ * const example = new ngrok.index/ipPolicy.IpPolicy("example", {
  *     action: "allow",
  *     description: "API Outbound Gateway",
  * });
