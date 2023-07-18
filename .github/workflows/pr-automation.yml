@@ -1,10 +1,11 @@
+env: 
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   automerge:
     name: automerge labelled pull-requests
     runs-on: ubuntu-latest
     steps:
     - env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         MERGE_COMMIT_MESSAGE: pull-request-title
         MERGE_FORKS: "false"
         MERGE_LABELS: automation/merge,impact/no-changelog-required
