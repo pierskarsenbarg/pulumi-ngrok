@@ -16,9 +16,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.index/reservedDomain.ReservedDomain("example", {
+ * const example = new ngrok.ReservedDomain("example", {
  *     certificateId: "cert_25auGELSEngiae3wzmLLesiZn8h",
  *     region: "us",
  * });

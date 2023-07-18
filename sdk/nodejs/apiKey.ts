@@ -15,9 +15,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.index/apiKey.ApiKey("example", {
+ * const example = new ngrok.ApiKey("example", {
  *     description: "ad-hoc dev testing",
  *     metadata: "{\"environment\":\"dev\"}",
  * });

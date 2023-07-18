@@ -13,9 +13,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.index/reservedAddress.ReservedAddress("example", {
+ * const example = new ngrok.ReservedAddress("example", {
  *     description: "SSH for device #001",
  *     region: "us",
  * });

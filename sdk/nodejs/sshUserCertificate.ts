@@ -13,9 +13,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.index/sshUserCertificate.SshUserCertificate("example", {
+ * const example = new ngrok.SshUserCertificate("example", {
  *     description: "temporary access to staging machine",
  *     principals: [
  *         "ec2-user",

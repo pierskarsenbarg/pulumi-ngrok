@@ -12,9 +12,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.index/sshCertificateAuthority.SshCertificateAuthority("example", {
+ * const example = new ngrok.SshCertificateAuthority("example", {
  *     description: "Staging Environment Hosts",
  *     privateKeyType: "ed25519",
  * });

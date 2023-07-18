@@ -14,9 +14,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.index/credential.Credential("example", {description: "development cred for alan@example.com"});
+ * const example = new ngrok.Credential("example", {description: "development cred for alan@example.com"});
  * ```
  */
 export class Credential extends pulumi.CustomResource {

@@ -6,30 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
- *
- * const example = new ngrok.index/eventDestination.EventDestination("example", {
- *     description: "kinesis dev stream",
- *     format: "json",
- *     metadata: "{\"environment\":\"dev\"}",
- *     targets: [{
- *         kineses: [{
- *             auth: [{
- *                 role: [{
- *                     roleArn: "arn:aws:iam::123456789012:role/example",
- *                 }],
- *             }],
- *             streamArn: "arn:ngrok-local:kinesis:us-east-2:123456789012:stream/mystream2",
- *         }],
- *     }],
- * });
- * ```
- */
 export class EventDestination extends pulumi.CustomResource {
     /**
      * Get an existing EventDestination resource's state with the given name, ID, and optional extra

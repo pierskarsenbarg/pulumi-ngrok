@@ -15,9 +15,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ngrok from "@pulumi/ngrok";
+ * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.index/endpointConfiguration.EndpointConfiguration("example", {
+ * const example = new ngrok.EndpointConfiguration("example", {
  *     description: "app servers",
  *     requestHeaders: [{
  *         add: {
