@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -65,7 +66,7 @@ func NewCredential(ctx *pulumi.Context,
 		"token",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Credential
 	err := ctx.RegisterResource("ngrok:index/credential:Credential", name, args, &resource, opts...)
 	if err != nil {

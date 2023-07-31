@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +32,7 @@ func NewEventDestination(ctx *pulumi.Context,
 		args = &EventDestinationArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EventDestination
 	err := ctx.RegisterResource("ngrok:index/eventDestination:EventDestination", name, args, &resource, opts...)
 	if err != nil {

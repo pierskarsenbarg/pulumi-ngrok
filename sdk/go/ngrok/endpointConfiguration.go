@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -97,7 +98,7 @@ func NewEndpointConfiguration(ctx *pulumi.Context,
 		args = &EndpointConfigurationArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EndpointConfiguration
 	err := ctx.RegisterResource("ngrok:index/endpointConfiguration:EndpointConfiguration", name, args, &resource, opts...)
 	if err != nil {
