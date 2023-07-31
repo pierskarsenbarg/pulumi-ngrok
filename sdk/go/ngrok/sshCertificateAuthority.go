@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -66,7 +67,7 @@ func NewSshCertificateAuthority(ctx *pulumi.Context,
 		args = &SshCertificateAuthorityArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SshCertificateAuthority
 	err := ctx.RegisterResource("ngrok:index/sshCertificateAuthority:SshCertificateAuthority", name, args, &resource, opts...)
 	if err != nil {

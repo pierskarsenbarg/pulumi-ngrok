@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ func NewEventSubscription(ctx *pulumi.Context,
 		args = &EventSubscriptionArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EventSubscription
 	err := ctx.RegisterResource("ngrok:index/eventSubscription:EventSubscription", name, args, &resource, opts...)
 	if err != nil {

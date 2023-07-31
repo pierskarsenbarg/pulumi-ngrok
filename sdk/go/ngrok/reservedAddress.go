@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -63,7 +64,7 @@ func NewReservedAddress(ctx *pulumi.Context,
 		args = &ReservedAddressArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ReservedAddress
 	err := ctx.RegisterResource("ngrok:index/reservedAddress:ReservedAddress", name, args, &resource, opts...)
 	if err != nil {

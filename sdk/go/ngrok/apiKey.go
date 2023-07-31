@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -68,7 +69,7 @@ func NewApiKey(ctx *pulumi.Context,
 		"token",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ApiKey
 	err := ctx.RegisterResource("ngrok:index/apiKey:ApiKey", name, args, &resource, opts...)
 	if err != nil {

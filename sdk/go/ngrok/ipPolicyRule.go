@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -70,7 +71,7 @@ func NewIpPolicyRule(ctx *pulumi.Context,
 	if args.IpPolicyId == nil {
 		return nil, errors.New("invalid value for required argument 'IpPolicyId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpPolicyRule
 	err := ctx.RegisterResource("ngrok:index/ipPolicyRule:IpPolicyRule", name, args, &resource, opts...)
 	if err != nil {

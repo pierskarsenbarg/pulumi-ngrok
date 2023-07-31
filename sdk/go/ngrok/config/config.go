@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // base URL for the ngrok API. only overridden for ngrok's internal testing purposes.
 func GetApiBaseUrl(ctx *pulumi.Context) string {
