@@ -19,20 +19,21 @@
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
             },
+            "compatibility": "tfbridge20",
             "rootNamespace": "PiersKarsenbarg"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-ngrok/sdk/go/ngrok",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-ngrok/sdk/go/ngrok"
+            "generateExtraInputTypes": true
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageName": "@pierskarsenbarg/ngrok",
+            "packageDescription": "A Pulumi package for creating and managing ngrok cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/ngrok/terraform-provider-ngrok)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-ngrok` repo](https://github.com/pierskarsenbarg/pulumi-ngrok/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-ngrok` repo](https://github.com/ngrok/terraform-provider-ngrok/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -40,21 +41,17 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing ngrok cloud resources.",
-            "packageName": "@pierskarsenbarg/ngrok",
-            "pluginName": "",
-            "pluginVersion": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/ngrok/terraform-provider-ngrok)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-ngrok` repo](https://github.com/pierskarsenbarg/pulumi-ngrok/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-ngrok` repo](https://github.com/ngrok/terraform-provider-ngrok/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
             "packageName": "pierskarsenbarg_pulumi_ngrok",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/ngrok/terraform-provider-ngrok)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-ngrok` repo](https://github.com/pierskarsenbarg/pulumi-ngrok/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-ngrok` repo](https://github.com/ngrok/terraform-provider-ngrok/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/ngrok/terraform-provider-ngrok)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-ngrok` repo](https://github.com/pierskarsenbarg/pulumi-ngrok/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-ngrok` repo](https://github.com/ngrok/terraform-provider-ngrok/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {
