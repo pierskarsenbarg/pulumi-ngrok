@@ -1,6 +1,6 @@
 # ngrok Resource Provider
 
-The StrongDM Resource Provider lets you manage [ngrok](http://ngrok.com) resources.
+The ngrok Resource Provider lets you manage [ngrok](http://ngrok.com) resources.
 
 ## Installing
 
@@ -46,7 +46,7 @@ dotnet add package PiersKarsenbarg.Ngrok
 
 ## Configuration
 
-The following configuration points are available for the `sdm` provider:
+The following configuration points are available for the `ngrok` provider:
 
 - `ngrok:apiKey` (environment: `NGROK_API_KEY`) - the API key for `ngrok`
 - `ngrok:apiBaseUrl` (environment: `NGROK_API_BASE_URL`) - The API URL used to talk with ngrok. The default is `https://api.ngrok.com.` - optional
