@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // SSH Credentials are SSH public keys that can be used to start SSH tunnels
@@ -163,6 +164,12 @@ func (i *SshCredential) ToSshCredentialOutputWithContext(ctx context.Context) Ss
 	return pulumi.ToOutputWithContext(ctx, i).(SshCredentialOutput)
 }
 
+func (i *SshCredential) ToOutput(ctx context.Context) pulumix.Output[*SshCredential] {
+	return pulumix.Output[*SshCredential]{
+		OutputState: i.ToSshCredentialOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SshCredentialArrayInput is an input type that accepts SshCredentialArray and SshCredentialArrayOutput values.
 // You can construct a concrete instance of `SshCredentialArrayInput` via:
 //
@@ -186,6 +193,12 @@ func (i SshCredentialArray) ToSshCredentialArrayOutput() SshCredentialArrayOutpu
 
 func (i SshCredentialArray) ToSshCredentialArrayOutputWithContext(ctx context.Context) SshCredentialArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SshCredentialArrayOutput)
+}
+
+func (i SshCredentialArray) ToOutput(ctx context.Context) pulumix.Output[[]*SshCredential] {
+	return pulumix.Output[[]*SshCredential]{
+		OutputState: i.ToSshCredentialArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SshCredentialMapInput is an input type that accepts SshCredentialMap and SshCredentialMapOutput values.
@@ -213,6 +226,12 @@ func (i SshCredentialMap) ToSshCredentialMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SshCredentialMapOutput)
 }
 
+func (i SshCredentialMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshCredential] {
+	return pulumix.Output[map[string]*SshCredential]{
+		OutputState: i.ToSshCredentialMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SshCredentialOutput struct{ *pulumi.OutputState }
 
 func (SshCredentialOutput) ElementType() reflect.Type {
@@ -225,6 +244,12 @@ func (o SshCredentialOutput) ToSshCredentialOutput() SshCredentialOutput {
 
 func (o SshCredentialOutput) ToSshCredentialOutputWithContext(ctx context.Context) SshCredentialOutput {
 	return o
+}
+
+func (o SshCredentialOutput) ToOutput(ctx context.Context) pulumix.Output[*SshCredential] {
+	return pulumix.Output[*SshCredential]{
+		OutputState: o.OutputState,
+	}
 }
 
 // optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
@@ -261,6 +286,12 @@ func (o SshCredentialArrayOutput) ToSshCredentialArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SshCredentialArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SshCredential] {
+	return pulumix.Output[[]*SshCredential]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SshCredentialArrayOutput) Index(i pulumi.IntInput) SshCredentialOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SshCredential {
 		return vs[0].([]*SshCredential)[vs[1].(int)]
@@ -279,6 +310,12 @@ func (o SshCredentialMapOutput) ToSshCredentialMapOutput() SshCredentialMapOutpu
 
 func (o SshCredentialMapOutput) ToSshCredentialMapOutputWithContext(ctx context.Context) SshCredentialMapOutput {
 	return o
+}
+
+func (o SshCredentialMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshCredential] {
+	return pulumix.Output[map[string]*SshCredential]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SshCredentialMapOutput) MapIndex(k pulumi.StringInput) SshCredentialOutput {

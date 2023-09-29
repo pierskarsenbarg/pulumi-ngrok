@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // An IP restriction is a restriction placed on the CIDRs that are allowed to
@@ -178,6 +179,12 @@ func (i *IpRestriction) ToIpRestrictionOutputWithContext(ctx context.Context) Ip
 	return pulumi.ToOutputWithContext(ctx, i).(IpRestrictionOutput)
 }
 
+func (i *IpRestriction) ToOutput(ctx context.Context) pulumix.Output[*IpRestriction] {
+	return pulumix.Output[*IpRestriction]{
+		OutputState: i.ToIpRestrictionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IpRestrictionArrayInput is an input type that accepts IpRestrictionArray and IpRestrictionArrayOutput values.
 // You can construct a concrete instance of `IpRestrictionArrayInput` via:
 //
@@ -201,6 +208,12 @@ func (i IpRestrictionArray) ToIpRestrictionArrayOutput() IpRestrictionArrayOutpu
 
 func (i IpRestrictionArray) ToIpRestrictionArrayOutputWithContext(ctx context.Context) IpRestrictionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpRestrictionArrayOutput)
+}
+
+func (i IpRestrictionArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpRestriction] {
+	return pulumix.Output[[]*IpRestriction]{
+		OutputState: i.ToIpRestrictionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IpRestrictionMapInput is an input type that accepts IpRestrictionMap and IpRestrictionMapOutput values.
@@ -228,6 +241,12 @@ func (i IpRestrictionMap) ToIpRestrictionMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(IpRestrictionMapOutput)
 }
 
+func (i IpRestrictionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpRestriction] {
+	return pulumix.Output[map[string]*IpRestriction]{
+		OutputState: i.ToIpRestrictionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IpRestrictionOutput struct{ *pulumi.OutputState }
 
 func (IpRestrictionOutput) ElementType() reflect.Type {
@@ -240,6 +259,12 @@ func (o IpRestrictionOutput) ToIpRestrictionOutput() IpRestrictionOutput {
 
 func (o IpRestrictionOutput) ToIpRestrictionOutputWithContext(ctx context.Context) IpRestrictionOutput {
 	return o
+}
+
+func (o IpRestrictionOutput) ToOutput(ctx context.Context) pulumix.Output[*IpRestriction] {
+	return pulumix.Output[*IpRestriction]{
+		OutputState: o.OutputState,
+	}
 }
 
 // human-readable description of this IP restriction. optional, max 255 bytes.
@@ -281,6 +306,12 @@ func (o IpRestrictionArrayOutput) ToIpRestrictionArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o IpRestrictionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpRestriction] {
+	return pulumix.Output[[]*IpRestriction]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IpRestrictionArrayOutput) Index(i pulumi.IntInput) IpRestrictionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpRestriction {
 		return vs[0].([]*IpRestriction)[vs[1].(int)]
@@ -299,6 +330,12 @@ func (o IpRestrictionMapOutput) ToIpRestrictionMapOutput() IpRestrictionMapOutpu
 
 func (o IpRestrictionMapOutput) ToIpRestrictionMapOutputWithContext(ctx context.Context) IpRestrictionMapOutput {
 	return o
+}
+
+func (o IpRestrictionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpRestriction] {
+	return pulumix.Output[map[string]*IpRestriction]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IpRestrictionMapOutput) MapIndex(k pulumi.StringInput) IpRestrictionOutput {
