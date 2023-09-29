@@ -101,7 +101,7 @@ export class TlsCertificate extends pulumi.CustomResource {
     }
 
     /**
-     * chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+     * chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
      */
     public readonly certificatePem!: pulumi.Output<string>;
     /**
@@ -113,7 +113,7 @@ export class TlsCertificate extends pulumi.CustomResource {
      */
     public readonly metadata!: pulumi.Output<string | undefined>;
     /**
-     * private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+     * private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
      */
     public readonly privateKeyPem!: pulumi.Output<string>;
     /**
@@ -163,7 +163,7 @@ export class TlsCertificate extends pulumi.CustomResource {
  */
 export interface TlsCertificateState {
     /**
-     * chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+     * chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
      */
     certificatePem?: pulumi.Input<string>;
     /**
@@ -175,7 +175,7 @@ export interface TlsCertificateState {
      */
     metadata?: pulumi.Input<string>;
     /**
-     * private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+     * private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
      */
     privateKeyPem?: pulumi.Input<string>;
     /**
@@ -189,7 +189,7 @@ export interface TlsCertificateState {
  */
 export interface TlsCertificateArgs {
     /**
-     * chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+     * chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
      */
     certificatePem: pulumi.Input<string>;
     /**
@@ -201,7 +201,7 @@ export interface TlsCertificateArgs {
      */
     metadata?: pulumi.Input<string>;
     /**
-     * private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+     * private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
      */
     privateKeyPem: pulumi.Input<string>;
     /**

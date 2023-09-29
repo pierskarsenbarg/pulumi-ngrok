@@ -5,368 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface EndpointConfigurationBackend {
+export interface AgentIngressCertificateManagementPolicy {
     /**
-     * backend to be used to back this endpoint
+     * certificate authority to request certificates from. The only supported value is letsencrypt.
      */
-    backends?: outputs.EndpointConfigurationBackendBackend[];
+    authority?: string;
     /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
+     * type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
      */
-    enabled?: boolean;
-}
-
-export interface EndpointConfigurationBackendBackend {
-    /**
-     * unique identifier of this endpoint configuration
-     */
-    id: string;
-    uri: string;
-}
-
-export interface EndpointConfigurationBasicAuth {
-    /**
-     * true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-     */
-    allowOptions?: boolean;
-    /**
-     * determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-     */
-    authProviderId?: string;
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
-     */
-    realm?: string;
-}
-
-export interface EndpointConfigurationCircuitBreaker {
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * Error threshold percentage should be between 0 - 1.0, not 0-100.0
-     */
-    errorThresholdPercentage?: number;
-    /**
-     * Integer number of buckets into which metrics are retained. Max 128.
-     */
-    numBuckets?: number;
-    /**
-     * Integer number of seconds in the statistical rolling window that metrics are retained for.
-     */
-    rollingWindow?: number;
-    /**
-     * Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-     */
-    trippedDuration?: number;
-    /**
-     * Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-     */
-    volumeThreshold?: number;
-}
-
-export interface EndpointConfigurationCompression {
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-}
-
-export interface EndpointConfigurationIpPolicy {
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    ipPolicies: outputs.EndpointConfigurationIpPolicyIpPolicy[];
-}
-
-export interface EndpointConfigurationIpPolicyIpPolicy {
-    /**
-     * unique identifier of this endpoint configuration
-     */
-    id: string;
-    uri: string;
-}
-
-export interface EndpointConfigurationLogging {
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * list of all EventStreams that will be used to configure and export this endpoint's logs
-     */
-    eventStreams: outputs.EndpointConfigurationLoggingEventStream[];
-}
-
-export interface EndpointConfigurationLoggingEventStream {
-    /**
-     * unique identifier of this endpoint configuration
-     */
-    id: string;
-    uri: string;
-}
-
-export interface EndpointConfigurationMutualTl {
-    /**
-     * PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-     */
-    certificateAuthorities: outputs.EndpointConfigurationMutualTlCertificateAuthority[];
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-}
-
-export interface EndpointConfigurationMutualTlCertificateAuthority {
-    /**
-     * unique identifier of this endpoint configuration
-     */
-    id: string;
-    uri: string;
-}
-
-export interface EndpointConfigurationOauth {
-    /**
-     * Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-     */
-    authCheckInterval?: number;
-    /**
-     * the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-     */
-    cookiePrefix?: string;
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-     */
-    inactivityTimeout?: number;
-    /**
-     * Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-     */
-    maximumDuration?: number;
-    /**
-     * Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-     */
-    optionsPassthrough?: boolean;
-    /**
-     * an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-     */
-    providers?: outputs.EndpointConfigurationOauthProvider[];
-}
-
-export interface EndpointConfigurationOauthProvider {
-    facebooks?: outputs.EndpointConfigurationOauthProviderFacebook[];
-    githubs?: outputs.EndpointConfigurationOauthProviderGithub[];
-    googles?: outputs.EndpointConfigurationOauthProviderGoogle[];
-    microsofts?: outputs.EndpointConfigurationOauthProviderMicrosoft[];
-}
-
-export interface EndpointConfigurationOauthProviderFacebook {
-    clientId?: string;
-    clientSecret?: string;
-    emailAddresses?: string[];
-    emailDomains?: string[];
-    scopes?: string[];
-}
-
-export interface EndpointConfigurationOauthProviderGithub {
-    clientId?: string;
-    clientSecret?: string;
-    emailAddresses?: string[];
-    emailDomains?: string[];
-    organizations?: string[];
-    scopes?: string[];
-    teams?: string[];
-}
-
-export interface EndpointConfigurationOauthProviderGoogle {
-    clientId?: string;
-    clientSecret?: string;
-    emailAddresses?: string[];
-    emailDomains?: string[];
-    scopes?: string[];
-}
-
-export interface EndpointConfigurationOauthProviderMicrosoft {
-    clientId?: string;
-    clientSecret?: string;
-    emailAddresses?: string[];
-    emailDomains?: string[];
-    scopes?: string[];
-}
-
-export interface EndpointConfigurationOidc {
-    /**
-     * The OIDC app's client ID and OIDC audience.
-     */
-    clientId?: string;
-    /**
-     * The OIDC app's client secret.
-     */
-    clientSecret?: string;
-    /**
-     * the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-     */
-    cookiePrefix?: string;
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-     */
-    inactivityTimeout?: number;
-    /**
-     * URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-     */
-    issuer?: string;
-    /**
-     * Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-     */
-    maximumDuration?: number;
-    /**
-     * Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-     */
-    optionsPassthrough?: boolean;
-    /**
-     * The set of scopes to request from the OIDC identity provider.
-     */
-    scopes?: string[];
-}
-
-export interface EndpointConfigurationRequestHeader {
-    /**
-     * a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-     */
-    add?: {[key: string]: string};
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-     */
-    removes?: string[];
-}
-
-export interface EndpointConfigurationResponseHeader {
-    /**
-     * a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-     */
-    add?: {[key: string]: string};
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * a list of header names that will be removed from the HTTP Response returned to the HTTP client
-     */
-    removes?: string[];
-}
-
-export interface EndpointConfigurationSaml {
-    /**
-     * If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-     */
-    allowIdpInitiated?: boolean;
-    /**
-     * The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-     */
-    assertionConsumerServiceUrl: string;
-    /**
-     * If present, only users who are a member of one of the listed groups may access the target endpoint.
-     */
-    authorizedGroups?: string[];
-    /**
-     * the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-     */
-    cookiePrefix?: string;
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-     */
-    entityId: string;
-    /**
-     * If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-     */
-    forceAuthn?: boolean;
-    /**
-     * The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-     */
-    idpMetadata?: string;
-    /**
-     * The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-     */
-    idpMetadataUrl?: string;
-    /**
-     * Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-     */
-    inactivityTimeout?: number;
-    /**
-     * Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-     */
-    maximumDuration?: number;
-    /**
-     * A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-     */
-    metadataUrl: string;
-    /**
-     * Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-     */
-    nameidFormat?: string;
-    /**
-     * Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-     */
-    optionsPassthrough?: boolean;
-    /**
-     * PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-     */
-    requestSigningCertificatePem: string;
-    /**
-     * The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-     */
-    singleLogoutUrl: string;
-}
-
-export interface EndpointConfigurationTlsTermination {
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminateAt` is set to `upstream`.
-     */
-    minVersion?: string;
-    /**
-     * `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-     */
-    terminateAt?: string;
-}
-
-export interface EndpointConfigurationWebhookValidation {
-    /**
-     * `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-     */
-    enabled?: boolean;
-    /**
-     * a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-     */
-    provider?: string;
-    /**
-     * a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-     */
-    secret?: string;
+    privateKeyType?: string;
 }
 
 export interface EventDestinationTarget {
@@ -374,6 +21,10 @@ export interface EventDestinationTarget {
      * Configuration used to send events to Amazon CloudWatch Logs.
      */
     cloudwatchLogs?: outputs.EventDestinationTargetCloudwatchLog[];
+    /**
+     * Configuration used to send events to Datadog.
+     */
+    datadogs?: outputs.EventDestinationTargetDatadog[];
     /**
      * Configuration used for internal debugging.
      */
@@ -405,6 +56,13 @@ export interface EventDestinationTargetCloudwatchLogAuthCred {
 
 export interface EventDestinationTargetCloudwatchLogAuthRole {
     roleArn: string;
+}
+
+export interface EventDestinationTargetDatadog {
+    apiKey?: string;
+    ddsite?: string;
+    ddtags?: string;
+    service?: string;
 }
 
 export interface EventDestinationTargetDebug {
@@ -489,5 +147,16 @@ export interface TlsCertificateSubjectAlternativeName {
      * set of IP addresses this TLS certificate is also valid for
      */
     ips: string[];
+}
+
+export interface TunnelGroupBackendTunnel {
+    /**
+     * a resource identifier
+     */
+    id: string;
+    /**
+     * a uri for locating a resource
+     */
+    uri: string;
 }
 

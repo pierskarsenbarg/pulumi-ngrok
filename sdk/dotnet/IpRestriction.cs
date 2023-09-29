@@ -32,7 +32,7 @@ namespace PiersKarsenbarg.Ngrok
     ///     {
     ///         IpPolicyIds = new[]
     ///         {
-    ///             "ipp_25auGwa4eEWUeCOBfCZkwtwqFey",
+    ///             "ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ",
     ///         },
     ///         Type = "dashboard",
     ///     });

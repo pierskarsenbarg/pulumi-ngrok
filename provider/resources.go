@@ -109,9 +109,10 @@ func Provider() tfbridge.ProviderInfo {
 			"ngrok_api_key":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiKey")},
 			"ngrok_certificate_authority":     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CertificateAuthority")},
 			"ngrok_credential":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Credential")},
-			"ngrok_endpoint_configuration":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EndpointConfiguration")},
 			"ngrok_event_destination":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EventDestination")},
 			"ngrok_event_subscription":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EventSubscription")},
+			"ngrok_failover_backend":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FailoverBackend")},
+			"ngrok_http_response_backend":     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "HttpResponseBackend")},
 			"ngrok_ip_policy":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpPolicy")},
 			"ngrok_ip_policy_rule":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpPolicyRule")},
 			"ngrok_ip_restriction":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpRestriction")},
@@ -122,6 +123,7 @@ func Provider() tfbridge.ProviderInfo {
 			"ngrok_ssh_host_certificate":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SshHostCertificate")},
 			"ngrok_ssh_user_certificate":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SshUserCertificate")},
 			"ngrok_tls_certificate":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "TlsCertificate")},
+			"ngrok_tunnel_group_backend":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "TunnelGroupBackend")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example

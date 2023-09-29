@@ -33,7 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ngrok.NewReservedDomain(ctx, "example", &ngrok.ReservedDomainArgs{
-//				CertificateId: pulumi.String("cert_25auGELSEngiae3wzmLLesiZn8h"),
+//				CertificateId: pulumi.String("cert_26rOxyrxCJlOc0frz7MK0HQjRvd"),
 //				Region:        pulumi.String("us"),
 //			})
 //			if err != nil {
@@ -58,7 +58,7 @@ type ReservedDomain struct {
 	// human-readable description of what this reserved domain will be used for
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// hostname of the reserved domain
-	Domain pulumi.StringOutput `pulumi:"domain"`
+	Domain pulumi.StringPtrOutput `pulumi:"domain"`
 	// ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
 	HttpEndpointConfigurationId pulumi.StringPtrOutput `pulumi:"httpEndpointConfigurationId"`
 	// ID of an endpoint configuration of type https that will be used to handle inbound https traffic to this domain
@@ -165,6 +165,8 @@ type reservedDomainArgs struct {
 	CnameTarget *string `pulumi:"cnameTarget"`
 	// human-readable description of what this reserved domain will be used for
 	Description *string `pulumi:"description"`
+	// hostname of the reserved domain
+	Domain *string `pulumi:"domain"`
 	// ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
 	HttpEndpointConfigurationId *string `pulumi:"httpEndpointConfigurationId"`
 	// ID of an endpoint configuration of type https that will be used to handle inbound https traffic to this domain
@@ -189,6 +191,8 @@ type ReservedDomainArgs struct {
 	CnameTarget pulumi.StringPtrInput
 	// human-readable description of what this reserved domain will be used for
 	Description pulumi.StringPtrInput
+	// hostname of the reserved domain
+	Domain pulumi.StringPtrInput
 	// ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
 	HttpEndpointConfigurationId pulumi.StringPtrInput
 	// ID of an endpoint configuration of type https that will be used to handle inbound https traffic to this domain
@@ -340,8 +344,8 @@ func (o ReservedDomainOutput) Description() pulumi.StringPtrOutput {
 }
 
 // hostname of the reserved domain
-func (o ReservedDomainOutput) Domain() pulumi.StringOutput {
-	return o.ApplyT(func(v *ReservedDomain) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
+func (o ReservedDomainOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReservedDomain) pulumi.StringPtrOutput { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
 // ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain

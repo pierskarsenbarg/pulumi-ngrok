@@ -60,6 +60,10 @@ export class ApiKey extends pulumi.CustomResource {
      */
     public readonly metadata!: pulumi.Output<string | undefined>;
     /**
+     * If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+     */
+    public readonly ownerId!: pulumi.Output<string | undefined>;
+    /**
      * the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
      */
     public readonly token!: pulumi.Output<string>;
@@ -79,11 +83,13 @@ export class ApiKey extends pulumi.CustomResource {
             const state = argsOrState as ApiKeyState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["ownerId"] = state ? state.ownerId : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
         } else {
             const args = argsOrState as ApiKeyArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -106,6 +112,10 @@ export interface ApiKeyState {
      */
     metadata?: pulumi.Input<string>;
     /**
+     * If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+     */
+    ownerId?: pulumi.Input<string>;
+    /**
      * the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
      */
     token?: pulumi.Input<string>;
@@ -123,6 +133,10 @@ export interface ApiKeyArgs {
      * arbitrary user-defined data of this API key. optional, max 4096 bytes
      */
     metadata?: pulumi.Input<string>;
+    /**
+     * If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+     */
+    ownerId?: pulumi.Input<string>;
     /**
      * the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
      */

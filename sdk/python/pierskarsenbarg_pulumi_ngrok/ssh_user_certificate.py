@@ -35,7 +35,7 @@ class SshUserCertificateArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extensions: A map of extensions included in the certificate. Extensions are additional metadata that can be interpreted by the SSH server for any purpose. These can be used to permit or deny the ability to open a terminal, do port forwarding, x11 forwarding, and more. If unspecified, the certificate will include limited permissions with the following extension map: `{"permit-pty": "", "permit-user-rc": ""}` OpenSSH understands a number of predefined extensions. See [the OpenSSH certificate protocol spec](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.certkeys) for additional details.
         :param pulumi.Input[str] key_type: the key type of the `public_key`, one of `rsa`, `ecdsa` or `ed25519`
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         :param pulumi.Input[str] valid_after: the time when the ssh host certificate becomes valid, in RFC 3339 format.
         :param pulumi.Input[str] valid_until: the time after which the ssh host certificate becomes invalid, in RFC 3339 format. the OpenSSH certificates RFC calls this `valid_before`.
         """
@@ -160,7 +160,7 @@ class SshUserCertificateArgs:
     @pulumi.getter
     def principals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         """
         return pulumi.get(self, "principals")
 
@@ -215,7 +215,7 @@ class _SshUserCertificateState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extensions: A map of extensions included in the certificate. Extensions are additional metadata that can be interpreted by the SSH server for any purpose. These can be used to permit or deny the ability to open a terminal, do port forwarding, x11 forwarding, and more. If unspecified, the certificate will include limited permissions with the following extension map: `{"permit-pty": "", "permit-user-rc": ""}` OpenSSH understands a number of predefined extensions. See [the OpenSSH certificate protocol spec](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.certkeys) for additional details.
         :param pulumi.Input[str] key_type: the key type of the `public_key`, one of `rsa`, `ecdsa` or `ed25519`
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         :param pulumi.Input[str] public_key: a public key in OpenSSH Authorized Keys format that this certificate signs
         :param pulumi.Input[str] ssh_certificate_authority_id: the ssh certificate authority that is used to sign this ssh user certificate
         :param pulumi.Input[str] valid_after: the time when the ssh host certificate becomes valid, in RFC 3339 format.
@@ -320,7 +320,7 @@ class _SshUserCertificateState:
     @pulumi.getter
     def principals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         """
         return pulumi.get(self, "principals")
 
@@ -412,8 +412,8 @@ class SshUserCertificate(pulumi.CustomResource):
                 "root",
             ],
             public_key="ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop",
-            ssh_certificate_authority_id="sshca_25auH5JtiUPW9eMiXYzujvcpkGW",
-            valid_until="2022-05-26T08:23:47Z")
+            ssh_certificate_authority_id="sshca_26rOyirnW8khUZJ8xjNfPu3GPdi",
+            valid_until="2022-06-22T22:21:34-05:00")
         ```
 
         :param str resource_name: The name of the resource.
@@ -424,7 +424,7 @@ class SshUserCertificate(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extensions: A map of extensions included in the certificate. Extensions are additional metadata that can be interpreted by the SSH server for any purpose. These can be used to permit or deny the ability to open a terminal, do port forwarding, x11 forwarding, and more. If unspecified, the certificate will include limited permissions with the following extension map: `{"permit-pty": "", "permit-user-rc": ""}` OpenSSH understands a number of predefined extensions. See [the OpenSSH certificate protocol spec](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.certkeys) for additional details.
         :param pulumi.Input[str] key_type: the key type of the `public_key`, one of `rsa`, `ecdsa` or `ed25519`
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         :param pulumi.Input[str] public_key: a public key in OpenSSH Authorized Keys format that this certificate signs
         :param pulumi.Input[str] ssh_certificate_authority_id: the ssh certificate authority that is used to sign this ssh user certificate
         :param pulumi.Input[str] valid_after: the time when the ssh host certificate becomes valid, in RFC 3339 format.
@@ -454,8 +454,8 @@ class SshUserCertificate(pulumi.CustomResource):
                 "root",
             ],
             public_key="ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop",
-            ssh_certificate_authority_id="sshca_25auH5JtiUPW9eMiXYzujvcpkGW",
-            valid_until="2022-05-26T08:23:47Z")
+            ssh_certificate_authority_id="sshca_26rOyirnW8khUZJ8xjNfPu3GPdi",
+            valid_until="2022-06-22T22:21:34-05:00")
         ```
 
         :param str resource_name: The name of the resource.
@@ -542,7 +542,7 @@ class SshUserCertificate(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extensions: A map of extensions included in the certificate. Extensions are additional metadata that can be interpreted by the SSH server for any purpose. These can be used to permit or deny the ability to open a terminal, do port forwarding, x11 forwarding, and more. If unspecified, the certificate will include limited permissions with the following extension map: `{"permit-pty": "", "permit-user-rc": ""}` OpenSSH understands a number of predefined extensions. See [the OpenSSH certificate protocol spec](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.certkeys) for additional details.
         :param pulumi.Input[str] key_type: the key type of the `public_key`, one of `rsa`, `ecdsa` or `ed25519`
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] principals: the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         :param pulumi.Input[str] public_key: a public key in OpenSSH Authorized Keys format that this certificate signs
         :param pulumi.Input[str] ssh_certificate_authority_id: the ssh certificate authority that is used to sign this ssh user certificate
         :param pulumi.Input[str] valid_after: the time when the ssh host certificate becomes valid, in RFC 3339 format.
@@ -617,7 +617,7 @@ class SshUserCertificate(pulumi.CustomResource):
     @pulumi.getter
     def principals(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         """
         return pulumi.get(self, "principals")
 

@@ -211,7 +211,7 @@ class IpRestriction(pulumi.CustomResource):
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.IpRestriction("example",
-            ip_policy_ids=["ipp_25auGwa4eEWUeCOBfCZkwtwqFey"],
+            ip_policy_ids=["ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ"],
             type="dashboard")
         ```
 
@@ -244,7 +244,7 @@ class IpRestriction(pulumi.CustomResource):
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.IpRestriction("example",
-            ip_policy_ids=["ipp_25auGwa4eEWUeCOBfCZkwtwqFey"],
+            ip_policy_ids=["ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ"],
             type="dashboard")
         ```
 

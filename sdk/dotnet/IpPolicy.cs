@@ -28,7 +28,6 @@ namespace PiersKarsenbarg.Ngrok
     /// {
     ///     var example = new Ngrok.IpPolicy("example", new()
     ///     {
-    ///         Action = "allow",
     ///         Description = "API Outbound Gateway",
     ///     });
     /// 

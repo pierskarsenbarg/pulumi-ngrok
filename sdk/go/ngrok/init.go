@@ -29,12 +29,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CertificateAuthority{}
 	case "ngrok:index/credential:Credential":
 		r = &Credential{}
-	case "ngrok:index/endpointConfiguration:EndpointConfiguration":
-		r = &EndpointConfiguration{}
 	case "ngrok:index/eventDestination:EventDestination":
 		r = &EventDestination{}
 	case "ngrok:index/eventSubscription:EventSubscription":
 		r = &EventSubscription{}
+	case "ngrok:index/failoverBackend:FailoverBackend":
+		r = &FailoverBackend{}
+	case "ngrok:index/httpResponseBackend:HttpResponseBackend":
+		r = &HttpResponseBackend{}
 	case "ngrok:index/ipPolicy:IpPolicy":
 		r = &IpPolicy{}
 	case "ngrok:index/ipPolicyRule:IpPolicyRule":
@@ -55,6 +57,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SshUserCertificate{}
 	case "ngrok:index/tlsCertificate:TlsCertificate":
 		r = &TlsCertificate{}
+	case "ngrok:index/tunnelGroupBackend:TunnelGroupBackend":
+		r = &TunnelGroupBackend{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -108,17 +112,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ngrok",
-		"index/endpointConfiguration",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ngrok",
 		"index/eventDestination",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ngrok",
 		"index/eventSubscription",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ngrok",
+		"index/failoverBackend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ngrok",
+		"index/httpResponseBackend",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -169,6 +178,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ngrok",
 		"index/tlsCertificate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ngrok",
+		"index/tunnelGroupBackend",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

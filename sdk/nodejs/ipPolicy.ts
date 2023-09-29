@@ -16,10 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
- * const example = new ngrok.IpPolicy("example", {
- *     action: "allow",
- *     description: "API Outbound Gateway",
- * });
+ * const example = new ngrok.IpPolicy("example", {description: "API Outbound Gateway"});
  * ```
  */
 export class IpPolicy extends pulumi.CustomResource {

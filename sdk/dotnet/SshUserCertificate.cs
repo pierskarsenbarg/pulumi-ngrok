@@ -34,8 +34,8 @@ namespace PiersKarsenbarg.Ngrok
     ///             "root",
     ///         },
     ///         PublicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop",
-    ///         SshCertificateAuthorityId = "sshca_25auH5JtiUPW9eMiXYzujvcpkGW",
-    ///         ValidUntil = "2022-05-26T08:23:47Z",
+    ///         SshCertificateAuthorityId = "sshca_26rOyirnW8khUZJ8xjNfPu3GPdi",
+    ///         ValidUntil = "2022-06-22T22:21:34-05:00",
     ///     });
     /// 
     /// });
@@ -81,7 +81,7 @@ namespace PiersKarsenbarg.Ngrok
         public Output<string?> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        /// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         /// </summary>
         [Output("principals")]
         public Output<ImmutableArray<string>> Principals { get; private set; } = null!;
@@ -209,7 +209,7 @@ namespace PiersKarsenbarg.Ngrok
         private InputList<string>? _principals;
 
         /// <summary>
-        /// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        /// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         /// </summary>
         public InputList<string> Principals
         {
@@ -301,7 +301,7 @@ namespace PiersKarsenbarg.Ngrok
         private InputList<string>? _principals;
 
         /// <summary>
-        /// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+        /// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
         /// </summary>
         public InputList<string> Principals
         {

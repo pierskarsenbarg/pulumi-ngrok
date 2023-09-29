@@ -37,7 +37,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ngrok.NewIpRestriction(ctx, "example", &ngrok.IpRestrictionArgs{
 //				IpPolicyIds: pulumi.StringArray{
-//					pulumi.String("ipp_25auGwa4eEWUeCOBfCZkwtwqFey"),
+//					pulumi.String("ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ"),
 //				},
 //				Type: pulumi.String("dashboard"),
 //			})

@@ -144,9 +144,7 @@ class IpPolicy(pulumi.CustomResource):
         import pulumi
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
-        example = ngrok.IpPolicy("example",
-            action="allow",
-            description="API Outbound Gateway")
+        example = ngrok.IpPolicy("example", description="API Outbound Gateway")
         ```
 
         :param str resource_name: The name of the resource.
@@ -173,9 +171,7 @@ class IpPolicy(pulumi.CustomResource):
         import pulumi
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
-        example = ngrok.IpPolicy("example",
-            action="allow",
-            description="API Outbound Gateway")
+        example = ngrok.IpPolicy("example", description="API Outbound Gateway")
         ```
 
         :param str resource_name: The name of the resource.

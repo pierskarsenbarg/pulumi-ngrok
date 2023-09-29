@@ -70,643 +70,15 @@
         ]
     },
     "types": {
-        "ngrok:index/EndpointConfigurationBackend:EndpointConfigurationBackend": {
+        "ngrok:index/AgentIngressCertificateManagementPolicy:AgentIngressCertificateManagementPolicy": {
             "properties": {
-                "backends": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationBackendBackend:EndpointConfigurationBackendBackend"
-                    },
-                    "description": "backend to be used to back this endpoint\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationBackendBackend:EndpointConfigurationBackendBackend": {
-            "properties": {
-                "id": {
+                "authority": {
                     "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
+                    "description": "certificate authority to request certificates from. The only supported value is letsencrypt.\n"
                 },
-                "uri": {
+                "privateKeyType": {
                     "type": "string",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "id",
-                        "uri"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationBasicAuth:EndpointConfigurationBasicAuth": {
-            "properties": {
-                "allowOptions": {
-                    "type": "boolean",
-                    "description": "true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`\n"
-                },
-                "authProviderId": {
-                    "type": "string",
-                    "description": "determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "realm": {
-                    "type": "string",
-                    "description": "an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationCircuitBreaker:EndpointConfigurationCircuitBreaker": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "errorThresholdPercentage": {
-                    "type": "number",
-                    "description": "Error threshold percentage should be between 0 - 1.0, not 0-100.0\n"
-                },
-                "numBuckets": {
-                    "type": "integer",
-                    "description": "Integer number of buckets into which metrics are retained. Max 128.\n"
-                },
-                "rollingWindow": {
-                    "type": "integer",
-                    "description": "Integer number of seconds in the statistical rolling window that metrics are retained for.\n"
-                },
-                "trippedDuration": {
-                    "type": "integer",
-                    "description": "Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health\n"
-                },
-                "volumeThreshold": {
-                    "type": "integer",
-                    "description": "Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationCompression:EndpointConfigurationCompression": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationIpPolicy:EndpointConfigurationIpPolicy": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "ipPolicies": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationIpPolicyIpPolicy:EndpointConfigurationIpPolicyIpPolicy"
-                    },
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "ipPolicies"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationIpPolicyIpPolicy:EndpointConfigurationIpPolicyIpPolicy": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
-                },
-                "uri": {
-                    "type": "string",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "id",
-                        "uri"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationLogging:EndpointConfigurationLogging": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "eventStreams": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationLoggingEventStream:EndpointConfigurationLoggingEventStream"
-                    },
-                    "description": "list of all EventStreams that will be used to configure and export this endpoint's logs\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "eventStreams"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationLoggingEventStream:EndpointConfigurationLoggingEventStream": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
-                },
-                "uri": {
-                    "type": "string",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "id",
-                        "uri"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationMutualTl:EndpointConfigurationMutualTl": {
-            "properties": {
-                "certificateAuthorities": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationMutualTlCertificateAuthority:EndpointConfigurationMutualTlCertificateAuthority"
-                    },
-                    "description": "PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.\n",
-                    "willReplaceOnChanges": true
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "certificateAuthorities"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationMutualTlCertificateAuthority:EndpointConfigurationMutualTlCertificateAuthority": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
-                },
-                "uri": {
-                    "type": "string",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "id",
-                        "uri"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationOauth:EndpointConfigurationOauth": {
-            "properties": {
-                "authCheckInterval": {
-                    "type": "integer",
-                    "description": "Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.\n"
-                },
-                "cookiePrefix": {
-                    "type": "string",
-                    "description": "the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "inactivityTimeout": {
-                    "type": "integer",
-                    "description": "Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.\n"
-                },
-                "maximumDuration": {
-                    "type": "integer",
-                    "description": "Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.\n"
-                },
-                "optionsPassthrough": {
-                    "type": "boolean",
-                    "description": "Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.\n"
-                },
-                "providers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProvider:EndpointConfigurationOauthProvider"
-                    },
-                    "description": "an object which defines the identity provider to use for authentication and configuration for who may access the endpoint\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationOauthProvider:EndpointConfigurationOauthProvider": {
-            "properties": {
-                "facebooks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderFacebook:EndpointConfigurationOauthProviderFacebook"
-                    }
-                },
-                "githubs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderGithub:EndpointConfigurationOauthProviderGithub"
-                    }
-                },
-                "googles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderGoogle:EndpointConfigurationOauthProviderGoogle"
-                    }
-                },
-                "microsofts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderMicrosoft:EndpointConfigurationOauthProviderMicrosoft"
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationOauthProviderFacebook:EndpointConfigurationOauthProviderFacebook": {
-            "properties": {
-                "clientId": {
-                    "type": "string"
-                },
-                "clientSecret": {
-                    "type": "string",
-                    "secret": true
-                },
-                "emailAddresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "emailDomains": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationOauthProviderGithub:EndpointConfigurationOauthProviderGithub": {
-            "properties": {
-                "clientId": {
-                    "type": "string"
-                },
-                "clientSecret": {
-                    "type": "string",
-                    "secret": true
-                },
-                "emailAddresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "emailDomains": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "organizations": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "teams": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationOauthProviderGoogle:EndpointConfigurationOauthProviderGoogle": {
-            "properties": {
-                "clientId": {
-                    "type": "string"
-                },
-                "clientSecret": {
-                    "type": "string",
-                    "secret": true
-                },
-                "emailAddresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "emailDomains": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationOauthProviderMicrosoft:EndpointConfigurationOauthProviderMicrosoft": {
-            "properties": {
-                "clientId": {
-                    "type": "string"
-                },
-                "clientSecret": {
-                    "type": "string",
-                    "secret": true
-                },
-                "emailAddresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "emailDomains": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationOidc:EndpointConfigurationOidc": {
-            "properties": {
-                "clientId": {
-                    "type": "string",
-                    "description": "The OIDC app's client ID and OIDC audience.\n"
-                },
-                "clientSecret": {
-                    "type": "string",
-                    "description": "The OIDC app's client secret.\n",
-                    "secret": true
-                },
-                "cookiePrefix": {
-                    "type": "string",
-                    "description": "the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "inactivityTimeout": {
-                    "type": "integer",
-                    "description": "Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.\n"
-                },
-                "issuer": {
-                    "type": "string",
-                    "description": "URL of the OIDC \"OpenID provider\". This is the base URL used for discovery.\n"
-                },
-                "maximumDuration": {
-                    "type": "integer",
-                    "description": "Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.\n"
-                },
-                "optionsPassthrough": {
-                    "type": "boolean",
-                    "description": "Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.\n"
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The set of scopes to request from the OIDC identity provider.\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationRequestHeader:EndpointConfigurationRequestHeader": {
-            "properties": {
-                "add": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "removes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "a list of header names that will be removed from the HTTP Request before being sent to the upstream application server\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationResponseHeader:EndpointConfigurationResponseHeader": {
-            "properties": {
-                "add": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "removes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "a list of header names that will be removed from the HTTP Response returned to the HTTP client\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationSaml:EndpointConfigurationSaml": {
-            "properties": {
-                "allowIdpInitiated": {
-                    "type": "boolean",
-                    "description": "If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.\n"
-                },
-                "assertionConsumerServiceUrl": {
-                    "type": "string",
-                    "description": "The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.\n",
-                    "willReplaceOnChanges": true
-                },
-                "authorizedGroups": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "If present, only users who are a member of one of the listed groups may access the target endpoint.\n"
-                },
-                "cookiePrefix": {
-                    "type": "string",
-                    "description": "the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "entityId": {
-                    "type": "string",
-                    "description": "The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.\n",
-                    "willReplaceOnChanges": true
-                },
-                "forceAuthn": {
-                    "type": "boolean",
-                    "description": "If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.\n"
-                },
-                "idpMetadata": {
-                    "type": "string",
-                    "description": "The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.\n"
-                },
-                "idpMetadataUrl": {
-                    "type": "string",
-                    "description": "The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.\n"
-                },
-                "inactivityTimeout": {
-                    "type": "integer",
-                    "description": "Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.\n"
-                },
-                "maximumDuration": {
-                    "type": "integer",
-                    "description": "Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.\n"
-                },
-                "metadataUrl": {
-                    "type": "string",
-                    "description": "A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.\n",
-                    "willReplaceOnChanges": true
-                },
-                "nameidFormat": {
-                    "type": "string",
-                    "description": "Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.\n"
-                },
-                "optionsPassthrough": {
-                    "type": "boolean",
-                    "description": "Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.\n"
-                },
-                "requestSigningCertificatePem": {
-                    "type": "string",
-                    "description": "PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.\n",
-                    "willReplaceOnChanges": true
-                },
-                "singleLogoutUrl": {
-                    "type": "string",
-                    "description": "The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "assertionConsumerServiceUrl",
-                        "entityId",
-                        "metadataUrl",
-                        "requestSigningCertificatePem",
-                        "singleLogoutUrl"
-                    ]
-                }
-            }
-        },
-        "ngrok:index/EndpointConfigurationTlsTermination:EndpointConfigurationTlsTermination": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "minVersion": {
-                    "type": "string",
-                    "description": "The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminate_at` is set to `upstream`.\n"
-                },
-                "terminateAt": {
-                    "type": "string",
-                    "description": "`edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.\n"
-                }
-            },
-            "type": "object"
-        },
-        "ngrok:index/EndpointConfigurationWebhookValidation:EndpointConfigurationWebhookValidation": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified\n"
-                },
-                "provider": {
-                    "type": "string",
-                    "description": "a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.\n"
-                },
-                "secret": {
-                    "type": "string",
-                    "description": "a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret\n",
-                    "secret": true
+                    "description": "type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.\n"
                 }
             },
             "type": "object"
@@ -719,6 +91,13 @@
                         "$ref": "#/types/ngrok:index/EventDestinationTargetCloudwatchLog:EventDestinationTargetCloudwatchLog"
                     },
                     "description": "Configuration used to send events to Amazon CloudWatch Logs.\n"
+                },
+                "datadogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ngrok:index/EventDestinationTargetDatadog:EventDestinationTargetDatadog"
+                    },
+                    "description": "Configuration used to send events to Datadog.\n"
                 },
                 "debugs": {
                     "type": "array",
@@ -800,6 +179,23 @@
             "required": [
                 "roleArn"
             ]
+        },
+        "ngrok:index/EventDestinationTargetDatadog:EventDestinationTargetDatadog": {
+            "properties": {
+                "apiKey": {
+                    "type": "string"
+                },
+                "ddsite": {
+                    "type": "string"
+                },
+                "ddtags": {
+                    "type": "string"
+                },
+                "service": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
         },
         "ngrok:index/EventDestinationTargetDebug:EventDestinationTargetDebug": {
             "properties": {
@@ -999,6 +395,28 @@
                     ]
                 }
             }
+        },
+        "ngrok:index/TunnelGroupBackendTunnel:TunnelGroupBackendTunnel": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "a resource identifier\n"
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "a uri for locating a resource\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "uri"
+                    ]
+                }
+            }
         }
     },
     "provider": {
@@ -1034,6 +452,13 @@
         "ngrok:index/agentIngress:AgentIngress": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.AgentIngress(\"example\", {\n    description: \"acme devices\",\n    domain: \"connect.acme.com\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.AgentIngress(\"example\",\n    description=\"acme devices\",\n    domain=\"connect.acme.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.AgentIngress(\"example\", new()\n    {\n        Description = \"acme devices\",\n        Domain = \"connect.acme.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewAgentIngress(ctx, \"example\", \u0026ngrok.AgentIngressArgs{\n\t\t\tDescription: pulumi.String(\"acme devices\"),\n\t\t\tDomain:      pulumi.String(\"connect.acme.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.AgentIngress;\nimport com.pulumi.ngrok.AgentIngressArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AgentIngress(\"example\", AgentIngressArgs.builder()        \n            .description(\"acme devices\")\n            .domain(\"connect.acme.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:AgentIngress\n    properties:\n      description: acme devices\n      domain: connect.acme.com\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
+                "certificateManagementPolicies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ngrok:index/AgentIngressCertificateManagementPolicy:AgentIngressCertificateManagementPolicy"
+                    },
+                    "description": "configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled\n"
+                },
                 "createdAt": {
                     "type": "string",
                     "description": "timestamp when the Agent Ingress was created, RFC 3339 format\n"
@@ -1077,6 +502,13 @@
                 "uri"
             ],
             "inputProperties": {
+                "certificateManagementPolicies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ngrok:index/AgentIngressCertificateManagementPolicy:AgentIngressCertificateManagementPolicy"
+                    },
+                    "description": "configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "human-readable description of the use of this Agent Ingress. optional, max 255 bytes.\n"
@@ -1102,6 +534,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AgentIngress resources.\n",
                 "properties": {
+                    "certificateManagementPolicies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ngrok:index/AgentIngressCertificateManagementPolicy:AgentIngressCertificateManagementPolicy"
+                        },
+                        "description": "configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled\n"
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "timestamp when the Agent Ingress was created, RFC 3339 format\n",
@@ -1156,6 +595,10 @@
                     "type": "string",
                     "description": "arbitrary user-defined data of this API key. optional, max 4096 bytes\n"
                 },
+                "ownerId": {
+                    "type": "string",
+                    "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n"
+                },
                 "token": {
                     "type": "string",
                     "description": "the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**\n",
@@ -1174,6 +617,11 @@
                     "type": "string",
                     "description": "arbitrary user-defined data of this API key. optional, max 4096 bytes\n"
                 },
+                "ownerId": {
+                    "type": "string",
+                    "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n",
+                    "willReplaceOnChanges": true
+                },
                 "token": {
                     "type": "string",
                     "description": "the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**\n",
@@ -1191,6 +639,11 @@
                     "metadata": {
                         "type": "string",
                         "description": "arbitrary user-defined data of this API key. optional, max 4096 bytes\n"
+                    },
+                    "ownerId": {
+                        "type": "string",
+                        "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n",
+                        "willReplaceOnChanges": true
                     },
                     "token": {
                         "type": "string",
@@ -1260,14 +713,14 @@
             }
         },
         "ngrok:index/credential:Credential": {
-            "description": "Tunnel Credentials are ngrok agent authtokens. They authorize the ngrok\n agent to connect the ngrok service as your account. They are installed with\n the `ngrok authtoken` command or by specifying it in the `ngrok.yml`\n configuration file with the `authtoken` property.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.Credential(\"example\", {description: \"development cred for alan@example.com\"});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.Credential(\"example\", description=\"development cred for alan@example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.Credential(\"example\", new()\n    {\n        Description = \"development cred for alan@example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewCredential(ctx, \"example\", \u0026ngrok.CredentialArgs{\n\t\t\tDescription: pulumi.String(\"development cred for alan@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.Credential;\nimport com.pulumi.ngrok.CredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Credential(\"example\", CredentialArgs.builder()        \n            .description(\"development cred for alan@example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:Credential\n    properties:\n      description: development cred for alan@example.com\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Tunnel Credentials are ngrok agent authtokens. They authorize the ngrok\n agent to connect the ngrok service as your account. They are installed with\n the `ngrok config add-authtoken` command or by specifying it in the `ngrok.yml`\n configuration file with the `authtoken` property.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.Credential(\"example\", {description: \"development cred for alan@example.com\"});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.Credential(\"example\", description=\"development cred for alan@example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.Credential(\"example\", new()\n    {\n        Description = \"development cred for alan@example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewCredential(ctx, \"example\", \u0026ngrok.CredentialArgs{\n\t\t\tDescription: pulumi.String(\"development cred for alan@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.Credential;\nimport com.pulumi.ngrok.CredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Credential(\"example\", CredentialArgs.builder()        \n            .description(\"development cred for alan@example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:Credential\n    properties:\n      description: development cred for alan@example.com\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "acls": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
+                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
                 },
                 "description": {
                     "type": "string",
@@ -1277,9 +730,13 @@
                     "type": "string",
                     "description": "arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.\n"
                 },
+                "ownerId": {
+                    "type": "string",
+                    "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n"
+                },
                 "token": {
                     "type": "string",
-                    "description": "the credential's authtoken that can be used to authenticate an ngrok client. **This value is only available one time, on the API response from credential creation, otherwise it is null.**\n",
+                    "description": "the credential's authtoken that can be used to authenticate an ngrok agent. **This value is only available one time, on the API response from credential creation, otherwise it is null.**\n",
                     "secret": true
                 }
             },
@@ -1292,7 +749,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
+                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
                 },
                 "description": {
                     "type": "string",
@@ -1301,6 +758,11 @@
                 "metadata": {
                     "type": "string",
                     "description": "arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.\n"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "stateInputs": {
@@ -1311,7 +773,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
+                        "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
                     },
                     "description": {
                         "type": "string",
@@ -1321,356 +783,16 @@
                         "type": "string",
                         "description": "arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.\n"
                     },
+                    "ownerId": {
+                        "type": "string",
+                        "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "token": {
                         "type": "string",
-                        "description": "the credential's authtoken that can be used to authenticate an ngrok client. **This value is only available one time, on the API response from credential creation, otherwise it is null.**\n",
+                        "description": "the credential's authtoken that can be used to authenticate an ngrok agent. **This value is only available one time, on the API response from credential creation, otherwise it is null.**\n",
                         "secret": true,
                         "willReplaceOnChanges": true
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ngrok:index/endpointConfiguration:EndpointConfiguration": {
-            "description": "Endpoint Configurations are a reusable group of modules that encapsulate how\n traffic to a domain or address is handled. Endpoint configurations are only\n applied to Domains and TCP Addresses they have been attached to.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.EndpointConfiguration(\"example\", {\n    description: \"app servers\",\n    requestHeaders: [{\n        add: {\n            \"x-frontend\": \"ngrok\",\n        },\n        removes: [\"cache-control\"],\n    }],\n    type: \"https\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.EndpointConfiguration(\"example\",\n    description=\"app servers\",\n    request_headers=[ngrok.EndpointConfigurationRequestHeaderArgs(\n        add={\n            \"x-frontend\": \"ngrok\",\n        },\n        removes=[\"cache-control\"],\n    )],\n    type=\"https\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.EndpointConfiguration(\"example\", new()\n    {\n        Description = \"app servers\",\n        RequestHeaders = new[]\n        {\n            new Ngrok.Inputs.EndpointConfigurationRequestHeaderArgs\n            {\n                Add = \n                {\n                    { \"x-frontend\", \"ngrok\" },\n                },\n                Removes = new[]\n                {\n                    \"cache-control\",\n                },\n            },\n        },\n        Type = \"https\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewEndpointConfiguration(ctx, \"example\", \u0026ngrok.EndpointConfigurationArgs{\n\t\t\tDescription: pulumi.String(\"app servers\"),\n\t\t\tRequestHeaders: ngrok.EndpointConfigurationRequestHeaderArray{\n\t\t\t\t\u0026ngrok.EndpointConfigurationRequestHeaderArgs{\n\t\t\t\t\tAdd: pulumi.StringMap{\n\t\t\t\t\t\t\"x-frontend\": pulumi.String(\"ngrok\"),\n\t\t\t\t\t},\n\t\t\t\t\tRemoves: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"cache-control\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tType: pulumi.String(\"https\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.EndpointConfiguration;\nimport com.pulumi.ngrok.EndpointConfigurationArgs;\nimport com.pulumi.ngrok.inputs.EndpointConfigurationRequestHeaderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new EndpointConfiguration(\"example\", EndpointConfigurationArgs.builder()        \n            .description(\"app servers\")\n            .requestHeaders(EndpointConfigurationRequestHeaderArgs.builder()\n                .add(Map.of(\"x-frontend\", \"ngrok\"))\n                .removes(\"cache-control\")\n                .build())\n            .type(\"https\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:EndpointConfiguration\n    properties:\n      description: app servers\n      requestHeaders:\n        - add:\n            x-frontend: ngrok\n          removes:\n            - cache-control\n      type: https\n```\n{{% /example %}}\n{{% /examples %}}",
-            "properties": {
-                "backends": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationBackend:EndpointConfigurationBackend"
-                    },
-                    "description": "backend module configuration or `null`\n"
-                },
-                "basicAuths": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationBasicAuth:EndpointConfigurationBasicAuth"
-                    },
-                    "description": "basic auth module configuration or `null`\n"
-                },
-                "circuitBreakers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationCircuitBreaker:EndpointConfigurationCircuitBreaker"
-                    },
-                    "description": "circuit breaker module configuration or `null`\n"
-                },
-                "compressions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationCompression:EndpointConfigurationCompression"
-                    },
-                    "description": "compression module configuration or `null`\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "human-readable description of what this endpoint configuration will be do when applied or what traffic it will be applied to. Optional, max 255 bytes\n"
-                },
-                "ipPolicies": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationIpPolicy:EndpointConfigurationIpPolicy"
-                    },
-                    "description": "ip policy module configuration or `null`\n"
-                },
-                "loggings": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationLogging:EndpointConfigurationLogging"
-                    },
-                    "description": "logging module configuration or `null`\n"
-                },
-                "metadata": {
-                    "type": "string",
-                    "description": "arbitrary user-defined machine-readable data of this endpoint configuration. Optional, max 4096 bytes.\n"
-                },
-                "mutualTls": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationMutualTl:EndpointConfigurationMutualTl"
-                    },
-                    "description": "mutual TLS module configuration or `null`\n"
-                },
-                "oauths": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOauth:EndpointConfigurationOauth"
-                    },
-                    "description": "oauth module configuration or `null`\n"
-                },
-                "oidcs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOidc:EndpointConfigurationOidc"
-                    },
-                    "description": "oidc module configuration or `null`\n"
-                },
-                "requestHeaders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationRequestHeader:EndpointConfigurationRequestHeader"
-                    },
-                    "description": "request headers module configuration or `null`\n"
-                },
-                "responseHeaders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationResponseHeader:EndpointConfigurationResponseHeader"
-                    },
-                    "description": "response headers module configuration or `null`\n"
-                },
-                "samls": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationSaml:EndpointConfigurationSaml"
-                    },
-                    "description": "saml module configuration or `null`\n"
-                },
-                "tlsTerminations": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationTlsTermination:EndpointConfigurationTlsTermination"
-                    },
-                    "description": "TLS termination module configuration or `null`\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "they type of traffic this endpoint configuration can be applied to. one of: `http`, `https`, `tcp`\n"
-                },
-                "webhookValidations": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationWebhookValidation:EndpointConfigurationWebhookValidation"
-                    },
-                    "description": "webhook validation module configuration or `null`\n"
-                }
-            },
-            "inputProperties": {
-                "backends": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationBackend:EndpointConfigurationBackend"
-                    },
-                    "description": "backend module configuration or `null`\n"
-                },
-                "basicAuths": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationBasicAuth:EndpointConfigurationBasicAuth"
-                    },
-                    "description": "basic auth module configuration or `null`\n"
-                },
-                "circuitBreakers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationCircuitBreaker:EndpointConfigurationCircuitBreaker"
-                    },
-                    "description": "circuit breaker module configuration or `null`\n"
-                },
-                "compressions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationCompression:EndpointConfigurationCompression"
-                    },
-                    "description": "compression module configuration or `null`\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "human-readable description of what this endpoint configuration will be do when applied or what traffic it will be applied to. Optional, max 255 bytes\n"
-                },
-                "ipPolicies": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationIpPolicy:EndpointConfigurationIpPolicy"
-                    },
-                    "description": "ip policy module configuration or `null`\n"
-                },
-                "loggings": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationLogging:EndpointConfigurationLogging"
-                    },
-                    "description": "logging module configuration or `null`\n"
-                },
-                "metadata": {
-                    "type": "string",
-                    "description": "arbitrary user-defined machine-readable data of this endpoint configuration. Optional, max 4096 bytes.\n"
-                },
-                "mutualTls": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationMutualTl:EndpointConfigurationMutualTl"
-                    },
-                    "description": "mutual TLS module configuration or `null`\n"
-                },
-                "oauths": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOauth:EndpointConfigurationOauth"
-                    },
-                    "description": "oauth module configuration or `null`\n"
-                },
-                "oidcs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationOidc:EndpointConfigurationOidc"
-                    },
-                    "description": "oidc module configuration or `null`\n"
-                },
-                "requestHeaders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationRequestHeader:EndpointConfigurationRequestHeader"
-                    },
-                    "description": "request headers module configuration or `null`\n"
-                },
-                "responseHeaders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationResponseHeader:EndpointConfigurationResponseHeader"
-                    },
-                    "description": "response headers module configuration or `null`\n"
-                },
-                "samls": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationSaml:EndpointConfigurationSaml"
-                    },
-                    "description": "saml module configuration or `null`\n"
-                },
-                "tlsTerminations": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationTlsTermination:EndpointConfigurationTlsTermination"
-                    },
-                    "description": "TLS termination module configuration or `null`\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "they type of traffic this endpoint configuration can be applied to. one of: `http`, `https`, `tcp`\n",
-                    "willReplaceOnChanges": true
-                },
-                "webhookValidations": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ngrok:index/EndpointConfigurationWebhookValidation:EndpointConfigurationWebhookValidation"
-                    },
-                    "description": "webhook validation module configuration or `null`\n"
-                }
-            },
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering EndpointConfiguration resources.\n",
-                "properties": {
-                    "backends": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationBackend:EndpointConfigurationBackend"
-                        },
-                        "description": "backend module configuration or `null`\n"
-                    },
-                    "basicAuths": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationBasicAuth:EndpointConfigurationBasicAuth"
-                        },
-                        "description": "basic auth module configuration or `null`\n"
-                    },
-                    "circuitBreakers": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationCircuitBreaker:EndpointConfigurationCircuitBreaker"
-                        },
-                        "description": "circuit breaker module configuration or `null`\n"
-                    },
-                    "compressions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationCompression:EndpointConfigurationCompression"
-                        },
-                        "description": "compression module configuration or `null`\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "human-readable description of what this endpoint configuration will be do when applied or what traffic it will be applied to. Optional, max 255 bytes\n"
-                    },
-                    "ipPolicies": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationIpPolicy:EndpointConfigurationIpPolicy"
-                        },
-                        "description": "ip policy module configuration or `null`\n"
-                    },
-                    "loggings": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationLogging:EndpointConfigurationLogging"
-                        },
-                        "description": "logging module configuration or `null`\n"
-                    },
-                    "metadata": {
-                        "type": "string",
-                        "description": "arbitrary user-defined machine-readable data of this endpoint configuration. Optional, max 4096 bytes.\n"
-                    },
-                    "mutualTls": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationMutualTl:EndpointConfigurationMutualTl"
-                        },
-                        "description": "mutual TLS module configuration or `null`\n"
-                    },
-                    "oauths": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationOauth:EndpointConfigurationOauth"
-                        },
-                        "description": "oauth module configuration or `null`\n"
-                    },
-                    "oidcs": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationOidc:EndpointConfigurationOidc"
-                        },
-                        "description": "oidc module configuration or `null`\n"
-                    },
-                    "requestHeaders": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationRequestHeader:EndpointConfigurationRequestHeader"
-                        },
-                        "description": "request headers module configuration or `null`\n"
-                    },
-                    "responseHeaders": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationResponseHeader:EndpointConfigurationResponseHeader"
-                        },
-                        "description": "response headers module configuration or `null`\n"
-                    },
-                    "samls": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationSaml:EndpointConfigurationSaml"
-                        },
-                        "description": "saml module configuration or `null`\n"
-                    },
-                    "tlsTerminations": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationTlsTermination:EndpointConfigurationTlsTermination"
-                        },
-                        "description": "TLS termination module configuration or `null`\n"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "they type of traffic this endpoint configuration can be applied to. one of: `http`, `https`, `tcp`\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "webhookValidations": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ngrok:index/EndpointConfigurationWebhookValidation:EndpointConfigurationWebhookValidation"
-                        },
-                        "description": "webhook validation module configuration or `null`\n"
                     }
                 },
                 "type": "object"
@@ -1833,8 +955,212 @@
                 "type": "object"
             }
         },
+        "ngrok:index/failoverBackend:FailoverBackend": {
+            "description": "A Failover backend defines failover behavior within a list of referenced\n backends. Traffic is sent to the first backend in the list. If that backend\n is offline or no connection can be established, ngrok attempts to connect to\n the next backend in the list until one is successful.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.FailoverBackend(\"example\", {\n    backends: [\"bkdhr_26rOyncxuCZ0JdIjYiEDGlsh1lO\"],\n    description: \"acme failover\",\n    metadata: \"{\\\"environment\\\": \\\"staging\\\"}\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.FailoverBackend(\"example\",\n    backends=[\"bkdhr_26rOyncxuCZ0JdIjYiEDGlsh1lO\"],\n    description=\"acme failover\",\n    metadata=\"{\\\"environment\\\": \\\"staging\\\"}\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.FailoverBackend(\"example\", new()\n    {\n        Backends = new[]\n        {\n            \"bkdhr_26rOyncxuCZ0JdIjYiEDGlsh1lO\",\n        },\n        Description = \"acme failover\",\n        Metadata = \"{\\\"environment\\\": \\\"staging\\\"}\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewFailoverBackend(ctx, \"example\", \u0026ngrok.FailoverBackendArgs{\n\t\t\tBackends: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"bkdhr_26rOyncxuCZ0JdIjYiEDGlsh1lO\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"acme failover\"),\n\t\t\tMetadata:    pulumi.String(\"{\\\"environment\\\": \\\"staging\\\"}\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.FailoverBackend;\nimport com.pulumi.ngrok.FailoverBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new FailoverBackend(\"example\", FailoverBackendArgs.builder()        \n            .backends(\"bkdhr_26rOyncxuCZ0JdIjYiEDGlsh1lO\")\n            .description(\"acme failover\")\n            .metadata(\"{\\\"environment\\\": \\\"staging\\\"}\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:FailoverBackend\n    properties:\n      backends:\n        - bkdhr_26rOyncxuCZ0JdIjYiEDGlsh1lO\n      description: acme failover\n      metadata: '{\"environment\": \"staging\"}'\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "the ids of the child backends in order\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "timestamp when the backend was created, RFC 3339 format\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "human-readable description of this backend. Optional\n"
+                },
+                "metadata": {
+                    "type": "string",
+                    "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "URI of the FailoverBackend API resource\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "uri"
+            ],
+            "inputProperties": {
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "the ids of the child backends in order\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "timestamp when the backend was created, RFC 3339 format\n",
+                    "willReplaceOnChanges": true
+                },
+                "description": {
+                    "type": "string",
+                    "description": "human-readable description of this backend. Optional\n"
+                },
+                "metadata": {
+                    "type": "string",
+                    "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "URI of the FailoverBackend API resource\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FailoverBackend resources.\n",
+                "properties": {
+                    "backends": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "the ids of the child backends in order\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "timestamp when the backend was created, RFC 3339 format\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "human-readable description of this backend. Optional\n"
+                    },
+                    "metadata": {
+                        "type": "string",
+                        "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "URI of the FailoverBackend API resource\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ngrok:index/httpResponseBackend:HttpResponseBackend": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.HttpResponseBackend(\"example\", {\n    body: \"I'm a teapot\",\n    description: \"acme http response\",\n    headers: {\n        \"Content-Type\": \"text/plain\",\n    },\n    metadata: \"{\\\"environment\\\": \\\"staging\\\"}\",\n    statusCode: 418,\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.HttpResponseBackend(\"example\",\n    body=\"I'm a teapot\",\n    description=\"acme http response\",\n    headers={\n        \"Content-Type\": \"text/plain\",\n    },\n    metadata=\"{\\\"environment\\\": \\\"staging\\\"}\",\n    status_code=418)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.HttpResponseBackend(\"example\", new()\n    {\n        Body = \"I'm a teapot\",\n        Description = \"acme http response\",\n        Headers = \n        {\n            { \"Content-Type\", \"text/plain\" },\n        },\n        Metadata = \"{\\\"environment\\\": \\\"staging\\\"}\",\n        StatusCode = 418,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewHttpResponseBackend(ctx, \"example\", \u0026ngrok.HttpResponseBackendArgs{\n\t\t\tBody:        pulumi.String(\"I'm a teapot\"),\n\t\t\tDescription: pulumi.String(\"acme http response\"),\n\t\t\tHeaders: pulumi.StringMap{\n\t\t\t\t\"Content-Type\": pulumi.String(\"text/plain\"),\n\t\t\t},\n\t\t\tMetadata:   pulumi.String(\"{\\\"environment\\\": \\\"staging\\\"}\"),\n\t\t\tStatusCode: pulumi.Int(418),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.HttpResponseBackend;\nimport com.pulumi.ngrok.HttpResponseBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new HttpResponseBackend(\"example\", HttpResponseBackendArgs.builder()        \n            .body(\"I'm a teapot\")\n            .description(\"acme http response\")\n            .headers(Map.of(\"Content-Type\", \"text/plain\"))\n            .metadata(\"{\\\"environment\\\": \\\"staging\\\"}\")\n            .statusCode(418)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:HttpResponseBackend\n    properties:\n      body: I'm a teapot\n      description: acme http response\n      headers:\n        Content-Type: text/plain\n      metadata: '{\"environment\": \"staging\"}'\n      statusCode: 418\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "body": {
+                    "type": "string",
+                    "description": "body to return as fixed content\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "timestamp when the backend was created, RFC 3339 format\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "human-readable description of this backend. Optional\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "headers to return\n"
+                },
+                "metadata": {
+                    "type": "string",
+                    "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                },
+                "statusCode": {
+                    "type": "integer",
+                    "description": "status code to return\n"
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "URI of the HTTPResponseBackend API resource\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "uri"
+            ],
+            "inputProperties": {
+                "body": {
+                    "type": "string",
+                    "description": "body to return as fixed content\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "timestamp when the backend was created, RFC 3339 format\n",
+                    "willReplaceOnChanges": true
+                },
+                "description": {
+                    "type": "string",
+                    "description": "human-readable description of this backend. Optional\n"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "headers to return\n"
+                },
+                "metadata": {
+                    "type": "string",
+                    "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                },
+                "statusCode": {
+                    "type": "integer",
+                    "description": "status code to return\n"
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "URI of the HTTPResponseBackend API resource\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering HttpResponseBackend resources.\n",
+                "properties": {
+                    "body": {
+                        "type": "string",
+                        "description": "body to return as fixed content\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "timestamp when the backend was created, RFC 3339 format\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "human-readable description of this backend. Optional\n"
+                    },
+                    "headers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "headers to return\n"
+                    },
+                    "metadata": {
+                        "type": "string",
+                        "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                    },
+                    "statusCode": {
+                        "type": "integer",
+                        "description": "status code to return\n"
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "URI of the HTTPResponseBackend API resource\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "ngrok:index/ipPolicy:IpPolicy": {
-            "description": "IP Policies are reusable groups of CIDR ranges with an `allow` or `deny`\n action. They can be attached to endpoints via the Endpoint Configuration IP\n Policy module. They can also be used with IP Restrictions to control source\n IP ranges that can start tunnel sessions and connect to the API and dashboard.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.IpPolicy(\"example\", {\n    action: \"allow\",\n    description: \"API Outbound Gateway\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.IpPolicy(\"example\",\n    action=\"allow\",\n    description=\"API Outbound Gateway\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.IpPolicy(\"example\", new()\n    {\n        Action = \"allow\",\n        Description = \"API Outbound Gateway\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewIpPolicy(ctx, \"example\", \u0026ngrok.IpPolicyArgs{\n\t\t\tAction:      pulumi.String(\"allow\"),\n\t\t\tDescription: pulumi.String(\"API Outbound Gateway\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.IpPolicy;\nimport com.pulumi.ngrok.IpPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new IpPolicy(\"example\", IpPolicyArgs.builder()        \n            .action(\"allow\")\n            .description(\"API Outbound Gateway\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:IpPolicy\n    properties:\n      action: allow\n      description: API Outbound Gateway\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "IP Policies are reusable groups of CIDR ranges with an `allow` or `deny`\n action. They can be attached to endpoints via the Endpoint Configuration IP\n Policy module. They can also be used with IP Restrictions to control source\n IP ranges that can start tunnel sessions and connect to the API and dashboard.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.IpPolicy(\"example\", {description: \"API Outbound Gateway\"});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.IpPolicy(\"example\", description=\"API Outbound Gateway\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.IpPolicy(\"example\", new()\n    {\n        Description = \"API Outbound Gateway\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewIpPolicy(ctx, \"example\", \u0026ngrok.IpPolicyArgs{\n\t\t\tDescription: pulumi.String(\"API Outbound Gateway\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.IpPolicy;\nimport com.pulumi.ngrok.IpPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new IpPolicy(\"example\", IpPolicyArgs.builder()        \n            .description(\"API Outbound Gateway\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:IpPolicy\n    properties:\n      description: API Outbound Gateway\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "action": {
                     "type": "string",
@@ -1885,7 +1211,7 @@
             }
         },
         "ngrok:index/ipPolicyRule:IpPolicyRule": {
-            "description": "IP Policy Rules are the IPv4 or IPv6 CIDRs entries that\n make up an IP Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.IpPolicyRule(\"example\", {\n    cidr: \"212.3.14.0/24\",\n    description: \"nyc office\",\n    ipPolicyId: \"ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.IpPolicyRule(\"example\",\n    cidr=\"212.3.14.0/24\",\n    description=\"nyc office\",\n    ip_policy_id=\"ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.IpPolicyRule(\"example\", new()\n    {\n        Cidr = \"212.3.14.0/24\",\n        Description = \"nyc office\",\n        IpPolicyId = \"ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewIpPolicyRule(ctx, \"example\", \u0026ngrok.IpPolicyRuleArgs{\n\t\t\tCidr:        pulumi.String(\"212.3.14.0/24\"),\n\t\t\tDescription: pulumi.String(\"nyc office\"),\n\t\t\tIpPolicyId:  pulumi.String(\"ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.IpPolicyRule;\nimport com.pulumi.ngrok.IpPolicyRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new IpPolicyRule(\"example\", IpPolicyRuleArgs.builder()        \n            .cidr(\"212.3.14.0/24\")\n            .description(\"nyc office\")\n            .ipPolicyId(\"ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:IpPolicyRule\n    properties:\n      cidr: 212.3.14.0/24\n      description: nyc office\n      ipPolicyId: ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "IP Policy Rules are the IPv4 or IPv6 CIDRs entries that\n make up an IP Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.IpPolicyRule(\"example\", {\n    action: \"allow\",\n    cidr: \"212.3.14.0/24\",\n    description: \"nyc office\",\n    ipPolicyId: \"ipp_26rOydjEUNZSLTi8bYXBg278qUT\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.IpPolicyRule(\"example\",\n    action=\"allow\",\n    cidr=\"212.3.14.0/24\",\n    description=\"nyc office\",\n    ip_policy_id=\"ipp_26rOydjEUNZSLTi8bYXBg278qUT\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.IpPolicyRule(\"example\", new()\n    {\n        Action = \"allow\",\n        Cidr = \"212.3.14.0/24\",\n        Description = \"nyc office\",\n        IpPolicyId = \"ipp_26rOydjEUNZSLTi8bYXBg278qUT\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewIpPolicyRule(ctx, \"example\", \u0026ngrok.IpPolicyRuleArgs{\n\t\t\tAction:      pulumi.String(\"allow\"),\n\t\t\tCidr:        pulumi.String(\"212.3.14.0/24\"),\n\t\t\tDescription: pulumi.String(\"nyc office\"),\n\t\t\tIpPolicyId:  pulumi.String(\"ipp_26rOydjEUNZSLTi8bYXBg278qUT\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.IpPolicyRule;\nimport com.pulumi.ngrok.IpPolicyRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new IpPolicyRule(\"example\", IpPolicyRuleArgs.builder()        \n            .action(\"allow\")\n            .cidr(\"212.3.14.0/24\")\n            .description(\"nyc office\")\n            .ipPolicyId(\"ipp_26rOydjEUNZSLTi8bYXBg278qUT\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:IpPolicyRule\n    properties:\n      action: allow\n      cidr: 212.3.14.0/24\n      description: nyc office\n      ipPolicyId: ipp_26rOydjEUNZSLTi8bYXBg278qUT\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "action": {
                     "type": "string",
@@ -1909,6 +1235,7 @@
                 }
             },
             "required": [
+                "action",
                 "cidr",
                 "ipPolicyId"
             ],
@@ -1937,6 +1264,7 @@
                 }
             },
             "requiredInputs": [
+                "action",
                 "cidr",
                 "ipPolicyId"
             ],
@@ -1970,7 +1298,7 @@
             }
         },
         "ngrok:index/ipRestriction:IpRestriction": {
-            "description": "An IP restriction is a restriction placed on the CIDRs that are allowed to\n initiate traffic to a specific aspect of your ngrok account. An IP\n restriction has a type which defines the ingress it applies to. IP\n restrictions can be used to enforce the source IPs that can make API\n requests, log in to the dashboard, start ngrok agents, and connect to your\n public-facing endpoints.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.IpRestriction(\"example\", {\n    ipPolicyIds: [\"ipp_25auGwa4eEWUeCOBfCZkwtwqFey\"],\n    type: \"dashboard\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.IpRestriction(\"example\",\n    ip_policy_ids=[\"ipp_25auGwa4eEWUeCOBfCZkwtwqFey\"],\n    type=\"dashboard\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.IpRestriction(\"example\", new()\n    {\n        IpPolicyIds = new[]\n        {\n            \"ipp_25auGwa4eEWUeCOBfCZkwtwqFey\",\n        },\n        Type = \"dashboard\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewIpRestriction(ctx, \"example\", \u0026ngrok.IpRestrictionArgs{\n\t\t\tIpPolicyIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ipp_25auGwa4eEWUeCOBfCZkwtwqFey\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"dashboard\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.IpRestriction;\nimport com.pulumi.ngrok.IpRestrictionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new IpRestriction(\"example\", IpRestrictionArgs.builder()        \n            .ipPolicyIds(\"ipp_25auGwa4eEWUeCOBfCZkwtwqFey\")\n            .type(\"dashboard\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:IpRestriction\n    properties:\n      ipPolicyIds:\n        - ipp_25auGwa4eEWUeCOBfCZkwtwqFey\n      type: dashboard\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "An IP restriction is a restriction placed on the CIDRs that are allowed to\n initiate traffic to a specific aspect of your ngrok account. An IP\n restriction has a type which defines the ingress it applies to. IP\n restrictions can be used to enforce the source IPs that can make API\n requests, log in to the dashboard, start ngrok agents, and connect to your\n public-facing endpoints.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.IpRestriction(\"example\", {\n    ipPolicyIds: [\"ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ\"],\n    type: \"dashboard\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.IpRestriction(\"example\",\n    ip_policy_ids=[\"ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ\"],\n    type=\"dashboard\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.IpRestriction(\"example\", new()\n    {\n        IpPolicyIds = new[]\n        {\n            \"ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ\",\n        },\n        Type = \"dashboard\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewIpRestriction(ctx, \"example\", \u0026ngrok.IpRestrictionArgs{\n\t\t\tIpPolicyIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"dashboard\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.IpRestriction;\nimport com.pulumi.ngrok.IpRestrictionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new IpRestriction(\"example\", IpRestrictionArgs.builder()        \n            .ipPolicyIds(\"ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ\")\n            .type(\"dashboard\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:IpRestriction\n    properties:\n      ipPolicyIds:\n        - ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ\n      type: dashboard\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "description": {
                     "type": "string",
@@ -2142,7 +1470,7 @@
             }
         },
         "ngrok:index/reservedDomain:ReservedDomain": {
-            "description": "Reserved Domains are hostnames that you can listen for traffic on. Domains\n can be used to listen for http, https or tls traffic. You may use a domain\n that you own by creating a CNAME record specified in the returned resource.\n This CNAME record points traffic for that domain to ngrok's edge servers.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.ReservedDomain(\"example\", {\n    certificateId: \"cert_25auGELSEngiae3wzmLLesiZn8h\",\n    region: \"us\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.ReservedDomain(\"example\",\n    certificate_id=\"cert_25auGELSEngiae3wzmLLesiZn8h\",\n    region=\"us\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.ReservedDomain(\"example\", new()\n    {\n        CertificateId = \"cert_25auGELSEngiae3wzmLLesiZn8h\",\n        Region = \"us\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewReservedDomain(ctx, \"example\", \u0026ngrok.ReservedDomainArgs{\n\t\t\tCertificateId: pulumi.String(\"cert_25auGELSEngiae3wzmLLesiZn8h\"),\n\t\t\tRegion:        pulumi.String(\"us\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.ReservedDomain;\nimport com.pulumi.ngrok.ReservedDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ReservedDomain(\"example\", ReservedDomainArgs.builder()        \n            .certificateId(\"cert_25auGELSEngiae3wzmLLesiZn8h\")\n            .region(\"us\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:ReservedDomain\n    properties:\n      certificateId: cert_25auGELSEngiae3wzmLLesiZn8h\n      region: us\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Reserved Domains are hostnames that you can listen for traffic on. Domains\n can be used to listen for http, https or tls traffic. You may use a domain\n that you own by creating a CNAME record specified in the returned resource.\n This CNAME record points traffic for that domain to ngrok's edge servers.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.ReservedDomain(\"example\", {\n    certificateId: \"cert_26rOxyrxCJlOc0frz7MK0HQjRvd\",\n    region: \"us\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.ReservedDomain(\"example\",\n    certificate_id=\"cert_26rOxyrxCJlOc0frz7MK0HQjRvd\",\n    region=\"us\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.ReservedDomain(\"example\", new()\n    {\n        CertificateId = \"cert_26rOxyrxCJlOc0frz7MK0HQjRvd\",\n        Region = \"us\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewReservedDomain(ctx, \"example\", \u0026ngrok.ReservedDomainArgs{\n\t\t\tCertificateId: pulumi.String(\"cert_26rOxyrxCJlOc0frz7MK0HQjRvd\"),\n\t\t\tRegion:        pulumi.String(\"us\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.ReservedDomain;\nimport com.pulumi.ngrok.ReservedDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ReservedDomain(\"example\", ReservedDomainArgs.builder()        \n            .certificateId(\"cert_26rOxyrxCJlOc0frz7MK0HQjRvd\")\n            .region(\"us\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:ReservedDomain\n    properties:\n      certificateId: cert_26rOxyrxCJlOc0frz7MK0HQjRvd\n      region: us\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "acmeChallengeCnameTarget": {
                     "type": "string",
@@ -2195,7 +1523,6 @@
             "required": [
                 "acmeChallengeCnameTarget",
                 "cnameTarget",
-                "domain",
                 "name"
             ],
             "inputProperties": {
@@ -2224,6 +1551,11 @@
                     "type": "string",
                     "description": "human-readable description of what this reserved domain will be used for\n"
                 },
+                "domain": {
+                    "type": "string",
+                    "description": "hostname of the reserved domain\n",
+                    "willReplaceOnChanges": true
+                },
                 "httpEndpointConfigurationId": {
                     "type": "string",
                     "description": "ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain\n"
@@ -2243,8 +1575,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "reserve the domain in this geographic ngrok datacenter. Optional, default is us. (au, eu, ap, us, jp, in, sa)\n",
-                    "willReplaceOnChanges": true
+                    "description": "reserve the domain in this geographic ngrok datacenter. Optional, default is us. (au, eu, ap, us, jp, in, sa)\n"
                 }
             },
             "stateInputs": {
@@ -2299,8 +1630,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "reserve the domain in this geographic ngrok datacenter. Optional, default is us. (au, eu, ap, us, jp, in, sa)\n",
-                        "willReplaceOnChanges": true
+                        "description": "reserve the domain in this geographic ngrok datacenter. Optional, default is us. (au, eu, ap, us, jp, in, sa)\n"
                     }
                 },
                 "type": "object"
@@ -2425,7 +1755,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
+                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
                 },
                 "description": {
                     "type": "string",
@@ -2434,6 +1764,10 @@
                 "metadata": {
                     "type": "string",
                     "description": "arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.\n"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n"
                 },
                 "publicKey": {
                     "type": "string",
@@ -2449,7 +1783,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
+                    "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
                 },
                 "description": {
                     "type": "string",
@@ -2458,6 +1792,11 @@
                 "metadata": {
                     "type": "string",
                     "description": "arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.\n"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n",
+                    "willReplaceOnChanges": true
                 },
                 "publicKey": {
                     "type": "string",
@@ -2476,7 +1815,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
+                        "description": "optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.\n"
                     },
                     "description": {
                         "type": "string",
@@ -2485,6 +1824,11 @@
                     "metadata": {
                         "type": "string",
                         "description": "arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.\n"
+                    },
+                    "ownerId": {
+                        "type": "string",
+                        "description": "If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.\n",
+                        "willReplaceOnChanges": true
                     },
                     "publicKey": {
                         "type": "string",
@@ -2496,7 +1840,7 @@
             }
         },
         "ngrok:index/sshHostCertificate:SshHostCertificate": {
-            "description": "SSH Host Certificates along with the corresponding private key allows an SSH\n server to assert its authenticity to connecting SSH clients who trust the\n SSH Certificate Authority that was used to sign the certificate.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.SshHostCertificate(\"example\", {\n    description: \"personal server\",\n    principals: [\n        \"inconshreveable.com\",\n        \"10.2.42.9\",\n    ],\n    publicKey: \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\",\n    sshCertificateAuthorityId: \"sshca_25auH7sr0BYJFNyfJUwXPzyyFAz\",\n    validUntil: \"2022-05-26T08:23:47Z\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.SshHostCertificate(\"example\",\n    description=\"personal server\",\n    principals=[\n        \"inconshreveable.com\",\n        \"10.2.42.9\",\n    ],\n    public_key=\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\",\n    ssh_certificate_authority_id=\"sshca_25auH7sr0BYJFNyfJUwXPzyyFAz\",\n    valid_until=\"2022-05-26T08:23:47Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.SshHostCertificate(\"example\", new()\n    {\n        Description = \"personal server\",\n        Principals = new[]\n        {\n            \"inconshreveable.com\",\n            \"10.2.42.9\",\n        },\n        PublicKey = \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\",\n        SshCertificateAuthorityId = \"sshca_25auH7sr0BYJFNyfJUwXPzyyFAz\",\n        ValidUntil = \"2022-05-26T08:23:47Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewSshHostCertificate(ctx, \"example\", \u0026ngrok.SshHostCertificateArgs{\n\t\t\tDescription: pulumi.String(\"personal server\"),\n\t\t\tPrincipals: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"inconshreveable.com\"),\n\t\t\t\tpulumi.String(\"10.2.42.9\"),\n\t\t\t},\n\t\t\tPublicKey:                 pulumi.String(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\"),\n\t\t\tSshCertificateAuthorityId: pulumi.String(\"sshca_25auH7sr0BYJFNyfJUwXPzyyFAz\"),\n\t\t\tValidUntil:                pulumi.String(\"2022-05-26T08:23:47Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.SshHostCertificate;\nimport com.pulumi.ngrok.SshHostCertificateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new SshHostCertificate(\"example\", SshHostCertificateArgs.builder()        \n            .description(\"personal server\")\n            .principals(            \n                \"inconshreveable.com\",\n                \"10.2.42.9\")\n            .publicKey(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\")\n            .sshCertificateAuthorityId(\"sshca_25auH7sr0BYJFNyfJUwXPzyyFAz\")\n            .validUntil(\"2022-05-26T08:23:47Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:SshHostCertificate\n    properties:\n      description: personal server\n      principals:\n        - inconshreveable.com\n        - 10.2.42.9\n      publicKey: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\n      sshCertificateAuthorityId: sshca_25auH7sr0BYJFNyfJUwXPzyyFAz\n      validUntil: 2022-05-26T08:23:47Z\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "SSH Host Certificates along with the corresponding private key allows an SSH\n server to assert its authenticity to connecting SSH clients who trust the\n SSH Certificate Authority that was used to sign the certificate.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.SshHostCertificate(\"example\", {\n    description: \"personal server\",\n    principals: [\n        \"inconshreveable.com\",\n        \"10.2.42.9\",\n    ],\n    publicKey: \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\",\n    sshCertificateAuthorityId: \"sshca_26rOyuA7GzMmCmvfOui9TPWNxLa\",\n    validUntil: \"2022-06-22T22:21:35-05:00\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.SshHostCertificate(\"example\",\n    description=\"personal server\",\n    principals=[\n        \"inconshreveable.com\",\n        \"10.2.42.9\",\n    ],\n    public_key=\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\",\n    ssh_certificate_authority_id=\"sshca_26rOyuA7GzMmCmvfOui9TPWNxLa\",\n    valid_until=\"2022-06-22T22:21:35-05:00\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.SshHostCertificate(\"example\", new()\n    {\n        Description = \"personal server\",\n        Principals = new[]\n        {\n            \"inconshreveable.com\",\n            \"10.2.42.9\",\n        },\n        PublicKey = \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\",\n        SshCertificateAuthorityId = \"sshca_26rOyuA7GzMmCmvfOui9TPWNxLa\",\n        ValidUntil = \"2022-06-22T22:21:35-05:00\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewSshHostCertificate(ctx, \"example\", \u0026ngrok.SshHostCertificateArgs{\n\t\t\tDescription: pulumi.String(\"personal server\"),\n\t\t\tPrincipals: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"inconshreveable.com\"),\n\t\t\t\tpulumi.String(\"10.2.42.9\"),\n\t\t\t},\n\t\t\tPublicKey:                 pulumi.String(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\"),\n\t\t\tSshCertificateAuthorityId: pulumi.String(\"sshca_26rOyuA7GzMmCmvfOui9TPWNxLa\"),\n\t\t\tValidUntil:                pulumi.String(\"2022-06-22T22:21:35-05:00\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.SshHostCertificate;\nimport com.pulumi.ngrok.SshHostCertificateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new SshHostCertificate(\"example\", SshHostCertificateArgs.builder()        \n            .description(\"personal server\")\n            .principals(            \n                \"inconshreveable.com\",\n                \"10.2.42.9\")\n            .publicKey(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\")\n            .sshCertificateAuthorityId(\"sshca_26rOyuA7GzMmCmvfOui9TPWNxLa\")\n            .validUntil(\"2022-06-22T22:21:35-05:00\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:SshHostCertificate\n    properties:\n      description: personal server\n      principals:\n        - inconshreveable.com\n        - 10.2.42.9\n      publicKey: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com\n      sshCertificateAuthorityId: sshca_26rOyuA7GzMmCmvfOui9TPWNxLa\n      validUntil: 2022-06-22T22:21:35-05:00\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "certificate": {
                     "type": "string",
@@ -2650,7 +1994,7 @@
             }
         },
         "ngrok:index/sshUserCertificate:SshUserCertificate": {
-            "description": "SSH User Certificates are presented by SSH clients when connecting to an SSH\n server to authenticate their connection. The SSH server must trust the SSH\n Certificate Authority used to sign the certificate.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.SshUserCertificate(\"example\", {\n    description: \"temporary access to staging machine\",\n    principals: [\n        \"ec2-user\",\n        \"root\",\n    ],\n    publicKey: \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\",\n    sshCertificateAuthorityId: \"sshca_25auH5JtiUPW9eMiXYzujvcpkGW\",\n    validUntil: \"2022-05-26T08:23:47Z\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.SshUserCertificate(\"example\",\n    description=\"temporary access to staging machine\",\n    principals=[\n        \"ec2-user\",\n        \"root\",\n    ],\n    public_key=\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\",\n    ssh_certificate_authority_id=\"sshca_25auH5JtiUPW9eMiXYzujvcpkGW\",\n    valid_until=\"2022-05-26T08:23:47Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.SshUserCertificate(\"example\", new()\n    {\n        Description = \"temporary access to staging machine\",\n        Principals = new[]\n        {\n            \"ec2-user\",\n            \"root\",\n        },\n        PublicKey = \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\",\n        SshCertificateAuthorityId = \"sshca_25auH5JtiUPW9eMiXYzujvcpkGW\",\n        ValidUntil = \"2022-05-26T08:23:47Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewSshUserCertificate(ctx, \"example\", \u0026ngrok.SshUserCertificateArgs{\n\t\t\tDescription: pulumi.String(\"temporary access to staging machine\"),\n\t\t\tPrincipals: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ec2-user\"),\n\t\t\t\tpulumi.String(\"root\"),\n\t\t\t},\n\t\t\tPublicKey:                 pulumi.String(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\"),\n\t\t\tSshCertificateAuthorityId: pulumi.String(\"sshca_25auH5JtiUPW9eMiXYzujvcpkGW\"),\n\t\t\tValidUntil:                pulumi.String(\"2022-05-26T08:23:47Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.SshUserCertificate;\nimport com.pulumi.ngrok.SshUserCertificateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new SshUserCertificate(\"example\", SshUserCertificateArgs.builder()        \n            .description(\"temporary access to staging machine\")\n            .principals(            \n                \"ec2-user\",\n                \"root\")\n            .publicKey(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\")\n            .sshCertificateAuthorityId(\"sshca_25auH5JtiUPW9eMiXYzujvcpkGW\")\n            .validUntil(\"2022-05-26T08:23:47Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:SshUserCertificate\n    properties:\n      description: temporary access to staging machine\n      principals:\n        - ec2-user\n        - root\n      publicKey: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\n      sshCertificateAuthorityId: sshca_25auH5JtiUPW9eMiXYzujvcpkGW\n      validUntil: 2022-05-26T08:23:47Z\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "SSH User Certificates are presented by SSH clients when connecting to an SSH\n server to authenticate their connection. The SSH server must trust the SSH\n Certificate Authority used to sign the certificate.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.SshUserCertificate(\"example\", {\n    description: \"temporary access to staging machine\",\n    principals: [\n        \"ec2-user\",\n        \"root\",\n    ],\n    publicKey: \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\",\n    sshCertificateAuthorityId: \"sshca_26rOyirnW8khUZJ8xjNfPu3GPdi\",\n    validUntil: \"2022-06-22T22:21:34-05:00\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.SshUserCertificate(\"example\",\n    description=\"temporary access to staging machine\",\n    principals=[\n        \"ec2-user\",\n        \"root\",\n    ],\n    public_key=\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\",\n    ssh_certificate_authority_id=\"sshca_26rOyirnW8khUZJ8xjNfPu3GPdi\",\n    valid_until=\"2022-06-22T22:21:34-05:00\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.SshUserCertificate(\"example\", new()\n    {\n        Description = \"temporary access to staging machine\",\n        Principals = new[]\n        {\n            \"ec2-user\",\n            \"root\",\n        },\n        PublicKey = \"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\",\n        SshCertificateAuthorityId = \"sshca_26rOyirnW8khUZJ8xjNfPu3GPdi\",\n        ValidUntil = \"2022-06-22T22:21:34-05:00\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewSshUserCertificate(ctx, \"example\", \u0026ngrok.SshUserCertificateArgs{\n\t\t\tDescription: pulumi.String(\"temporary access to staging machine\"),\n\t\t\tPrincipals: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ec2-user\"),\n\t\t\t\tpulumi.String(\"root\"),\n\t\t\t},\n\t\t\tPublicKey:                 pulumi.String(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\"),\n\t\t\tSshCertificateAuthorityId: pulumi.String(\"sshca_26rOyirnW8khUZJ8xjNfPu3GPdi\"),\n\t\t\tValidUntil:                pulumi.String(\"2022-06-22T22:21:34-05:00\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.SshUserCertificate;\nimport com.pulumi.ngrok.SshUserCertificateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new SshUserCertificate(\"example\", SshUserCertificateArgs.builder()        \n            .description(\"temporary access to staging machine\")\n            .principals(            \n                \"ec2-user\",\n                \"root\")\n            .publicKey(\"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\")\n            .sshCertificateAuthorityId(\"sshca_26rOyirnW8khUZJ8xjNfPu3GPdi\")\n            .validUntil(\"2022-06-22T22:21:34-05:00\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:SshUserCertificate\n    properties:\n      description: temporary access to staging machine\n      principals:\n        - ec2-user\n        - root\n      publicKey: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop\n      sshCertificateAuthorityId: sshca_26rOyirnW8khUZJ8xjNfPu3GPdi\n      validUntil: 2022-06-22T22:21:34-05:00\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "certificate": {
                     "type": "string",
@@ -2687,7 +2031,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.\n"
+                    "description": "the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.\n"
                 },
                 "publicKey": {
                     "type": "string",
@@ -2752,7 +2096,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.\n",
+                    "description": "the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.\n",
                     "willReplaceOnChanges": true
                 },
                 "publicKey": {
@@ -2822,7 +2166,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.\n",
+                        "description": "the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.\n",
                         "willReplaceOnChanges": true
                     },
                     "publicKey": {
@@ -2854,7 +2198,7 @@
             "properties": {
                 "certificatePem": {
                     "type": "string",
-                    "description": "chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).\n"
+                    "description": "chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).\n"
                 },
                 "description": {
                     "type": "string",
@@ -2866,7 +2210,7 @@
                 },
                 "privateKeyPem": {
                     "type": "string",
-                    "description": "private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).\n"
+                    "description": "private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).\n"
                 },
                 "subjectAlternativeNames": {
                     "type": "array",
@@ -2884,7 +2228,7 @@
             "inputProperties": {
                 "certificatePem": {
                     "type": "string",
-                    "description": "chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).\n",
+                    "description": "chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).\n",
                     "willReplaceOnChanges": true
                 },
                 "description": {
@@ -2897,7 +2241,7 @@
                 },
                 "privateKeyPem": {
                     "type": "string",
-                    "description": "private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).\n",
+                    "description": "private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).\n",
                     "willReplaceOnChanges": true
                 },
                 "subjectAlternativeNames": {
@@ -2918,7 +2262,7 @@
                 "properties": {
                     "certificatePem": {
                         "type": "string",
-                        "description": "chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).\n",
+                        "description": "chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).\n",
                         "willReplaceOnChanges": true
                     },
                     "description": {
@@ -2931,7 +2275,7 @@
                     },
                     "privateKeyPem": {
                         "type": "string",
-                        "description": "private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).\n",
+                        "description": "private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).\n",
                         "willReplaceOnChanges": true
                     },
                     "subjectAlternativeNames": {
@@ -2940,6 +2284,120 @@
                             "$ref": "#/types/ngrok:index/TlsCertificateSubjectAlternativeName:TlsCertificateSubjectAlternativeName"
                         },
                         "description": "subject alternative names (SANs) from the leaf of this TLS certificate\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ngrok:index/tunnelGroupBackend:TunnelGroupBackend": {
+            "description": "A Tunnel Group Backend balances traffic among all online tunnels that match\n a label selector.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ngrok from \"@pierskarsenbarg/ngrok\";\n\nconst example = new ngrok.TunnelGroupBackend(\"example\", {\n    description: \"acme tunnel group\",\n    labels: {\n        baz: \"qux\",\n        foo: \"bar\",\n    },\n    metadata: \"{\\\"environment\\\": \\\"staging\\\"}\",\n});\n```\n```python\nimport pulumi\nimport pierskarsenbarg_pulumi_ngrok as ngrok\n\nexample = ngrok.TunnelGroupBackend(\"example\",\n    description=\"acme tunnel group\",\n    labels={\n        \"baz\": \"qux\",\n        \"foo\": \"bar\",\n    },\n    metadata=\"{\\\"environment\\\": \\\"staging\\\"}\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ngrok = PiersKarsenbarg.Ngrok;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ngrok.TunnelGroupBackend(\"example\", new()\n    {\n        Description = \"acme tunnel group\",\n        Labels = \n        {\n            { \"baz\", \"qux\" },\n            { \"foo\", \"bar\" },\n        },\n        Metadata = \"{\\\"environment\\\": \\\"staging\\\"}\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ngrok.NewTunnelGroupBackend(ctx, \"example\", \u0026ngrok.TunnelGroupBackendArgs{\n\t\t\tDescription: pulumi.String(\"acme tunnel group\"),\n\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\"baz\": pulumi.String(\"qux\"),\n\t\t\t\t\"foo\": pulumi.String(\"bar\"),\n\t\t\t},\n\t\t\tMetadata: pulumi.String(\"{\\\"environment\\\": \\\"staging\\\"}\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ngrok.TunnelGroupBackend;\nimport com.pulumi.ngrok.TunnelGroupBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new TunnelGroupBackend(\"example\", TunnelGroupBackendArgs.builder()        \n            .description(\"acme tunnel group\")\n            .labels(Map.ofEntries(\n                Map.entry(\"baz\", \"qux\"),\n                Map.entry(\"foo\", \"bar\")\n            ))\n            .metadata(\"{\\\"environment\\\": \\\"staging\\\"}\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ngrok:TunnelGroupBackend\n    properties:\n      description: acme tunnel group\n      labels:\n        baz: qux\n        foo: bar\n      metadata: '{\"environment\": \"staging\"}'\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "timestamp when the backend was created, RFC 3339 format\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "human-readable description of this backend. Optional\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "labels to watch for tunnels on, e.g. app-\u003efoo, dc-\u003ebar\n"
+                },
+                "metadata": {
+                    "type": "string",
+                    "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                },
+                "tunnels": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ngrok:index/TunnelGroupBackendTunnel:TunnelGroupBackendTunnel"
+                    },
+                    "description": "tunnels matching this backend\n"
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "URI of the TunnelGroupBackend API resource\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "tunnels",
+                "uri"
+            ],
+            "inputProperties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "timestamp when the backend was created, RFC 3339 format\n",
+                    "willReplaceOnChanges": true
+                },
+                "description": {
+                    "type": "string",
+                    "description": "human-readable description of this backend. Optional\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "labels to watch for tunnels on, e.g. app-\u003efoo, dc-\u003ebar\n"
+                },
+                "metadata": {
+                    "type": "string",
+                    "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                },
+                "tunnels": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ngrok:index/TunnelGroupBackendTunnel:TunnelGroupBackendTunnel"
+                    },
+                    "description": "tunnels matching this backend\n",
+                    "willReplaceOnChanges": true
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "URI of the TunnelGroupBackend API resource\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TunnelGroupBackend resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "timestamp when the backend was created, RFC 3339 format\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "human-readable description of this backend. Optional\n"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "labels to watch for tunnels on, e.g. app-\u003efoo, dc-\u003ebar\n"
+                    },
+                    "metadata": {
+                        "type": "string",
+                        "description": "arbitrary user-defined machine-readable data of this backend. Optional\n"
+                    },
+                    "tunnels": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ngrok:index/TunnelGroupBackendTunnel:TunnelGroupBackendTunnel"
+                        },
+                        "description": "tunnels matching this backend\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "uri": {
+                        "type": "string",
+                        "description": "URI of the TunnelGroupBackend API resource\n",
                         "willReplaceOnChanges": true
                     }
                 },

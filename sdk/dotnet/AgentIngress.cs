@@ -34,6 +34,12 @@ namespace PiersKarsenbarg.Ngrok
     public partial class AgentIngress : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+        /// </summary>
+        [Output("certificateManagementPolicies")]
+        public Output<ImmutableArray<Outputs.AgentIngressCertificateManagementPolicy>> CertificateManagementPolicies { get; private set; } = null!;
+
+        /// <summary>
         /// timestamp when the Agent Ingress was created, RFC 3339 format
         /// </summary>
         [Output("createdAt")]
@@ -122,6 +128,18 @@ namespace PiersKarsenbarg.Ngrok
 
     public sealed class AgentIngressArgs : global::Pulumi.ResourceArgs
     {
+        [Input("certificateManagementPolicies")]
+        private InputList<Inputs.AgentIngressCertificateManagementPolicyArgs>? _certificateManagementPolicies;
+
+        /// <summary>
+        /// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+        /// </summary>
+        public InputList<Inputs.AgentIngressCertificateManagementPolicyArgs> CertificateManagementPolicies
+        {
+            get => _certificateManagementPolicies ?? (_certificateManagementPolicies = new InputList<Inputs.AgentIngressCertificateManagementPolicyArgs>());
+            set => _certificateManagementPolicies = value;
+        }
+
         /// <summary>
         /// human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
         /// </summary>
@@ -154,6 +172,18 @@ namespace PiersKarsenbarg.Ngrok
 
     public sealed class AgentIngressState : global::Pulumi.ResourceArgs
     {
+        [Input("certificateManagementPolicies")]
+        private InputList<Inputs.AgentIngressCertificateManagementPolicyGetArgs>? _certificateManagementPolicies;
+
+        /// <summary>
+        /// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+        /// </summary>
+        public InputList<Inputs.AgentIngressCertificateManagementPolicyGetArgs> CertificateManagementPolicies
+        {
+            get => _certificateManagementPolicies ?? (_certificateManagementPolicies = new InputList<Inputs.AgentIngressCertificateManagementPolicyGetArgs>());
+            set => _certificateManagementPolicies = value;
+        }
+
         /// <summary>
         /// timestamp when the Agent Ingress was created, RFC 3339 format
         /// </summary>

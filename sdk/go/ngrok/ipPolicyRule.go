@@ -32,9 +32,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ngrok.NewIpPolicyRule(ctx, "example", &ngrok.IpPolicyRuleArgs{
+//				Action:      pulumi.String("allow"),
 //				Cidr:        pulumi.String("212.3.14.0/24"),
 //				Description: pulumi.String("nyc office"),
-//				IpPolicyId:  pulumi.String("ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm"),
+//				IpPolicyId:  pulumi.String("ipp_26rOydjEUNZSLTi8bYXBg278qUT"),
 //			})
 //			if err != nil {
 //				return err
@@ -48,7 +49,7 @@ type IpPolicyRule struct {
 	pulumi.CustomResourceState
 
 	// the action to apply to the policy rule, either `allow` or `deny`
-	Action pulumi.StringPtrOutput `pulumi:"action"`
+	Action pulumi.StringOutput `pulumi:"action"`
 	// an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.
 	Cidr pulumi.StringOutput `pulumi:"cidr"`
 	// human-readable description of the source IPs of this IP rule. optional, max 255 bytes.
@@ -66,6 +67,9 @@ func NewIpPolicyRule(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Action == nil {
+		return nil, errors.New("invalid value for required argument 'Action'")
+	}
 	if args.Cidr == nil {
 		return nil, errors.New("invalid value for required argument 'Cidr'")
 	}
@@ -126,7 +130,7 @@ func (IpPolicyRuleState) ElementType() reflect.Type {
 
 type ipPolicyRuleArgs struct {
 	// the action to apply to the policy rule, either `allow` or `deny`
-	Action *string `pulumi:"action"`
+	Action string `pulumi:"action"`
 	// an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.
 	Cidr string `pulumi:"cidr"`
 	// human-readable description of the source IPs of this IP rule. optional, max 255 bytes.
@@ -140,7 +144,7 @@ type ipPolicyRuleArgs struct {
 // The set of arguments for constructing a IpPolicyRule resource.
 type IpPolicyRuleArgs struct {
 	// the action to apply to the policy rule, either `allow` or `deny`
-	Action pulumi.StringPtrInput
+	Action pulumi.StringInput
 	// an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.
 	Cidr pulumi.StringInput
 	// human-readable description of the source IPs of this IP rule. optional, max 255 bytes.
@@ -263,8 +267,8 @@ func (o IpPolicyRuleOutput) ToOutput(ctx context.Context) pulumix.Output[*IpPoli
 }
 
 // the action to apply to the policy rule, either `allow` or `deny`
-func (o IpPolicyRuleOutput) Action() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IpPolicyRule) pulumi.StringPtrOutput { return v.Action }).(pulumi.StringPtrOutput)
+func (o IpPolicyRuleOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpPolicyRule) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }
 
 // an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.

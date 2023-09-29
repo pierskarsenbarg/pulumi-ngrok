@@ -16,17 +16,21 @@ class ApiKeyArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 owner_id: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ApiKey resource.
         :param pulumi.Input[str] description: human-readable description of what uses the API key to authenticate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined data of this API key. optional, max 4096 bytes
+        :param pulumi.Input[str] owner_id: If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
         :param pulumi.Input[str] token: the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if owner_id is not None:
+            pulumi.set(__self__, "owner_id", owner_id)
         if token is not None:
             pulumi.set(__self__, "token", token)
 
@@ -53,6 +57,18 @@ class ApiKeyArgs:
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+        """
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "owner_id", value)
 
     @property
     @pulumi.getter
@@ -72,17 +88,21 @@ class _ApiKeyState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 owner_id: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ApiKey resources.
         :param pulumi.Input[str] description: human-readable description of what uses the API key to authenticate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined data of this API key. optional, max 4096 bytes
+        :param pulumi.Input[str] owner_id: If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
         :param pulumi.Input[str] token: the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if owner_id is not None:
+            pulumi.set(__self__, "owner_id", owner_id)
         if token is not None:
             pulumi.set(__self__, "token", token)
 
@@ -109,6 +129,18 @@ class _ApiKeyState:
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+        """
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "owner_id", value)
 
     @property
     @pulumi.getter
@@ -130,6 +162,7 @@ class ApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 owner_id: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -154,6 +187,7 @@ class ApiKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: human-readable description of what uses the API key to authenticate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined data of this API key. optional, max 4096 bytes
+        :param pulumi.Input[str] owner_id: If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
         :param pulumi.Input[str] token: the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
         """
         ...
@@ -197,6 +231,7 @@ class ApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 owner_id: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -209,6 +244,7 @@ class ApiKey(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["owner_id"] = owner_id
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -224,6 +260,7 @@ class ApiKey(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
             metadata: Optional[pulumi.Input[str]] = None,
+            owner_id: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None) -> 'ApiKey':
         """
         Get an existing ApiKey resource's state with the given name, id, and optional extra
@@ -234,6 +271,7 @@ class ApiKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: human-readable description of what uses the API key to authenticate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined data of this API key. optional, max 4096 bytes
+        :param pulumi.Input[str] owner_id: If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
         :param pulumi.Input[str] token: the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -242,6 +280,7 @@ class ApiKey(pulumi.CustomResource):
 
         __props__.__dict__["description"] = description
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["owner_id"] = owner_id
         __props__.__dict__["token"] = token
         return ApiKey(resource_name, opts=opts, __props__=__props__)
 
@@ -260,6 +299,14 @@ class ApiKey(pulumi.CustomResource):
         arbitrary user-defined data of this API key. optional, max 4096 bytes
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+        """
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter

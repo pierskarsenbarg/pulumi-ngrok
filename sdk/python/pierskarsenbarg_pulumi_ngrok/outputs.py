@@ -11,34 +11,13 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
-    'EndpointConfigurationBackend',
-    'EndpointConfigurationBackendBackend',
-    'EndpointConfigurationBasicAuth',
-    'EndpointConfigurationCircuitBreaker',
-    'EndpointConfigurationCompression',
-    'EndpointConfigurationIpPolicy',
-    'EndpointConfigurationIpPolicyIpPolicy',
-    'EndpointConfigurationLogging',
-    'EndpointConfigurationLoggingEventStream',
-    'EndpointConfigurationMutualTl',
-    'EndpointConfigurationMutualTlCertificateAuthority',
-    'EndpointConfigurationOauth',
-    'EndpointConfigurationOauthProvider',
-    'EndpointConfigurationOauthProviderFacebook',
-    'EndpointConfigurationOauthProviderGithub',
-    'EndpointConfigurationOauthProviderGoogle',
-    'EndpointConfigurationOauthProviderMicrosoft',
-    'EndpointConfigurationOidc',
-    'EndpointConfigurationRequestHeader',
-    'EndpointConfigurationResponseHeader',
-    'EndpointConfigurationSaml',
-    'EndpointConfigurationTlsTermination',
-    'EndpointConfigurationWebhookValidation',
+    'AgentIngressCertificateManagementPolicy',
     'EventDestinationTarget',
     'EventDestinationTargetCloudwatchLog',
     'EventDestinationTargetCloudwatchLogAuth',
     'EventDestinationTargetCloudwatchLogAuthCred',
     'EventDestinationTargetCloudwatchLogAuthRole',
+    'EventDestinationTargetDatadog',
     'EventDestinationTargetDebug',
     'EventDestinationTargetFirehose',
     'EventDestinationTargetFirehoseAuth',
@@ -51,1500 +30,55 @@ __all__ = [
     'EventSubscriptionSource',
     'ReservedDomainCertificateManagementPolicy',
     'TlsCertificateSubjectAlternativeName',
+    'TunnelGroupBackendTunnel',
 ]
 
 @pulumi.output_type
-class EndpointConfigurationBackend(dict):
-    def __init__(__self__, *,
-                 backends: Optional[Sequence['outputs.EndpointConfigurationBackendBackend']] = None,
-                 enabled: Optional[bool] = None):
-        """
-        :param Sequence['EndpointConfigurationBackendBackendArgs'] backends: backend to be used to back this endpoint
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        if backends is not None:
-            pulumi.set(__self__, "backends", backends)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-
-    @property
-    @pulumi.getter
-    def backends(self) -> Optional[Sequence['outputs.EndpointConfigurationBackendBackend']]:
-        """
-        backend to be used to back this endpoint
-        """
-        return pulumi.get(self, "backends")
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-
-@pulumi.output_type
-class EndpointConfigurationBackendBackend(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 uri: Optional[str] = None):
-        """
-        :param str id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[str]:
-        return pulumi.get(self, "uri")
-
-
-@pulumi.output_type
-class EndpointConfigurationBasicAuth(dict):
+class AgentIngressCertificateManagementPolicy(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "allowOptions":
-            suggest = "allow_options"
-        elif key == "authProviderId":
-            suggest = "auth_provider_id"
+        if key == "privateKeyType":
+            suggest = "private_key_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationBasicAuth. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in AgentIngressCertificateManagementPolicy. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationBasicAuth.__key_warning(key)
+        AgentIngressCertificateManagementPolicy.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationBasicAuth.__key_warning(key)
+        AgentIngressCertificateManagementPolicy.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 allow_options: Optional[bool] = None,
-                 auth_provider_id: Optional[str] = None,
-                 enabled: Optional[bool] = None,
-                 realm: Optional[str] = None):
+                 authority: Optional[str] = None,
+                 private_key_type: Optional[str] = None):
         """
-        :param bool allow_options: true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-        :param str auth_provider_id: determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param str realm: an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
+        :param str authority: certificate authority to request certificates from. The only supported value is letsencrypt.
+        :param str private_key_type: type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
         """
-        if allow_options is not None:
-            pulumi.set(__self__, "allow_options", allow_options)
-        if auth_provider_id is not None:
-            pulumi.set(__self__, "auth_provider_id", auth_provider_id)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if realm is not None:
-            pulumi.set(__self__, "realm", realm)
-
-    @property
-    @pulumi.getter(name="allowOptions")
-    def allow_options(self) -> Optional[bool]:
-        """
-        true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-        """
-        return pulumi.get(self, "allow_options")
-
-    @property
-    @pulumi.getter(name="authProviderId")
-    def auth_provider_id(self) -> Optional[str]:
-        """
-        determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-        """
-        return pulumi.get(self, "auth_provider_id")
+        if authority is not None:
+            pulumi.set(__self__, "authority", authority)
+        if private_key_type is not None:
+            pulumi.set(__self__, "private_key_type", private_key_type)
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def authority(self) -> Optional[str]:
         """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
+        certificate authority to request certificates from. The only supported value is letsencrypt.
         """
-        return pulumi.get(self, "enabled")
+        return pulumi.get(self, "authority")
 
     @property
-    @pulumi.getter
-    def realm(self) -> Optional[str]:
+    @pulumi.getter(name="privateKeyType")
+    def private_key_type(self) -> Optional[str]:
         """
-        an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
+        type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
         """
-        return pulumi.get(self, "realm")
-
-
-@pulumi.output_type
-class EndpointConfigurationCircuitBreaker(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "errorThresholdPercentage":
-            suggest = "error_threshold_percentage"
-        elif key == "numBuckets":
-            suggest = "num_buckets"
-        elif key == "rollingWindow":
-            suggest = "rolling_window"
-        elif key == "trippedDuration":
-            suggest = "tripped_duration"
-        elif key == "volumeThreshold":
-            suggest = "volume_threshold"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationCircuitBreaker. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationCircuitBreaker.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationCircuitBreaker.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 enabled: Optional[bool] = None,
-                 error_threshold_percentage: Optional[float] = None,
-                 num_buckets: Optional[int] = None,
-                 rolling_window: Optional[int] = None,
-                 tripped_duration: Optional[int] = None,
-                 volume_threshold: Optional[int] = None):
-        """
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param float error_threshold_percentage: Error threshold percentage should be between 0 - 1.0, not 0-100.0
-        :param int num_buckets: Integer number of buckets into which metrics are retained. Max 128.
-        :param int rolling_window: Integer number of seconds in the statistical rolling window that metrics are retained for.
-        :param int tripped_duration: Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-        :param int volume_threshold: Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if error_threshold_percentage is not None:
-            pulumi.set(__self__, "error_threshold_percentage", error_threshold_percentage)
-        if num_buckets is not None:
-            pulumi.set(__self__, "num_buckets", num_buckets)
-        if rolling_window is not None:
-            pulumi.set(__self__, "rolling_window", rolling_window)
-        if tripped_duration is not None:
-            pulumi.set(__self__, "tripped_duration", tripped_duration)
-        if volume_threshold is not None:
-            pulumi.set(__self__, "volume_threshold", volume_threshold)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="errorThresholdPercentage")
-    def error_threshold_percentage(self) -> Optional[float]:
-        """
-        Error threshold percentage should be between 0 - 1.0, not 0-100.0
-        """
-        return pulumi.get(self, "error_threshold_percentage")
-
-    @property
-    @pulumi.getter(name="numBuckets")
-    def num_buckets(self) -> Optional[int]:
-        """
-        Integer number of buckets into which metrics are retained. Max 128.
-        """
-        return pulumi.get(self, "num_buckets")
-
-    @property
-    @pulumi.getter(name="rollingWindow")
-    def rolling_window(self) -> Optional[int]:
-        """
-        Integer number of seconds in the statistical rolling window that metrics are retained for.
-        """
-        return pulumi.get(self, "rolling_window")
-
-    @property
-    @pulumi.getter(name="trippedDuration")
-    def tripped_duration(self) -> Optional[int]:
-        """
-        Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-        """
-        return pulumi.get(self, "tripped_duration")
-
-    @property
-    @pulumi.getter(name="volumeThreshold")
-    def volume_threshold(self) -> Optional[int]:
-        """
-        Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-        """
-        return pulumi.get(self, "volume_threshold")
-
-
-@pulumi.output_type
-class EndpointConfigurationCompression(dict):
-    def __init__(__self__, *,
-                 enabled: Optional[bool] = None):
-        """
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-
-@pulumi.output_type
-class EndpointConfigurationIpPolicy(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "ipPolicies":
-            suggest = "ip_policies"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationIpPolicy. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationIpPolicy.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationIpPolicy.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 enabled: Optional[bool] = None,
-                 ip_policies: Optional[Sequence['outputs.EndpointConfigurationIpPolicyIpPolicy']] = None):
-        """
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if ip_policies is not None:
-            pulumi.set(__self__, "ip_policies", ip_policies)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="ipPolicies")
-    def ip_policies(self) -> Optional[Sequence['outputs.EndpointConfigurationIpPolicyIpPolicy']]:
-        return pulumi.get(self, "ip_policies")
-
-
-@pulumi.output_type
-class EndpointConfigurationIpPolicyIpPolicy(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 uri: Optional[str] = None):
-        """
-        :param str id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[str]:
-        return pulumi.get(self, "uri")
-
-
-@pulumi.output_type
-class EndpointConfigurationLogging(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "eventStreams":
-            suggest = "event_streams"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationLogging. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationLogging.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationLogging.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 enabled: Optional[bool] = None,
-                 event_streams: Optional[Sequence['outputs.EndpointConfigurationLoggingEventStream']] = None):
-        """
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param Sequence['EndpointConfigurationLoggingEventStreamArgs'] event_streams: list of all EventStreams that will be used to configure and export this endpoint's logs
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if event_streams is not None:
-            pulumi.set(__self__, "event_streams", event_streams)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="eventStreams")
-    def event_streams(self) -> Optional[Sequence['outputs.EndpointConfigurationLoggingEventStream']]:
-        """
-        list of all EventStreams that will be used to configure and export this endpoint's logs
-        """
-        return pulumi.get(self, "event_streams")
-
-
-@pulumi.output_type
-class EndpointConfigurationLoggingEventStream(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 uri: Optional[str] = None):
-        """
-        :param str id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[str]:
-        return pulumi.get(self, "uri")
-
-
-@pulumi.output_type
-class EndpointConfigurationMutualTl(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "certificateAuthorities":
-            suggest = "certificate_authorities"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationMutualTl. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationMutualTl.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationMutualTl.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 certificate_authorities: Optional[Sequence['outputs.EndpointConfigurationMutualTlCertificateAuthority']] = None,
-                 enabled: Optional[bool] = None):
-        """
-        :param Sequence['EndpointConfigurationMutualTlCertificateAuthorityArgs'] certificate_authorities: PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        if certificate_authorities is not None:
-            pulumi.set(__self__, "certificate_authorities", certificate_authorities)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-
-    @property
-    @pulumi.getter(name="certificateAuthorities")
-    def certificate_authorities(self) -> Optional[Sequence['outputs.EndpointConfigurationMutualTlCertificateAuthority']]:
-        """
-        PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-        """
-        return pulumi.get(self, "certificate_authorities")
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-
-@pulumi.output_type
-class EndpointConfigurationMutualTlCertificateAuthority(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 uri: Optional[str] = None):
-        """
-        :param str id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[str]:
-        return pulumi.get(self, "uri")
-
-
-@pulumi.output_type
-class EndpointConfigurationOauth(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "authCheckInterval":
-            suggest = "auth_check_interval"
-        elif key == "cookiePrefix":
-            suggest = "cookie_prefix"
-        elif key == "inactivityTimeout":
-            suggest = "inactivity_timeout"
-        elif key == "maximumDuration":
-            suggest = "maximum_duration"
-        elif key == "optionsPassthrough":
-            suggest = "options_passthrough"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationOauth. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationOauth.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationOauth.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 auth_check_interval: Optional[int] = None,
-                 cookie_prefix: Optional[str] = None,
-                 enabled: Optional[bool] = None,
-                 inactivity_timeout: Optional[int] = None,
-                 maximum_duration: Optional[int] = None,
-                 options_passthrough: Optional[bool] = None,
-                 providers: Optional[Sequence['outputs.EndpointConfigurationOauthProvider']] = None):
-        """
-        :param int auth_check_interval: Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-        :param str cookie_prefix: the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param int inactivity_timeout: Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        :param int maximum_duration: Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        :param bool options_passthrough: Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        :param Sequence['EndpointConfigurationOauthProviderArgs'] providers: an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-        """
-        if auth_check_interval is not None:
-            pulumi.set(__self__, "auth_check_interval", auth_check_interval)
-        if cookie_prefix is not None:
-            pulumi.set(__self__, "cookie_prefix", cookie_prefix)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if inactivity_timeout is not None:
-            pulumi.set(__self__, "inactivity_timeout", inactivity_timeout)
-        if maximum_duration is not None:
-            pulumi.set(__self__, "maximum_duration", maximum_duration)
-        if options_passthrough is not None:
-            pulumi.set(__self__, "options_passthrough", options_passthrough)
-        if providers is not None:
-            pulumi.set(__self__, "providers", providers)
-
-    @property
-    @pulumi.getter(name="authCheckInterval")
-    def auth_check_interval(self) -> Optional[int]:
-        """
-        Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-        """
-        return pulumi.get(self, "auth_check_interval")
-
-    @property
-    @pulumi.getter(name="cookiePrefix")
-    def cookie_prefix(self) -> Optional[str]:
-        """
-        the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        """
-        return pulumi.get(self, "cookie_prefix")
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="inactivityTimeout")
-    def inactivity_timeout(self) -> Optional[int]:
-        """
-        Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        """
-        return pulumi.get(self, "inactivity_timeout")
-
-    @property
-    @pulumi.getter(name="maximumDuration")
-    def maximum_duration(self) -> Optional[int]:
-        """
-        Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        """
-        return pulumi.get(self, "maximum_duration")
-
-    @property
-    @pulumi.getter(name="optionsPassthrough")
-    def options_passthrough(self) -> Optional[bool]:
-        """
-        Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        """
-        return pulumi.get(self, "options_passthrough")
-
-    @property
-    @pulumi.getter
-    def providers(self) -> Optional[Sequence['outputs.EndpointConfigurationOauthProvider']]:
-        """
-        an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-        """
-        return pulumi.get(self, "providers")
-
-
-@pulumi.output_type
-class EndpointConfigurationOauthProvider(dict):
-    def __init__(__self__, *,
-                 facebooks: Optional[Sequence['outputs.EndpointConfigurationOauthProviderFacebook']] = None,
-                 githubs: Optional[Sequence['outputs.EndpointConfigurationOauthProviderGithub']] = None,
-                 googles: Optional[Sequence['outputs.EndpointConfigurationOauthProviderGoogle']] = None,
-                 microsofts: Optional[Sequence['outputs.EndpointConfigurationOauthProviderMicrosoft']] = None):
-        if facebooks is not None:
-            pulumi.set(__self__, "facebooks", facebooks)
-        if githubs is not None:
-            pulumi.set(__self__, "githubs", githubs)
-        if googles is not None:
-            pulumi.set(__self__, "googles", googles)
-        if microsofts is not None:
-            pulumi.set(__self__, "microsofts", microsofts)
-
-    @property
-    @pulumi.getter
-    def facebooks(self) -> Optional[Sequence['outputs.EndpointConfigurationOauthProviderFacebook']]:
-        return pulumi.get(self, "facebooks")
-
-    @property
-    @pulumi.getter
-    def githubs(self) -> Optional[Sequence['outputs.EndpointConfigurationOauthProviderGithub']]:
-        return pulumi.get(self, "githubs")
-
-    @property
-    @pulumi.getter
-    def googles(self) -> Optional[Sequence['outputs.EndpointConfigurationOauthProviderGoogle']]:
-        return pulumi.get(self, "googles")
-
-    @property
-    @pulumi.getter
-    def microsofts(self) -> Optional[Sequence['outputs.EndpointConfigurationOauthProviderMicrosoft']]:
-        return pulumi.get(self, "microsofts")
-
-
-@pulumi.output_type
-class EndpointConfigurationOauthProviderFacebook(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "clientId":
-            suggest = "client_id"
-        elif key == "clientSecret":
-            suggest = "client_secret"
-        elif key == "emailAddresses":
-            suggest = "email_addresses"
-        elif key == "emailDomains":
-            suggest = "email_domains"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationOauthProviderFacebook. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationOauthProviderFacebook.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationOauthProviderFacebook.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 client_id: Optional[str] = None,
-                 client_secret: Optional[str] = None,
-                 email_addresses: Optional[Sequence[str]] = None,
-                 email_domains: Optional[Sequence[str]] = None,
-                 scopes: Optional[Sequence[str]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
-        return pulumi.get(self, "client_id")
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[str]:
-        return pulumi.get(self, "client_secret")
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_addresses")
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_domains")
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "scopes")
-
-
-@pulumi.output_type
-class EndpointConfigurationOauthProviderGithub(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "clientId":
-            suggest = "client_id"
-        elif key == "clientSecret":
-            suggest = "client_secret"
-        elif key == "emailAddresses":
-            suggest = "email_addresses"
-        elif key == "emailDomains":
-            suggest = "email_domains"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationOauthProviderGithub. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationOauthProviderGithub.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationOauthProviderGithub.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 client_id: Optional[str] = None,
-                 client_secret: Optional[str] = None,
-                 email_addresses: Optional[Sequence[str]] = None,
-                 email_domains: Optional[Sequence[str]] = None,
-                 organizations: Optional[Sequence[str]] = None,
-                 scopes: Optional[Sequence[str]] = None,
-                 teams: Optional[Sequence[str]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if organizations is not None:
-            pulumi.set(__self__, "organizations", organizations)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-        if teams is not None:
-            pulumi.set(__self__, "teams", teams)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
-        return pulumi.get(self, "client_id")
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[str]:
-        return pulumi.get(self, "client_secret")
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_addresses")
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_domains")
-
-    @property
-    @pulumi.getter
-    def organizations(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "organizations")
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "scopes")
-
-    @property
-    @pulumi.getter
-    def teams(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "teams")
-
-
-@pulumi.output_type
-class EndpointConfigurationOauthProviderGoogle(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "clientId":
-            suggest = "client_id"
-        elif key == "clientSecret":
-            suggest = "client_secret"
-        elif key == "emailAddresses":
-            suggest = "email_addresses"
-        elif key == "emailDomains":
-            suggest = "email_domains"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationOauthProviderGoogle. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationOauthProviderGoogle.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationOauthProviderGoogle.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 client_id: Optional[str] = None,
-                 client_secret: Optional[str] = None,
-                 email_addresses: Optional[Sequence[str]] = None,
-                 email_domains: Optional[Sequence[str]] = None,
-                 scopes: Optional[Sequence[str]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
-        return pulumi.get(self, "client_id")
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[str]:
-        return pulumi.get(self, "client_secret")
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_addresses")
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_domains")
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "scopes")
-
-
-@pulumi.output_type
-class EndpointConfigurationOauthProviderMicrosoft(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "clientId":
-            suggest = "client_id"
-        elif key == "clientSecret":
-            suggest = "client_secret"
-        elif key == "emailAddresses":
-            suggest = "email_addresses"
-        elif key == "emailDomains":
-            suggest = "email_domains"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationOauthProviderMicrosoft. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationOauthProviderMicrosoft.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationOauthProviderMicrosoft.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 client_id: Optional[str] = None,
-                 client_secret: Optional[str] = None,
-                 email_addresses: Optional[Sequence[str]] = None,
-                 email_domains: Optional[Sequence[str]] = None,
-                 scopes: Optional[Sequence[str]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
-        return pulumi.get(self, "client_id")
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[str]:
-        return pulumi.get(self, "client_secret")
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_addresses")
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "email_domains")
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "scopes")
-
-
-@pulumi.output_type
-class EndpointConfigurationOidc(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "clientId":
-            suggest = "client_id"
-        elif key == "clientSecret":
-            suggest = "client_secret"
-        elif key == "cookiePrefix":
-            suggest = "cookie_prefix"
-        elif key == "inactivityTimeout":
-            suggest = "inactivity_timeout"
-        elif key == "maximumDuration":
-            suggest = "maximum_duration"
-        elif key == "optionsPassthrough":
-            suggest = "options_passthrough"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationOidc. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationOidc.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationOidc.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 client_id: Optional[str] = None,
-                 client_secret: Optional[str] = None,
-                 cookie_prefix: Optional[str] = None,
-                 enabled: Optional[bool] = None,
-                 inactivity_timeout: Optional[int] = None,
-                 issuer: Optional[str] = None,
-                 maximum_duration: Optional[int] = None,
-                 options_passthrough: Optional[bool] = None,
-                 scopes: Optional[Sequence[str]] = None):
-        """
-        :param str client_id: The OIDC app's client ID and OIDC audience.
-        :param str client_secret: The OIDC app's client secret.
-        :param str cookie_prefix: the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param int inactivity_timeout: Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        :param str issuer: URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-        :param int maximum_duration: Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        :param bool options_passthrough: Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        :param Sequence[str] scopes: The set of scopes to request from the OIDC identity provider.
-        """
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if cookie_prefix is not None:
-            pulumi.set(__self__, "cookie_prefix", cookie_prefix)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if inactivity_timeout is not None:
-            pulumi.set(__self__, "inactivity_timeout", inactivity_timeout)
-        if issuer is not None:
-            pulumi.set(__self__, "issuer", issuer)
-        if maximum_duration is not None:
-            pulumi.set(__self__, "maximum_duration", maximum_duration)
-        if options_passthrough is not None:
-            pulumi.set(__self__, "options_passthrough", options_passthrough)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
-        """
-        The OIDC app's client ID and OIDC audience.
-        """
-        return pulumi.get(self, "client_id")
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[str]:
-        """
-        The OIDC app's client secret.
-        """
-        return pulumi.get(self, "client_secret")
-
-    @property
-    @pulumi.getter(name="cookiePrefix")
-    def cookie_prefix(self) -> Optional[str]:
-        """
-        the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        """
-        return pulumi.get(self, "cookie_prefix")
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="inactivityTimeout")
-    def inactivity_timeout(self) -> Optional[int]:
-        """
-        Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        """
-        return pulumi.get(self, "inactivity_timeout")
-
-    @property
-    @pulumi.getter
-    def issuer(self) -> Optional[str]:
-        """
-        URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-        """
-        return pulumi.get(self, "issuer")
-
-    @property
-    @pulumi.getter(name="maximumDuration")
-    def maximum_duration(self) -> Optional[int]:
-        """
-        Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        """
-        return pulumi.get(self, "maximum_duration")
-
-    @property
-    @pulumi.getter(name="optionsPassthrough")
-    def options_passthrough(self) -> Optional[bool]:
-        """
-        Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        """
-        return pulumi.get(self, "options_passthrough")
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[Sequence[str]]:
-        """
-        The set of scopes to request from the OIDC identity provider.
-        """
-        return pulumi.get(self, "scopes")
-
-
-@pulumi.output_type
-class EndpointConfigurationRequestHeader(dict):
-    def __init__(__self__, *,
-                 add: Optional[Mapping[str, str]] = None,
-                 enabled: Optional[bool] = None,
-                 removes: Optional[Sequence[str]] = None):
-        """
-        :param Mapping[str, str] add: a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param Sequence[str] removes: a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-        """
-        if add is not None:
-            pulumi.set(__self__, "add", add)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if removes is not None:
-            pulumi.set(__self__, "removes", removes)
-
-    @property
-    @pulumi.getter
-    def add(self) -> Optional[Mapping[str, str]]:
-        """
-        a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-        """
-        return pulumi.get(self, "add")
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter
-    def removes(self) -> Optional[Sequence[str]]:
-        """
-        a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-        """
-        return pulumi.get(self, "removes")
-
-
-@pulumi.output_type
-class EndpointConfigurationResponseHeader(dict):
-    def __init__(__self__, *,
-                 add: Optional[Mapping[str, str]] = None,
-                 enabled: Optional[bool] = None,
-                 removes: Optional[Sequence[str]] = None):
-        """
-        :param Mapping[str, str] add: a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param Sequence[str] removes: a list of header names that will be removed from the HTTP Response returned to the HTTP client
-        """
-        if add is not None:
-            pulumi.set(__self__, "add", add)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if removes is not None:
-            pulumi.set(__self__, "removes", removes)
-
-    @property
-    @pulumi.getter
-    def add(self) -> Optional[Mapping[str, str]]:
-        """
-        a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-        """
-        return pulumi.get(self, "add")
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter
-    def removes(self) -> Optional[Sequence[str]]:
-        """
-        a list of header names that will be removed from the HTTP Response returned to the HTTP client
-        """
-        return pulumi.get(self, "removes")
-
-
-@pulumi.output_type
-class EndpointConfigurationSaml(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "allowIdpInitiated":
-            suggest = "allow_idp_initiated"
-        elif key == "assertionConsumerServiceUrl":
-            suggest = "assertion_consumer_service_url"
-        elif key == "authorizedGroups":
-            suggest = "authorized_groups"
-        elif key == "cookiePrefix":
-            suggest = "cookie_prefix"
-        elif key == "entityId":
-            suggest = "entity_id"
-        elif key == "forceAuthn":
-            suggest = "force_authn"
-        elif key == "idpMetadata":
-            suggest = "idp_metadata"
-        elif key == "idpMetadataUrl":
-            suggest = "idp_metadata_url"
-        elif key == "inactivityTimeout":
-            suggest = "inactivity_timeout"
-        elif key == "maximumDuration":
-            suggest = "maximum_duration"
-        elif key == "metadataUrl":
-            suggest = "metadata_url"
-        elif key == "nameidFormat":
-            suggest = "nameid_format"
-        elif key == "optionsPassthrough":
-            suggest = "options_passthrough"
-        elif key == "requestSigningCertificatePem":
-            suggest = "request_signing_certificate_pem"
-        elif key == "singleLogoutUrl":
-            suggest = "single_logout_url"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationSaml. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationSaml.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationSaml.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 allow_idp_initiated: Optional[bool] = None,
-                 assertion_consumer_service_url: Optional[str] = None,
-                 authorized_groups: Optional[Sequence[str]] = None,
-                 cookie_prefix: Optional[str] = None,
-                 enabled: Optional[bool] = None,
-                 entity_id: Optional[str] = None,
-                 force_authn: Optional[bool] = None,
-                 idp_metadata: Optional[str] = None,
-                 idp_metadata_url: Optional[str] = None,
-                 inactivity_timeout: Optional[int] = None,
-                 maximum_duration: Optional[int] = None,
-                 metadata_url: Optional[str] = None,
-                 nameid_format: Optional[str] = None,
-                 options_passthrough: Optional[bool] = None,
-                 request_signing_certificate_pem: Optional[str] = None,
-                 single_logout_url: Optional[str] = None):
-        """
-        :param bool allow_idp_initiated: If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-        :param str assertion_consumer_service_url: The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-        :param Sequence[str] authorized_groups: If present, only users who are a member of one of the listed groups may access the target endpoint.
-        :param str cookie_prefix: the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param str entity_id: The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-        :param bool force_authn: If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-        :param str idp_metadata: The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-        :param str idp_metadata_url: The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-        :param int inactivity_timeout: Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        :param int maximum_duration: Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        :param str metadata_url: A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-        :param str nameid_format: Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-        :param bool options_passthrough: Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        :param str request_signing_certificate_pem: PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-        :param str single_logout_url: The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-        """
-        if allow_idp_initiated is not None:
-            pulumi.set(__self__, "allow_idp_initiated", allow_idp_initiated)
-        if assertion_consumer_service_url is not None:
-            pulumi.set(__self__, "assertion_consumer_service_url", assertion_consumer_service_url)
-        if authorized_groups is not None:
-            pulumi.set(__self__, "authorized_groups", authorized_groups)
-        if cookie_prefix is not None:
-            pulumi.set(__self__, "cookie_prefix", cookie_prefix)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if entity_id is not None:
-            pulumi.set(__self__, "entity_id", entity_id)
-        if force_authn is not None:
-            pulumi.set(__self__, "force_authn", force_authn)
-        if idp_metadata is not None:
-            pulumi.set(__self__, "idp_metadata", idp_metadata)
-        if idp_metadata_url is not None:
-            pulumi.set(__self__, "idp_metadata_url", idp_metadata_url)
-        if inactivity_timeout is not None:
-            pulumi.set(__self__, "inactivity_timeout", inactivity_timeout)
-        if maximum_duration is not None:
-            pulumi.set(__self__, "maximum_duration", maximum_duration)
-        if metadata_url is not None:
-            pulumi.set(__self__, "metadata_url", metadata_url)
-        if nameid_format is not None:
-            pulumi.set(__self__, "nameid_format", nameid_format)
-        if options_passthrough is not None:
-            pulumi.set(__self__, "options_passthrough", options_passthrough)
-        if request_signing_certificate_pem is not None:
-            pulumi.set(__self__, "request_signing_certificate_pem", request_signing_certificate_pem)
-        if single_logout_url is not None:
-            pulumi.set(__self__, "single_logout_url", single_logout_url)
-
-    @property
-    @pulumi.getter(name="allowIdpInitiated")
-    def allow_idp_initiated(self) -> Optional[bool]:
-        """
-        If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-        """
-        return pulumi.get(self, "allow_idp_initiated")
-
-    @property
-    @pulumi.getter(name="assertionConsumerServiceUrl")
-    def assertion_consumer_service_url(self) -> Optional[str]:
-        """
-        The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-        """
-        return pulumi.get(self, "assertion_consumer_service_url")
-
-    @property
-    @pulumi.getter(name="authorizedGroups")
-    def authorized_groups(self) -> Optional[Sequence[str]]:
-        """
-        If present, only users who are a member of one of the listed groups may access the target endpoint.
-        """
-        return pulumi.get(self, "authorized_groups")
-
-    @property
-    @pulumi.getter(name="cookiePrefix")
-    def cookie_prefix(self) -> Optional[str]:
-        """
-        the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        """
-        return pulumi.get(self, "cookie_prefix")
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[str]:
-        """
-        The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-        """
-        return pulumi.get(self, "entity_id")
-
-    @property
-    @pulumi.getter(name="forceAuthn")
-    def force_authn(self) -> Optional[bool]:
-        """
-        If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-        """
-        return pulumi.get(self, "force_authn")
-
-    @property
-    @pulumi.getter(name="idpMetadata")
-    def idp_metadata(self) -> Optional[str]:
-        """
-        The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-        """
-        return pulumi.get(self, "idp_metadata")
-
-    @property
-    @pulumi.getter(name="idpMetadataUrl")
-    def idp_metadata_url(self) -> Optional[str]:
-        """
-        The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-        """
-        return pulumi.get(self, "idp_metadata_url")
-
-    @property
-    @pulumi.getter(name="inactivityTimeout")
-    def inactivity_timeout(self) -> Optional[int]:
-        """
-        Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        """
-        return pulumi.get(self, "inactivity_timeout")
-
-    @property
-    @pulumi.getter(name="maximumDuration")
-    def maximum_duration(self) -> Optional[int]:
-        """
-        Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        """
-        return pulumi.get(self, "maximum_duration")
-
-    @property
-    @pulumi.getter(name="metadataUrl")
-    def metadata_url(self) -> Optional[str]:
-        """
-        A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-        """
-        return pulumi.get(self, "metadata_url")
-
-    @property
-    @pulumi.getter(name="nameidFormat")
-    def nameid_format(self) -> Optional[str]:
-        """
-        Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-        """
-        return pulumi.get(self, "nameid_format")
-
-    @property
-    @pulumi.getter(name="optionsPassthrough")
-    def options_passthrough(self) -> Optional[bool]:
-        """
-        Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        """
-        return pulumi.get(self, "options_passthrough")
-
-    @property
-    @pulumi.getter(name="requestSigningCertificatePem")
-    def request_signing_certificate_pem(self) -> Optional[str]:
-        """
-        PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-        """
-        return pulumi.get(self, "request_signing_certificate_pem")
-
-    @property
-    @pulumi.getter(name="singleLogoutUrl")
-    def single_logout_url(self) -> Optional[str]:
-        """
-        The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-        """
-        return pulumi.get(self, "single_logout_url")
-
-
-@pulumi.output_type
-class EndpointConfigurationTlsTermination(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "minVersion":
-            suggest = "min_version"
-        elif key == "terminateAt":
-            suggest = "terminate_at"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EndpointConfigurationTlsTermination. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EndpointConfigurationTlsTermination.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EndpointConfigurationTlsTermination.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 enabled: Optional[bool] = None,
-                 min_version: Optional[str] = None,
-                 terminate_at: Optional[str] = None):
-        """
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param str min_version: The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminate_at` is set to `upstream`.
-        :param str terminate_at: `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if min_version is not None:
-            pulumi.set(__self__, "min_version", min_version)
-        if terminate_at is not None:
-            pulumi.set(__self__, "terminate_at", terminate_at)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="minVersion")
-    def min_version(self) -> Optional[str]:
-        """
-        The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminate_at` is set to `upstream`.
-        """
-        return pulumi.get(self, "min_version")
-
-    @property
-    @pulumi.getter(name="terminateAt")
-    def terminate_at(self) -> Optional[str]:
-        """
-        `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-        """
-        return pulumi.get(self, "terminate_at")
-
-
-@pulumi.output_type
-class EndpointConfigurationWebhookValidation(dict):
-    def __init__(__self__, *,
-                 enabled: Optional[bool] = None,
-                 provider: Optional[str] = None,
-                 secret: Optional[str] = None):
-        """
-        :param bool enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param str provider: a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-        :param str secret: a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if secret is not None:
-            pulumi.set(__self__, "secret", secret)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter
-    def provider(self) -> Optional[str]:
-        """
-        a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-        """
-        return pulumi.get(self, "provider")
-
-    @property
-    @pulumi.getter
-    def secret(self) -> Optional[str]:
-        """
-        a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-        """
-        return pulumi.get(self, "secret")
+        return pulumi.get(self, "private_key_type")
 
 
 @pulumi.output_type
@@ -1568,17 +102,21 @@ class EventDestinationTarget(dict):
 
     def __init__(__self__, *,
                  cloudwatch_logs: Optional[Sequence['outputs.EventDestinationTargetCloudwatchLog']] = None,
+                 datadogs: Optional[Sequence['outputs.EventDestinationTargetDatadog']] = None,
                  debugs: Optional[Sequence['outputs.EventDestinationTargetDebug']] = None,
                  firehoses: Optional[Sequence['outputs.EventDestinationTargetFirehose']] = None,
                  kineses: Optional[Sequence['outputs.EventDestinationTargetKinese']] = None):
         """
         :param Sequence['EventDestinationTargetCloudwatchLogArgs'] cloudwatch_logs: Configuration used to send events to Amazon CloudWatch Logs.
+        :param Sequence['EventDestinationTargetDatadogArgs'] datadogs: Configuration used to send events to Datadog.
         :param Sequence['EventDestinationTargetDebugArgs'] debugs: Configuration used for internal debugging.
         :param Sequence['EventDestinationTargetFirehoseArgs'] firehoses: Configuration used to send events to Amazon Kinesis Data Firehose.
         :param Sequence['EventDestinationTargetKineseArgs'] kineses: Configuration used to send events to Amazon Kinesis.
         """
         if cloudwatch_logs is not None:
             pulumi.set(__self__, "cloudwatch_logs", cloudwatch_logs)
+        if datadogs is not None:
+            pulumi.set(__self__, "datadogs", datadogs)
         if debugs is not None:
             pulumi.set(__self__, "debugs", debugs)
         if firehoses is not None:
@@ -1593,6 +131,14 @@ class EventDestinationTarget(dict):
         Configuration used to send events to Amazon CloudWatch Logs.
         """
         return pulumi.get(self, "cloudwatch_logs")
+
+    @property
+    @pulumi.getter
+    def datadogs(self) -> Optional[Sequence['outputs.EventDestinationTargetDatadog']]:
+        """
+        Configuration used to send events to Datadog.
+        """
+        return pulumi.get(self, "datadogs")
 
     @property
     @pulumi.getter
@@ -1743,6 +289,60 @@ class EventDestinationTargetCloudwatchLogAuthRole(dict):
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> str:
         return pulumi.get(self, "role_arn")
+
+
+@pulumi.output_type
+class EventDestinationTargetDatadog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventDestinationTargetDatadog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventDestinationTargetDatadog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventDestinationTargetDatadog.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: Optional[str] = None,
+                 ddsite: Optional[str] = None,
+                 ddtags: Optional[str] = None,
+                 service: Optional[str] = None):
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if ddsite is not None:
+            pulumi.set(__self__, "ddsite", ddsite)
+        if ddtags is not None:
+            pulumi.set(__self__, "ddtags", ddtags)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[str]:
+        return pulumi.get(self, "api_key")
+
+    @property
+    @pulumi.getter
+    def ddsite(self) -> Optional[str]:
+        return pulumi.get(self, "ddsite")
+
+    @property
+    @pulumi.getter
+    def ddtags(self) -> Optional[str]:
+        return pulumi.get(self, "ddtags")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[str]:
+        return pulumi.get(self, "service")
 
 
 @pulumi.output_type
@@ -2184,5 +784,36 @@ class TlsCertificateSubjectAlternativeName(dict):
         set of IP addresses this TLS certificate is also valid for
         """
         return pulumi.get(self, "ips")
+
+
+@pulumi.output_type
+class TunnelGroupBackendTunnel(dict):
+    def __init__(__self__, *,
+                 id: Optional[str] = None,
+                 uri: Optional[str] = None):
+        """
+        :param str id: a resource identifier
+        :param str uri: a uri for locating a resource
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        a resource identifier
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def uri(self) -> Optional[str]:
+        """
+        a uri for locating a resource
+        """
+        return pulumi.get(self, "uri")
 
 

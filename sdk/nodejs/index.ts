@@ -25,11 +25,6 @@ export type Credential = import("./credential").Credential;
 export const Credential: typeof import("./credential").Credential = null as any;
 utilities.lazyLoad(exports, ["Credential"], () => require("./credential"));
 
-export { EndpointConfigurationArgs, EndpointConfigurationState } from "./endpointConfiguration";
-export type EndpointConfiguration = import("./endpointConfiguration").EndpointConfiguration;
-export const EndpointConfiguration: typeof import("./endpointConfiguration").EndpointConfiguration = null as any;
-utilities.lazyLoad(exports, ["EndpointConfiguration"], () => require("./endpointConfiguration"));
-
 export { EventDestinationArgs, EventDestinationState } from "./eventDestination";
 export type EventDestination = import("./eventDestination").EventDestination;
 export const EventDestination: typeof import("./eventDestination").EventDestination = null as any;
@@ -39,6 +34,16 @@ export { EventSubscriptionArgs, EventSubscriptionState } from "./eventSubscripti
 export type EventSubscription = import("./eventSubscription").EventSubscription;
 export const EventSubscription: typeof import("./eventSubscription").EventSubscription = null as any;
 utilities.lazyLoad(exports, ["EventSubscription"], () => require("./eventSubscription"));
+
+export { FailoverBackendArgs, FailoverBackendState } from "./failoverBackend";
+export type FailoverBackend = import("./failoverBackend").FailoverBackend;
+export const FailoverBackend: typeof import("./failoverBackend").FailoverBackend = null as any;
+utilities.lazyLoad(exports, ["FailoverBackend"], () => require("./failoverBackend"));
+
+export { HttpResponseBackendArgs, HttpResponseBackendState } from "./httpResponseBackend";
+export type HttpResponseBackend = import("./httpResponseBackend").HttpResponseBackend;
+export const HttpResponseBackend: typeof import("./httpResponseBackend").HttpResponseBackend = null as any;
+utilities.lazyLoad(exports, ["HttpResponseBackend"], () => require("./httpResponseBackend"));
 
 export { IpPolicyArgs, IpPolicyState } from "./ipPolicy";
 export type IpPolicy = import("./ipPolicy").IpPolicy;
@@ -95,6 +100,11 @@ export type TlsCertificate = import("./tlsCertificate").TlsCertificate;
 export const TlsCertificate: typeof import("./tlsCertificate").TlsCertificate = null as any;
 utilities.lazyLoad(exports, ["TlsCertificate"], () => require("./tlsCertificate"));
 
+export { TunnelGroupBackendArgs, TunnelGroupBackendState } from "./tunnelGroupBackend";
+export type TunnelGroupBackend = import("./tunnelGroupBackend").TunnelGroupBackend;
+export const TunnelGroupBackend: typeof import("./tunnelGroupBackend").TunnelGroupBackend = null as any;
+utilities.lazyLoad(exports, ["TunnelGroupBackend"], () => require("./tunnelGroupBackend"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -117,12 +127,14 @@ const _module = {
                 return new CertificateAuthority(name, <any>undefined, { urn })
             case "ngrok:index/credential:Credential":
                 return new Credential(name, <any>undefined, { urn })
-            case "ngrok:index/endpointConfiguration:EndpointConfiguration":
-                return new EndpointConfiguration(name, <any>undefined, { urn })
             case "ngrok:index/eventDestination:EventDestination":
                 return new EventDestination(name, <any>undefined, { urn })
             case "ngrok:index/eventSubscription:EventSubscription":
                 return new EventSubscription(name, <any>undefined, { urn })
+            case "ngrok:index/failoverBackend:FailoverBackend":
+                return new FailoverBackend(name, <any>undefined, { urn })
+            case "ngrok:index/httpResponseBackend:HttpResponseBackend":
+                return new HttpResponseBackend(name, <any>undefined, { urn })
             case "ngrok:index/ipPolicy:IpPolicy":
                 return new IpPolicy(name, <any>undefined, { urn })
             case "ngrok:index/ipPolicyRule:IpPolicyRule":
@@ -143,6 +155,8 @@ const _module = {
                 return new SshUserCertificate(name, <any>undefined, { urn })
             case "ngrok:index/tlsCertificate:TlsCertificate":
                 return new TlsCertificate(name, <any>undefined, { urn })
+            case "ngrok:index/tunnelGroupBackend:TunnelGroupBackend":
+                return new TunnelGroupBackend(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -152,9 +166,10 @@ pulumi.runtime.registerResourceModule("ngrok", "index/agentIngress", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/apiKey", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/certificateAuthority", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/credential", _module)
-pulumi.runtime.registerResourceModule("ngrok", "index/endpointConfiguration", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/eventDestination", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/eventSubscription", _module)
+pulumi.runtime.registerResourceModule("ngrok", "index/failoverBackend", _module)
+pulumi.runtime.registerResourceModule("ngrok", "index/httpResponseBackend", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/ipPolicy", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/ipPolicyRule", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/ipRestriction", _module)
@@ -165,6 +180,7 @@ pulumi.runtime.registerResourceModule("ngrok", "index/sshCredential", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/sshHostCertificate", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/sshUserCertificate", _module)
 pulumi.runtime.registerResourceModule("ngrok", "index/tlsCertificate", _module)
+pulumi.runtime.registerResourceModule("ngrok", "index/tunnelGroupBackend", _module)
 pulumi.runtime.registerResourcePackage("ngrok", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

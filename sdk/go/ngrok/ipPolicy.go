@@ -33,7 +33,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ngrok.NewIpPolicy(ctx, "example", &ngrok.IpPolicyArgs{
-//				Action:      pulumi.String("allow"),
 //				Description: pulumi.String("API Outbound Gateway"),
 //			})
 //			if err != nil {

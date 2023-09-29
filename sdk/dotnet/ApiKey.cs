@@ -52,6 +52,12 @@ namespace PiersKarsenbarg.Ngrok
         public Output<string?> Metadata { get; private set; } = null!;
 
         /// <summary>
+        /// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+        /// </summary>
+        [Output("ownerId")]
+        public Output<string?> OwnerId { get; private set; } = null!;
+
+        /// <summary>
         /// the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
         /// </summary>
         [Output("token")]
@@ -120,6 +126,12 @@ namespace PiersKarsenbarg.Ngrok
         [Input("metadata")]
         public Input<string>? Metadata { get; set; }
 
+        /// <summary>
+        /// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+        /// </summary>
+        [Input("ownerId")]
+        public Input<string>? OwnerId { get; set; }
+
         [Input("token")]
         private Input<string>? _token;
 
@@ -155,6 +167,12 @@ namespace PiersKarsenbarg.Ngrok
         /// </summary>
         [Input("metadata")]
         public Input<string>? Metadata { get; set; }
+
+        /// <summary>
+        /// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+        /// </summary>
+        [Input("ownerId")]
+        public Input<string>? OwnerId { get; set; }
 
         [Input("token")]
         private Input<string>? _token;

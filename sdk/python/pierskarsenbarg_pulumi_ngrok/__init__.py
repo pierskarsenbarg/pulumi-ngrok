@@ -9,9 +9,10 @@ from .agent_ingress import *
 from .api_key import *
 from .certificate_authority import *
 from .credential import *
-from .endpoint_configuration import *
 from .event_destination import *
 from .event_subscription import *
+from .failover_backend import *
+from .http_response_backend import *
 from .ip_policy import *
 from .ip_policy_rule import *
 from .ip_restriction import *
@@ -23,6 +24,7 @@ from .ssh_credential import *
 from .ssh_host_certificate import *
 from .ssh_user_certificate import *
 from .tls_certificate import *
+from .tunnel_group_backend import *
 from ._inputs import *
 from . import outputs
 
@@ -70,14 +72,6 @@ _utilities.register(
  },
  {
   "pkg": "ngrok",
-  "mod": "index/endpointConfiguration",
-  "fqn": "pierskarsenbarg_pulumi_ngrok",
-  "classes": {
-   "ngrok:index/endpointConfiguration:EndpointConfiguration": "EndpointConfiguration"
-  }
- },
- {
-  "pkg": "ngrok",
   "mod": "index/eventDestination",
   "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
@@ -90,6 +84,22 @@ _utilities.register(
   "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/eventSubscription:EventSubscription": "EventSubscription"
+  }
+ },
+ {
+  "pkg": "ngrok",
+  "mod": "index/failoverBackend",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
+  "classes": {
+   "ngrok:index/failoverBackend:FailoverBackend": "FailoverBackend"
+  }
+ },
+ {
+  "pkg": "ngrok",
+  "mod": "index/httpResponseBackend",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
+  "classes": {
+   "ngrok:index/httpResponseBackend:HttpResponseBackend": "HttpResponseBackend"
   }
  },
  {
@@ -170,6 +180,14 @@ _utilities.register(
   "fqn": "pierskarsenbarg_pulumi_ngrok",
   "classes": {
    "ngrok:index/tlsCertificate:TlsCertificate": "TlsCertificate"
+  }
+ },
+ {
+  "pkg": "ngrok",
+  "mod": "index/tunnelGroupBackend",
+  "fqn": "pierskarsenbarg_pulumi_ngrok",
+  "classes": {
+   "ngrok:index/tunnelGroupBackend:TunnelGroupBackend": "TunnelGroupBackend"
   }
  }
 ]

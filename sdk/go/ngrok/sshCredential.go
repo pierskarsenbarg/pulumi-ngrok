@@ -50,12 +50,14 @@ import (
 type SshCredential struct {
 	pulumi.CustomResourceState
 
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls pulumi.StringArrayOutput `pulumi:"acls"`
 	// human-readable description of who or what will use the ssh credential to authenticate. Optional, max 255 bytes.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
 	// the PEM-encoded public key of the SSH keypair that will be used to authenticate
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 }
@@ -93,23 +95,27 @@ func GetSshCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SshCredential resources.
 type sshCredentialState struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls []string `pulumi:"acls"`
 	// human-readable description of who or what will use the ssh credential to authenticate. Optional, max 255 bytes.
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId *string `pulumi:"ownerId"`
 	// the PEM-encoded public key of the SSH keypair that will be used to authenticate
 	PublicKey *string `pulumi:"publicKey"`
 }
 
 type SshCredentialState struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls pulumi.StringArrayInput
 	// human-readable description of who or what will use the ssh credential to authenticate. Optional, max 255 bytes.
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrInput
 	// the PEM-encoded public key of the SSH keypair that will be used to authenticate
 	PublicKey pulumi.StringPtrInput
 }
@@ -119,24 +125,28 @@ func (SshCredentialState) ElementType() reflect.Type {
 }
 
 type sshCredentialArgs struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls []string `pulumi:"acls"`
 	// human-readable description of who or what will use the ssh credential to authenticate. Optional, max 255 bytes.
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId *string `pulumi:"ownerId"`
 	// the PEM-encoded public key of the SSH keypair that will be used to authenticate
 	PublicKey string `pulumi:"publicKey"`
 }
 
 // The set of arguments for constructing a SshCredential resource.
 type SshCredentialArgs struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls pulumi.StringArrayInput
 	// human-readable description of who or what will use the ssh credential to authenticate. Optional, max 255 bytes.
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrInput
 	// the PEM-encoded public key of the SSH keypair that will be used to authenticate
 	PublicKey pulumi.StringInput
 }
@@ -252,7 +262,7 @@ func (o SshCredentialOutput) ToOutput(ctx context.Context) pulumix.Output[*SshCr
 	}
 }
 
-// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 func (o SshCredentialOutput) Acls() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SshCredential) pulumi.StringArrayOutput { return v.Acls }).(pulumi.StringArrayOutput)
 }
@@ -265,6 +275,11 @@ func (o SshCredentialOutput) Description() pulumi.StringPtrOutput {
 // arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
 func (o SshCredentialOutput) Metadata() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SshCredential) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
+}
+
+// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+func (o SshCredentialOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SshCredential) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
 }
 
 // the PEM-encoded public key of the SSH keypair that will be used to authenticate

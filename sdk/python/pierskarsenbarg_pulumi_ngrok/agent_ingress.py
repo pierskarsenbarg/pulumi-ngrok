@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['AgentIngressArgs', 'AgentIngress']
 
@@ -15,17 +17,21 @@ __all__ = ['AgentIngressArgs', 'AgentIngress']
 class AgentIngressArgs:
     def __init__(__self__, *,
                  domain: pulumi.Input[str],
+                 certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AgentIngress resource.
         :param pulumi.Input[str] domain: the domain that you own to be used as the base domain name to generate regional agent ingress domains.
+        :param pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]] certificate_management_policies: configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
         :param pulumi.Input[str] description: human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this Agent Ingress. optional, max 4096 bytes
         :param pulumi.Input[str] uri: URI to the API resource of this Agent ingress
         """
         pulumi.set(__self__, "domain", domain)
+        if certificate_management_policies is not None:
+            pulumi.set(__self__, "certificate_management_policies", certificate_management_policies)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if metadata is not None:
@@ -44,6 +50,18 @@ class AgentIngressArgs:
     @domain.setter
     def domain(self, value: pulumi.Input[str]):
         pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="certificateManagementPolicies")
+    def certificate_management_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]]]:
+        """
+        configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+        """
+        return pulumi.get(self, "certificate_management_policies")
+
+    @certificate_management_policies.setter
+    def certificate_management_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]]]):
+        pulumi.set(self, "certificate_management_policies", value)
 
     @property
     @pulumi.getter
@@ -85,6 +103,7 @@ class AgentIngressArgs:
 @pulumi.input_type
 class _AgentIngressState:
     def __init__(__self__, *,
+                 certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
@@ -94,6 +113,7 @@ class _AgentIngressState:
                  uri: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AgentIngress resources.
+        :param pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]] certificate_management_policies: configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
         :param pulumi.Input[str] created_at: timestamp when the Agent Ingress was created, RFC 3339 format
         :param pulumi.Input[str] description: human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
         :param pulumi.Input[str] domain: the domain that you own to be used as the base domain name to generate regional agent ingress domains.
@@ -102,6 +122,8 @@ class _AgentIngressState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] region_domains: a list of regional agent ingress domains that are subdomains of the value of domain this value may increase over time as ngrok adds more regions
         :param pulumi.Input[str] uri: URI to the API resource of this Agent ingress
         """
+        if certificate_management_policies is not None:
+            pulumi.set(__self__, "certificate_management_policies", certificate_management_policies)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
@@ -116,6 +138,18 @@ class _AgentIngressState:
             pulumi.set(__self__, "region_domains", region_domains)
         if uri is not None:
             pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter(name="certificateManagementPolicies")
+    def certificate_management_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]]]:
+        """
+        configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+        """
+        return pulumi.get(self, "certificate_management_policies")
+
+    @certificate_management_policies.setter
+    def certificate_management_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AgentIngressCertificateManagementPolicyArgs']]]]):
+        pulumi.set(self, "certificate_management_policies", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -207,6 +241,7 @@ class AgentIngress(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AgentIngressCertificateManagementPolicyArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
@@ -226,6 +261,7 @@ class AgentIngress(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AgentIngressCertificateManagementPolicyArgs']]]] certificate_management_policies: configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
         :param pulumi.Input[str] description: human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
         :param pulumi.Input[str] domain: the domain that you own to be used as the base domain name to generate regional agent ingress domains.
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this Agent Ingress. optional, max 4096 bytes
@@ -264,6 +300,7 @@ class AgentIngress(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AgentIngressCertificateManagementPolicyArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
@@ -277,6 +314,7 @@ class AgentIngress(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AgentIngressArgs.__new__(AgentIngressArgs)
 
+            __props__.__dict__["certificate_management_policies"] = certificate_management_policies
             __props__.__dict__["description"] = description
             if domain is None and not opts.urn:
                 raise TypeError("Missing required property 'domain'")
@@ -296,6 +334,7 @@ class AgentIngress(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AgentIngressCertificateManagementPolicyArgs']]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
@@ -310,6 +349,7 @@ class AgentIngress(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AgentIngressCertificateManagementPolicyArgs']]]] certificate_management_policies: configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
         :param pulumi.Input[str] created_at: timestamp when the Agent Ingress was created, RFC 3339 format
         :param pulumi.Input[str] description: human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
         :param pulumi.Input[str] domain: the domain that you own to be used as the base domain name to generate regional agent ingress domains.
@@ -322,6 +362,7 @@ class AgentIngress(pulumi.CustomResource):
 
         __props__ = _AgentIngressState.__new__(_AgentIngressState)
 
+        __props__.__dict__["certificate_management_policies"] = certificate_management_policies
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
@@ -330,6 +371,14 @@ class AgentIngress(pulumi.CustomResource):
         __props__.__dict__["region_domains"] = region_domains
         __props__.__dict__["uri"] = uri
         return AgentIngress(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="certificateManagementPolicies")
+    def certificate_management_policies(self) -> pulumi.Output[Optional[Sequence['outputs.AgentIngressCertificateManagementPolicy']]]:
+        """
+        configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+        """
+        return pulumi.get(self, "certificate_management_policies")
 
     @property
     @pulumi.getter(name="createdAt")

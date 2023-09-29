@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -46,6 +48,10 @@ export class AgentIngress extends pulumi.CustomResource {
     }
 
     /**
+     * configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+     */
+    public readonly certificateManagementPolicies!: pulumi.Output<outputs.AgentIngressCertificateManagementPolicy[] | undefined>;
+    /**
      * timestamp when the Agent Ingress was created, RFC 3339 format
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -87,6 +93,7 @@ export class AgentIngress extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AgentIngressState | undefined;
+            resourceInputs["certificateManagementPolicies"] = state ? state.certificateManagementPolicies : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
@@ -99,6 +106,7 @@ export class AgentIngress extends pulumi.CustomResource {
             if ((!args || args.domain === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
+            resourceInputs["certificateManagementPolicies"] = args ? args.certificateManagementPolicies : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
@@ -116,6 +124,10 @@ export class AgentIngress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AgentIngress resources.
  */
 export interface AgentIngressState {
+    /**
+     * configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+     */
+    certificateManagementPolicies?: pulumi.Input<pulumi.Input<inputs.AgentIngressCertificateManagementPolicy>[]>;
     /**
      * timestamp when the Agent Ingress was created, RFC 3339 format
      */
@@ -150,6 +162,10 @@ export interface AgentIngressState {
  * The set of arguments for constructing a AgentIngress resource.
  */
 export interface AgentIngressArgs {
+    /**
+     * configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+     */
+    certificateManagementPolicies?: pulumi.Input<pulumi.Input<inputs.AgentIngressCertificateManagementPolicy>[]>;
     /**
      * human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
      */

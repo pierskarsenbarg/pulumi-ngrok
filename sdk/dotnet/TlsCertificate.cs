@@ -87,7 +87,7 @@ namespace PiersKarsenbarg.Ngrok
     public partial class TlsCertificate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        /// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         /// </summary>
         [Output("certificatePem")]
         public Output<string> CertificatePem { get; private set; } = null!;
@@ -105,7 +105,7 @@ namespace PiersKarsenbarg.Ngrok
         public Output<string?> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        /// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         /// </summary>
         [Output("privateKeyPem")]
         public Output<string> PrivateKeyPem { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace PiersKarsenbarg.Ngrok
     public sealed class TlsCertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        /// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         /// </summary>
         [Input("certificatePem", required: true)]
         public Input<string> CertificatePem { get; set; } = null!;
@@ -182,7 +182,7 @@ namespace PiersKarsenbarg.Ngrok
         public Input<string>? Metadata { get; set; }
 
         /// <summary>
-        /// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        /// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         /// </summary>
         [Input("privateKeyPem", required: true)]
         public Input<string> PrivateKeyPem { get; set; } = null!;
@@ -208,7 +208,7 @@ namespace PiersKarsenbarg.Ngrok
     public sealed class TlsCertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        /// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         /// </summary>
         [Input("certificatePem")]
         public Input<string>? CertificatePem { get; set; }
@@ -226,7 +226,7 @@ namespace PiersKarsenbarg.Ngrok
         public Input<string>? Metadata { get; set; }
 
         /// <summary>
-        /// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        /// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         /// </summary>
         [Input("privateKeyPem")]
         public Input<string>? PrivateKeyPem { get; set; }

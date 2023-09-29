@@ -26,9 +26,10 @@ namespace PiersKarsenbarg.Ngrok
     /// {
     ///     var example = new Ngrok.IpPolicyRule("example", new()
     ///     {
+    ///         Action = "allow",
     ///         Cidr = "212.3.14.0/24",
     ///         Description = "nyc office",
-    ///         IpPolicyId = "ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm",
+    ///         IpPolicyId = "ipp_26rOydjEUNZSLTi8bYXBg278qUT",
     ///     });
     /// 
     /// });
@@ -41,7 +42,7 @@ namespace PiersKarsenbarg.Ngrok
         /// the action to apply to the policy rule, either `allow` or `deny`
         /// </summary>
         [Output("action")]
-        public Output<string?> Action { get; private set; } = null!;
+        public Output<string> Action { get; private set; } = null!;
 
         /// <summary>
         /// an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.
@@ -117,8 +118,8 @@ namespace PiersKarsenbarg.Ngrok
         /// <summary>
         /// the action to apply to the policy rule, either `allow` or `deny`
         /// </summary>
-        [Input("action")]
-        public Input<string>? Action { get; set; }
+        [Input("action", required: true)]
+        public Input<string> Action { get; set; } = null!;
 
         /// <summary>
         /// an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.

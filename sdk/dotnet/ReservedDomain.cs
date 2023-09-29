@@ -28,7 +28,7 @@ namespace PiersKarsenbarg.Ngrok
     /// {
     ///     var example = new Ngrok.ReservedDomain("example", new()
     ///     {
-    ///         CertificateId = "cert_25auGELSEngiae3wzmLLesiZn8h",
+    ///         CertificateId = "cert_26rOxyrxCJlOc0frz7MK0HQjRvd",
     ///         Region = "us",
     ///     });
     /// 
@@ -72,7 +72,7 @@ namespace PiersKarsenbarg.Ngrok
         /// hostname of the reserved domain
         /// </summary>
         [Output("domain")]
-        public Output<string> Domain { get; private set; } = null!;
+        public Output<string?> Domain { get; private set; } = null!;
 
         /// <summary>
         /// ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
@@ -186,6 +186,12 @@ namespace PiersKarsenbarg.Ngrok
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// hostname of the reserved domain
+        /// </summary>
+        [Input("domain")]
+        public Input<string>? Domain { get; set; }
 
         /// <summary>
         /// ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain

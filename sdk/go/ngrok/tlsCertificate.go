@@ -100,13 +100,13 @@ import (
 type TlsCertificate struct {
 	pulumi.CustomResourceState
 
-	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
 	CertificatePem pulumi.StringOutput `pulumi:"certificatePem"`
 	// human-readable description of this TLS certificate. optional, max 255 bytes.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
-	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
 	PrivateKeyPem pulumi.StringOutput `pulumi:"privateKeyPem"`
 	// subject alternative names (SANs) from the leaf of this TLS certificate
 	SubjectAlternativeNames TlsCertificateSubjectAlternativeNameArrayOutput `pulumi:"subjectAlternativeNames"`
@@ -148,26 +148,26 @@ func GetTlsCertificate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TlsCertificate resources.
 type tlsCertificateState struct {
-	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
 	CertificatePem *string `pulumi:"certificatePem"`
 	// human-readable description of this TLS certificate. optional, max 255 bytes.
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
-	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
 	PrivateKeyPem *string `pulumi:"privateKeyPem"`
 	// subject alternative names (SANs) from the leaf of this TLS certificate
 	SubjectAlternativeNames []TlsCertificateSubjectAlternativeName `pulumi:"subjectAlternativeNames"`
 }
 
 type TlsCertificateState struct {
-	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
 	CertificatePem pulumi.StringPtrInput
 	// human-readable description of this TLS certificate. optional, max 255 bytes.
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
-	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
 	PrivateKeyPem pulumi.StringPtrInput
 	// subject alternative names (SANs) from the leaf of this TLS certificate
 	SubjectAlternativeNames TlsCertificateSubjectAlternativeNameArrayInput
@@ -178,13 +178,13 @@ func (TlsCertificateState) ElementType() reflect.Type {
 }
 
 type tlsCertificateArgs struct {
-	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
 	CertificatePem string `pulumi:"certificatePem"`
 	// human-readable description of this TLS certificate. optional, max 255 bytes.
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
-	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
 	PrivateKeyPem string `pulumi:"privateKeyPem"`
 	// subject alternative names (SANs) from the leaf of this TLS certificate
 	SubjectAlternativeNames []TlsCertificateSubjectAlternativeName `pulumi:"subjectAlternativeNames"`
@@ -192,13 +192,13 @@ type tlsCertificateArgs struct {
 
 // The set of arguments for constructing a TlsCertificate resource.
 type TlsCertificateArgs struct {
-	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+	// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
 	CertificatePem pulumi.StringInput
 	// human-readable description of this TLS certificate. optional, max 255 bytes.
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
-	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+	// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
 	PrivateKeyPem pulumi.StringInput
 	// subject alternative names (SANs) from the leaf of this TLS certificate
 	SubjectAlternativeNames TlsCertificateSubjectAlternativeNameArrayInput
@@ -315,7 +315,7 @@ func (o TlsCertificateOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsC
 	}
 }
 
-// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+// chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
 func (o TlsCertificateOutput) CertificatePem() pulumi.StringOutput {
 	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.CertificatePem }).(pulumi.StringOutput)
 }
@@ -330,7 +330,7 @@ func (o TlsCertificateOutput) Metadata() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TlsCertificate) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
 }
 
-// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+// private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
 func (o TlsCertificateOutput) PrivateKeyPem() pulumi.StringOutput {
 	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.PrivateKeyPem }).(pulumi.StringOutput)
 }

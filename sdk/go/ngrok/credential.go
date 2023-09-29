@@ -15,7 +15,7 @@ import (
 // Tunnel Credentials are ngrok agent authtokens. They authorize the ngrok
 //
 //	agent to connect the ngrok service as your account. They are installed with
-//	the `ngrok authtoken` command or by specifying it in the `ngrok.yml`
+//	the `ngrok config add-authtoken` command or by specifying it in the `ngrok.yml`
 //	configuration file with the `authtoken` property.
 //
 // ## Example Usage
@@ -46,13 +46,15 @@ import (
 type Credential struct {
 	pulumi.CustomResourceState
 
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls pulumi.StringArrayOutput `pulumi:"acls"`
 	// human-readable description of who or what will use the credential to authenticate. Optional, max 255 bytes.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
-	// the credential's authtoken that can be used to authenticate an ngrok client. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
+	// the credential's authtoken that can be used to authenticate an ngrok agent. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
 	Token pulumi.StringOutput `pulumi:"token"`
 }
 
@@ -90,24 +92,28 @@ func GetCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Credential resources.
 type credentialState struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls []string `pulumi:"acls"`
 	// human-readable description of who or what will use the credential to authenticate. Optional, max 255 bytes.
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
-	// the credential's authtoken that can be used to authenticate an ngrok client. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId *string `pulumi:"ownerId"`
+	// the credential's authtoken that can be used to authenticate an ngrok agent. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
 	Token *string `pulumi:"token"`
 }
 
 type CredentialState struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls pulumi.StringArrayInput
 	// human-readable description of who or what will use the credential to authenticate. Optional, max 255 bytes.
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
-	// the credential's authtoken that can be used to authenticate an ngrok client. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrInput
+	// the credential's authtoken that can be used to authenticate an ngrok agent. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
 	Token pulumi.StringPtrInput
 }
 
@@ -116,22 +122,26 @@ func (CredentialState) ElementType() reflect.Type {
 }
 
 type credentialArgs struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls []string `pulumi:"acls"`
 	// human-readable description of who or what will use the credential to authenticate. Optional, max 255 bytes.
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId *string `pulumi:"ownerId"`
 }
 
 // The set of arguments for constructing a Credential resource.
 type CredentialArgs struct {
-	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+	// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 	Acls pulumi.StringArrayInput
 	// human-readable description of who or what will use the credential to authenticate. Optional, max 255 bytes.
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this credential. Optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrInput
 }
 
 func (CredentialArgs) ElementType() reflect.Type {
@@ -245,7 +255,7 @@ func (o CredentialOutput) ToOutput(ctx context.Context) pulumix.Output[*Credenti
 	}
 }
 
-// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+// optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
 func (o CredentialOutput) Acls() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Credential) pulumi.StringArrayOutput { return v.Acls }).(pulumi.StringArrayOutput)
 }
@@ -260,7 +270,12 @@ func (o CredentialOutput) Metadata() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Credential) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
 }
 
-// the credential's authtoken that can be used to authenticate an ngrok client. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
+// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+func (o CredentialOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Credential) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
+}
+
+// the credential's authtoken that can be used to authenticate an ngrok agent. **This value is only available one time, on the API response from credential creation, otherwise it is null.**
 func (o CredentialOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v *Credential) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
 }

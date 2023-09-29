@@ -14,27 +14,38 @@ __all__ = ['IpPolicyRuleArgs', 'IpPolicyRule']
 @pulumi.input_type
 class IpPolicyRuleArgs:
     def __init__(__self__, *,
+                 action: pulumi.Input[str],
                  cidr: pulumi.Input[str],
                  ip_policy_id: pulumi.Input[str],
-                 action: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IpPolicyRule resource.
+        :param pulumi.Input[str] action: the action to apply to the policy rule, either `allow` or `deny`
         :param pulumi.Input[str] cidr: an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.
         :param pulumi.Input[str] ip_policy_id: ID of the IP policy this IP policy rule will be attached to
-        :param pulumi.Input[str] action: the action to apply to the policy rule, either `allow` or `deny`
         :param pulumi.Input[str] description: human-readable description of the source IPs of this IP rule. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this IP policy rule. optional, max 4096 bytes.
         """
+        pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "ip_policy_id", ip_policy_id)
-        if action is not None:
-            pulumi.set(__self__, "action", action)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+
+    @property
+    @pulumi.getter
+    def action(self) -> pulumi.Input[str]:
+        """
+        the action to apply to the policy rule, either `allow` or `deny`
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: pulumi.Input[str]):
+        pulumi.set(self, "action", value)
 
     @property
     @pulumi.getter
@@ -59,18 +70,6 @@ class IpPolicyRuleArgs:
     @ip_policy_id.setter
     def ip_policy_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "ip_policy_id", value)
-
-    @property
-    @pulumi.getter
-    def action(self) -> Optional[pulumi.Input[str]]:
-        """
-        the action to apply to the policy rule, either `allow` or `deny`
-        """
-        return pulumi.get(self, "action")
-
-    @action.setter
-    def action(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "action", value)
 
     @property
     @pulumi.getter
@@ -207,9 +206,10 @@ class IpPolicyRule(pulumi.CustomResource):
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.IpPolicyRule("example",
+            action="allow",
             cidr="212.3.14.0/24",
             description="nyc office",
-            ip_policy_id="ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm")
+            ip_policy_id="ipp_26rOydjEUNZSLTi8bYXBg278qUT")
         ```
 
         :param str resource_name: The name of the resource.
@@ -237,9 +237,10 @@ class IpPolicyRule(pulumi.CustomResource):
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.IpPolicyRule("example",
+            action="allow",
             cidr="212.3.14.0/24",
             description="nyc office",
-            ip_policy_id="ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm")
+            ip_policy_id="ipp_26rOydjEUNZSLTi8bYXBg278qUT")
         ```
 
         :param str resource_name: The name of the resource.
@@ -271,6 +272,8 @@ class IpPolicyRule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IpPolicyRuleArgs.__new__(IpPolicyRuleArgs)
 
+            if action is None and not opts.urn:
+                raise TypeError("Missing required property 'action'")
             __props__.__dict__["action"] = action
             if cidr is None and not opts.urn:
                 raise TypeError("Missing required property 'cidr'")
@@ -321,7 +324,7 @@ class IpPolicyRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def action(self) -> pulumi.Output[Optional[str]]:
+    def action(self) -> pulumi.Output[str]:
         """
         the action to apply to the policy rule, either `allow` or `deny`
         """

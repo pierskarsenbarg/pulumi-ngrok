@@ -25,6 +25,18 @@ namespace PiersKarsenbarg.Ngrok.Inputs
             set => _cloudwatchLogs = value;
         }
 
+        [Input("datadogs")]
+        private InputList<Inputs.EventDestinationTargetDatadogArgs>? _datadogs;
+
+        /// <summary>
+        /// Configuration used to send events to Datadog.
+        /// </summary>
+        public InputList<Inputs.EventDestinationTargetDatadogArgs> Datadogs
+        {
+            get => _datadogs ?? (_datadogs = new InputList<Inputs.EventDestinationTargetDatadogArgs>());
+            set => _datadogs = value;
+        }
+
         [Input("debugs")]
         private InputList<Inputs.EventDestinationTargetDebugArgs>? _debugs;
 

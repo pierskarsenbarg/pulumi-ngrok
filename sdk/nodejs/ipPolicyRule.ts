@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.IpPolicyRule("example", {
+ *     action: "allow",
  *     cidr: "212.3.14.0/24",
  *     description: "nyc office",
- *     ipPolicyId: "ipp_25auGv9R7vPmi6NKs5Cxcyzc2Cm",
+ *     ipPolicyId: "ipp_26rOydjEUNZSLTi8bYXBg278qUT",
  * });
  * ```
  */
@@ -52,7 +53,7 @@ export class IpPolicyRule extends pulumi.CustomResource {
     /**
      * the action to apply to the policy rule, either `allow` or `deny`
      */
-    public readonly action!: pulumi.Output<string | undefined>;
+    public readonly action!: pulumi.Output<string>;
     /**
      * an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.
      */
@@ -90,6 +91,9 @@ export class IpPolicyRule extends pulumi.CustomResource {
             resourceInputs["metadata"] = state ? state.metadata : undefined;
         } else {
             const args = argsOrState as IpPolicyRuleArgs | undefined;
+            if ((!args || args.action === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'action'");
+            }
             if ((!args || args.cidr === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cidr'");
             }
@@ -140,7 +144,7 @@ export interface IpPolicyRuleArgs {
     /**
      * the action to apply to the policy rule, either `allow` or `deny`
      */
-    action?: pulumi.Input<string>;
+    action: pulumi.Input<string>;
     /**
      * an IP or IP range specified in CIDR notation. IPv4 and IPv6 are both supported.
      */

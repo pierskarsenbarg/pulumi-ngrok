@@ -42,6 +42,8 @@ import (
 type AgentIngress struct {
 	pulumi.CustomResourceState
 
+	// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+	CertificateManagementPolicies AgentIngressCertificateManagementPolicyArrayOutput `pulumi:"certificateManagementPolicies"`
 	// timestamp when the Agent Ingress was created, RFC 3339 format
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
@@ -91,6 +93,8 @@ func GetAgentIngress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AgentIngress resources.
 type agentIngressState struct {
+	// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+	CertificateManagementPolicies []AgentIngressCertificateManagementPolicy `pulumi:"certificateManagementPolicies"`
 	// timestamp when the Agent Ingress was created, RFC 3339 format
 	CreatedAt *string `pulumi:"createdAt"`
 	// human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
@@ -108,6 +112,8 @@ type agentIngressState struct {
 }
 
 type AgentIngressState struct {
+	// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+	CertificateManagementPolicies AgentIngressCertificateManagementPolicyArrayInput
 	// timestamp when the Agent Ingress was created, RFC 3339 format
 	CreatedAt pulumi.StringPtrInput
 	// human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
@@ -129,6 +135,8 @@ func (AgentIngressState) ElementType() reflect.Type {
 }
 
 type agentIngressArgs struct {
+	// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+	CertificateManagementPolicies []AgentIngressCertificateManagementPolicy `pulumi:"certificateManagementPolicies"`
 	// human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
 	Description *string `pulumi:"description"`
 	// the domain that you own to be used as the base domain name to generate regional agent ingress domains.
@@ -141,6 +149,8 @@ type agentIngressArgs struct {
 
 // The set of arguments for constructing a AgentIngress resource.
 type AgentIngressArgs struct {
+	// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+	CertificateManagementPolicies AgentIngressCertificateManagementPolicyArrayInput
 	// human-readable description of the use of this Agent Ingress. optional, max 255 bytes.
 	Description pulumi.StringPtrInput
 	// the domain that you own to be used as the base domain name to generate regional agent ingress domains.
@@ -260,6 +270,13 @@ func (o AgentIngressOutput) ToOutput(ctx context.Context) pulumix.Output[*AgentI
 	return pulumix.Output[*AgentIngress]{
 		OutputState: o.OutputState,
 	}
+}
+
+// configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
+func (o AgentIngressOutput) CertificateManagementPolicies() AgentIngressCertificateManagementPolicyArrayOutput {
+	return o.ApplyT(func(v *AgentIngress) AgentIngressCertificateManagementPolicyArrayOutput {
+		return v.CertificateManagementPolicies
+	}).(AgentIngressCertificateManagementPolicyArrayOutput)
 }
 
 // timestamp when the Agent Ingress was created, RFC 3339 format

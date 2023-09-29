@@ -14,3375 +14,141 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type EndpointConfigurationBackend struct {
-	// backend to be used to back this endpoint
-	Backends []EndpointConfigurationBackendBackend `pulumi:"backends"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
+type AgentIngressCertificateManagementPolicy struct {
+	// certificate authority to request certificates from. The only supported value is letsencrypt.
+	Authority *string `pulumi:"authority"`
+	// type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
+	PrivateKeyType *string `pulumi:"privateKeyType"`
 }
 
-// EndpointConfigurationBackendInput is an input type that accepts EndpointConfigurationBackendArgs and EndpointConfigurationBackendOutput values.
-// You can construct a concrete instance of `EndpointConfigurationBackendInput` via:
+// AgentIngressCertificateManagementPolicyInput is an input type that accepts AgentIngressCertificateManagementPolicyArgs and AgentIngressCertificateManagementPolicyOutput values.
+// You can construct a concrete instance of `AgentIngressCertificateManagementPolicyInput` via:
 //
-//	EndpointConfigurationBackendArgs{...}
-type EndpointConfigurationBackendInput interface {
+//	AgentIngressCertificateManagementPolicyArgs{...}
+type AgentIngressCertificateManagementPolicyInput interface {
 	pulumi.Input
 
-	ToEndpointConfigurationBackendOutput() EndpointConfigurationBackendOutput
-	ToEndpointConfigurationBackendOutputWithContext(context.Context) EndpointConfigurationBackendOutput
+	ToAgentIngressCertificateManagementPolicyOutput() AgentIngressCertificateManagementPolicyOutput
+	ToAgentIngressCertificateManagementPolicyOutputWithContext(context.Context) AgentIngressCertificateManagementPolicyOutput
 }
 
-type EndpointConfigurationBackendArgs struct {
-	// backend to be used to back this endpoint
-	Backends EndpointConfigurationBackendBackendArrayInput `pulumi:"backends"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+type AgentIngressCertificateManagementPolicyArgs struct {
+	// certificate authority to request certificates from. The only supported value is letsencrypt.
+	Authority pulumi.StringPtrInput `pulumi:"authority"`
+	// type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
+	PrivateKeyType pulumi.StringPtrInput `pulumi:"privateKeyType"`
 }
 
-func (EndpointConfigurationBackendArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationBackend)(nil)).Elem()
+func (AgentIngressCertificateManagementPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AgentIngressCertificateManagementPolicy)(nil)).Elem()
 }
 
-func (i EndpointConfigurationBackendArgs) ToEndpointConfigurationBackendOutput() EndpointConfigurationBackendOutput {
-	return i.ToEndpointConfigurationBackendOutputWithContext(context.Background())
+func (i AgentIngressCertificateManagementPolicyArgs) ToAgentIngressCertificateManagementPolicyOutput() AgentIngressCertificateManagementPolicyOutput {
+	return i.ToAgentIngressCertificateManagementPolicyOutputWithContext(context.Background())
 }
 
-func (i EndpointConfigurationBackendArgs) ToEndpointConfigurationBackendOutputWithContext(ctx context.Context) EndpointConfigurationBackendOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationBackendOutput)
+func (i AgentIngressCertificateManagementPolicyArgs) ToAgentIngressCertificateManagementPolicyOutputWithContext(ctx context.Context) AgentIngressCertificateManagementPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AgentIngressCertificateManagementPolicyOutput)
 }
 
-func (i EndpointConfigurationBackendArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationBackend] {
-	return pulumix.Output[EndpointConfigurationBackend]{
-		OutputState: i.ToEndpointConfigurationBackendOutputWithContext(ctx).OutputState,
+func (i AgentIngressCertificateManagementPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[AgentIngressCertificateManagementPolicy] {
+	return pulumix.Output[AgentIngressCertificateManagementPolicy]{
+		OutputState: i.ToAgentIngressCertificateManagementPolicyOutputWithContext(ctx).OutputState,
 	}
 }
 
-// EndpointConfigurationBackendArrayInput is an input type that accepts EndpointConfigurationBackendArray and EndpointConfigurationBackendArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationBackendArrayInput` via:
+// AgentIngressCertificateManagementPolicyArrayInput is an input type that accepts AgentIngressCertificateManagementPolicyArray and AgentIngressCertificateManagementPolicyArrayOutput values.
+// You can construct a concrete instance of `AgentIngressCertificateManagementPolicyArrayInput` via:
 //
-//	EndpointConfigurationBackendArray{ EndpointConfigurationBackendArgs{...} }
-type EndpointConfigurationBackendArrayInput interface {
+//	AgentIngressCertificateManagementPolicyArray{ AgentIngressCertificateManagementPolicyArgs{...} }
+type AgentIngressCertificateManagementPolicyArrayInput interface {
 	pulumi.Input
 
-	ToEndpointConfigurationBackendArrayOutput() EndpointConfigurationBackendArrayOutput
-	ToEndpointConfigurationBackendArrayOutputWithContext(context.Context) EndpointConfigurationBackendArrayOutput
+	ToAgentIngressCertificateManagementPolicyArrayOutput() AgentIngressCertificateManagementPolicyArrayOutput
+	ToAgentIngressCertificateManagementPolicyArrayOutputWithContext(context.Context) AgentIngressCertificateManagementPolicyArrayOutput
 }
 
-type EndpointConfigurationBackendArray []EndpointConfigurationBackendInput
+type AgentIngressCertificateManagementPolicyArray []AgentIngressCertificateManagementPolicyInput
 
-func (EndpointConfigurationBackendArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationBackend)(nil)).Elem()
+func (AgentIngressCertificateManagementPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AgentIngressCertificateManagementPolicy)(nil)).Elem()
 }
 
-func (i EndpointConfigurationBackendArray) ToEndpointConfigurationBackendArrayOutput() EndpointConfigurationBackendArrayOutput {
-	return i.ToEndpointConfigurationBackendArrayOutputWithContext(context.Background())
+func (i AgentIngressCertificateManagementPolicyArray) ToAgentIngressCertificateManagementPolicyArrayOutput() AgentIngressCertificateManagementPolicyArrayOutput {
+	return i.ToAgentIngressCertificateManagementPolicyArrayOutputWithContext(context.Background())
 }
 
-func (i EndpointConfigurationBackendArray) ToEndpointConfigurationBackendArrayOutputWithContext(ctx context.Context) EndpointConfigurationBackendArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationBackendArrayOutput)
+func (i AgentIngressCertificateManagementPolicyArray) ToAgentIngressCertificateManagementPolicyArrayOutputWithContext(ctx context.Context) AgentIngressCertificateManagementPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AgentIngressCertificateManagementPolicyArrayOutput)
 }
 
-func (i EndpointConfigurationBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationBackend] {
-	return pulumix.Output[[]EndpointConfigurationBackend]{
-		OutputState: i.ToEndpointConfigurationBackendArrayOutputWithContext(ctx).OutputState,
+func (i AgentIngressCertificateManagementPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]AgentIngressCertificateManagementPolicy] {
+	return pulumix.Output[[]AgentIngressCertificateManagementPolicy]{
+		OutputState: i.ToAgentIngressCertificateManagementPolicyArrayOutputWithContext(ctx).OutputState,
 	}
 }
 
-type EndpointConfigurationBackendOutput struct{ *pulumi.OutputState }
+type AgentIngressCertificateManagementPolicyOutput struct{ *pulumi.OutputState }
 
-func (EndpointConfigurationBackendOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationBackend)(nil)).Elem()
+func (AgentIngressCertificateManagementPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AgentIngressCertificateManagementPolicy)(nil)).Elem()
 }
 
-func (o EndpointConfigurationBackendOutput) ToEndpointConfigurationBackendOutput() EndpointConfigurationBackendOutput {
+func (o AgentIngressCertificateManagementPolicyOutput) ToAgentIngressCertificateManagementPolicyOutput() AgentIngressCertificateManagementPolicyOutput {
 	return o
 }
 
-func (o EndpointConfigurationBackendOutput) ToEndpointConfigurationBackendOutputWithContext(ctx context.Context) EndpointConfigurationBackendOutput {
+func (o AgentIngressCertificateManagementPolicyOutput) ToAgentIngressCertificateManagementPolicyOutputWithContext(ctx context.Context) AgentIngressCertificateManagementPolicyOutput {
 	return o
 }
 
-func (o EndpointConfigurationBackendOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationBackend] {
-	return pulumix.Output[EndpointConfigurationBackend]{
+func (o AgentIngressCertificateManagementPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[AgentIngressCertificateManagementPolicy] {
+	return pulumix.Output[AgentIngressCertificateManagementPolicy]{
 		OutputState: o.OutputState,
 	}
 }
 
-// backend to be used to back this endpoint
-func (o EndpointConfigurationBackendOutput) Backends() EndpointConfigurationBackendBackendArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationBackend) []EndpointConfigurationBackendBackend { return v.Backends }).(EndpointConfigurationBackendBackendArrayOutput)
+// certificate authority to request certificates from. The only supported value is letsencrypt.
+func (o AgentIngressCertificateManagementPolicyOutput) Authority() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AgentIngressCertificateManagementPolicy) *string { return v.Authority }).(pulumi.StringPtrOutput)
 }
 
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationBackendOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationBackend) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+// type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
+func (o AgentIngressCertificateManagementPolicyOutput) PrivateKeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AgentIngressCertificateManagementPolicy) *string { return v.PrivateKeyType }).(pulumi.StringPtrOutput)
 }
 
-type EndpointConfigurationBackendArrayOutput struct{ *pulumi.OutputState }
+type AgentIngressCertificateManagementPolicyArrayOutput struct{ *pulumi.OutputState }
 
-func (EndpointConfigurationBackendArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationBackend)(nil)).Elem()
+func (AgentIngressCertificateManagementPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AgentIngressCertificateManagementPolicy)(nil)).Elem()
 }
 
-func (o EndpointConfigurationBackendArrayOutput) ToEndpointConfigurationBackendArrayOutput() EndpointConfigurationBackendArrayOutput {
+func (o AgentIngressCertificateManagementPolicyArrayOutput) ToAgentIngressCertificateManagementPolicyArrayOutput() AgentIngressCertificateManagementPolicyArrayOutput {
 	return o
 }
 
-func (o EndpointConfigurationBackendArrayOutput) ToEndpointConfigurationBackendArrayOutputWithContext(ctx context.Context) EndpointConfigurationBackendArrayOutput {
+func (o AgentIngressCertificateManagementPolicyArrayOutput) ToAgentIngressCertificateManagementPolicyArrayOutputWithContext(ctx context.Context) AgentIngressCertificateManagementPolicyArrayOutput {
 	return o
 }
 
-func (o EndpointConfigurationBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationBackend] {
-	return pulumix.Output[[]EndpointConfigurationBackend]{
+func (o AgentIngressCertificateManagementPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AgentIngressCertificateManagementPolicy] {
+	return pulumix.Output[[]AgentIngressCertificateManagementPolicy]{
 		OutputState: o.OutputState,
 	}
 }
 
-func (o EndpointConfigurationBackendArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationBackendOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationBackend {
-		return vs[0].([]EndpointConfigurationBackend)[vs[1].(int)]
-	}).(EndpointConfigurationBackendOutput)
-}
-
-type EndpointConfigurationBackendBackend struct {
-	// unique identifier of this endpoint configuration
-	Id  *string `pulumi:"id"`
-	Uri *string `pulumi:"uri"`
-}
-
-// EndpointConfigurationBackendBackendInput is an input type that accepts EndpointConfigurationBackendBackendArgs and EndpointConfigurationBackendBackendOutput values.
-// You can construct a concrete instance of `EndpointConfigurationBackendBackendInput` via:
-//
-//	EndpointConfigurationBackendBackendArgs{...}
-type EndpointConfigurationBackendBackendInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationBackendBackendOutput() EndpointConfigurationBackendBackendOutput
-	ToEndpointConfigurationBackendBackendOutputWithContext(context.Context) EndpointConfigurationBackendBackendOutput
-}
-
-type EndpointConfigurationBackendBackendArgs struct {
-	// unique identifier of this endpoint configuration
-	Id  pulumi.StringPtrInput `pulumi:"id"`
-	Uri pulumi.StringPtrInput `pulumi:"uri"`
-}
-
-func (EndpointConfigurationBackendBackendArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationBackendBackend)(nil)).Elem()
-}
-
-func (i EndpointConfigurationBackendBackendArgs) ToEndpointConfigurationBackendBackendOutput() EndpointConfigurationBackendBackendOutput {
-	return i.ToEndpointConfigurationBackendBackendOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationBackendBackendArgs) ToEndpointConfigurationBackendBackendOutputWithContext(ctx context.Context) EndpointConfigurationBackendBackendOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationBackendBackendOutput)
-}
-
-func (i EndpointConfigurationBackendBackendArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationBackendBackend] {
-	return pulumix.Output[EndpointConfigurationBackendBackend]{
-		OutputState: i.ToEndpointConfigurationBackendBackendOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationBackendBackendArrayInput is an input type that accepts EndpointConfigurationBackendBackendArray and EndpointConfigurationBackendBackendArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationBackendBackendArrayInput` via:
-//
-//	EndpointConfigurationBackendBackendArray{ EndpointConfigurationBackendBackendArgs{...} }
-type EndpointConfigurationBackendBackendArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationBackendBackendArrayOutput() EndpointConfigurationBackendBackendArrayOutput
-	ToEndpointConfigurationBackendBackendArrayOutputWithContext(context.Context) EndpointConfigurationBackendBackendArrayOutput
-}
-
-type EndpointConfigurationBackendBackendArray []EndpointConfigurationBackendBackendInput
-
-func (EndpointConfigurationBackendBackendArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationBackendBackend)(nil)).Elem()
-}
-
-func (i EndpointConfigurationBackendBackendArray) ToEndpointConfigurationBackendBackendArrayOutput() EndpointConfigurationBackendBackendArrayOutput {
-	return i.ToEndpointConfigurationBackendBackendArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationBackendBackendArray) ToEndpointConfigurationBackendBackendArrayOutputWithContext(ctx context.Context) EndpointConfigurationBackendBackendArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationBackendBackendArrayOutput)
-}
-
-func (i EndpointConfigurationBackendBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationBackendBackend] {
-	return pulumix.Output[[]EndpointConfigurationBackendBackend]{
-		OutputState: i.ToEndpointConfigurationBackendBackendArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationBackendBackendOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationBackendBackendOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationBackendBackend)(nil)).Elem()
-}
-
-func (o EndpointConfigurationBackendBackendOutput) ToEndpointConfigurationBackendBackendOutput() EndpointConfigurationBackendBackendOutput {
-	return o
-}
-
-func (o EndpointConfigurationBackendBackendOutput) ToEndpointConfigurationBackendBackendOutputWithContext(ctx context.Context) EndpointConfigurationBackendBackendOutput {
-	return o
-}
-
-func (o EndpointConfigurationBackendBackendOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationBackendBackend] {
-	return pulumix.Output[EndpointConfigurationBackendBackend]{
-		OutputState: o.OutputState,
-	}
-}
-
-// unique identifier of this endpoint configuration
-func (o EndpointConfigurationBackendBackendOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationBackendBackend) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationBackendBackendOutput) Uri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationBackendBackend) *string { return v.Uri }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationBackendBackendArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationBackendBackendArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationBackendBackend)(nil)).Elem()
-}
-
-func (o EndpointConfigurationBackendBackendArrayOutput) ToEndpointConfigurationBackendBackendArrayOutput() EndpointConfigurationBackendBackendArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationBackendBackendArrayOutput) ToEndpointConfigurationBackendBackendArrayOutputWithContext(ctx context.Context) EndpointConfigurationBackendBackendArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationBackendBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationBackendBackend] {
-	return pulumix.Output[[]EndpointConfigurationBackendBackend]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationBackendBackendArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationBackendBackendOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationBackendBackend {
-		return vs[0].([]EndpointConfigurationBackendBackend)[vs[1].(int)]
-	}).(EndpointConfigurationBackendBackendOutput)
-}
-
-type EndpointConfigurationBasicAuth struct {
-	// true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-	AllowOptions *bool `pulumi:"allowOptions"`
-	// determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-	AuthProviderId *string `pulumi:"authProviderId"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
-	Realm *string `pulumi:"realm"`
-}
-
-// EndpointConfigurationBasicAuthInput is an input type that accepts EndpointConfigurationBasicAuthArgs and EndpointConfigurationBasicAuthOutput values.
-// You can construct a concrete instance of `EndpointConfigurationBasicAuthInput` via:
-//
-//	EndpointConfigurationBasicAuthArgs{...}
-type EndpointConfigurationBasicAuthInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationBasicAuthOutput() EndpointConfigurationBasicAuthOutput
-	ToEndpointConfigurationBasicAuthOutputWithContext(context.Context) EndpointConfigurationBasicAuthOutput
-}
-
-type EndpointConfigurationBasicAuthArgs struct {
-	// true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-	AllowOptions pulumi.BoolPtrInput `pulumi:"allowOptions"`
-	// determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-	AuthProviderId pulumi.StringPtrInput `pulumi:"authProviderId"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
-	Realm pulumi.StringPtrInput `pulumi:"realm"`
-}
-
-func (EndpointConfigurationBasicAuthArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationBasicAuth)(nil)).Elem()
-}
-
-func (i EndpointConfigurationBasicAuthArgs) ToEndpointConfigurationBasicAuthOutput() EndpointConfigurationBasicAuthOutput {
-	return i.ToEndpointConfigurationBasicAuthOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationBasicAuthArgs) ToEndpointConfigurationBasicAuthOutputWithContext(ctx context.Context) EndpointConfigurationBasicAuthOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationBasicAuthOutput)
-}
-
-func (i EndpointConfigurationBasicAuthArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationBasicAuth] {
-	return pulumix.Output[EndpointConfigurationBasicAuth]{
-		OutputState: i.ToEndpointConfigurationBasicAuthOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationBasicAuthArrayInput is an input type that accepts EndpointConfigurationBasicAuthArray and EndpointConfigurationBasicAuthArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationBasicAuthArrayInput` via:
-//
-//	EndpointConfigurationBasicAuthArray{ EndpointConfigurationBasicAuthArgs{...} }
-type EndpointConfigurationBasicAuthArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationBasicAuthArrayOutput() EndpointConfigurationBasicAuthArrayOutput
-	ToEndpointConfigurationBasicAuthArrayOutputWithContext(context.Context) EndpointConfigurationBasicAuthArrayOutput
-}
-
-type EndpointConfigurationBasicAuthArray []EndpointConfigurationBasicAuthInput
-
-func (EndpointConfigurationBasicAuthArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationBasicAuth)(nil)).Elem()
-}
-
-func (i EndpointConfigurationBasicAuthArray) ToEndpointConfigurationBasicAuthArrayOutput() EndpointConfigurationBasicAuthArrayOutput {
-	return i.ToEndpointConfigurationBasicAuthArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationBasicAuthArray) ToEndpointConfigurationBasicAuthArrayOutputWithContext(ctx context.Context) EndpointConfigurationBasicAuthArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationBasicAuthArrayOutput)
-}
-
-func (i EndpointConfigurationBasicAuthArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationBasicAuth] {
-	return pulumix.Output[[]EndpointConfigurationBasicAuth]{
-		OutputState: i.ToEndpointConfigurationBasicAuthArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationBasicAuthOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationBasicAuthOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationBasicAuth)(nil)).Elem()
-}
-
-func (o EndpointConfigurationBasicAuthOutput) ToEndpointConfigurationBasicAuthOutput() EndpointConfigurationBasicAuthOutput {
-	return o
-}
-
-func (o EndpointConfigurationBasicAuthOutput) ToEndpointConfigurationBasicAuthOutputWithContext(ctx context.Context) EndpointConfigurationBasicAuthOutput {
-	return o
-}
-
-func (o EndpointConfigurationBasicAuthOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationBasicAuth] {
-	return pulumix.Output[EndpointConfigurationBasicAuth]{
-		OutputState: o.OutputState,
-	}
-}
-
-// true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-func (o EndpointConfigurationBasicAuthOutput) AllowOptions() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationBasicAuth) *bool { return v.AllowOptions }).(pulumi.BoolPtrOutput)
-}
-
-// determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-func (o EndpointConfigurationBasicAuthOutput) AuthProviderId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationBasicAuth) *string { return v.AuthProviderId }).(pulumi.StringPtrOutput)
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationBasicAuthOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationBasicAuth) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
-func (o EndpointConfigurationBasicAuthOutput) Realm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationBasicAuth) *string { return v.Realm }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationBasicAuthArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationBasicAuthArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationBasicAuth)(nil)).Elem()
-}
-
-func (o EndpointConfigurationBasicAuthArrayOutput) ToEndpointConfigurationBasicAuthArrayOutput() EndpointConfigurationBasicAuthArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationBasicAuthArrayOutput) ToEndpointConfigurationBasicAuthArrayOutputWithContext(ctx context.Context) EndpointConfigurationBasicAuthArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationBasicAuthArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationBasicAuth] {
-	return pulumix.Output[[]EndpointConfigurationBasicAuth]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationBasicAuthArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationBasicAuthOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationBasicAuth {
-		return vs[0].([]EndpointConfigurationBasicAuth)[vs[1].(int)]
-	}).(EndpointConfigurationBasicAuthOutput)
-}
-
-type EndpointConfigurationCircuitBreaker struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// Error threshold percentage should be between 0 - 1.0, not 0-100.0
-	ErrorThresholdPercentage *float64 `pulumi:"errorThresholdPercentage"`
-	// Integer number of buckets into which metrics are retained. Max 128.
-	NumBuckets *int `pulumi:"numBuckets"`
-	// Integer number of seconds in the statistical rolling window that metrics are retained for.
-	RollingWindow *int `pulumi:"rollingWindow"`
-	// Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-	TrippedDuration *int `pulumi:"trippedDuration"`
-	// Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-	VolumeThreshold *int `pulumi:"volumeThreshold"`
-}
-
-// EndpointConfigurationCircuitBreakerInput is an input type that accepts EndpointConfigurationCircuitBreakerArgs and EndpointConfigurationCircuitBreakerOutput values.
-// You can construct a concrete instance of `EndpointConfigurationCircuitBreakerInput` via:
-//
-//	EndpointConfigurationCircuitBreakerArgs{...}
-type EndpointConfigurationCircuitBreakerInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationCircuitBreakerOutput() EndpointConfigurationCircuitBreakerOutput
-	ToEndpointConfigurationCircuitBreakerOutputWithContext(context.Context) EndpointConfigurationCircuitBreakerOutput
-}
-
-type EndpointConfigurationCircuitBreakerArgs struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Error threshold percentage should be between 0 - 1.0, not 0-100.0
-	ErrorThresholdPercentage pulumi.Float64PtrInput `pulumi:"errorThresholdPercentage"`
-	// Integer number of buckets into which metrics are retained. Max 128.
-	NumBuckets pulumi.IntPtrInput `pulumi:"numBuckets"`
-	// Integer number of seconds in the statistical rolling window that metrics are retained for.
-	RollingWindow pulumi.IntPtrInput `pulumi:"rollingWindow"`
-	// Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-	TrippedDuration pulumi.IntPtrInput `pulumi:"trippedDuration"`
-	// Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-	VolumeThreshold pulumi.IntPtrInput `pulumi:"volumeThreshold"`
-}
-
-func (EndpointConfigurationCircuitBreakerArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationCircuitBreaker)(nil)).Elem()
-}
-
-func (i EndpointConfigurationCircuitBreakerArgs) ToEndpointConfigurationCircuitBreakerOutput() EndpointConfigurationCircuitBreakerOutput {
-	return i.ToEndpointConfigurationCircuitBreakerOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationCircuitBreakerArgs) ToEndpointConfigurationCircuitBreakerOutputWithContext(ctx context.Context) EndpointConfigurationCircuitBreakerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationCircuitBreakerOutput)
-}
-
-func (i EndpointConfigurationCircuitBreakerArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationCircuitBreaker] {
-	return pulumix.Output[EndpointConfigurationCircuitBreaker]{
-		OutputState: i.ToEndpointConfigurationCircuitBreakerOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationCircuitBreakerArrayInput is an input type that accepts EndpointConfigurationCircuitBreakerArray and EndpointConfigurationCircuitBreakerArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationCircuitBreakerArrayInput` via:
-//
-//	EndpointConfigurationCircuitBreakerArray{ EndpointConfigurationCircuitBreakerArgs{...} }
-type EndpointConfigurationCircuitBreakerArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationCircuitBreakerArrayOutput() EndpointConfigurationCircuitBreakerArrayOutput
-	ToEndpointConfigurationCircuitBreakerArrayOutputWithContext(context.Context) EndpointConfigurationCircuitBreakerArrayOutput
-}
-
-type EndpointConfigurationCircuitBreakerArray []EndpointConfigurationCircuitBreakerInput
-
-func (EndpointConfigurationCircuitBreakerArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationCircuitBreaker)(nil)).Elem()
-}
-
-func (i EndpointConfigurationCircuitBreakerArray) ToEndpointConfigurationCircuitBreakerArrayOutput() EndpointConfigurationCircuitBreakerArrayOutput {
-	return i.ToEndpointConfigurationCircuitBreakerArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationCircuitBreakerArray) ToEndpointConfigurationCircuitBreakerArrayOutputWithContext(ctx context.Context) EndpointConfigurationCircuitBreakerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationCircuitBreakerArrayOutput)
-}
-
-func (i EndpointConfigurationCircuitBreakerArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationCircuitBreaker] {
-	return pulumix.Output[[]EndpointConfigurationCircuitBreaker]{
-		OutputState: i.ToEndpointConfigurationCircuitBreakerArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationCircuitBreakerOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationCircuitBreakerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationCircuitBreaker)(nil)).Elem()
-}
-
-func (o EndpointConfigurationCircuitBreakerOutput) ToEndpointConfigurationCircuitBreakerOutput() EndpointConfigurationCircuitBreakerOutput {
-	return o
-}
-
-func (o EndpointConfigurationCircuitBreakerOutput) ToEndpointConfigurationCircuitBreakerOutputWithContext(ctx context.Context) EndpointConfigurationCircuitBreakerOutput {
-	return o
-}
-
-func (o EndpointConfigurationCircuitBreakerOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationCircuitBreaker] {
-	return pulumix.Output[EndpointConfigurationCircuitBreaker]{
-		OutputState: o.OutputState,
-	}
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationCircuitBreakerOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationCircuitBreaker) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// Error threshold percentage should be between 0 - 1.0, not 0-100.0
-func (o EndpointConfigurationCircuitBreakerOutput) ErrorThresholdPercentage() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationCircuitBreaker) *float64 { return v.ErrorThresholdPercentage }).(pulumi.Float64PtrOutput)
-}
-
-// Integer number of buckets into which metrics are retained. Max 128.
-func (o EndpointConfigurationCircuitBreakerOutput) NumBuckets() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationCircuitBreaker) *int { return v.NumBuckets }).(pulumi.IntPtrOutput)
-}
-
-// Integer number of seconds in the statistical rolling window that metrics are retained for.
-func (o EndpointConfigurationCircuitBreakerOutput) RollingWindow() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationCircuitBreaker) *int { return v.RollingWindow }).(pulumi.IntPtrOutput)
-}
-
-// Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-func (o EndpointConfigurationCircuitBreakerOutput) TrippedDuration() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationCircuitBreaker) *int { return v.TrippedDuration }).(pulumi.IntPtrOutput)
-}
-
-// Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-func (o EndpointConfigurationCircuitBreakerOutput) VolumeThreshold() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationCircuitBreaker) *int { return v.VolumeThreshold }).(pulumi.IntPtrOutput)
-}
-
-type EndpointConfigurationCircuitBreakerArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationCircuitBreakerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationCircuitBreaker)(nil)).Elem()
-}
-
-func (o EndpointConfigurationCircuitBreakerArrayOutput) ToEndpointConfigurationCircuitBreakerArrayOutput() EndpointConfigurationCircuitBreakerArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationCircuitBreakerArrayOutput) ToEndpointConfigurationCircuitBreakerArrayOutputWithContext(ctx context.Context) EndpointConfigurationCircuitBreakerArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationCircuitBreakerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationCircuitBreaker] {
-	return pulumix.Output[[]EndpointConfigurationCircuitBreaker]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationCircuitBreakerArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationCircuitBreakerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationCircuitBreaker {
-		return vs[0].([]EndpointConfigurationCircuitBreaker)[vs[1].(int)]
-	}).(EndpointConfigurationCircuitBreakerOutput)
-}
-
-type EndpointConfigurationCompression struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-}
-
-// EndpointConfigurationCompressionInput is an input type that accepts EndpointConfigurationCompressionArgs and EndpointConfigurationCompressionOutput values.
-// You can construct a concrete instance of `EndpointConfigurationCompressionInput` via:
-//
-//	EndpointConfigurationCompressionArgs{...}
-type EndpointConfigurationCompressionInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationCompressionOutput() EndpointConfigurationCompressionOutput
-	ToEndpointConfigurationCompressionOutputWithContext(context.Context) EndpointConfigurationCompressionOutput
-}
-
-type EndpointConfigurationCompressionArgs struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-}
-
-func (EndpointConfigurationCompressionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationCompression)(nil)).Elem()
-}
-
-func (i EndpointConfigurationCompressionArgs) ToEndpointConfigurationCompressionOutput() EndpointConfigurationCompressionOutput {
-	return i.ToEndpointConfigurationCompressionOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationCompressionArgs) ToEndpointConfigurationCompressionOutputWithContext(ctx context.Context) EndpointConfigurationCompressionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationCompressionOutput)
-}
-
-func (i EndpointConfigurationCompressionArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationCompression] {
-	return pulumix.Output[EndpointConfigurationCompression]{
-		OutputState: i.ToEndpointConfigurationCompressionOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationCompressionArrayInput is an input type that accepts EndpointConfigurationCompressionArray and EndpointConfigurationCompressionArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationCompressionArrayInput` via:
-//
-//	EndpointConfigurationCompressionArray{ EndpointConfigurationCompressionArgs{...} }
-type EndpointConfigurationCompressionArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationCompressionArrayOutput() EndpointConfigurationCompressionArrayOutput
-	ToEndpointConfigurationCompressionArrayOutputWithContext(context.Context) EndpointConfigurationCompressionArrayOutput
-}
-
-type EndpointConfigurationCompressionArray []EndpointConfigurationCompressionInput
-
-func (EndpointConfigurationCompressionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationCompression)(nil)).Elem()
-}
-
-func (i EndpointConfigurationCompressionArray) ToEndpointConfigurationCompressionArrayOutput() EndpointConfigurationCompressionArrayOutput {
-	return i.ToEndpointConfigurationCompressionArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationCompressionArray) ToEndpointConfigurationCompressionArrayOutputWithContext(ctx context.Context) EndpointConfigurationCompressionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationCompressionArrayOutput)
-}
-
-func (i EndpointConfigurationCompressionArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationCompression] {
-	return pulumix.Output[[]EndpointConfigurationCompression]{
-		OutputState: i.ToEndpointConfigurationCompressionArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationCompressionOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationCompressionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationCompression)(nil)).Elem()
-}
-
-func (o EndpointConfigurationCompressionOutput) ToEndpointConfigurationCompressionOutput() EndpointConfigurationCompressionOutput {
-	return o
-}
-
-func (o EndpointConfigurationCompressionOutput) ToEndpointConfigurationCompressionOutputWithContext(ctx context.Context) EndpointConfigurationCompressionOutput {
-	return o
-}
-
-func (o EndpointConfigurationCompressionOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationCompression] {
-	return pulumix.Output[EndpointConfigurationCompression]{
-		OutputState: o.OutputState,
-	}
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationCompressionOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationCompression) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-type EndpointConfigurationCompressionArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationCompressionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationCompression)(nil)).Elem()
-}
-
-func (o EndpointConfigurationCompressionArrayOutput) ToEndpointConfigurationCompressionArrayOutput() EndpointConfigurationCompressionArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationCompressionArrayOutput) ToEndpointConfigurationCompressionArrayOutputWithContext(ctx context.Context) EndpointConfigurationCompressionArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationCompressionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationCompression] {
-	return pulumix.Output[[]EndpointConfigurationCompression]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationCompressionArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationCompressionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationCompression {
-		return vs[0].([]EndpointConfigurationCompression)[vs[1].(int)]
-	}).(EndpointConfigurationCompressionOutput)
-}
-
-type EndpointConfigurationIpPolicy struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled    *bool                                   `pulumi:"enabled"`
-	IpPolicies []EndpointConfigurationIpPolicyIpPolicy `pulumi:"ipPolicies"`
-}
-
-// EndpointConfigurationIpPolicyInput is an input type that accepts EndpointConfigurationIpPolicyArgs and EndpointConfigurationIpPolicyOutput values.
-// You can construct a concrete instance of `EndpointConfigurationIpPolicyInput` via:
-//
-//	EndpointConfigurationIpPolicyArgs{...}
-type EndpointConfigurationIpPolicyInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationIpPolicyOutput() EndpointConfigurationIpPolicyOutput
-	ToEndpointConfigurationIpPolicyOutputWithContext(context.Context) EndpointConfigurationIpPolicyOutput
-}
-
-type EndpointConfigurationIpPolicyArgs struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled    pulumi.BoolPtrInput                             `pulumi:"enabled"`
-	IpPolicies EndpointConfigurationIpPolicyIpPolicyArrayInput `pulumi:"ipPolicies"`
-}
-
-func (EndpointConfigurationIpPolicyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationIpPolicy)(nil)).Elem()
-}
-
-func (i EndpointConfigurationIpPolicyArgs) ToEndpointConfigurationIpPolicyOutput() EndpointConfigurationIpPolicyOutput {
-	return i.ToEndpointConfigurationIpPolicyOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationIpPolicyArgs) ToEndpointConfigurationIpPolicyOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationIpPolicyOutput)
-}
-
-func (i EndpointConfigurationIpPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationIpPolicy] {
-	return pulumix.Output[EndpointConfigurationIpPolicy]{
-		OutputState: i.ToEndpointConfigurationIpPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationIpPolicyArrayInput is an input type that accepts EndpointConfigurationIpPolicyArray and EndpointConfigurationIpPolicyArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationIpPolicyArrayInput` via:
-//
-//	EndpointConfigurationIpPolicyArray{ EndpointConfigurationIpPolicyArgs{...} }
-type EndpointConfigurationIpPolicyArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationIpPolicyArrayOutput() EndpointConfigurationIpPolicyArrayOutput
-	ToEndpointConfigurationIpPolicyArrayOutputWithContext(context.Context) EndpointConfigurationIpPolicyArrayOutput
-}
-
-type EndpointConfigurationIpPolicyArray []EndpointConfigurationIpPolicyInput
-
-func (EndpointConfigurationIpPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationIpPolicy)(nil)).Elem()
-}
-
-func (i EndpointConfigurationIpPolicyArray) ToEndpointConfigurationIpPolicyArrayOutput() EndpointConfigurationIpPolicyArrayOutput {
-	return i.ToEndpointConfigurationIpPolicyArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationIpPolicyArray) ToEndpointConfigurationIpPolicyArrayOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationIpPolicyArrayOutput)
-}
-
-func (i EndpointConfigurationIpPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationIpPolicy] {
-	return pulumix.Output[[]EndpointConfigurationIpPolicy]{
-		OutputState: i.ToEndpointConfigurationIpPolicyArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationIpPolicyOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationIpPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationIpPolicy)(nil)).Elem()
-}
-
-func (o EndpointConfigurationIpPolicyOutput) ToEndpointConfigurationIpPolicyOutput() EndpointConfigurationIpPolicyOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyOutput) ToEndpointConfigurationIpPolicyOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationIpPolicy] {
-	return pulumix.Output[EndpointConfigurationIpPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationIpPolicyOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationIpPolicy) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-func (o EndpointConfigurationIpPolicyOutput) IpPolicies() EndpointConfigurationIpPolicyIpPolicyArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationIpPolicy) []EndpointConfigurationIpPolicyIpPolicy { return v.IpPolicies }).(EndpointConfigurationIpPolicyIpPolicyArrayOutput)
-}
-
-type EndpointConfigurationIpPolicyArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationIpPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationIpPolicy)(nil)).Elem()
-}
-
-func (o EndpointConfigurationIpPolicyArrayOutput) ToEndpointConfigurationIpPolicyArrayOutput() EndpointConfigurationIpPolicyArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyArrayOutput) ToEndpointConfigurationIpPolicyArrayOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationIpPolicy] {
-	return pulumix.Output[[]EndpointConfigurationIpPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationIpPolicyArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationIpPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationIpPolicy {
-		return vs[0].([]EndpointConfigurationIpPolicy)[vs[1].(int)]
-	}).(EndpointConfigurationIpPolicyOutput)
-}
-
-type EndpointConfigurationIpPolicyIpPolicy struct {
-	// unique identifier of this endpoint configuration
-	Id  *string `pulumi:"id"`
-	Uri *string `pulumi:"uri"`
-}
-
-// EndpointConfigurationIpPolicyIpPolicyInput is an input type that accepts EndpointConfigurationIpPolicyIpPolicyArgs and EndpointConfigurationIpPolicyIpPolicyOutput values.
-// You can construct a concrete instance of `EndpointConfigurationIpPolicyIpPolicyInput` via:
-//
-//	EndpointConfigurationIpPolicyIpPolicyArgs{...}
-type EndpointConfigurationIpPolicyIpPolicyInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationIpPolicyIpPolicyOutput() EndpointConfigurationIpPolicyIpPolicyOutput
-	ToEndpointConfigurationIpPolicyIpPolicyOutputWithContext(context.Context) EndpointConfigurationIpPolicyIpPolicyOutput
-}
-
-type EndpointConfigurationIpPolicyIpPolicyArgs struct {
-	// unique identifier of this endpoint configuration
-	Id  pulumi.StringPtrInput `pulumi:"id"`
-	Uri pulumi.StringPtrInput `pulumi:"uri"`
-}
-
-func (EndpointConfigurationIpPolicyIpPolicyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationIpPolicyIpPolicy)(nil)).Elem()
-}
-
-func (i EndpointConfigurationIpPolicyIpPolicyArgs) ToEndpointConfigurationIpPolicyIpPolicyOutput() EndpointConfigurationIpPolicyIpPolicyOutput {
-	return i.ToEndpointConfigurationIpPolicyIpPolicyOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationIpPolicyIpPolicyArgs) ToEndpointConfigurationIpPolicyIpPolicyOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyIpPolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationIpPolicyIpPolicyOutput)
-}
-
-func (i EndpointConfigurationIpPolicyIpPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationIpPolicyIpPolicy] {
-	return pulumix.Output[EndpointConfigurationIpPolicyIpPolicy]{
-		OutputState: i.ToEndpointConfigurationIpPolicyIpPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationIpPolicyIpPolicyArrayInput is an input type that accepts EndpointConfigurationIpPolicyIpPolicyArray and EndpointConfigurationIpPolicyIpPolicyArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationIpPolicyIpPolicyArrayInput` via:
-//
-//	EndpointConfigurationIpPolicyIpPolicyArray{ EndpointConfigurationIpPolicyIpPolicyArgs{...} }
-type EndpointConfigurationIpPolicyIpPolicyArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationIpPolicyIpPolicyArrayOutput() EndpointConfigurationIpPolicyIpPolicyArrayOutput
-	ToEndpointConfigurationIpPolicyIpPolicyArrayOutputWithContext(context.Context) EndpointConfigurationIpPolicyIpPolicyArrayOutput
-}
-
-type EndpointConfigurationIpPolicyIpPolicyArray []EndpointConfigurationIpPolicyIpPolicyInput
-
-func (EndpointConfigurationIpPolicyIpPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationIpPolicyIpPolicy)(nil)).Elem()
-}
-
-func (i EndpointConfigurationIpPolicyIpPolicyArray) ToEndpointConfigurationIpPolicyIpPolicyArrayOutput() EndpointConfigurationIpPolicyIpPolicyArrayOutput {
-	return i.ToEndpointConfigurationIpPolicyIpPolicyArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationIpPolicyIpPolicyArray) ToEndpointConfigurationIpPolicyIpPolicyArrayOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyIpPolicyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationIpPolicyIpPolicyArrayOutput)
-}
-
-func (i EndpointConfigurationIpPolicyIpPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationIpPolicyIpPolicy] {
-	return pulumix.Output[[]EndpointConfigurationIpPolicyIpPolicy]{
-		OutputState: i.ToEndpointConfigurationIpPolicyIpPolicyArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationIpPolicyIpPolicyOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationIpPolicyIpPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationIpPolicyIpPolicy)(nil)).Elem()
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyOutput) ToEndpointConfigurationIpPolicyIpPolicyOutput() EndpointConfigurationIpPolicyIpPolicyOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyOutput) ToEndpointConfigurationIpPolicyIpPolicyOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyIpPolicyOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationIpPolicyIpPolicy] {
-	return pulumix.Output[EndpointConfigurationIpPolicyIpPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
-// unique identifier of this endpoint configuration
-func (o EndpointConfigurationIpPolicyIpPolicyOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationIpPolicyIpPolicy) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyOutput) Uri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationIpPolicyIpPolicy) *string { return v.Uri }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationIpPolicyIpPolicyArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationIpPolicyIpPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationIpPolicyIpPolicy)(nil)).Elem()
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyArrayOutput) ToEndpointConfigurationIpPolicyIpPolicyArrayOutput() EndpointConfigurationIpPolicyIpPolicyArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyArrayOutput) ToEndpointConfigurationIpPolicyIpPolicyArrayOutputWithContext(ctx context.Context) EndpointConfigurationIpPolicyIpPolicyArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationIpPolicyIpPolicy] {
-	return pulumix.Output[[]EndpointConfigurationIpPolicyIpPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationIpPolicyIpPolicyArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationIpPolicyIpPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationIpPolicyIpPolicy {
-		return vs[0].([]EndpointConfigurationIpPolicyIpPolicy)[vs[1].(int)]
-	}).(EndpointConfigurationIpPolicyIpPolicyOutput)
-}
-
-type EndpointConfigurationLogging struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// list of all EventStreams that will be used to configure and export this endpoint's logs
-	EventStreams []EndpointConfigurationLoggingEventStream `pulumi:"eventStreams"`
-}
-
-// EndpointConfigurationLoggingInput is an input type that accepts EndpointConfigurationLoggingArgs and EndpointConfigurationLoggingOutput values.
-// You can construct a concrete instance of `EndpointConfigurationLoggingInput` via:
-//
-//	EndpointConfigurationLoggingArgs{...}
-type EndpointConfigurationLoggingInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationLoggingOutput() EndpointConfigurationLoggingOutput
-	ToEndpointConfigurationLoggingOutputWithContext(context.Context) EndpointConfigurationLoggingOutput
-}
-
-type EndpointConfigurationLoggingArgs struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// list of all EventStreams that will be used to configure and export this endpoint's logs
-	EventStreams EndpointConfigurationLoggingEventStreamArrayInput `pulumi:"eventStreams"`
-}
-
-func (EndpointConfigurationLoggingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationLogging)(nil)).Elem()
-}
-
-func (i EndpointConfigurationLoggingArgs) ToEndpointConfigurationLoggingOutput() EndpointConfigurationLoggingOutput {
-	return i.ToEndpointConfigurationLoggingOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationLoggingArgs) ToEndpointConfigurationLoggingOutputWithContext(ctx context.Context) EndpointConfigurationLoggingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationLoggingOutput)
-}
-
-func (i EndpointConfigurationLoggingArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationLogging] {
-	return pulumix.Output[EndpointConfigurationLogging]{
-		OutputState: i.ToEndpointConfigurationLoggingOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationLoggingArrayInput is an input type that accepts EndpointConfigurationLoggingArray and EndpointConfigurationLoggingArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationLoggingArrayInput` via:
-//
-//	EndpointConfigurationLoggingArray{ EndpointConfigurationLoggingArgs{...} }
-type EndpointConfigurationLoggingArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationLoggingArrayOutput() EndpointConfigurationLoggingArrayOutput
-	ToEndpointConfigurationLoggingArrayOutputWithContext(context.Context) EndpointConfigurationLoggingArrayOutput
-}
-
-type EndpointConfigurationLoggingArray []EndpointConfigurationLoggingInput
-
-func (EndpointConfigurationLoggingArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationLogging)(nil)).Elem()
-}
-
-func (i EndpointConfigurationLoggingArray) ToEndpointConfigurationLoggingArrayOutput() EndpointConfigurationLoggingArrayOutput {
-	return i.ToEndpointConfigurationLoggingArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationLoggingArray) ToEndpointConfigurationLoggingArrayOutputWithContext(ctx context.Context) EndpointConfigurationLoggingArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationLoggingArrayOutput)
-}
-
-func (i EndpointConfigurationLoggingArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationLogging] {
-	return pulumix.Output[[]EndpointConfigurationLogging]{
-		OutputState: i.ToEndpointConfigurationLoggingArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationLoggingOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationLoggingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationLogging)(nil)).Elem()
-}
-
-func (o EndpointConfigurationLoggingOutput) ToEndpointConfigurationLoggingOutput() EndpointConfigurationLoggingOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingOutput) ToEndpointConfigurationLoggingOutputWithContext(ctx context.Context) EndpointConfigurationLoggingOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationLogging] {
-	return pulumix.Output[EndpointConfigurationLogging]{
-		OutputState: o.OutputState,
-	}
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationLoggingOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationLogging) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// list of all EventStreams that will be used to configure and export this endpoint's logs
-func (o EndpointConfigurationLoggingOutput) EventStreams() EndpointConfigurationLoggingEventStreamArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationLogging) []EndpointConfigurationLoggingEventStream { return v.EventStreams }).(EndpointConfigurationLoggingEventStreamArrayOutput)
-}
-
-type EndpointConfigurationLoggingArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationLoggingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationLogging)(nil)).Elem()
-}
-
-func (o EndpointConfigurationLoggingArrayOutput) ToEndpointConfigurationLoggingArrayOutput() EndpointConfigurationLoggingArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingArrayOutput) ToEndpointConfigurationLoggingArrayOutputWithContext(ctx context.Context) EndpointConfigurationLoggingArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationLogging] {
-	return pulumix.Output[[]EndpointConfigurationLogging]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationLoggingArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationLoggingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationLogging {
-		return vs[0].([]EndpointConfigurationLogging)[vs[1].(int)]
-	}).(EndpointConfigurationLoggingOutput)
-}
-
-type EndpointConfigurationLoggingEventStream struct {
-	// unique identifier of this endpoint configuration
-	Id  *string `pulumi:"id"`
-	Uri *string `pulumi:"uri"`
-}
-
-// EndpointConfigurationLoggingEventStreamInput is an input type that accepts EndpointConfigurationLoggingEventStreamArgs and EndpointConfigurationLoggingEventStreamOutput values.
-// You can construct a concrete instance of `EndpointConfigurationLoggingEventStreamInput` via:
-//
-//	EndpointConfigurationLoggingEventStreamArgs{...}
-type EndpointConfigurationLoggingEventStreamInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationLoggingEventStreamOutput() EndpointConfigurationLoggingEventStreamOutput
-	ToEndpointConfigurationLoggingEventStreamOutputWithContext(context.Context) EndpointConfigurationLoggingEventStreamOutput
-}
-
-type EndpointConfigurationLoggingEventStreamArgs struct {
-	// unique identifier of this endpoint configuration
-	Id  pulumi.StringPtrInput `pulumi:"id"`
-	Uri pulumi.StringPtrInput `pulumi:"uri"`
-}
-
-func (EndpointConfigurationLoggingEventStreamArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationLoggingEventStream)(nil)).Elem()
-}
-
-func (i EndpointConfigurationLoggingEventStreamArgs) ToEndpointConfigurationLoggingEventStreamOutput() EndpointConfigurationLoggingEventStreamOutput {
-	return i.ToEndpointConfigurationLoggingEventStreamOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationLoggingEventStreamArgs) ToEndpointConfigurationLoggingEventStreamOutputWithContext(ctx context.Context) EndpointConfigurationLoggingEventStreamOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationLoggingEventStreamOutput)
-}
-
-func (i EndpointConfigurationLoggingEventStreamArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationLoggingEventStream] {
-	return pulumix.Output[EndpointConfigurationLoggingEventStream]{
-		OutputState: i.ToEndpointConfigurationLoggingEventStreamOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationLoggingEventStreamArrayInput is an input type that accepts EndpointConfigurationLoggingEventStreamArray and EndpointConfigurationLoggingEventStreamArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationLoggingEventStreamArrayInput` via:
-//
-//	EndpointConfigurationLoggingEventStreamArray{ EndpointConfigurationLoggingEventStreamArgs{...} }
-type EndpointConfigurationLoggingEventStreamArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationLoggingEventStreamArrayOutput() EndpointConfigurationLoggingEventStreamArrayOutput
-	ToEndpointConfigurationLoggingEventStreamArrayOutputWithContext(context.Context) EndpointConfigurationLoggingEventStreamArrayOutput
-}
-
-type EndpointConfigurationLoggingEventStreamArray []EndpointConfigurationLoggingEventStreamInput
-
-func (EndpointConfigurationLoggingEventStreamArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationLoggingEventStream)(nil)).Elem()
-}
-
-func (i EndpointConfigurationLoggingEventStreamArray) ToEndpointConfigurationLoggingEventStreamArrayOutput() EndpointConfigurationLoggingEventStreamArrayOutput {
-	return i.ToEndpointConfigurationLoggingEventStreamArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationLoggingEventStreamArray) ToEndpointConfigurationLoggingEventStreamArrayOutputWithContext(ctx context.Context) EndpointConfigurationLoggingEventStreamArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationLoggingEventStreamArrayOutput)
-}
-
-func (i EndpointConfigurationLoggingEventStreamArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationLoggingEventStream] {
-	return pulumix.Output[[]EndpointConfigurationLoggingEventStream]{
-		OutputState: i.ToEndpointConfigurationLoggingEventStreamArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationLoggingEventStreamOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationLoggingEventStreamOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationLoggingEventStream)(nil)).Elem()
-}
-
-func (o EndpointConfigurationLoggingEventStreamOutput) ToEndpointConfigurationLoggingEventStreamOutput() EndpointConfigurationLoggingEventStreamOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingEventStreamOutput) ToEndpointConfigurationLoggingEventStreamOutputWithContext(ctx context.Context) EndpointConfigurationLoggingEventStreamOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingEventStreamOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationLoggingEventStream] {
-	return pulumix.Output[EndpointConfigurationLoggingEventStream]{
-		OutputState: o.OutputState,
-	}
-}
-
-// unique identifier of this endpoint configuration
-func (o EndpointConfigurationLoggingEventStreamOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationLoggingEventStream) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationLoggingEventStreamOutput) Uri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationLoggingEventStream) *string { return v.Uri }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationLoggingEventStreamArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationLoggingEventStreamArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationLoggingEventStream)(nil)).Elem()
-}
-
-func (o EndpointConfigurationLoggingEventStreamArrayOutput) ToEndpointConfigurationLoggingEventStreamArrayOutput() EndpointConfigurationLoggingEventStreamArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingEventStreamArrayOutput) ToEndpointConfigurationLoggingEventStreamArrayOutputWithContext(ctx context.Context) EndpointConfigurationLoggingEventStreamArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationLoggingEventStreamArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationLoggingEventStream] {
-	return pulumix.Output[[]EndpointConfigurationLoggingEventStream]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationLoggingEventStreamArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationLoggingEventStreamOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationLoggingEventStream {
-		return vs[0].([]EndpointConfigurationLoggingEventStream)[vs[1].(int)]
-	}).(EndpointConfigurationLoggingEventStreamOutput)
-}
-
-type EndpointConfigurationMutualTl struct {
-	// PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-	CertificateAuthorities []EndpointConfigurationMutualTlCertificateAuthority `pulumi:"certificateAuthorities"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-}
-
-// EndpointConfigurationMutualTlInput is an input type that accepts EndpointConfigurationMutualTlArgs and EndpointConfigurationMutualTlOutput values.
-// You can construct a concrete instance of `EndpointConfigurationMutualTlInput` via:
-//
-//	EndpointConfigurationMutualTlArgs{...}
-type EndpointConfigurationMutualTlInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationMutualTlOutput() EndpointConfigurationMutualTlOutput
-	ToEndpointConfigurationMutualTlOutputWithContext(context.Context) EndpointConfigurationMutualTlOutput
-}
-
-type EndpointConfigurationMutualTlArgs struct {
-	// PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-	CertificateAuthorities EndpointConfigurationMutualTlCertificateAuthorityArrayInput `pulumi:"certificateAuthorities"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-}
-
-func (EndpointConfigurationMutualTlArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationMutualTl)(nil)).Elem()
-}
-
-func (i EndpointConfigurationMutualTlArgs) ToEndpointConfigurationMutualTlOutput() EndpointConfigurationMutualTlOutput {
-	return i.ToEndpointConfigurationMutualTlOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationMutualTlArgs) ToEndpointConfigurationMutualTlOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationMutualTlOutput)
-}
-
-func (i EndpointConfigurationMutualTlArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationMutualTl] {
-	return pulumix.Output[EndpointConfigurationMutualTl]{
-		OutputState: i.ToEndpointConfigurationMutualTlOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationMutualTlArrayInput is an input type that accepts EndpointConfigurationMutualTlArray and EndpointConfigurationMutualTlArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationMutualTlArrayInput` via:
-//
-//	EndpointConfigurationMutualTlArray{ EndpointConfigurationMutualTlArgs{...} }
-type EndpointConfigurationMutualTlArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationMutualTlArrayOutput() EndpointConfigurationMutualTlArrayOutput
-	ToEndpointConfigurationMutualTlArrayOutputWithContext(context.Context) EndpointConfigurationMutualTlArrayOutput
-}
-
-type EndpointConfigurationMutualTlArray []EndpointConfigurationMutualTlInput
-
-func (EndpointConfigurationMutualTlArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationMutualTl)(nil)).Elem()
-}
-
-func (i EndpointConfigurationMutualTlArray) ToEndpointConfigurationMutualTlArrayOutput() EndpointConfigurationMutualTlArrayOutput {
-	return i.ToEndpointConfigurationMutualTlArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationMutualTlArray) ToEndpointConfigurationMutualTlArrayOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationMutualTlArrayOutput)
-}
-
-func (i EndpointConfigurationMutualTlArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationMutualTl] {
-	return pulumix.Output[[]EndpointConfigurationMutualTl]{
-		OutputState: i.ToEndpointConfigurationMutualTlArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationMutualTlOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationMutualTlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationMutualTl)(nil)).Elem()
-}
-
-func (o EndpointConfigurationMutualTlOutput) ToEndpointConfigurationMutualTlOutput() EndpointConfigurationMutualTlOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlOutput) ToEndpointConfigurationMutualTlOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationMutualTl] {
-	return pulumix.Output[EndpointConfigurationMutualTl]{
-		OutputState: o.OutputState,
-	}
-}
-
-// PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-func (o EndpointConfigurationMutualTlOutput) CertificateAuthorities() EndpointConfigurationMutualTlCertificateAuthorityArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationMutualTl) []EndpointConfigurationMutualTlCertificateAuthority {
-		return v.CertificateAuthorities
-	}).(EndpointConfigurationMutualTlCertificateAuthorityArrayOutput)
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationMutualTlOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationMutualTl) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-type EndpointConfigurationMutualTlArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationMutualTlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationMutualTl)(nil)).Elem()
-}
-
-func (o EndpointConfigurationMutualTlArrayOutput) ToEndpointConfigurationMutualTlArrayOutput() EndpointConfigurationMutualTlArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlArrayOutput) ToEndpointConfigurationMutualTlArrayOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationMutualTl] {
-	return pulumix.Output[[]EndpointConfigurationMutualTl]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationMutualTlArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationMutualTlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationMutualTl {
-		return vs[0].([]EndpointConfigurationMutualTl)[vs[1].(int)]
-	}).(EndpointConfigurationMutualTlOutput)
-}
-
-type EndpointConfigurationMutualTlCertificateAuthority struct {
-	// unique identifier of this endpoint configuration
-	Id  *string `pulumi:"id"`
-	Uri *string `pulumi:"uri"`
-}
-
-// EndpointConfigurationMutualTlCertificateAuthorityInput is an input type that accepts EndpointConfigurationMutualTlCertificateAuthorityArgs and EndpointConfigurationMutualTlCertificateAuthorityOutput values.
-// You can construct a concrete instance of `EndpointConfigurationMutualTlCertificateAuthorityInput` via:
-//
-//	EndpointConfigurationMutualTlCertificateAuthorityArgs{...}
-type EndpointConfigurationMutualTlCertificateAuthorityInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationMutualTlCertificateAuthorityOutput() EndpointConfigurationMutualTlCertificateAuthorityOutput
-	ToEndpointConfigurationMutualTlCertificateAuthorityOutputWithContext(context.Context) EndpointConfigurationMutualTlCertificateAuthorityOutput
-}
-
-type EndpointConfigurationMutualTlCertificateAuthorityArgs struct {
-	// unique identifier of this endpoint configuration
-	Id  pulumi.StringPtrInput `pulumi:"id"`
-	Uri pulumi.StringPtrInput `pulumi:"uri"`
-}
-
-func (EndpointConfigurationMutualTlCertificateAuthorityArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationMutualTlCertificateAuthority)(nil)).Elem()
-}
-
-func (i EndpointConfigurationMutualTlCertificateAuthorityArgs) ToEndpointConfigurationMutualTlCertificateAuthorityOutput() EndpointConfigurationMutualTlCertificateAuthorityOutput {
-	return i.ToEndpointConfigurationMutualTlCertificateAuthorityOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationMutualTlCertificateAuthorityArgs) ToEndpointConfigurationMutualTlCertificateAuthorityOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlCertificateAuthorityOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationMutualTlCertificateAuthorityOutput)
-}
-
-func (i EndpointConfigurationMutualTlCertificateAuthorityArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationMutualTlCertificateAuthority] {
-	return pulumix.Output[EndpointConfigurationMutualTlCertificateAuthority]{
-		OutputState: i.ToEndpointConfigurationMutualTlCertificateAuthorityOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationMutualTlCertificateAuthorityArrayInput is an input type that accepts EndpointConfigurationMutualTlCertificateAuthorityArray and EndpointConfigurationMutualTlCertificateAuthorityArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationMutualTlCertificateAuthorityArrayInput` via:
-//
-//	EndpointConfigurationMutualTlCertificateAuthorityArray{ EndpointConfigurationMutualTlCertificateAuthorityArgs{...} }
-type EndpointConfigurationMutualTlCertificateAuthorityArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutput() EndpointConfigurationMutualTlCertificateAuthorityArrayOutput
-	ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutputWithContext(context.Context) EndpointConfigurationMutualTlCertificateAuthorityArrayOutput
-}
-
-type EndpointConfigurationMutualTlCertificateAuthorityArray []EndpointConfigurationMutualTlCertificateAuthorityInput
-
-func (EndpointConfigurationMutualTlCertificateAuthorityArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationMutualTlCertificateAuthority)(nil)).Elem()
-}
-
-func (i EndpointConfigurationMutualTlCertificateAuthorityArray) ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutput() EndpointConfigurationMutualTlCertificateAuthorityArrayOutput {
-	return i.ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationMutualTlCertificateAuthorityArray) ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlCertificateAuthorityArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationMutualTlCertificateAuthorityArrayOutput)
-}
-
-func (i EndpointConfigurationMutualTlCertificateAuthorityArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationMutualTlCertificateAuthority] {
-	return pulumix.Output[[]EndpointConfigurationMutualTlCertificateAuthority]{
-		OutputState: i.ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationMutualTlCertificateAuthorityOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationMutualTlCertificateAuthorityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationMutualTlCertificateAuthority)(nil)).Elem()
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityOutput) ToEndpointConfigurationMutualTlCertificateAuthorityOutput() EndpointConfigurationMutualTlCertificateAuthorityOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityOutput) ToEndpointConfigurationMutualTlCertificateAuthorityOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlCertificateAuthorityOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationMutualTlCertificateAuthority] {
-	return pulumix.Output[EndpointConfigurationMutualTlCertificateAuthority]{
-		OutputState: o.OutputState,
-	}
-}
-
-// unique identifier of this endpoint configuration
-func (o EndpointConfigurationMutualTlCertificateAuthorityOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationMutualTlCertificateAuthority) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityOutput) Uri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationMutualTlCertificateAuthority) *string { return v.Uri }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationMutualTlCertificateAuthorityArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationMutualTlCertificateAuthorityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationMutualTlCertificateAuthority)(nil)).Elem()
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityArrayOutput) ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutput() EndpointConfigurationMutualTlCertificateAuthorityArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityArrayOutput) ToEndpointConfigurationMutualTlCertificateAuthorityArrayOutputWithContext(ctx context.Context) EndpointConfigurationMutualTlCertificateAuthorityArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationMutualTlCertificateAuthority] {
-	return pulumix.Output[[]EndpointConfigurationMutualTlCertificateAuthority]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationMutualTlCertificateAuthorityArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationMutualTlCertificateAuthorityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationMutualTlCertificateAuthority {
-		return vs[0].([]EndpointConfigurationMutualTlCertificateAuthority)[vs[1].(int)]
-	}).(EndpointConfigurationMutualTlCertificateAuthorityOutput)
-}
-
-type EndpointConfigurationOauth struct {
-	// Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-	AuthCheckInterval *int `pulumi:"authCheckInterval"`
-	// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-	CookiePrefix *string `pulumi:"cookiePrefix"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-	InactivityTimeout *int `pulumi:"inactivityTimeout"`
-	// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-	MaximumDuration *int `pulumi:"maximumDuration"`
-	// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-	OptionsPassthrough *bool `pulumi:"optionsPassthrough"`
-	// an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-	Providers []EndpointConfigurationOauthProvider `pulumi:"providers"`
-}
-
-// EndpointConfigurationOauthInput is an input type that accepts EndpointConfigurationOauthArgs and EndpointConfigurationOauthOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthInput` via:
-//
-//	EndpointConfigurationOauthArgs{...}
-type EndpointConfigurationOauthInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthOutput() EndpointConfigurationOauthOutput
-	ToEndpointConfigurationOauthOutputWithContext(context.Context) EndpointConfigurationOauthOutput
-}
-
-type EndpointConfigurationOauthArgs struct {
-	// Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-	AuthCheckInterval pulumi.IntPtrInput `pulumi:"authCheckInterval"`
-	// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-	CookiePrefix pulumi.StringPtrInput `pulumi:"cookiePrefix"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-	InactivityTimeout pulumi.IntPtrInput `pulumi:"inactivityTimeout"`
-	// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-	MaximumDuration pulumi.IntPtrInput `pulumi:"maximumDuration"`
-	// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-	OptionsPassthrough pulumi.BoolPtrInput `pulumi:"optionsPassthrough"`
-	// an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-	Providers EndpointConfigurationOauthProviderArrayInput `pulumi:"providers"`
-}
-
-func (EndpointConfigurationOauthArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauth)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthArgs) ToEndpointConfigurationOauthOutput() EndpointConfigurationOauthOutput {
-	return i.ToEndpointConfigurationOauthOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthArgs) ToEndpointConfigurationOauthOutputWithContext(ctx context.Context) EndpointConfigurationOauthOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthOutput)
-}
-
-func (i EndpointConfigurationOauthArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauth] {
-	return pulumix.Output[EndpointConfigurationOauth]{
-		OutputState: i.ToEndpointConfigurationOauthOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationOauthArrayInput is an input type that accepts EndpointConfigurationOauthArray and EndpointConfigurationOauthArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthArrayInput` via:
-//
-//	EndpointConfigurationOauthArray{ EndpointConfigurationOauthArgs{...} }
-type EndpointConfigurationOauthArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthArrayOutput() EndpointConfigurationOauthArrayOutput
-	ToEndpointConfigurationOauthArrayOutputWithContext(context.Context) EndpointConfigurationOauthArrayOutput
-}
-
-type EndpointConfigurationOauthArray []EndpointConfigurationOauthInput
-
-func (EndpointConfigurationOauthArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauth)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthArray) ToEndpointConfigurationOauthArrayOutput() EndpointConfigurationOauthArrayOutput {
-	return i.ToEndpointConfigurationOauthArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthArray) ToEndpointConfigurationOauthArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthArrayOutput)
-}
-
-func (i EndpointConfigurationOauthArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauth] {
-	return pulumix.Output[[]EndpointConfigurationOauth]{
-		OutputState: i.ToEndpointConfigurationOauthArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationOauthOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauth)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthOutput) ToEndpointConfigurationOauthOutput() EndpointConfigurationOauthOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthOutput) ToEndpointConfigurationOauthOutputWithContext(ctx context.Context) EndpointConfigurationOauthOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauth] {
-	return pulumix.Output[EndpointConfigurationOauth]{
-		OutputState: o.OutputState,
-	}
-}
-
-// Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-func (o EndpointConfigurationOauthOutput) AuthCheckInterval() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauth) *int { return v.AuthCheckInterval }).(pulumi.IntPtrOutput)
-}
-
-// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-func (o EndpointConfigurationOauthOutput) CookiePrefix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauth) *string { return v.CookiePrefix }).(pulumi.StringPtrOutput)
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationOauthOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauth) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-func (o EndpointConfigurationOauthOutput) InactivityTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauth) *int { return v.InactivityTimeout }).(pulumi.IntPtrOutput)
-}
-
-// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-func (o EndpointConfigurationOauthOutput) MaximumDuration() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauth) *int { return v.MaximumDuration }).(pulumi.IntPtrOutput)
-}
-
-// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-func (o EndpointConfigurationOauthOutput) OptionsPassthrough() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauth) *bool { return v.OptionsPassthrough }).(pulumi.BoolPtrOutput)
-}
-
-// an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-func (o EndpointConfigurationOauthOutput) Providers() EndpointConfigurationOauthProviderArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauth) []EndpointConfigurationOauthProvider { return v.Providers }).(EndpointConfigurationOauthProviderArrayOutput)
-}
-
-type EndpointConfigurationOauthArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauth)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthArrayOutput) ToEndpointConfigurationOauthArrayOutput() EndpointConfigurationOauthArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthArrayOutput) ToEndpointConfigurationOauthArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauth] {
-	return pulumix.Output[[]EndpointConfigurationOauth]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOauthOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationOauth {
-		return vs[0].([]EndpointConfigurationOauth)[vs[1].(int)]
-	}).(EndpointConfigurationOauthOutput)
-}
-
-type EndpointConfigurationOauthProvider struct {
-	Facebooks  []EndpointConfigurationOauthProviderFacebook  `pulumi:"facebooks"`
-	Githubs    []EndpointConfigurationOauthProviderGithub    `pulumi:"githubs"`
-	Googles    []EndpointConfigurationOauthProviderGoogle    `pulumi:"googles"`
-	Microsofts []EndpointConfigurationOauthProviderMicrosoft `pulumi:"microsofts"`
-}
-
-// EndpointConfigurationOauthProviderInput is an input type that accepts EndpointConfigurationOauthProviderArgs and EndpointConfigurationOauthProviderOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderInput` via:
-//
-//	EndpointConfigurationOauthProviderArgs{...}
-type EndpointConfigurationOauthProviderInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderOutput() EndpointConfigurationOauthProviderOutput
-	ToEndpointConfigurationOauthProviderOutputWithContext(context.Context) EndpointConfigurationOauthProviderOutput
-}
-
-type EndpointConfigurationOauthProviderArgs struct {
-	Facebooks  EndpointConfigurationOauthProviderFacebookArrayInput  `pulumi:"facebooks"`
-	Githubs    EndpointConfigurationOauthProviderGithubArrayInput    `pulumi:"githubs"`
-	Googles    EndpointConfigurationOauthProviderGoogleArrayInput    `pulumi:"googles"`
-	Microsofts EndpointConfigurationOauthProviderMicrosoftArrayInput `pulumi:"microsofts"`
-}
-
-func (EndpointConfigurationOauthProviderArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProvider)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderArgs) ToEndpointConfigurationOauthProviderOutput() EndpointConfigurationOauthProviderOutput {
-	return i.ToEndpointConfigurationOauthProviderOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderArgs) ToEndpointConfigurationOauthProviderOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderOutput)
-}
-
-func (i EndpointConfigurationOauthProviderArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProvider] {
-	return pulumix.Output[EndpointConfigurationOauthProvider]{
-		OutputState: i.ToEndpointConfigurationOauthProviderOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationOauthProviderArrayInput is an input type that accepts EndpointConfigurationOauthProviderArray and EndpointConfigurationOauthProviderArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderArrayInput` via:
-//
-//	EndpointConfigurationOauthProviderArray{ EndpointConfigurationOauthProviderArgs{...} }
-type EndpointConfigurationOauthProviderArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderArrayOutput() EndpointConfigurationOauthProviderArrayOutput
-	ToEndpointConfigurationOauthProviderArrayOutputWithContext(context.Context) EndpointConfigurationOauthProviderArrayOutput
-}
-
-type EndpointConfigurationOauthProviderArray []EndpointConfigurationOauthProviderInput
-
-func (EndpointConfigurationOauthProviderArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProvider)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderArray) ToEndpointConfigurationOauthProviderArrayOutput() EndpointConfigurationOauthProviderArrayOutput {
-	return i.ToEndpointConfigurationOauthProviderArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderArray) ToEndpointConfigurationOauthProviderArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderArrayOutput)
-}
-
-func (i EndpointConfigurationOauthProviderArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProvider] {
-	return pulumix.Output[[]EndpointConfigurationOauthProvider]{
-		OutputState: i.ToEndpointConfigurationOauthProviderArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationOauthProviderOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProvider)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderOutput) ToEndpointConfigurationOauthProviderOutput() EndpointConfigurationOauthProviderOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderOutput) ToEndpointConfigurationOauthProviderOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProvider] {
-	return pulumix.Output[EndpointConfigurationOauthProvider]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderOutput) Facebooks() EndpointConfigurationOauthProviderFacebookArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProvider) []EndpointConfigurationOauthProviderFacebook {
-		return v.Facebooks
-	}).(EndpointConfigurationOauthProviderFacebookArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderOutput) Githubs() EndpointConfigurationOauthProviderGithubArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProvider) []EndpointConfigurationOauthProviderGithub {
-		return v.Githubs
-	}).(EndpointConfigurationOauthProviderGithubArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderOutput) Googles() EndpointConfigurationOauthProviderGoogleArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProvider) []EndpointConfigurationOauthProviderGoogle {
-		return v.Googles
-	}).(EndpointConfigurationOauthProviderGoogleArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderOutput) Microsofts() EndpointConfigurationOauthProviderMicrosoftArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProvider) []EndpointConfigurationOauthProviderMicrosoft {
-		return v.Microsofts
-	}).(EndpointConfigurationOauthProviderMicrosoftArrayOutput)
-}
-
-type EndpointConfigurationOauthProviderArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProvider)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderArrayOutput) ToEndpointConfigurationOauthProviderArrayOutput() EndpointConfigurationOauthProviderArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderArrayOutput) ToEndpointConfigurationOauthProviderArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProvider] {
-	return pulumix.Output[[]EndpointConfigurationOauthProvider]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOauthProviderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationOauthProvider {
-		return vs[0].([]EndpointConfigurationOauthProvider)[vs[1].(int)]
-	}).(EndpointConfigurationOauthProviderOutput)
-}
-
-type EndpointConfigurationOauthProviderFacebook struct {
-	ClientId       *string  `pulumi:"clientId"`
-	ClientSecret   *string  `pulumi:"clientSecret"`
-	EmailAddresses []string `pulumi:"emailAddresses"`
-	EmailDomains   []string `pulumi:"emailDomains"`
-	Scopes         []string `pulumi:"scopes"`
-}
-
-// EndpointConfigurationOauthProviderFacebookInput is an input type that accepts EndpointConfigurationOauthProviderFacebookArgs and EndpointConfigurationOauthProviderFacebookOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderFacebookInput` via:
-//
-//	EndpointConfigurationOauthProviderFacebookArgs{...}
-type EndpointConfigurationOauthProviderFacebookInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderFacebookOutput() EndpointConfigurationOauthProviderFacebookOutput
-	ToEndpointConfigurationOauthProviderFacebookOutputWithContext(context.Context) EndpointConfigurationOauthProviderFacebookOutput
-}
-
-type EndpointConfigurationOauthProviderFacebookArgs struct {
-	ClientId       pulumi.StringPtrInput   `pulumi:"clientId"`
-	ClientSecret   pulumi.StringPtrInput   `pulumi:"clientSecret"`
-	EmailAddresses pulumi.StringArrayInput `pulumi:"emailAddresses"`
-	EmailDomains   pulumi.StringArrayInput `pulumi:"emailDomains"`
-	Scopes         pulumi.StringArrayInput `pulumi:"scopes"`
-}
-
-func (EndpointConfigurationOauthProviderFacebookArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderFacebook)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderFacebookArgs) ToEndpointConfigurationOauthProviderFacebookOutput() EndpointConfigurationOauthProviderFacebookOutput {
-	return i.ToEndpointConfigurationOauthProviderFacebookOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderFacebookArgs) ToEndpointConfigurationOauthProviderFacebookOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderFacebookOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderFacebookOutput)
-}
-
-func (i EndpointConfigurationOauthProviderFacebookArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderFacebook] {
-	return pulumix.Output[EndpointConfigurationOauthProviderFacebook]{
-		OutputState: i.ToEndpointConfigurationOauthProviderFacebookOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationOauthProviderFacebookArrayInput is an input type that accepts EndpointConfigurationOauthProviderFacebookArray and EndpointConfigurationOauthProviderFacebookArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderFacebookArrayInput` via:
-//
-//	EndpointConfigurationOauthProviderFacebookArray{ EndpointConfigurationOauthProviderFacebookArgs{...} }
-type EndpointConfigurationOauthProviderFacebookArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderFacebookArrayOutput() EndpointConfigurationOauthProviderFacebookArrayOutput
-	ToEndpointConfigurationOauthProviderFacebookArrayOutputWithContext(context.Context) EndpointConfigurationOauthProviderFacebookArrayOutput
-}
-
-type EndpointConfigurationOauthProviderFacebookArray []EndpointConfigurationOauthProviderFacebookInput
-
-func (EndpointConfigurationOauthProviderFacebookArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderFacebook)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderFacebookArray) ToEndpointConfigurationOauthProviderFacebookArrayOutput() EndpointConfigurationOauthProviderFacebookArrayOutput {
-	return i.ToEndpointConfigurationOauthProviderFacebookArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderFacebookArray) ToEndpointConfigurationOauthProviderFacebookArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderFacebookArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderFacebookArrayOutput)
-}
-
-func (i EndpointConfigurationOauthProviderFacebookArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderFacebook] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderFacebook]{
-		OutputState: i.ToEndpointConfigurationOauthProviderFacebookArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationOauthProviderFacebookOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderFacebookOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderFacebook)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) ToEndpointConfigurationOauthProviderFacebookOutput() EndpointConfigurationOauthProviderFacebookOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) ToEndpointConfigurationOauthProviderFacebookOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderFacebookOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderFacebook] {
-	return pulumix.Output[EndpointConfigurationOauthProviderFacebook]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderFacebook) *string { return v.ClientId }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) ClientSecret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderFacebook) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) EmailAddresses() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderFacebook) []string { return v.EmailAddresses }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) EmailDomains() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderFacebook) []string { return v.EmailDomains }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderFacebookOutput) Scopes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderFacebook) []string { return v.Scopes }).(pulumi.StringArrayOutput)
-}
-
-type EndpointConfigurationOauthProviderFacebookArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderFacebookArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderFacebook)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderFacebookArrayOutput) ToEndpointConfigurationOauthProviderFacebookArrayOutput() EndpointConfigurationOauthProviderFacebookArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderFacebookArrayOutput) ToEndpointConfigurationOauthProviderFacebookArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderFacebookArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderFacebookArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderFacebook] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderFacebook]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderFacebookArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOauthProviderFacebookOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationOauthProviderFacebook {
-		return vs[0].([]EndpointConfigurationOauthProviderFacebook)[vs[1].(int)]
-	}).(EndpointConfigurationOauthProviderFacebookOutput)
-}
-
-type EndpointConfigurationOauthProviderGithub struct {
-	ClientId       *string  `pulumi:"clientId"`
-	ClientSecret   *string  `pulumi:"clientSecret"`
-	EmailAddresses []string `pulumi:"emailAddresses"`
-	EmailDomains   []string `pulumi:"emailDomains"`
-	Organizations  []string `pulumi:"organizations"`
-	Scopes         []string `pulumi:"scopes"`
-	Teams          []string `pulumi:"teams"`
-}
-
-// EndpointConfigurationOauthProviderGithubInput is an input type that accepts EndpointConfigurationOauthProviderGithubArgs and EndpointConfigurationOauthProviderGithubOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderGithubInput` via:
-//
-//	EndpointConfigurationOauthProviderGithubArgs{...}
-type EndpointConfigurationOauthProviderGithubInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderGithubOutput() EndpointConfigurationOauthProviderGithubOutput
-	ToEndpointConfigurationOauthProviderGithubOutputWithContext(context.Context) EndpointConfigurationOauthProviderGithubOutput
-}
-
-type EndpointConfigurationOauthProviderGithubArgs struct {
-	ClientId       pulumi.StringPtrInput   `pulumi:"clientId"`
-	ClientSecret   pulumi.StringPtrInput   `pulumi:"clientSecret"`
-	EmailAddresses pulumi.StringArrayInput `pulumi:"emailAddresses"`
-	EmailDomains   pulumi.StringArrayInput `pulumi:"emailDomains"`
-	Organizations  pulumi.StringArrayInput `pulumi:"organizations"`
-	Scopes         pulumi.StringArrayInput `pulumi:"scopes"`
-	Teams          pulumi.StringArrayInput `pulumi:"teams"`
-}
-
-func (EndpointConfigurationOauthProviderGithubArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderGithub)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderGithubArgs) ToEndpointConfigurationOauthProviderGithubOutput() EndpointConfigurationOauthProviderGithubOutput {
-	return i.ToEndpointConfigurationOauthProviderGithubOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderGithubArgs) ToEndpointConfigurationOauthProviderGithubOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGithubOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderGithubOutput)
-}
-
-func (i EndpointConfigurationOauthProviderGithubArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderGithub] {
-	return pulumix.Output[EndpointConfigurationOauthProviderGithub]{
-		OutputState: i.ToEndpointConfigurationOauthProviderGithubOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationOauthProviderGithubArrayInput is an input type that accepts EndpointConfigurationOauthProviderGithubArray and EndpointConfigurationOauthProviderGithubArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderGithubArrayInput` via:
-//
-//	EndpointConfigurationOauthProviderGithubArray{ EndpointConfigurationOauthProviderGithubArgs{...} }
-type EndpointConfigurationOauthProviderGithubArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderGithubArrayOutput() EndpointConfigurationOauthProviderGithubArrayOutput
-	ToEndpointConfigurationOauthProviderGithubArrayOutputWithContext(context.Context) EndpointConfigurationOauthProviderGithubArrayOutput
-}
-
-type EndpointConfigurationOauthProviderGithubArray []EndpointConfigurationOauthProviderGithubInput
-
-func (EndpointConfigurationOauthProviderGithubArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderGithub)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderGithubArray) ToEndpointConfigurationOauthProviderGithubArrayOutput() EndpointConfigurationOauthProviderGithubArrayOutput {
-	return i.ToEndpointConfigurationOauthProviderGithubArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderGithubArray) ToEndpointConfigurationOauthProviderGithubArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGithubArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderGithubArrayOutput)
-}
-
-func (i EndpointConfigurationOauthProviderGithubArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderGithub] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderGithub]{
-		OutputState: i.ToEndpointConfigurationOauthProviderGithubArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationOauthProviderGithubOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderGithubOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderGithub)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) ToEndpointConfigurationOauthProviderGithubOutput() EndpointConfigurationOauthProviderGithubOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) ToEndpointConfigurationOauthProviderGithubOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGithubOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderGithub] {
-	return pulumix.Output[EndpointConfigurationOauthProviderGithub]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGithub) *string { return v.ClientId }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) ClientSecret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGithub) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) EmailAddresses() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGithub) []string { return v.EmailAddresses }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) EmailDomains() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGithub) []string { return v.EmailDomains }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) Organizations() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGithub) []string { return v.Organizations }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) Scopes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGithub) []string { return v.Scopes }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGithubOutput) Teams() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGithub) []string { return v.Teams }).(pulumi.StringArrayOutput)
-}
-
-type EndpointConfigurationOauthProviderGithubArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderGithubArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderGithub)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderGithubArrayOutput) ToEndpointConfigurationOauthProviderGithubArrayOutput() EndpointConfigurationOauthProviderGithubArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGithubArrayOutput) ToEndpointConfigurationOauthProviderGithubArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGithubArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGithubArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderGithub] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderGithub]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderGithubArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOauthProviderGithubOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationOauthProviderGithub {
-		return vs[0].([]EndpointConfigurationOauthProviderGithub)[vs[1].(int)]
-	}).(EndpointConfigurationOauthProviderGithubOutput)
-}
-
-type EndpointConfigurationOauthProviderGoogle struct {
-	ClientId       *string  `pulumi:"clientId"`
-	ClientSecret   *string  `pulumi:"clientSecret"`
-	EmailAddresses []string `pulumi:"emailAddresses"`
-	EmailDomains   []string `pulumi:"emailDomains"`
-	Scopes         []string `pulumi:"scopes"`
-}
-
-// EndpointConfigurationOauthProviderGoogleInput is an input type that accepts EndpointConfigurationOauthProviderGoogleArgs and EndpointConfigurationOauthProviderGoogleOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderGoogleInput` via:
-//
-//	EndpointConfigurationOauthProviderGoogleArgs{...}
-type EndpointConfigurationOauthProviderGoogleInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderGoogleOutput() EndpointConfigurationOauthProviderGoogleOutput
-	ToEndpointConfigurationOauthProviderGoogleOutputWithContext(context.Context) EndpointConfigurationOauthProviderGoogleOutput
-}
-
-type EndpointConfigurationOauthProviderGoogleArgs struct {
-	ClientId       pulumi.StringPtrInput   `pulumi:"clientId"`
-	ClientSecret   pulumi.StringPtrInput   `pulumi:"clientSecret"`
-	EmailAddresses pulumi.StringArrayInput `pulumi:"emailAddresses"`
-	EmailDomains   pulumi.StringArrayInput `pulumi:"emailDomains"`
-	Scopes         pulumi.StringArrayInput `pulumi:"scopes"`
-}
-
-func (EndpointConfigurationOauthProviderGoogleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderGoogle)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderGoogleArgs) ToEndpointConfigurationOauthProviderGoogleOutput() EndpointConfigurationOauthProviderGoogleOutput {
-	return i.ToEndpointConfigurationOauthProviderGoogleOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderGoogleArgs) ToEndpointConfigurationOauthProviderGoogleOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGoogleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderGoogleOutput)
-}
-
-func (i EndpointConfigurationOauthProviderGoogleArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderGoogle] {
-	return pulumix.Output[EndpointConfigurationOauthProviderGoogle]{
-		OutputState: i.ToEndpointConfigurationOauthProviderGoogleOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationOauthProviderGoogleArrayInput is an input type that accepts EndpointConfigurationOauthProviderGoogleArray and EndpointConfigurationOauthProviderGoogleArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderGoogleArrayInput` via:
-//
-//	EndpointConfigurationOauthProviderGoogleArray{ EndpointConfigurationOauthProviderGoogleArgs{...} }
-type EndpointConfigurationOauthProviderGoogleArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderGoogleArrayOutput() EndpointConfigurationOauthProviderGoogleArrayOutput
-	ToEndpointConfigurationOauthProviderGoogleArrayOutputWithContext(context.Context) EndpointConfigurationOauthProviderGoogleArrayOutput
-}
-
-type EndpointConfigurationOauthProviderGoogleArray []EndpointConfigurationOauthProviderGoogleInput
-
-func (EndpointConfigurationOauthProviderGoogleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderGoogle)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderGoogleArray) ToEndpointConfigurationOauthProviderGoogleArrayOutput() EndpointConfigurationOauthProviderGoogleArrayOutput {
-	return i.ToEndpointConfigurationOauthProviderGoogleArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderGoogleArray) ToEndpointConfigurationOauthProviderGoogleArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGoogleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderGoogleArrayOutput)
-}
-
-func (i EndpointConfigurationOauthProviderGoogleArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderGoogle] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderGoogle]{
-		OutputState: i.ToEndpointConfigurationOauthProviderGoogleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationOauthProviderGoogleOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderGoogleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderGoogle)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) ToEndpointConfigurationOauthProviderGoogleOutput() EndpointConfigurationOauthProviderGoogleOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) ToEndpointConfigurationOauthProviderGoogleOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGoogleOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderGoogle] {
-	return pulumix.Output[EndpointConfigurationOauthProviderGoogle]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGoogle) *string { return v.ClientId }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) ClientSecret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGoogle) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) EmailAddresses() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGoogle) []string { return v.EmailAddresses }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) EmailDomains() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGoogle) []string { return v.EmailDomains }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderGoogleOutput) Scopes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderGoogle) []string { return v.Scopes }).(pulumi.StringArrayOutput)
-}
-
-type EndpointConfigurationOauthProviderGoogleArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderGoogleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderGoogle)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderGoogleArrayOutput) ToEndpointConfigurationOauthProviderGoogleArrayOutput() EndpointConfigurationOauthProviderGoogleArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGoogleArrayOutput) ToEndpointConfigurationOauthProviderGoogleArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderGoogleArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderGoogleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderGoogle] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderGoogle]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderGoogleArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOauthProviderGoogleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationOauthProviderGoogle {
-		return vs[0].([]EndpointConfigurationOauthProviderGoogle)[vs[1].(int)]
-	}).(EndpointConfigurationOauthProviderGoogleOutput)
-}
-
-type EndpointConfigurationOauthProviderMicrosoft struct {
-	ClientId       *string  `pulumi:"clientId"`
-	ClientSecret   *string  `pulumi:"clientSecret"`
-	EmailAddresses []string `pulumi:"emailAddresses"`
-	EmailDomains   []string `pulumi:"emailDomains"`
-	Scopes         []string `pulumi:"scopes"`
-}
-
-// EndpointConfigurationOauthProviderMicrosoftInput is an input type that accepts EndpointConfigurationOauthProviderMicrosoftArgs and EndpointConfigurationOauthProviderMicrosoftOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderMicrosoftInput` via:
-//
-//	EndpointConfigurationOauthProviderMicrosoftArgs{...}
-type EndpointConfigurationOauthProviderMicrosoftInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderMicrosoftOutput() EndpointConfigurationOauthProviderMicrosoftOutput
-	ToEndpointConfigurationOauthProviderMicrosoftOutputWithContext(context.Context) EndpointConfigurationOauthProviderMicrosoftOutput
-}
-
-type EndpointConfigurationOauthProviderMicrosoftArgs struct {
-	ClientId       pulumi.StringPtrInput   `pulumi:"clientId"`
-	ClientSecret   pulumi.StringPtrInput   `pulumi:"clientSecret"`
-	EmailAddresses pulumi.StringArrayInput `pulumi:"emailAddresses"`
-	EmailDomains   pulumi.StringArrayInput `pulumi:"emailDomains"`
-	Scopes         pulumi.StringArrayInput `pulumi:"scopes"`
-}
-
-func (EndpointConfigurationOauthProviderMicrosoftArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderMicrosoft)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderMicrosoftArgs) ToEndpointConfigurationOauthProviderMicrosoftOutput() EndpointConfigurationOauthProviderMicrosoftOutput {
-	return i.ToEndpointConfigurationOauthProviderMicrosoftOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderMicrosoftArgs) ToEndpointConfigurationOauthProviderMicrosoftOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderMicrosoftOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderMicrosoftOutput)
-}
-
-func (i EndpointConfigurationOauthProviderMicrosoftArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderMicrosoft] {
-	return pulumix.Output[EndpointConfigurationOauthProviderMicrosoft]{
-		OutputState: i.ToEndpointConfigurationOauthProviderMicrosoftOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationOauthProviderMicrosoftArrayInput is an input type that accepts EndpointConfigurationOauthProviderMicrosoftArray and EndpointConfigurationOauthProviderMicrosoftArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOauthProviderMicrosoftArrayInput` via:
-//
-//	EndpointConfigurationOauthProviderMicrosoftArray{ EndpointConfigurationOauthProviderMicrosoftArgs{...} }
-type EndpointConfigurationOauthProviderMicrosoftArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOauthProviderMicrosoftArrayOutput() EndpointConfigurationOauthProviderMicrosoftArrayOutput
-	ToEndpointConfigurationOauthProviderMicrosoftArrayOutputWithContext(context.Context) EndpointConfigurationOauthProviderMicrosoftArrayOutput
-}
-
-type EndpointConfigurationOauthProviderMicrosoftArray []EndpointConfigurationOauthProviderMicrosoftInput
-
-func (EndpointConfigurationOauthProviderMicrosoftArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderMicrosoft)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOauthProviderMicrosoftArray) ToEndpointConfigurationOauthProviderMicrosoftArrayOutput() EndpointConfigurationOauthProviderMicrosoftArrayOutput {
-	return i.ToEndpointConfigurationOauthProviderMicrosoftArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOauthProviderMicrosoftArray) ToEndpointConfigurationOauthProviderMicrosoftArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderMicrosoftArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOauthProviderMicrosoftArrayOutput)
-}
-
-func (i EndpointConfigurationOauthProviderMicrosoftArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderMicrosoft] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderMicrosoft]{
-		OutputState: i.ToEndpointConfigurationOauthProviderMicrosoftArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationOauthProviderMicrosoftOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderMicrosoftOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOauthProviderMicrosoft)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) ToEndpointConfigurationOauthProviderMicrosoftOutput() EndpointConfigurationOauthProviderMicrosoftOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) ToEndpointConfigurationOauthProviderMicrosoftOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderMicrosoftOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOauthProviderMicrosoft] {
-	return pulumix.Output[EndpointConfigurationOauthProviderMicrosoft]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderMicrosoft) *string { return v.ClientId }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) ClientSecret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderMicrosoft) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) EmailAddresses() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderMicrosoft) []string { return v.EmailAddresses }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) EmailDomains() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderMicrosoft) []string { return v.EmailDomains }).(pulumi.StringArrayOutput)
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftOutput) Scopes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOauthProviderMicrosoft) []string { return v.Scopes }).(pulumi.StringArrayOutput)
-}
-
-type EndpointConfigurationOauthProviderMicrosoftArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOauthProviderMicrosoftArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOauthProviderMicrosoft)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftArrayOutput) ToEndpointConfigurationOauthProviderMicrosoftArrayOutput() EndpointConfigurationOauthProviderMicrosoftArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftArrayOutput) ToEndpointConfigurationOauthProviderMicrosoftArrayOutputWithContext(ctx context.Context) EndpointConfigurationOauthProviderMicrosoftArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOauthProviderMicrosoft] {
-	return pulumix.Output[[]EndpointConfigurationOauthProviderMicrosoft]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOauthProviderMicrosoftArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOauthProviderMicrosoftOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationOauthProviderMicrosoft {
-		return vs[0].([]EndpointConfigurationOauthProviderMicrosoft)[vs[1].(int)]
-	}).(EndpointConfigurationOauthProviderMicrosoftOutput)
-}
-
-type EndpointConfigurationOidc struct {
-	// The OIDC app's client ID and OIDC audience.
-	ClientId *string `pulumi:"clientId"`
-	// The OIDC app's client secret.
-	ClientSecret *string `pulumi:"clientSecret"`
-	// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-	CookiePrefix *string `pulumi:"cookiePrefix"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-	InactivityTimeout *int `pulumi:"inactivityTimeout"`
-	// URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-	Issuer *string `pulumi:"issuer"`
-	// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-	MaximumDuration *int `pulumi:"maximumDuration"`
-	// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-	OptionsPassthrough *bool `pulumi:"optionsPassthrough"`
-	// The set of scopes to request from the OIDC identity provider.
-	Scopes []string `pulumi:"scopes"`
-}
-
-// EndpointConfigurationOidcInput is an input type that accepts EndpointConfigurationOidcArgs and EndpointConfigurationOidcOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOidcInput` via:
-//
-//	EndpointConfigurationOidcArgs{...}
-type EndpointConfigurationOidcInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOidcOutput() EndpointConfigurationOidcOutput
-	ToEndpointConfigurationOidcOutputWithContext(context.Context) EndpointConfigurationOidcOutput
-}
-
-type EndpointConfigurationOidcArgs struct {
-	// The OIDC app's client ID and OIDC audience.
-	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
-	// The OIDC app's client secret.
-	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
-	// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-	CookiePrefix pulumi.StringPtrInput `pulumi:"cookiePrefix"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-	InactivityTimeout pulumi.IntPtrInput `pulumi:"inactivityTimeout"`
-	// URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-	Issuer pulumi.StringPtrInput `pulumi:"issuer"`
-	// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-	MaximumDuration pulumi.IntPtrInput `pulumi:"maximumDuration"`
-	// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-	OptionsPassthrough pulumi.BoolPtrInput `pulumi:"optionsPassthrough"`
-	// The set of scopes to request from the OIDC identity provider.
-	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
-}
-
-func (EndpointConfigurationOidcArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOidc)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOidcArgs) ToEndpointConfigurationOidcOutput() EndpointConfigurationOidcOutput {
-	return i.ToEndpointConfigurationOidcOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOidcArgs) ToEndpointConfigurationOidcOutputWithContext(ctx context.Context) EndpointConfigurationOidcOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOidcOutput)
-}
-
-func (i EndpointConfigurationOidcArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOidc] {
-	return pulumix.Output[EndpointConfigurationOidc]{
-		OutputState: i.ToEndpointConfigurationOidcOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationOidcArrayInput is an input type that accepts EndpointConfigurationOidcArray and EndpointConfigurationOidcArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationOidcArrayInput` via:
-//
-//	EndpointConfigurationOidcArray{ EndpointConfigurationOidcArgs{...} }
-type EndpointConfigurationOidcArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationOidcArrayOutput() EndpointConfigurationOidcArrayOutput
-	ToEndpointConfigurationOidcArrayOutputWithContext(context.Context) EndpointConfigurationOidcArrayOutput
-}
-
-type EndpointConfigurationOidcArray []EndpointConfigurationOidcInput
-
-func (EndpointConfigurationOidcArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOidc)(nil)).Elem()
-}
-
-func (i EndpointConfigurationOidcArray) ToEndpointConfigurationOidcArrayOutput() EndpointConfigurationOidcArrayOutput {
-	return i.ToEndpointConfigurationOidcArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationOidcArray) ToEndpointConfigurationOidcArrayOutputWithContext(ctx context.Context) EndpointConfigurationOidcArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOidcArrayOutput)
-}
-
-func (i EndpointConfigurationOidcArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOidc] {
-	return pulumix.Output[[]EndpointConfigurationOidc]{
-		OutputState: i.ToEndpointConfigurationOidcArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationOidcOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOidcOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationOidc)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOidcOutput) ToEndpointConfigurationOidcOutput() EndpointConfigurationOidcOutput {
-	return o
-}
-
-func (o EndpointConfigurationOidcOutput) ToEndpointConfigurationOidcOutputWithContext(ctx context.Context) EndpointConfigurationOidcOutput {
-	return o
-}
-
-func (o EndpointConfigurationOidcOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationOidc] {
-	return pulumix.Output[EndpointConfigurationOidc]{
-		OutputState: o.OutputState,
-	}
-}
-
-// The OIDC app's client ID and OIDC audience.
-func (o EndpointConfigurationOidcOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *string { return v.ClientId }).(pulumi.StringPtrOutput)
-}
-
-// The OIDC app's client secret.
-func (o EndpointConfigurationOidcOutput) ClientSecret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
-}
-
-// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-func (o EndpointConfigurationOidcOutput) CookiePrefix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *string { return v.CookiePrefix }).(pulumi.StringPtrOutput)
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationOidcOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-func (o EndpointConfigurationOidcOutput) InactivityTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *int { return v.InactivityTimeout }).(pulumi.IntPtrOutput)
-}
-
-// URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-func (o EndpointConfigurationOidcOutput) Issuer() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *string { return v.Issuer }).(pulumi.StringPtrOutput)
-}
-
-// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-func (o EndpointConfigurationOidcOutput) MaximumDuration() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *int { return v.MaximumDuration }).(pulumi.IntPtrOutput)
-}
-
-// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-func (o EndpointConfigurationOidcOutput) OptionsPassthrough() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) *bool { return v.OptionsPassthrough }).(pulumi.BoolPtrOutput)
-}
-
-// The set of scopes to request from the OIDC identity provider.
-func (o EndpointConfigurationOidcOutput) Scopes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationOidc) []string { return v.Scopes }).(pulumi.StringArrayOutput)
-}
-
-type EndpointConfigurationOidcArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationOidcArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationOidc)(nil)).Elem()
-}
-
-func (o EndpointConfigurationOidcArrayOutput) ToEndpointConfigurationOidcArrayOutput() EndpointConfigurationOidcArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOidcArrayOutput) ToEndpointConfigurationOidcArrayOutputWithContext(ctx context.Context) EndpointConfigurationOidcArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationOidcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationOidc] {
-	return pulumix.Output[[]EndpointConfigurationOidc]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationOidcArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOidcOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationOidc {
-		return vs[0].([]EndpointConfigurationOidc)[vs[1].(int)]
-	}).(EndpointConfigurationOidcOutput)
-}
-
-type EndpointConfigurationRequestHeader struct {
-	// a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-	Add map[string]string `pulumi:"add"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-	Removes []string `pulumi:"removes"`
-}
-
-// EndpointConfigurationRequestHeaderInput is an input type that accepts EndpointConfigurationRequestHeaderArgs and EndpointConfigurationRequestHeaderOutput values.
-// You can construct a concrete instance of `EndpointConfigurationRequestHeaderInput` via:
-//
-//	EndpointConfigurationRequestHeaderArgs{...}
-type EndpointConfigurationRequestHeaderInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationRequestHeaderOutput() EndpointConfigurationRequestHeaderOutput
-	ToEndpointConfigurationRequestHeaderOutputWithContext(context.Context) EndpointConfigurationRequestHeaderOutput
-}
-
-type EndpointConfigurationRequestHeaderArgs struct {
-	// a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-	Add pulumi.StringMapInput `pulumi:"add"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-	Removes pulumi.StringArrayInput `pulumi:"removes"`
-}
-
-func (EndpointConfigurationRequestHeaderArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationRequestHeader)(nil)).Elem()
-}
-
-func (i EndpointConfigurationRequestHeaderArgs) ToEndpointConfigurationRequestHeaderOutput() EndpointConfigurationRequestHeaderOutput {
-	return i.ToEndpointConfigurationRequestHeaderOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationRequestHeaderArgs) ToEndpointConfigurationRequestHeaderOutputWithContext(ctx context.Context) EndpointConfigurationRequestHeaderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationRequestHeaderOutput)
-}
-
-func (i EndpointConfigurationRequestHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationRequestHeader] {
-	return pulumix.Output[EndpointConfigurationRequestHeader]{
-		OutputState: i.ToEndpointConfigurationRequestHeaderOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationRequestHeaderArrayInput is an input type that accepts EndpointConfigurationRequestHeaderArray and EndpointConfigurationRequestHeaderArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationRequestHeaderArrayInput` via:
-//
-//	EndpointConfigurationRequestHeaderArray{ EndpointConfigurationRequestHeaderArgs{...} }
-type EndpointConfigurationRequestHeaderArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationRequestHeaderArrayOutput() EndpointConfigurationRequestHeaderArrayOutput
-	ToEndpointConfigurationRequestHeaderArrayOutputWithContext(context.Context) EndpointConfigurationRequestHeaderArrayOutput
-}
-
-type EndpointConfigurationRequestHeaderArray []EndpointConfigurationRequestHeaderInput
-
-func (EndpointConfigurationRequestHeaderArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationRequestHeader)(nil)).Elem()
-}
-
-func (i EndpointConfigurationRequestHeaderArray) ToEndpointConfigurationRequestHeaderArrayOutput() EndpointConfigurationRequestHeaderArrayOutput {
-	return i.ToEndpointConfigurationRequestHeaderArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationRequestHeaderArray) ToEndpointConfigurationRequestHeaderArrayOutputWithContext(ctx context.Context) EndpointConfigurationRequestHeaderArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationRequestHeaderArrayOutput)
-}
-
-func (i EndpointConfigurationRequestHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationRequestHeader] {
-	return pulumix.Output[[]EndpointConfigurationRequestHeader]{
-		OutputState: i.ToEndpointConfigurationRequestHeaderArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationRequestHeaderOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationRequestHeaderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationRequestHeader)(nil)).Elem()
-}
-
-func (o EndpointConfigurationRequestHeaderOutput) ToEndpointConfigurationRequestHeaderOutput() EndpointConfigurationRequestHeaderOutput {
-	return o
-}
-
-func (o EndpointConfigurationRequestHeaderOutput) ToEndpointConfigurationRequestHeaderOutputWithContext(ctx context.Context) EndpointConfigurationRequestHeaderOutput {
-	return o
-}
-
-func (o EndpointConfigurationRequestHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationRequestHeader] {
-	return pulumix.Output[EndpointConfigurationRequestHeader]{
-		OutputState: o.OutputState,
-	}
-}
-
-// a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-func (o EndpointConfigurationRequestHeaderOutput) Add() pulumi.StringMapOutput {
-	return o.ApplyT(func(v EndpointConfigurationRequestHeader) map[string]string { return v.Add }).(pulumi.StringMapOutput)
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationRequestHeaderOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationRequestHeader) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-func (o EndpointConfigurationRequestHeaderOutput) Removes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationRequestHeader) []string { return v.Removes }).(pulumi.StringArrayOutput)
-}
-
-type EndpointConfigurationRequestHeaderArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationRequestHeaderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationRequestHeader)(nil)).Elem()
-}
-
-func (o EndpointConfigurationRequestHeaderArrayOutput) ToEndpointConfigurationRequestHeaderArrayOutput() EndpointConfigurationRequestHeaderArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationRequestHeaderArrayOutput) ToEndpointConfigurationRequestHeaderArrayOutputWithContext(ctx context.Context) EndpointConfigurationRequestHeaderArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationRequestHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationRequestHeader] {
-	return pulumix.Output[[]EndpointConfigurationRequestHeader]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationRequestHeaderArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationRequestHeaderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationRequestHeader {
-		return vs[0].([]EndpointConfigurationRequestHeader)[vs[1].(int)]
-	}).(EndpointConfigurationRequestHeaderOutput)
-}
-
-type EndpointConfigurationResponseHeader struct {
-	// a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-	Add map[string]string `pulumi:"add"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// a list of header names that will be removed from the HTTP Response returned to the HTTP client
-	Removes []string `pulumi:"removes"`
-}
-
-// EndpointConfigurationResponseHeaderInput is an input type that accepts EndpointConfigurationResponseHeaderArgs and EndpointConfigurationResponseHeaderOutput values.
-// You can construct a concrete instance of `EndpointConfigurationResponseHeaderInput` via:
-//
-//	EndpointConfigurationResponseHeaderArgs{...}
-type EndpointConfigurationResponseHeaderInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationResponseHeaderOutput() EndpointConfigurationResponseHeaderOutput
-	ToEndpointConfigurationResponseHeaderOutputWithContext(context.Context) EndpointConfigurationResponseHeaderOutput
-}
-
-type EndpointConfigurationResponseHeaderArgs struct {
-	// a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-	Add pulumi.StringMapInput `pulumi:"add"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// a list of header names that will be removed from the HTTP Response returned to the HTTP client
-	Removes pulumi.StringArrayInput `pulumi:"removes"`
-}
-
-func (EndpointConfigurationResponseHeaderArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationResponseHeader)(nil)).Elem()
-}
-
-func (i EndpointConfigurationResponseHeaderArgs) ToEndpointConfigurationResponseHeaderOutput() EndpointConfigurationResponseHeaderOutput {
-	return i.ToEndpointConfigurationResponseHeaderOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationResponseHeaderArgs) ToEndpointConfigurationResponseHeaderOutputWithContext(ctx context.Context) EndpointConfigurationResponseHeaderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationResponseHeaderOutput)
-}
-
-func (i EndpointConfigurationResponseHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationResponseHeader] {
-	return pulumix.Output[EndpointConfigurationResponseHeader]{
-		OutputState: i.ToEndpointConfigurationResponseHeaderOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationResponseHeaderArrayInput is an input type that accepts EndpointConfigurationResponseHeaderArray and EndpointConfigurationResponseHeaderArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationResponseHeaderArrayInput` via:
-//
-//	EndpointConfigurationResponseHeaderArray{ EndpointConfigurationResponseHeaderArgs{...} }
-type EndpointConfigurationResponseHeaderArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationResponseHeaderArrayOutput() EndpointConfigurationResponseHeaderArrayOutput
-	ToEndpointConfigurationResponseHeaderArrayOutputWithContext(context.Context) EndpointConfigurationResponseHeaderArrayOutput
-}
-
-type EndpointConfigurationResponseHeaderArray []EndpointConfigurationResponseHeaderInput
-
-func (EndpointConfigurationResponseHeaderArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationResponseHeader)(nil)).Elem()
-}
-
-func (i EndpointConfigurationResponseHeaderArray) ToEndpointConfigurationResponseHeaderArrayOutput() EndpointConfigurationResponseHeaderArrayOutput {
-	return i.ToEndpointConfigurationResponseHeaderArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationResponseHeaderArray) ToEndpointConfigurationResponseHeaderArrayOutputWithContext(ctx context.Context) EndpointConfigurationResponseHeaderArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationResponseHeaderArrayOutput)
-}
-
-func (i EndpointConfigurationResponseHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationResponseHeader] {
-	return pulumix.Output[[]EndpointConfigurationResponseHeader]{
-		OutputState: i.ToEndpointConfigurationResponseHeaderArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationResponseHeaderOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationResponseHeaderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationResponseHeader)(nil)).Elem()
-}
-
-func (o EndpointConfigurationResponseHeaderOutput) ToEndpointConfigurationResponseHeaderOutput() EndpointConfigurationResponseHeaderOutput {
-	return o
-}
-
-func (o EndpointConfigurationResponseHeaderOutput) ToEndpointConfigurationResponseHeaderOutputWithContext(ctx context.Context) EndpointConfigurationResponseHeaderOutput {
-	return o
-}
-
-func (o EndpointConfigurationResponseHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationResponseHeader] {
-	return pulumix.Output[EndpointConfigurationResponseHeader]{
-		OutputState: o.OutputState,
-	}
-}
-
-// a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-func (o EndpointConfigurationResponseHeaderOutput) Add() pulumi.StringMapOutput {
-	return o.ApplyT(func(v EndpointConfigurationResponseHeader) map[string]string { return v.Add }).(pulumi.StringMapOutput)
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationResponseHeaderOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationResponseHeader) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// a list of header names that will be removed from the HTTP Response returned to the HTTP client
-func (o EndpointConfigurationResponseHeaderOutput) Removes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationResponseHeader) []string { return v.Removes }).(pulumi.StringArrayOutput)
-}
-
-type EndpointConfigurationResponseHeaderArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationResponseHeaderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationResponseHeader)(nil)).Elem()
-}
-
-func (o EndpointConfigurationResponseHeaderArrayOutput) ToEndpointConfigurationResponseHeaderArrayOutput() EndpointConfigurationResponseHeaderArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationResponseHeaderArrayOutput) ToEndpointConfigurationResponseHeaderArrayOutputWithContext(ctx context.Context) EndpointConfigurationResponseHeaderArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationResponseHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationResponseHeader] {
-	return pulumix.Output[[]EndpointConfigurationResponseHeader]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationResponseHeaderArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationResponseHeaderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationResponseHeader {
-		return vs[0].([]EndpointConfigurationResponseHeader)[vs[1].(int)]
-	}).(EndpointConfigurationResponseHeaderOutput)
-}
-
-type EndpointConfigurationSaml struct {
-	// If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-	AllowIdpInitiated *bool `pulumi:"allowIdpInitiated"`
-	// The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-	AssertionConsumerServiceUrl *string `pulumi:"assertionConsumerServiceUrl"`
-	// If present, only users who are a member of one of the listed groups may access the target endpoint.
-	AuthorizedGroups []string `pulumi:"authorizedGroups"`
-	// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-	CookiePrefix *string `pulumi:"cookiePrefix"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-	EntityId *string `pulumi:"entityId"`
-	// If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-	ForceAuthn *bool `pulumi:"forceAuthn"`
-	// The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-	IdpMetadata *string `pulumi:"idpMetadata"`
-	// The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-	IdpMetadataUrl *string `pulumi:"idpMetadataUrl"`
-	// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-	InactivityTimeout *int `pulumi:"inactivityTimeout"`
-	// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-	MaximumDuration *int `pulumi:"maximumDuration"`
-	// A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-	MetadataUrl *string `pulumi:"metadataUrl"`
-	// Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-	NameidFormat *string `pulumi:"nameidFormat"`
-	// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-	OptionsPassthrough *bool `pulumi:"optionsPassthrough"`
-	// PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-	RequestSigningCertificatePem *string `pulumi:"requestSigningCertificatePem"`
-	// The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-	SingleLogoutUrl *string `pulumi:"singleLogoutUrl"`
-}
-
-// EndpointConfigurationSamlInput is an input type that accepts EndpointConfigurationSamlArgs and EndpointConfigurationSamlOutput values.
-// You can construct a concrete instance of `EndpointConfigurationSamlInput` via:
-//
-//	EndpointConfigurationSamlArgs{...}
-type EndpointConfigurationSamlInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationSamlOutput() EndpointConfigurationSamlOutput
-	ToEndpointConfigurationSamlOutputWithContext(context.Context) EndpointConfigurationSamlOutput
-}
-
-type EndpointConfigurationSamlArgs struct {
-	// If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-	AllowIdpInitiated pulumi.BoolPtrInput `pulumi:"allowIdpInitiated"`
-	// The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-	AssertionConsumerServiceUrl pulumi.StringPtrInput `pulumi:"assertionConsumerServiceUrl"`
-	// If present, only users who are a member of one of the listed groups may access the target endpoint.
-	AuthorizedGroups pulumi.StringArrayInput `pulumi:"authorizedGroups"`
-	// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-	CookiePrefix pulumi.StringPtrInput `pulumi:"cookiePrefix"`
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-	EntityId pulumi.StringPtrInput `pulumi:"entityId"`
-	// If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-	ForceAuthn pulumi.BoolPtrInput `pulumi:"forceAuthn"`
-	// The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-	IdpMetadata pulumi.StringPtrInput `pulumi:"idpMetadata"`
-	// The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-	IdpMetadataUrl pulumi.StringPtrInput `pulumi:"idpMetadataUrl"`
-	// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-	InactivityTimeout pulumi.IntPtrInput `pulumi:"inactivityTimeout"`
-	// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-	MaximumDuration pulumi.IntPtrInput `pulumi:"maximumDuration"`
-	// A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-	MetadataUrl pulumi.StringPtrInput `pulumi:"metadataUrl"`
-	// Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-	NameidFormat pulumi.StringPtrInput `pulumi:"nameidFormat"`
-	// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-	OptionsPassthrough pulumi.BoolPtrInput `pulumi:"optionsPassthrough"`
-	// PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-	RequestSigningCertificatePem pulumi.StringPtrInput `pulumi:"requestSigningCertificatePem"`
-	// The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-	SingleLogoutUrl pulumi.StringPtrInput `pulumi:"singleLogoutUrl"`
-}
-
-func (EndpointConfigurationSamlArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationSaml)(nil)).Elem()
-}
-
-func (i EndpointConfigurationSamlArgs) ToEndpointConfigurationSamlOutput() EndpointConfigurationSamlOutput {
-	return i.ToEndpointConfigurationSamlOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationSamlArgs) ToEndpointConfigurationSamlOutputWithContext(ctx context.Context) EndpointConfigurationSamlOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationSamlOutput)
-}
-
-func (i EndpointConfigurationSamlArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationSaml] {
-	return pulumix.Output[EndpointConfigurationSaml]{
-		OutputState: i.ToEndpointConfigurationSamlOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationSamlArrayInput is an input type that accepts EndpointConfigurationSamlArray and EndpointConfigurationSamlArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationSamlArrayInput` via:
-//
-//	EndpointConfigurationSamlArray{ EndpointConfigurationSamlArgs{...} }
-type EndpointConfigurationSamlArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationSamlArrayOutput() EndpointConfigurationSamlArrayOutput
-	ToEndpointConfigurationSamlArrayOutputWithContext(context.Context) EndpointConfigurationSamlArrayOutput
-}
-
-type EndpointConfigurationSamlArray []EndpointConfigurationSamlInput
-
-func (EndpointConfigurationSamlArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationSaml)(nil)).Elem()
-}
-
-func (i EndpointConfigurationSamlArray) ToEndpointConfigurationSamlArrayOutput() EndpointConfigurationSamlArrayOutput {
-	return i.ToEndpointConfigurationSamlArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationSamlArray) ToEndpointConfigurationSamlArrayOutputWithContext(ctx context.Context) EndpointConfigurationSamlArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationSamlArrayOutput)
-}
-
-func (i EndpointConfigurationSamlArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationSaml] {
-	return pulumix.Output[[]EndpointConfigurationSaml]{
-		OutputState: i.ToEndpointConfigurationSamlArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationSamlOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationSamlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationSaml)(nil)).Elem()
-}
-
-func (o EndpointConfigurationSamlOutput) ToEndpointConfigurationSamlOutput() EndpointConfigurationSamlOutput {
-	return o
-}
-
-func (o EndpointConfigurationSamlOutput) ToEndpointConfigurationSamlOutputWithContext(ctx context.Context) EndpointConfigurationSamlOutput {
-	return o
-}
-
-func (o EndpointConfigurationSamlOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationSaml] {
-	return pulumix.Output[EndpointConfigurationSaml]{
-		OutputState: o.OutputState,
-	}
-}
-
-// If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-func (o EndpointConfigurationSamlOutput) AllowIdpInitiated() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *bool { return v.AllowIdpInitiated }).(pulumi.BoolPtrOutput)
-}
-
-// The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-func (o EndpointConfigurationSamlOutput) AssertionConsumerServiceUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.AssertionConsumerServiceUrl }).(pulumi.StringPtrOutput)
-}
-
-// If present, only users who are a member of one of the listed groups may access the target endpoint.
-func (o EndpointConfigurationSamlOutput) AuthorizedGroups() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) []string { return v.AuthorizedGroups }).(pulumi.StringArrayOutput)
-}
-
-// the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-func (o EndpointConfigurationSamlOutput) CookiePrefix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.CookiePrefix }).(pulumi.StringPtrOutput)
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationSamlOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-func (o EndpointConfigurationSamlOutput) EntityId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.EntityId }).(pulumi.StringPtrOutput)
-}
-
-// If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-func (o EndpointConfigurationSamlOutput) ForceAuthn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *bool { return v.ForceAuthn }).(pulumi.BoolPtrOutput)
-}
-
-// The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-func (o EndpointConfigurationSamlOutput) IdpMetadata() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.IdpMetadata }).(pulumi.StringPtrOutput)
-}
-
-// The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-func (o EndpointConfigurationSamlOutput) IdpMetadataUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.IdpMetadataUrl }).(pulumi.StringPtrOutput)
-}
-
-// Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-func (o EndpointConfigurationSamlOutput) InactivityTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *int { return v.InactivityTimeout }).(pulumi.IntPtrOutput)
-}
-
-// Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-func (o EndpointConfigurationSamlOutput) MaximumDuration() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *int { return v.MaximumDuration }).(pulumi.IntPtrOutput)
-}
-
-// A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-func (o EndpointConfigurationSamlOutput) MetadataUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.MetadataUrl }).(pulumi.StringPtrOutput)
-}
-
-// Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-func (o EndpointConfigurationSamlOutput) NameidFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.NameidFormat }).(pulumi.StringPtrOutput)
-}
-
-// Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-func (o EndpointConfigurationSamlOutput) OptionsPassthrough() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *bool { return v.OptionsPassthrough }).(pulumi.BoolPtrOutput)
-}
-
-// PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-func (o EndpointConfigurationSamlOutput) RequestSigningCertificatePem() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.RequestSigningCertificatePem }).(pulumi.StringPtrOutput)
-}
-
-// The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-func (o EndpointConfigurationSamlOutput) SingleLogoutUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationSaml) *string { return v.SingleLogoutUrl }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationSamlArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationSamlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationSaml)(nil)).Elem()
-}
-
-func (o EndpointConfigurationSamlArrayOutput) ToEndpointConfigurationSamlArrayOutput() EndpointConfigurationSamlArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationSamlArrayOutput) ToEndpointConfigurationSamlArrayOutputWithContext(ctx context.Context) EndpointConfigurationSamlArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationSamlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationSaml] {
-	return pulumix.Output[[]EndpointConfigurationSaml]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationSamlArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationSamlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationSaml {
-		return vs[0].([]EndpointConfigurationSaml)[vs[1].(int)]
-	}).(EndpointConfigurationSamlOutput)
-}
-
-type EndpointConfigurationTlsTermination struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminateAt` is set to `upstream`.
-	MinVersion *string `pulumi:"minVersion"`
-	// `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-	TerminateAt *string `pulumi:"terminateAt"`
-}
-
-// EndpointConfigurationTlsTerminationInput is an input type that accepts EndpointConfigurationTlsTerminationArgs and EndpointConfigurationTlsTerminationOutput values.
-// You can construct a concrete instance of `EndpointConfigurationTlsTerminationInput` via:
-//
-//	EndpointConfigurationTlsTerminationArgs{...}
-type EndpointConfigurationTlsTerminationInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationTlsTerminationOutput() EndpointConfigurationTlsTerminationOutput
-	ToEndpointConfigurationTlsTerminationOutputWithContext(context.Context) EndpointConfigurationTlsTerminationOutput
-}
-
-type EndpointConfigurationTlsTerminationArgs struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminateAt` is set to `upstream`.
-	MinVersion pulumi.StringPtrInput `pulumi:"minVersion"`
-	// `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-	TerminateAt pulumi.StringPtrInput `pulumi:"terminateAt"`
-}
-
-func (EndpointConfigurationTlsTerminationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationTlsTermination)(nil)).Elem()
-}
-
-func (i EndpointConfigurationTlsTerminationArgs) ToEndpointConfigurationTlsTerminationOutput() EndpointConfigurationTlsTerminationOutput {
-	return i.ToEndpointConfigurationTlsTerminationOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationTlsTerminationArgs) ToEndpointConfigurationTlsTerminationOutputWithContext(ctx context.Context) EndpointConfigurationTlsTerminationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationTlsTerminationOutput)
-}
-
-func (i EndpointConfigurationTlsTerminationArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationTlsTermination] {
-	return pulumix.Output[EndpointConfigurationTlsTermination]{
-		OutputState: i.ToEndpointConfigurationTlsTerminationOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationTlsTerminationArrayInput is an input type that accepts EndpointConfigurationTlsTerminationArray and EndpointConfigurationTlsTerminationArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationTlsTerminationArrayInput` via:
-//
-//	EndpointConfigurationTlsTerminationArray{ EndpointConfigurationTlsTerminationArgs{...} }
-type EndpointConfigurationTlsTerminationArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationTlsTerminationArrayOutput() EndpointConfigurationTlsTerminationArrayOutput
-	ToEndpointConfigurationTlsTerminationArrayOutputWithContext(context.Context) EndpointConfigurationTlsTerminationArrayOutput
-}
-
-type EndpointConfigurationTlsTerminationArray []EndpointConfigurationTlsTerminationInput
-
-func (EndpointConfigurationTlsTerminationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationTlsTermination)(nil)).Elem()
-}
-
-func (i EndpointConfigurationTlsTerminationArray) ToEndpointConfigurationTlsTerminationArrayOutput() EndpointConfigurationTlsTerminationArrayOutput {
-	return i.ToEndpointConfigurationTlsTerminationArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationTlsTerminationArray) ToEndpointConfigurationTlsTerminationArrayOutputWithContext(ctx context.Context) EndpointConfigurationTlsTerminationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationTlsTerminationArrayOutput)
-}
-
-func (i EndpointConfigurationTlsTerminationArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationTlsTermination] {
-	return pulumix.Output[[]EndpointConfigurationTlsTermination]{
-		OutputState: i.ToEndpointConfigurationTlsTerminationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationTlsTerminationOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationTlsTerminationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationTlsTermination)(nil)).Elem()
-}
-
-func (o EndpointConfigurationTlsTerminationOutput) ToEndpointConfigurationTlsTerminationOutput() EndpointConfigurationTlsTerminationOutput {
-	return o
-}
-
-func (o EndpointConfigurationTlsTerminationOutput) ToEndpointConfigurationTlsTerminationOutputWithContext(ctx context.Context) EndpointConfigurationTlsTerminationOutput {
-	return o
-}
-
-func (o EndpointConfigurationTlsTerminationOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationTlsTermination] {
-	return pulumix.Output[EndpointConfigurationTlsTermination]{
-		OutputState: o.OutputState,
-	}
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationTlsTerminationOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationTlsTermination) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminateAt` is set to `upstream`.
-func (o EndpointConfigurationTlsTerminationOutput) MinVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationTlsTermination) *string { return v.MinVersion }).(pulumi.StringPtrOutput)
-}
-
-// `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-func (o EndpointConfigurationTlsTerminationOutput) TerminateAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationTlsTermination) *string { return v.TerminateAt }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationTlsTerminationArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationTlsTerminationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationTlsTermination)(nil)).Elem()
-}
-
-func (o EndpointConfigurationTlsTerminationArrayOutput) ToEndpointConfigurationTlsTerminationArrayOutput() EndpointConfigurationTlsTerminationArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationTlsTerminationArrayOutput) ToEndpointConfigurationTlsTerminationArrayOutputWithContext(ctx context.Context) EndpointConfigurationTlsTerminationArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationTlsTerminationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationTlsTermination] {
-	return pulumix.Output[[]EndpointConfigurationTlsTermination]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationTlsTerminationArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationTlsTerminationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationTlsTermination {
-		return vs[0].([]EndpointConfigurationTlsTermination)[vs[1].(int)]
-	}).(EndpointConfigurationTlsTerminationOutput)
-}
-
-type EndpointConfigurationWebhookValidation struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled *bool `pulumi:"enabled"`
-	// a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-	Provider *string `pulumi:"provider"`
-	// a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-	Secret *string `pulumi:"secret"`
-}
-
-// EndpointConfigurationWebhookValidationInput is an input type that accepts EndpointConfigurationWebhookValidationArgs and EndpointConfigurationWebhookValidationOutput values.
-// You can construct a concrete instance of `EndpointConfigurationWebhookValidationInput` via:
-//
-//	EndpointConfigurationWebhookValidationArgs{...}
-type EndpointConfigurationWebhookValidationInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationWebhookValidationOutput() EndpointConfigurationWebhookValidationOutput
-	ToEndpointConfigurationWebhookValidationOutputWithContext(context.Context) EndpointConfigurationWebhookValidationOutput
-}
-
-type EndpointConfigurationWebhookValidationArgs struct {
-	// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-	Provider pulumi.StringPtrInput `pulumi:"provider"`
-	// a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-	Secret pulumi.StringPtrInput `pulumi:"secret"`
-}
-
-func (EndpointConfigurationWebhookValidationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationWebhookValidation)(nil)).Elem()
-}
-
-func (i EndpointConfigurationWebhookValidationArgs) ToEndpointConfigurationWebhookValidationOutput() EndpointConfigurationWebhookValidationOutput {
-	return i.ToEndpointConfigurationWebhookValidationOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationWebhookValidationArgs) ToEndpointConfigurationWebhookValidationOutputWithContext(ctx context.Context) EndpointConfigurationWebhookValidationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationWebhookValidationOutput)
-}
-
-func (i EndpointConfigurationWebhookValidationArgs) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationWebhookValidation] {
-	return pulumix.Output[EndpointConfigurationWebhookValidation]{
-		OutputState: i.ToEndpointConfigurationWebhookValidationOutputWithContext(ctx).OutputState,
-	}
-}
-
-// EndpointConfigurationWebhookValidationArrayInput is an input type that accepts EndpointConfigurationWebhookValidationArray and EndpointConfigurationWebhookValidationArrayOutput values.
-// You can construct a concrete instance of `EndpointConfigurationWebhookValidationArrayInput` via:
-//
-//	EndpointConfigurationWebhookValidationArray{ EndpointConfigurationWebhookValidationArgs{...} }
-type EndpointConfigurationWebhookValidationArrayInput interface {
-	pulumi.Input
-
-	ToEndpointConfigurationWebhookValidationArrayOutput() EndpointConfigurationWebhookValidationArrayOutput
-	ToEndpointConfigurationWebhookValidationArrayOutputWithContext(context.Context) EndpointConfigurationWebhookValidationArrayOutput
-}
-
-type EndpointConfigurationWebhookValidationArray []EndpointConfigurationWebhookValidationInput
-
-func (EndpointConfigurationWebhookValidationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationWebhookValidation)(nil)).Elem()
-}
-
-func (i EndpointConfigurationWebhookValidationArray) ToEndpointConfigurationWebhookValidationArrayOutput() EndpointConfigurationWebhookValidationArrayOutput {
-	return i.ToEndpointConfigurationWebhookValidationArrayOutputWithContext(context.Background())
-}
-
-func (i EndpointConfigurationWebhookValidationArray) ToEndpointConfigurationWebhookValidationArrayOutputWithContext(ctx context.Context) EndpointConfigurationWebhookValidationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationWebhookValidationArrayOutput)
-}
-
-func (i EndpointConfigurationWebhookValidationArray) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationWebhookValidation] {
-	return pulumix.Output[[]EndpointConfigurationWebhookValidation]{
-		OutputState: i.ToEndpointConfigurationWebhookValidationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
-type EndpointConfigurationWebhookValidationOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationWebhookValidationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointConfigurationWebhookValidation)(nil)).Elem()
-}
-
-func (o EndpointConfigurationWebhookValidationOutput) ToEndpointConfigurationWebhookValidationOutput() EndpointConfigurationWebhookValidationOutput {
-	return o
-}
-
-func (o EndpointConfigurationWebhookValidationOutput) ToEndpointConfigurationWebhookValidationOutputWithContext(ctx context.Context) EndpointConfigurationWebhookValidationOutput {
-	return o
-}
-
-func (o EndpointConfigurationWebhookValidationOutput) ToOutput(ctx context.Context) pulumix.Output[EndpointConfigurationWebhookValidation] {
-	return pulumix.Output[EndpointConfigurationWebhookValidation]{
-		OutputState: o.OutputState,
-	}
-}
-
-// `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-func (o EndpointConfigurationWebhookValidationOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationWebhookValidation) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-func (o EndpointConfigurationWebhookValidationOutput) Provider() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationWebhookValidation) *string { return v.Provider }).(pulumi.StringPtrOutput)
-}
-
-// a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-func (o EndpointConfigurationWebhookValidationOutput) Secret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointConfigurationWebhookValidation) *string { return v.Secret }).(pulumi.StringPtrOutput)
-}
-
-type EndpointConfigurationWebhookValidationArrayOutput struct{ *pulumi.OutputState }
-
-func (EndpointConfigurationWebhookValidationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointConfigurationWebhookValidation)(nil)).Elem()
-}
-
-func (o EndpointConfigurationWebhookValidationArrayOutput) ToEndpointConfigurationWebhookValidationArrayOutput() EndpointConfigurationWebhookValidationArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationWebhookValidationArrayOutput) ToEndpointConfigurationWebhookValidationArrayOutputWithContext(ctx context.Context) EndpointConfigurationWebhookValidationArrayOutput {
-	return o
-}
-
-func (o EndpointConfigurationWebhookValidationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EndpointConfigurationWebhookValidation] {
-	return pulumix.Output[[]EndpointConfigurationWebhookValidation]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o EndpointConfigurationWebhookValidationArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationWebhookValidationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointConfigurationWebhookValidation {
-		return vs[0].([]EndpointConfigurationWebhookValidation)[vs[1].(int)]
-	}).(EndpointConfigurationWebhookValidationOutput)
+func (o AgentIngressCertificateManagementPolicyArrayOutput) Index(i pulumi.IntInput) AgentIngressCertificateManagementPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AgentIngressCertificateManagementPolicy {
+		return vs[0].([]AgentIngressCertificateManagementPolicy)[vs[1].(int)]
+	}).(AgentIngressCertificateManagementPolicyOutput)
 }
 
 type EventDestinationTarget struct {
 	// Configuration used to send events to Amazon CloudWatch Logs.
 	CloudwatchLogs []EventDestinationTargetCloudwatchLog `pulumi:"cloudwatchLogs"`
+	// Configuration used to send events to Datadog.
+	Datadogs []EventDestinationTargetDatadog `pulumi:"datadogs"`
 	// Configuration used for internal debugging.
 	Debugs []EventDestinationTargetDebug `pulumi:"debugs"`
 	// Configuration used to send events to Amazon Kinesis Data Firehose.
@@ -3405,6 +171,8 @@ type EventDestinationTargetInput interface {
 type EventDestinationTargetArgs struct {
 	// Configuration used to send events to Amazon CloudWatch Logs.
 	CloudwatchLogs EventDestinationTargetCloudwatchLogArrayInput `pulumi:"cloudwatchLogs"`
+	// Configuration used to send events to Datadog.
+	Datadogs EventDestinationTargetDatadogArrayInput `pulumi:"datadogs"`
 	// Configuration used for internal debugging.
 	Debugs EventDestinationTargetDebugArrayInput `pulumi:"debugs"`
 	// Configuration used to send events to Amazon Kinesis Data Firehose.
@@ -3485,6 +253,11 @@ func (o EventDestinationTargetOutput) ToOutput(ctx context.Context) pulumix.Outp
 // Configuration used to send events to Amazon CloudWatch Logs.
 func (o EventDestinationTargetOutput) CloudwatchLogs() EventDestinationTargetCloudwatchLogArrayOutput {
 	return o.ApplyT(func(v EventDestinationTarget) []EventDestinationTargetCloudwatchLog { return v.CloudwatchLogs }).(EventDestinationTargetCloudwatchLogArrayOutput)
+}
+
+// Configuration used to send events to Datadog.
+func (o EventDestinationTargetOutput) Datadogs() EventDestinationTargetDatadogArrayOutput {
+	return o.ApplyT(func(v EventDestinationTarget) []EventDestinationTargetDatadog { return v.Datadogs }).(EventDestinationTargetDatadogArrayOutput)
 }
 
 // Configuration used for internal debugging.
@@ -4020,6 +793,142 @@ func (o EventDestinationTargetCloudwatchLogAuthRoleArrayOutput) Index(i pulumi.I
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EventDestinationTargetCloudwatchLogAuthRole {
 		return vs[0].([]EventDestinationTargetCloudwatchLogAuthRole)[vs[1].(int)]
 	}).(EventDestinationTargetCloudwatchLogAuthRoleOutput)
+}
+
+type EventDestinationTargetDatadog struct {
+	ApiKey  *string `pulumi:"apiKey"`
+	Ddsite  *string `pulumi:"ddsite"`
+	Ddtags  *string `pulumi:"ddtags"`
+	Service *string `pulumi:"service"`
+}
+
+// EventDestinationTargetDatadogInput is an input type that accepts EventDestinationTargetDatadogArgs and EventDestinationTargetDatadogOutput values.
+// You can construct a concrete instance of `EventDestinationTargetDatadogInput` via:
+//
+//	EventDestinationTargetDatadogArgs{...}
+type EventDestinationTargetDatadogInput interface {
+	pulumi.Input
+
+	ToEventDestinationTargetDatadogOutput() EventDestinationTargetDatadogOutput
+	ToEventDestinationTargetDatadogOutputWithContext(context.Context) EventDestinationTargetDatadogOutput
+}
+
+type EventDestinationTargetDatadogArgs struct {
+	ApiKey  pulumi.StringPtrInput `pulumi:"apiKey"`
+	Ddsite  pulumi.StringPtrInput `pulumi:"ddsite"`
+	Ddtags  pulumi.StringPtrInput `pulumi:"ddtags"`
+	Service pulumi.StringPtrInput `pulumi:"service"`
+}
+
+func (EventDestinationTargetDatadogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventDestinationTargetDatadog)(nil)).Elem()
+}
+
+func (i EventDestinationTargetDatadogArgs) ToEventDestinationTargetDatadogOutput() EventDestinationTargetDatadogOutput {
+	return i.ToEventDestinationTargetDatadogOutputWithContext(context.Background())
+}
+
+func (i EventDestinationTargetDatadogArgs) ToEventDestinationTargetDatadogOutputWithContext(ctx context.Context) EventDestinationTargetDatadogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventDestinationTargetDatadogOutput)
+}
+
+func (i EventDestinationTargetDatadogArgs) ToOutput(ctx context.Context) pulumix.Output[EventDestinationTargetDatadog] {
+	return pulumix.Output[EventDestinationTargetDatadog]{
+		OutputState: i.ToEventDestinationTargetDatadogOutputWithContext(ctx).OutputState,
+	}
+}
+
+// EventDestinationTargetDatadogArrayInput is an input type that accepts EventDestinationTargetDatadogArray and EventDestinationTargetDatadogArrayOutput values.
+// You can construct a concrete instance of `EventDestinationTargetDatadogArrayInput` via:
+//
+//	EventDestinationTargetDatadogArray{ EventDestinationTargetDatadogArgs{...} }
+type EventDestinationTargetDatadogArrayInput interface {
+	pulumi.Input
+
+	ToEventDestinationTargetDatadogArrayOutput() EventDestinationTargetDatadogArrayOutput
+	ToEventDestinationTargetDatadogArrayOutputWithContext(context.Context) EventDestinationTargetDatadogArrayOutput
+}
+
+type EventDestinationTargetDatadogArray []EventDestinationTargetDatadogInput
+
+func (EventDestinationTargetDatadogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EventDestinationTargetDatadog)(nil)).Elem()
+}
+
+func (i EventDestinationTargetDatadogArray) ToEventDestinationTargetDatadogArrayOutput() EventDestinationTargetDatadogArrayOutput {
+	return i.ToEventDestinationTargetDatadogArrayOutputWithContext(context.Background())
+}
+
+func (i EventDestinationTargetDatadogArray) ToEventDestinationTargetDatadogArrayOutputWithContext(ctx context.Context) EventDestinationTargetDatadogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventDestinationTargetDatadogArrayOutput)
+}
+
+func (i EventDestinationTargetDatadogArray) ToOutput(ctx context.Context) pulumix.Output[[]EventDestinationTargetDatadog] {
+	return pulumix.Output[[]EventDestinationTargetDatadog]{
+		OutputState: i.ToEventDestinationTargetDatadogArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type EventDestinationTargetDatadogOutput struct{ *pulumi.OutputState }
+
+func (EventDestinationTargetDatadogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventDestinationTargetDatadog)(nil)).Elem()
+}
+
+func (o EventDestinationTargetDatadogOutput) ToEventDestinationTargetDatadogOutput() EventDestinationTargetDatadogOutput {
+	return o
+}
+
+func (o EventDestinationTargetDatadogOutput) ToEventDestinationTargetDatadogOutputWithContext(ctx context.Context) EventDestinationTargetDatadogOutput {
+	return o
+}
+
+func (o EventDestinationTargetDatadogOutput) ToOutput(ctx context.Context) pulumix.Output[EventDestinationTargetDatadog] {
+	return pulumix.Output[EventDestinationTargetDatadog]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o EventDestinationTargetDatadogOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EventDestinationTargetDatadog) *string { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+func (o EventDestinationTargetDatadogOutput) Ddsite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EventDestinationTargetDatadog) *string { return v.Ddsite }).(pulumi.StringPtrOutput)
+}
+
+func (o EventDestinationTargetDatadogOutput) Ddtags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EventDestinationTargetDatadog) *string { return v.Ddtags }).(pulumi.StringPtrOutput)
+}
+
+func (o EventDestinationTargetDatadogOutput) Service() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EventDestinationTargetDatadog) *string { return v.Service }).(pulumi.StringPtrOutput)
+}
+
+type EventDestinationTargetDatadogArrayOutput struct{ *pulumi.OutputState }
+
+func (EventDestinationTargetDatadogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EventDestinationTargetDatadog)(nil)).Elem()
+}
+
+func (o EventDestinationTargetDatadogArrayOutput) ToEventDestinationTargetDatadogArrayOutput() EventDestinationTargetDatadogArrayOutput {
+	return o
+}
+
+func (o EventDestinationTargetDatadogArrayOutput) ToEventDestinationTargetDatadogArrayOutputWithContext(ctx context.Context) EventDestinationTargetDatadogArrayOutput {
+	return o
+}
+
+func (o EventDestinationTargetDatadogArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EventDestinationTargetDatadog] {
+	return pulumix.Output[[]EventDestinationTargetDatadog]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o EventDestinationTargetDatadogArrayOutput) Index(i pulumi.IntInput) EventDestinationTargetDatadogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EventDestinationTargetDatadog {
+		return vs[0].([]EventDestinationTargetDatadog)[vs[1].(int)]
+	}).(EventDestinationTargetDatadogOutput)
 }
 
 type EventDestinationTargetDebug struct {
@@ -5534,53 +2443,139 @@ func (o TlsCertificateSubjectAlternativeNameArrayOutput) Index(i pulumi.IntInput
 	}).(TlsCertificateSubjectAlternativeNameOutput)
 }
 
+type TunnelGroupBackendTunnel struct {
+	// a resource identifier
+	Id *string `pulumi:"id"`
+	// a uri for locating a resource
+	Uri *string `pulumi:"uri"`
+}
+
+// TunnelGroupBackendTunnelInput is an input type that accepts TunnelGroupBackendTunnelArgs and TunnelGroupBackendTunnelOutput values.
+// You can construct a concrete instance of `TunnelGroupBackendTunnelInput` via:
+//
+//	TunnelGroupBackendTunnelArgs{...}
+type TunnelGroupBackendTunnelInput interface {
+	pulumi.Input
+
+	ToTunnelGroupBackendTunnelOutput() TunnelGroupBackendTunnelOutput
+	ToTunnelGroupBackendTunnelOutputWithContext(context.Context) TunnelGroupBackendTunnelOutput
+}
+
+type TunnelGroupBackendTunnelArgs struct {
+	// a resource identifier
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// a uri for locating a resource
+	Uri pulumi.StringPtrInput `pulumi:"uri"`
+}
+
+func (TunnelGroupBackendTunnelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelGroupBackendTunnel)(nil)).Elem()
+}
+
+func (i TunnelGroupBackendTunnelArgs) ToTunnelGroupBackendTunnelOutput() TunnelGroupBackendTunnelOutput {
+	return i.ToTunnelGroupBackendTunnelOutputWithContext(context.Background())
+}
+
+func (i TunnelGroupBackendTunnelArgs) ToTunnelGroupBackendTunnelOutputWithContext(ctx context.Context) TunnelGroupBackendTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelGroupBackendTunnelOutput)
+}
+
+func (i TunnelGroupBackendTunnelArgs) ToOutput(ctx context.Context) pulumix.Output[TunnelGroupBackendTunnel] {
+	return pulumix.Output[TunnelGroupBackendTunnel]{
+		OutputState: i.ToTunnelGroupBackendTunnelOutputWithContext(ctx).OutputState,
+	}
+}
+
+// TunnelGroupBackendTunnelArrayInput is an input type that accepts TunnelGroupBackendTunnelArray and TunnelGroupBackendTunnelArrayOutput values.
+// You can construct a concrete instance of `TunnelGroupBackendTunnelArrayInput` via:
+//
+//	TunnelGroupBackendTunnelArray{ TunnelGroupBackendTunnelArgs{...} }
+type TunnelGroupBackendTunnelArrayInput interface {
+	pulumi.Input
+
+	ToTunnelGroupBackendTunnelArrayOutput() TunnelGroupBackendTunnelArrayOutput
+	ToTunnelGroupBackendTunnelArrayOutputWithContext(context.Context) TunnelGroupBackendTunnelArrayOutput
+}
+
+type TunnelGroupBackendTunnelArray []TunnelGroupBackendTunnelInput
+
+func (TunnelGroupBackendTunnelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TunnelGroupBackendTunnel)(nil)).Elem()
+}
+
+func (i TunnelGroupBackendTunnelArray) ToTunnelGroupBackendTunnelArrayOutput() TunnelGroupBackendTunnelArrayOutput {
+	return i.ToTunnelGroupBackendTunnelArrayOutputWithContext(context.Background())
+}
+
+func (i TunnelGroupBackendTunnelArray) ToTunnelGroupBackendTunnelArrayOutputWithContext(ctx context.Context) TunnelGroupBackendTunnelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelGroupBackendTunnelArrayOutput)
+}
+
+func (i TunnelGroupBackendTunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]TunnelGroupBackendTunnel] {
+	return pulumix.Output[[]TunnelGroupBackendTunnel]{
+		OutputState: i.ToTunnelGroupBackendTunnelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type TunnelGroupBackendTunnelOutput struct{ *pulumi.OutputState }
+
+func (TunnelGroupBackendTunnelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelGroupBackendTunnel)(nil)).Elem()
+}
+
+func (o TunnelGroupBackendTunnelOutput) ToTunnelGroupBackendTunnelOutput() TunnelGroupBackendTunnelOutput {
+	return o
+}
+
+func (o TunnelGroupBackendTunnelOutput) ToTunnelGroupBackendTunnelOutputWithContext(ctx context.Context) TunnelGroupBackendTunnelOutput {
+	return o
+}
+
+func (o TunnelGroupBackendTunnelOutput) ToOutput(ctx context.Context) pulumix.Output[TunnelGroupBackendTunnel] {
+	return pulumix.Output[TunnelGroupBackendTunnel]{
+		OutputState: o.OutputState,
+	}
+}
+
+// a resource identifier
+func (o TunnelGroupBackendTunnelOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TunnelGroupBackendTunnel) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// a uri for locating a resource
+func (o TunnelGroupBackendTunnelOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TunnelGroupBackendTunnel) *string { return v.Uri }).(pulumi.StringPtrOutput)
+}
+
+type TunnelGroupBackendTunnelArrayOutput struct{ *pulumi.OutputState }
+
+func (TunnelGroupBackendTunnelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TunnelGroupBackendTunnel)(nil)).Elem()
+}
+
+func (o TunnelGroupBackendTunnelArrayOutput) ToTunnelGroupBackendTunnelArrayOutput() TunnelGroupBackendTunnelArrayOutput {
+	return o
+}
+
+func (o TunnelGroupBackendTunnelArrayOutput) ToTunnelGroupBackendTunnelArrayOutputWithContext(ctx context.Context) TunnelGroupBackendTunnelArrayOutput {
+	return o
+}
+
+func (o TunnelGroupBackendTunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]TunnelGroupBackendTunnel] {
+	return pulumix.Output[[]TunnelGroupBackendTunnel]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o TunnelGroupBackendTunnelArrayOutput) Index(i pulumi.IntInput) TunnelGroupBackendTunnelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TunnelGroupBackendTunnel {
+		return vs[0].([]TunnelGroupBackendTunnel)[vs[1].(int)]
+	}).(TunnelGroupBackendTunnelOutput)
+}
+
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationBackendInput)(nil)).Elem(), EndpointConfigurationBackendArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationBackendArrayInput)(nil)).Elem(), EndpointConfigurationBackendArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationBackendBackendInput)(nil)).Elem(), EndpointConfigurationBackendBackendArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationBackendBackendArrayInput)(nil)).Elem(), EndpointConfigurationBackendBackendArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationBasicAuthInput)(nil)).Elem(), EndpointConfigurationBasicAuthArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationBasicAuthArrayInput)(nil)).Elem(), EndpointConfigurationBasicAuthArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationCircuitBreakerInput)(nil)).Elem(), EndpointConfigurationCircuitBreakerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationCircuitBreakerArrayInput)(nil)).Elem(), EndpointConfigurationCircuitBreakerArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationCompressionInput)(nil)).Elem(), EndpointConfigurationCompressionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationCompressionArrayInput)(nil)).Elem(), EndpointConfigurationCompressionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationIpPolicyInput)(nil)).Elem(), EndpointConfigurationIpPolicyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationIpPolicyArrayInput)(nil)).Elem(), EndpointConfigurationIpPolicyArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationIpPolicyIpPolicyInput)(nil)).Elem(), EndpointConfigurationIpPolicyIpPolicyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationIpPolicyIpPolicyArrayInput)(nil)).Elem(), EndpointConfigurationIpPolicyIpPolicyArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationLoggingInput)(nil)).Elem(), EndpointConfigurationLoggingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationLoggingArrayInput)(nil)).Elem(), EndpointConfigurationLoggingArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationLoggingEventStreamInput)(nil)).Elem(), EndpointConfigurationLoggingEventStreamArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationLoggingEventStreamArrayInput)(nil)).Elem(), EndpointConfigurationLoggingEventStreamArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationMutualTlInput)(nil)).Elem(), EndpointConfigurationMutualTlArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationMutualTlArrayInput)(nil)).Elem(), EndpointConfigurationMutualTlArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationMutualTlCertificateAuthorityInput)(nil)).Elem(), EndpointConfigurationMutualTlCertificateAuthorityArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationMutualTlCertificateAuthorityArrayInput)(nil)).Elem(), EndpointConfigurationMutualTlCertificateAuthorityArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthInput)(nil)).Elem(), EndpointConfigurationOauthArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthArrayInput)(nil)).Elem(), EndpointConfigurationOauthArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderInput)(nil)).Elem(), EndpointConfigurationOauthProviderArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderArrayInput)(nil)).Elem(), EndpointConfigurationOauthProviderArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderFacebookInput)(nil)).Elem(), EndpointConfigurationOauthProviderFacebookArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderFacebookArrayInput)(nil)).Elem(), EndpointConfigurationOauthProviderFacebookArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderGithubInput)(nil)).Elem(), EndpointConfigurationOauthProviderGithubArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderGithubArrayInput)(nil)).Elem(), EndpointConfigurationOauthProviderGithubArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderGoogleInput)(nil)).Elem(), EndpointConfigurationOauthProviderGoogleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderGoogleArrayInput)(nil)).Elem(), EndpointConfigurationOauthProviderGoogleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderMicrosoftInput)(nil)).Elem(), EndpointConfigurationOauthProviderMicrosoftArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOauthProviderMicrosoftArrayInput)(nil)).Elem(), EndpointConfigurationOauthProviderMicrosoftArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOidcInput)(nil)).Elem(), EndpointConfigurationOidcArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationOidcArrayInput)(nil)).Elem(), EndpointConfigurationOidcArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationRequestHeaderInput)(nil)).Elem(), EndpointConfigurationRequestHeaderArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationRequestHeaderArrayInput)(nil)).Elem(), EndpointConfigurationRequestHeaderArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationResponseHeaderInput)(nil)).Elem(), EndpointConfigurationResponseHeaderArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationResponseHeaderArrayInput)(nil)).Elem(), EndpointConfigurationResponseHeaderArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationSamlInput)(nil)).Elem(), EndpointConfigurationSamlArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationSamlArrayInput)(nil)).Elem(), EndpointConfigurationSamlArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationTlsTerminationInput)(nil)).Elem(), EndpointConfigurationTlsTerminationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationTlsTerminationArrayInput)(nil)).Elem(), EndpointConfigurationTlsTerminationArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationWebhookValidationInput)(nil)).Elem(), EndpointConfigurationWebhookValidationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EndpointConfigurationWebhookValidationArrayInput)(nil)).Elem(), EndpointConfigurationWebhookValidationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AgentIngressCertificateManagementPolicyInput)(nil)).Elem(), AgentIngressCertificateManagementPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AgentIngressCertificateManagementPolicyArrayInput)(nil)).Elem(), AgentIngressCertificateManagementPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetInput)(nil)).Elem(), EventDestinationTargetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetArrayInput)(nil)).Elem(), EventDestinationTargetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetCloudwatchLogInput)(nil)).Elem(), EventDestinationTargetCloudwatchLogArgs{})
@@ -5591,6 +2586,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetCloudwatchLogAuthCredArrayInput)(nil)).Elem(), EventDestinationTargetCloudwatchLogAuthCredArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetCloudwatchLogAuthRoleInput)(nil)).Elem(), EventDestinationTargetCloudwatchLogAuthRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetCloudwatchLogAuthRoleArrayInput)(nil)).Elem(), EventDestinationTargetCloudwatchLogAuthRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetDatadogInput)(nil)).Elem(), EventDestinationTargetDatadogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetDatadogArrayInput)(nil)).Elem(), EventDestinationTargetDatadogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetDebugInput)(nil)).Elem(), EventDestinationTargetDebugArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetDebugArrayInput)(nil)).Elem(), EventDestinationTargetDebugArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventDestinationTargetFirehoseInput)(nil)).Elem(), EventDestinationTargetFirehoseArgs{})
@@ -5615,52 +2612,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ReservedDomainCertificateManagementPolicyArrayInput)(nil)).Elem(), ReservedDomainCertificateManagementPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsCertificateSubjectAlternativeNameInput)(nil)).Elem(), TlsCertificateSubjectAlternativeNameArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsCertificateSubjectAlternativeNameArrayInput)(nil)).Elem(), TlsCertificateSubjectAlternativeNameArray{})
-	pulumi.RegisterOutputType(EndpointConfigurationBackendOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationBackendArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationBackendBackendOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationBackendBackendArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationBasicAuthOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationBasicAuthArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationCircuitBreakerOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationCircuitBreakerArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationCompressionOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationCompressionArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationIpPolicyOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationIpPolicyArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationIpPolicyIpPolicyOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationIpPolicyIpPolicyArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationLoggingOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationLoggingArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationLoggingEventStreamOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationLoggingEventStreamArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationMutualTlOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationMutualTlArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationMutualTlCertificateAuthorityOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationMutualTlCertificateAuthorityArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderFacebookOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderFacebookArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderGithubOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderGithubArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderGoogleOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderGoogleArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderMicrosoftOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOauthProviderMicrosoftArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOidcOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationOidcArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationRequestHeaderOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationRequestHeaderArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationResponseHeaderOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationResponseHeaderArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationSamlOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationSamlArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationTlsTerminationOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationTlsTerminationArrayOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationWebhookValidationOutput{})
-	pulumi.RegisterOutputType(EndpointConfigurationWebhookValidationArrayOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TunnelGroupBackendTunnelInput)(nil)).Elem(), TunnelGroupBackendTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TunnelGroupBackendTunnelArrayInput)(nil)).Elem(), TunnelGroupBackendTunnelArray{})
+	pulumi.RegisterOutputType(AgentIngressCertificateManagementPolicyOutput{})
+	pulumi.RegisterOutputType(AgentIngressCertificateManagementPolicyArrayOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetArrayOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetCloudwatchLogOutput{})
@@ -5671,6 +2626,8 @@ func init() {
 	pulumi.RegisterOutputType(EventDestinationTargetCloudwatchLogAuthCredArrayOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetCloudwatchLogAuthRoleOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetCloudwatchLogAuthRoleArrayOutput{})
+	pulumi.RegisterOutputType(EventDestinationTargetDatadogOutput{})
+	pulumi.RegisterOutputType(EventDestinationTargetDatadogArrayOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetDebugOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetDebugArrayOutput{})
 	pulumi.RegisterOutputType(EventDestinationTargetFirehoseOutput{})
@@ -5695,4 +2652,6 @@ func init() {
 	pulumi.RegisterOutputType(ReservedDomainCertificateManagementPolicyArrayOutput{})
 	pulumi.RegisterOutputType(TlsCertificateSubjectAlternativeNameOutput{})
 	pulumi.RegisterOutputType(TlsCertificateSubjectAlternativeNameArrayOutput{})
+	pulumi.RegisterOutputType(TunnelGroupBackendTunnelOutput{})
+	pulumi.RegisterOutputType(TunnelGroupBackendTunnelArrayOutput{})
 }

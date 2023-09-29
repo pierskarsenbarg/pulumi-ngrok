@@ -21,6 +21,7 @@ class ReservedDomainArgs:
                  certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ReservedDomainCertificateManagementPolicyArgs']]]] = None,
                  cname_target: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
                  http_endpoint_configuration_id: Optional[pulumi.Input[str]] = None,
                  https_endpoint_configuration_id: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,7 @@ class ReservedDomainArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ReservedDomainCertificateManagementPolicyArgs']]] certificate_management_policies: configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
         :param pulumi.Input[str] cname_target: DNS CNAME target for a custom hostname, or null if the reserved domain is a subdomain of *.ngrok.io
         :param pulumi.Input[str] description: human-readable description of what this reserved domain will be used for
+        :param pulumi.Input[str] domain: hostname of the reserved domain
         :param pulumi.Input[str] http_endpoint_configuration_id: ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
         :param pulumi.Input[str] https_endpoint_configuration_id: ID of an endpoint configuration of type https that will be used to handle inbound https traffic to this domain
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this reserved domain. Optional, max 4096 bytes.
@@ -49,6 +51,8 @@ class ReservedDomainArgs:
             pulumi.set(__self__, "cname_target", cname_target)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
         if http_endpoint_configuration_id is not None:
             pulumi.set(__self__, "http_endpoint_configuration_id", http_endpoint_configuration_id)
         if https_endpoint_configuration_id is not None:
@@ -119,6 +123,18 @@ class ReservedDomainArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        hostname of the reserved domain
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain", value)
 
     @property
     @pulumi.getter(name="httpEndpointConfigurationId")
@@ -375,6 +391,7 @@ class ReservedDomain(pulumi.CustomResource):
                  certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReservedDomainCertificateManagementPolicyArgs']]]]] = None,
                  cname_target: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
                  http_endpoint_configuration_id: Optional[pulumi.Input[str]] = None,
                  https_endpoint_configuration_id: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
@@ -394,7 +411,7 @@ class ReservedDomain(pulumi.CustomResource):
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.ReservedDomain("example",
-            certificate_id="cert_25auGELSEngiae3wzmLLesiZn8h",
+            certificate_id="cert_26rOxyrxCJlOc0frz7MK0HQjRvd",
             region="us")
         ```
 
@@ -405,6 +422,7 @@ class ReservedDomain(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReservedDomainCertificateManagementPolicyArgs']]]] certificate_management_policies: configuration for automatic management of TLS certificates for this domain, or null if automatic management is disabled
         :param pulumi.Input[str] cname_target: DNS CNAME target for a custom hostname, or null if the reserved domain is a subdomain of *.ngrok.io
         :param pulumi.Input[str] description: human-readable description of what this reserved domain will be used for
+        :param pulumi.Input[str] domain: hostname of the reserved domain
         :param pulumi.Input[str] http_endpoint_configuration_id: ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
         :param pulumi.Input[str] https_endpoint_configuration_id: ID of an endpoint configuration of type https that will be used to handle inbound https traffic to this domain
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this reserved domain. Optional, max 4096 bytes.
@@ -430,7 +448,7 @@ class ReservedDomain(pulumi.CustomResource):
         import pierskarsenbarg_pulumi_ngrok as ngrok
 
         example = ngrok.ReservedDomain("example",
-            certificate_id="cert_25auGELSEngiae3wzmLLesiZn8h",
+            certificate_id="cert_26rOxyrxCJlOc0frz7MK0HQjRvd",
             region="us")
         ```
 
@@ -454,6 +472,7 @@ class ReservedDomain(pulumi.CustomResource):
                  certificate_management_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReservedDomainCertificateManagementPolicyArgs']]]]] = None,
                  cname_target: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
                  http_endpoint_configuration_id: Optional[pulumi.Input[str]] = None,
                  https_endpoint_configuration_id: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
@@ -473,12 +492,12 @@ class ReservedDomain(pulumi.CustomResource):
             __props__.__dict__["certificate_management_policies"] = certificate_management_policies
             __props__.__dict__["cname_target"] = cname_target
             __props__.__dict__["description"] = description
+            __props__.__dict__["domain"] = domain
             __props__.__dict__["http_endpoint_configuration_id"] = http_endpoint_configuration_id
             __props__.__dict__["https_endpoint_configuration_id"] = https_endpoint_configuration_id
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
-            __props__.__dict__["domain"] = None
         super(ReservedDomain, __self__).__init__(
             'ngrok:index/reservedDomain:ReservedDomain',
             resource_name,
@@ -578,7 +597,7 @@ class ReservedDomain(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def domain(self) -> pulumi.Output[str]:
+    def domain(self) -> pulumi.Output[Optional[str]]:
         """
         hostname of the reserved domain
         """

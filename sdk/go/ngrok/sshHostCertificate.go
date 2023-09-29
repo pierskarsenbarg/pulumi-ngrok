@@ -39,8 +39,8 @@ import (
 //					pulumi.String("10.2.42.9"),
 //				},
 //				PublicKey:                 pulumi.String("ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI3oSgxrOEJ+tIJ/n6VYtxQIFvynqlOHpfOAJ4x4OfmMYDkbf8dr6RAuUSf+ZC2HMCujta7EjZ9t+6v08Ue+Cgk= inconshreveable.com"),
-//				SshCertificateAuthorityId: pulumi.String("sshca_25auH7sr0BYJFNyfJUwXPzyyFAz"),
-//				ValidUntil:                pulumi.String("2022-05-26T08:23:47Z"),
+//				SshCertificateAuthorityId: pulumi.String("sshca_26rOyuA7GzMmCmvfOui9TPWNxLa"),
+//				ValidUntil:                pulumi.String("2022-06-22T22:21:35-05:00"),
 //			})
 //			if err != nil {
 //				return err

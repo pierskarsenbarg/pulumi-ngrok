@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.IpRestriction("example", {
- *     ipPolicyIds: ["ipp_25auGwa4eEWUeCOBfCZkwtwqFey"],
+ *     ipPolicyIds: ["ipp_26rOyhglKmVz5ABMOwZwPFBFXBZ"],
  *     type: "dashboard",
  * });
  * ```

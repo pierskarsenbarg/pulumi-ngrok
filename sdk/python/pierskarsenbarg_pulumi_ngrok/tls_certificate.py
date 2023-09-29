@@ -23,8 +23,8 @@ class TlsCertificateArgs:
                  subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input['TlsCertificateSubjectAlternativeNameArgs']]]] = None):
         """
         The set of arguments for constructing a TlsCertificate resource.
-        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
-        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
+        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         :param pulumi.Input[str] description: human-readable description of this TLS certificate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
         :param pulumi.Input[Sequence[pulumi.Input['TlsCertificateSubjectAlternativeNameArgs']]] subject_alternative_names: subject alternative names (SANs) from the leaf of this TLS certificate
@@ -42,7 +42,7 @@ class TlsCertificateArgs:
     @pulumi.getter(name="certificatePem")
     def certificate_pem(self) -> pulumi.Input[str]:
         """
-        chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         """
         return pulumi.get(self, "certificate_pem")
 
@@ -54,7 +54,7 @@ class TlsCertificateArgs:
     @pulumi.getter(name="privateKeyPem")
     def private_key_pem(self) -> pulumi.Input[str]:
         """
-        private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         """
         return pulumi.get(self, "private_key_pem")
 
@@ -109,10 +109,10 @@ class _TlsCertificateState:
                  subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input['TlsCertificateSubjectAlternativeNameArgs']]]] = None):
         """
         Input properties used for looking up and filtering TlsCertificate resources.
-        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         :param pulumi.Input[str] description: human-readable description of this TLS certificate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
-        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         :param pulumi.Input[Sequence[pulumi.Input['TlsCertificateSubjectAlternativeNameArgs']]] subject_alternative_names: subject alternative names (SANs) from the leaf of this TLS certificate
         """
         if certificate_pem is not None:
@@ -130,7 +130,7 @@ class _TlsCertificateState:
     @pulumi.getter(name="certificatePem")
     def certificate_pem(self) -> Optional[pulumi.Input[str]]:
         """
-        chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         """
         return pulumi.get(self, "certificate_pem")
 
@@ -166,7 +166,7 @@ class _TlsCertificateState:
     @pulumi.getter(name="privateKeyPem")
     def private_key_pem(self) -> Optional[pulumi.Input[str]]:
         """
-        private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         """
         return pulumi.get(self, "private_key_pem")
 
@@ -265,10 +265,10 @@ class TlsCertificate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         :param pulumi.Input[str] description: human-readable description of this TLS certificate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
-        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TlsCertificateSubjectAlternativeNameArgs']]]] subject_alternative_names: subject alternative names (SANs) from the leaf of this TLS certificate
         """
         ...
@@ -402,10 +402,10 @@ class TlsCertificate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        :param pulumi.Input[str] certificate_pem: chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         :param pulumi.Input[str] description: human-readable description of this TLS certificate. optional, max 255 bytes.
         :param pulumi.Input[str] metadata: arbitrary user-defined machine-readable data of this TLS certificate. optional, max 4096 bytes.
-        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        :param pulumi.Input[str] private_key_pem: private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TlsCertificateSubjectAlternativeNameArgs']]]] subject_alternative_names: subject alternative names (SANs) from the leaf of this TLS certificate
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -423,7 +423,7 @@ class TlsCertificate(pulumi.CustomResource):
     @pulumi.getter(name="certificatePem")
     def certificate_pem(self) -> pulumi.Output[str]:
         """
-        chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/api#tls-certificates-pem).
+        chain of PEM-encoded certificates, leaf first. See [Certificate Bundles](https://ngrok.com/docs/cloud-edge/endpoints#certificate-chains).
         """
         return pulumi.get(self, "certificate_pem")
 
@@ -447,7 +447,7 @@ class TlsCertificate(pulumi.CustomResource):
     @pulumi.getter(name="privateKeyPem")
     def private_key_pem(self) -> pulumi.Output[str]:
         """
-        private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/ngrok-link#tls-certificates-key).
+        private key for the TLS certificate, PEM-encoded. See [Private Keys](https://ngrok.com/docs/cloud-edge/endpoints#private-keys).
         """
         return pulumi.get(self, "private_key_pem")
 

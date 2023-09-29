@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as ngrok from "@pierskarsenbarg/ngrok";
  *
  * const example = new ngrok.ReservedDomain("example", {
- *     certificateId: "cert_25auGELSEngiae3wzmLLesiZn8h",
+ *     certificateId: "cert_26rOxyrxCJlOc0frz7MK0HQjRvd",
  *     region: "us",
  * });
  * ```
@@ -75,7 +75,7 @@ export class ReservedDomain extends pulumi.CustomResource {
     /**
      * hostname of the reserved domain
      */
-    public /*out*/ readonly domain!: pulumi.Output<string>;
+    public readonly domain!: pulumi.Output<string | undefined>;
     /**
      * ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
      */
@@ -128,12 +128,12 @@ export class ReservedDomain extends pulumi.CustomResource {
             resourceInputs["certificateManagementPolicies"] = args ? args.certificateManagementPolicies : undefined;
             resourceInputs["cnameTarget"] = args ? args.cnameTarget : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["httpEndpointConfigurationId"] = args ? args.httpEndpointConfigurationId : undefined;
             resourceInputs["httpsEndpointConfigurationId"] = args ? args.httpsEndpointConfigurationId : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["domain"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ReservedDomain.__pulumiType, name, resourceInputs, opts);
@@ -214,6 +214,10 @@ export interface ReservedDomainArgs {
      * human-readable description of what this reserved domain will be used for
      */
     description?: pulumi.Input<string>;
+    /**
+     * hostname of the reserved domain
+     */
+    domain?: pulumi.Input<string>;
     /**
      * ID of an endpoint configuration of type http that will be used to handle inbound http traffic to this domain
      */

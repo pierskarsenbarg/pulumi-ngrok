@@ -39,8 +39,8 @@ import (
 //					pulumi.String("root"),
 //				},
 //				PublicKey:                 pulumi.String("ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK58lFzmWlDimDtBz78wVT4oauA8PjY0CiXTCEIsBNC6UwOJvZ0jdSaYNhDaa7dRV84DfBb/gKzqlXC7cVMZjl0= alan@work-laptop"),
-//				SshCertificateAuthorityId: pulumi.String("sshca_25auH5JtiUPW9eMiXYzujvcpkGW"),
-//				ValidUntil:                pulumi.String("2022-05-26T08:23:47Z"),
+//				SshCertificateAuthorityId: pulumi.String("sshca_26rOyirnW8khUZJ8xjNfPu3GPdi"),
+//				ValidUntil:                pulumi.String("2022-06-22T22:21:34-05:00"),
 //			})
 //			if err != nil {
 //				return err
@@ -65,7 +65,7 @@ type SshUserCertificate struct {
 	KeyType pulumi.StringOutput `pulumi:"keyType"`
 	// arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
-	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
 	Principals pulumi.StringArrayOutput `pulumi:"principals"`
 	// a public key in OpenSSH Authorized Keys format that this certificate signs
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
@@ -125,7 +125,7 @@ type sshUserCertificateState struct {
 	KeyType *string `pulumi:"keyType"`
 	// arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
-	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
 	Principals []string `pulumi:"principals"`
 	// a public key in OpenSSH Authorized Keys format that this certificate signs
 	PublicKey *string `pulumi:"publicKey"`
@@ -150,7 +150,7 @@ type SshUserCertificateState struct {
 	KeyType pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
-	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
 	Principals pulumi.StringArrayInput
 	// a public key in OpenSSH Authorized Keys format that this certificate signs
 	PublicKey pulumi.StringPtrInput
@@ -179,7 +179,7 @@ type sshUserCertificateArgs struct {
 	KeyType *string `pulumi:"keyType"`
 	// arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
 	Metadata *string `pulumi:"metadata"`
-	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
 	Principals []string `pulumi:"principals"`
 	// a public key in OpenSSH Authorized Keys format that this certificate signs
 	PublicKey string `pulumi:"publicKey"`
@@ -205,7 +205,7 @@ type SshUserCertificateArgs struct {
 	KeyType pulumi.StringPtrInput
 	// arbitrary user-defined machine-readable data of this SSH User Certificate. optional, max 4096 bytes.
 	Metadata pulumi.StringPtrInput
-	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+	// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
 	Principals pulumi.StringArrayInput
 	// a public key in OpenSSH Authorized Keys format that this certificate signs
 	PublicKey pulumi.StringInput
@@ -358,7 +358,7 @@ func (o SshUserCertificateOutput) Metadata() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SshUserCertificate) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
 }
 
-// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizinig the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
+// the list of principals included in the ssh user certificate. This is the list of usernames that the certificate holder may sign in as on a machine authorizing the signing certificate authority. Dangerously, if no principals are specified, this certificate may be used to log in as any user.
 func (o SshUserCertificateOutput) Principals() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SshUserCertificate) pulumi.StringArrayOutput { return v.Principals }).(pulumi.StringArrayOutput)
 }

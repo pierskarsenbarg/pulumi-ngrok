@@ -10,34 +10,13 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'EndpointConfigurationBackendArgs',
-    'EndpointConfigurationBackendBackendArgs',
-    'EndpointConfigurationBasicAuthArgs',
-    'EndpointConfigurationCircuitBreakerArgs',
-    'EndpointConfigurationCompressionArgs',
-    'EndpointConfigurationIpPolicyArgs',
-    'EndpointConfigurationIpPolicyIpPolicyArgs',
-    'EndpointConfigurationLoggingArgs',
-    'EndpointConfigurationLoggingEventStreamArgs',
-    'EndpointConfigurationMutualTlArgs',
-    'EndpointConfigurationMutualTlCertificateAuthorityArgs',
-    'EndpointConfigurationOauthArgs',
-    'EndpointConfigurationOauthProviderArgs',
-    'EndpointConfigurationOauthProviderFacebookArgs',
-    'EndpointConfigurationOauthProviderGithubArgs',
-    'EndpointConfigurationOauthProviderGoogleArgs',
-    'EndpointConfigurationOauthProviderMicrosoftArgs',
-    'EndpointConfigurationOidcArgs',
-    'EndpointConfigurationRequestHeaderArgs',
-    'EndpointConfigurationResponseHeaderArgs',
-    'EndpointConfigurationSamlArgs',
-    'EndpointConfigurationTlsTerminationArgs',
-    'EndpointConfigurationWebhookValidationArgs',
+    'AgentIngressCertificateManagementPolicyArgs',
     'EventDestinationTargetArgs',
     'EventDestinationTargetCloudwatchLogArgs',
     'EventDestinationTargetCloudwatchLogAuthArgs',
     'EventDestinationTargetCloudwatchLogAuthCredArgs',
     'EventDestinationTargetCloudwatchLogAuthRoleArgs',
+    'EventDestinationTargetDatadogArgs',
     'EventDestinationTargetDebugArgs',
     'EventDestinationTargetFirehoseArgs',
     'EventDestinationTargetFirehoseAuthArgs',
@@ -50,1602 +29,67 @@ __all__ = [
     'EventSubscriptionSourceArgs',
     'ReservedDomainCertificateManagementPolicyArgs',
     'TlsCertificateSubjectAlternativeNameArgs',
+    'TunnelGroupBackendTunnelArgs',
 ]
 
 @pulumi.input_type
-class EndpointConfigurationBackendArgs:
+class AgentIngressCertificateManagementPolicyArgs:
     def __init__(__self__, *,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendBackendArgs']]]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None):
+                 authority: Optional[pulumi.Input[str]] = None,
+                 private_key_type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendBackendArgs']]] backends: backend to be used to back this endpoint
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
+        :param pulumi.Input[str] authority: certificate authority to request certificates from. The only supported value is letsencrypt.
+        :param pulumi.Input[str] private_key_type: type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
         """
-        if backends is not None:
-            pulumi.set(__self__, "backends", backends)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+        if authority is not None:
+            pulumi.set(__self__, "authority", authority)
+        if private_key_type is not None:
+            pulumi.set(__self__, "private_key_type", private_key_type)
 
     @property
     @pulumi.getter
-    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendBackendArgs']]]]:
+    def authority(self) -> Optional[pulumi.Input[str]]:
         """
-        backend to be used to back this endpoint
+        certificate authority to request certificates from. The only supported value is letsencrypt.
         """
-        return pulumi.get(self, "backends")
+        return pulumi.get(self, "authority")
 
-    @backends.setter
-    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendBackendArgs']]]]):
-        pulumi.set(self, "backends", value)
+    @authority.setter
+    def authority(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authority", value)
 
     @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
+    @pulumi.getter(name="privateKeyType")
+    def private_key_type(self) -> Optional[pulumi.Input[str]]:
         """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
+        type of private key to use when requesting certificates. Defaults to rsa, can be either rsa or ecdsa.
         """
-        return pulumi.get(self, "enabled")
+        return pulumi.get(self, "private_key_type")
 
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationBackendBackendArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 uri: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "uri")
-
-    @uri.setter
-    def uri(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "uri", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationBasicAuthArgs:
-    def __init__(__self__, *,
-                 allow_options: Optional[pulumi.Input[bool]] = None,
-                 auth_provider_id: Optional[pulumi.Input[str]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 realm: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[bool] allow_options: true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-        :param pulumi.Input[str] auth_provider_id: determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[str] realm: an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
-        """
-        if allow_options is not None:
-            pulumi.set(__self__, "allow_options", allow_options)
-        if auth_provider_id is not None:
-            pulumi.set(__self__, "auth_provider_id", auth_provider_id)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if realm is not None:
-            pulumi.set(__self__, "realm", realm)
-
-    @property
-    @pulumi.getter(name="allowOptions")
-    def allow_options(self) -> Optional[pulumi.Input[bool]]:
-        """
-        true or false indicating whether to allow OPTIONS requests through without authentication which is necessary for CORS. default is `false`
-        """
-        return pulumi.get(self, "allow_options")
-
-    @allow_options.setter
-    def allow_options(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "allow_options", value)
-
-    @property
-    @pulumi.getter(name="authProviderId")
-    def auth_provider_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        determines how the basic auth credentials are validated. Currently only the value `agent` is supported which means that credentials will be validated against the username and password specified by the ngrok agent's `--basic-auth` flag, if any.
-        """
-        return pulumi.get(self, "auth_provider_id")
-
-    @auth_provider_id.setter
-    def auth_provider_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "auth_provider_id", value)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter
-    def realm(self) -> Optional[pulumi.Input[str]]:
-        """
-        an arbitrary string to be specified in as the 'realm' value in the `WWW-Authenticate` header. default is `ngrok`
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "realm", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationCircuitBreakerArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 error_threshold_percentage: Optional[pulumi.Input[float]] = None,
-                 num_buckets: Optional[pulumi.Input[int]] = None,
-                 rolling_window: Optional[pulumi.Input[int]] = None,
-                 tripped_duration: Optional[pulumi.Input[int]] = None,
-                 volume_threshold: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[float] error_threshold_percentage: Error threshold percentage should be between 0 - 1.0, not 0-100.0
-        :param pulumi.Input[int] num_buckets: Integer number of buckets into which metrics are retained. Max 128.
-        :param pulumi.Input[int] rolling_window: Integer number of seconds in the statistical rolling window that metrics are retained for.
-        :param pulumi.Input[int] tripped_duration: Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-        :param pulumi.Input[int] volume_threshold: Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if error_threshold_percentage is not None:
-            pulumi.set(__self__, "error_threshold_percentage", error_threshold_percentage)
-        if num_buckets is not None:
-            pulumi.set(__self__, "num_buckets", num_buckets)
-        if rolling_window is not None:
-            pulumi.set(__self__, "rolling_window", rolling_window)
-        if tripped_duration is not None:
-            pulumi.set(__self__, "tripped_duration", tripped_duration)
-        if volume_threshold is not None:
-            pulumi.set(__self__, "volume_threshold", volume_threshold)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="errorThresholdPercentage")
-    def error_threshold_percentage(self) -> Optional[pulumi.Input[float]]:
-        """
-        Error threshold percentage should be between 0 - 1.0, not 0-100.0
-        """
-        return pulumi.get(self, "error_threshold_percentage")
-
-    @error_threshold_percentage.setter
-    def error_threshold_percentage(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "error_threshold_percentage", value)
-
-    @property
-    @pulumi.getter(name="numBuckets")
-    def num_buckets(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of buckets into which metrics are retained. Max 128.
-        """
-        return pulumi.get(self, "num_buckets")
-
-    @num_buckets.setter
-    def num_buckets(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "num_buckets", value)
-
-    @property
-    @pulumi.getter(name="rollingWindow")
-    def rolling_window(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds in the statistical rolling window that metrics are retained for.
-        """
-        return pulumi.get(self, "rolling_window")
-
-    @rolling_window.setter
-    def rolling_window(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "rolling_window", value)
-
-    @property
-    @pulumi.getter(name="trippedDuration")
-    def tripped_duration(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds after which the circuit is tripped to wait before re-evaluating upstream health
-        """
-        return pulumi.get(self, "tripped_duration")
-
-    @tripped_duration.setter
-    def tripped_duration(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "tripped_duration", value)
-
-    @property
-    @pulumi.getter(name="volumeThreshold")
-    def volume_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of requests in a rolling window that will trip the circuit. Helpful if traffic volume is low.
-        """
-        return pulumi.get(self, "volume_threshold")
-
-    @volume_threshold.setter
-    def volume_threshold(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "volume_threshold", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationCompressionArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationIpPolicyArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 ip_policies: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationIpPolicyIpPolicyArgs']]]] = None):
-        """
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if ip_policies is not None:
-            pulumi.set(__self__, "ip_policies", ip_policies)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="ipPolicies")
-    def ip_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationIpPolicyIpPolicyArgs']]]]:
-        return pulumi.get(self, "ip_policies")
-
-    @ip_policies.setter
-    def ip_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationIpPolicyIpPolicyArgs']]]]):
-        pulumi.set(self, "ip_policies", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationIpPolicyIpPolicyArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 uri: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "uri")
-
-    @uri.setter
-    def uri(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "uri", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationLoggingArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 event_streams: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationLoggingEventStreamArgs']]]] = None):
-        """
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationLoggingEventStreamArgs']]] event_streams: list of all EventStreams that will be used to configure and export this endpoint's logs
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if event_streams is not None:
-            pulumi.set(__self__, "event_streams", event_streams)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="eventStreams")
-    def event_streams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationLoggingEventStreamArgs']]]]:
-        """
-        list of all EventStreams that will be used to configure and export this endpoint's logs
-        """
-        return pulumi.get(self, "event_streams")
-
-    @event_streams.setter
-    def event_streams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationLoggingEventStreamArgs']]]]):
-        pulumi.set(self, "event_streams", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationLoggingEventStreamArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 uri: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "uri")
-
-    @uri.setter
-    def uri(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "uri", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationMutualTlArgs:
-    def __init__(__self__, *,
-                 certificate_authorities: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationMutualTlCertificateAuthorityArgs']]]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationMutualTlCertificateAuthorityArgs']]] certificate_authorities: PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        if certificate_authorities is not None:
-            pulumi.set(__self__, "certificate_authorities", certificate_authorities)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-
-    @property
-    @pulumi.getter(name="certificateAuthorities")
-    def certificate_authorities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationMutualTlCertificateAuthorityArgs']]]]:
-        """
-        PEM-encoded CA certificates that will be used to validate. Multiple CAs may be provided by concatenating them together.
-        """
-        return pulumi.get(self, "certificate_authorities")
-
-    @certificate_authorities.setter
-    def certificate_authorities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationMutualTlCertificateAuthorityArgs']]]]):
-        pulumi.set(self, "certificate_authorities", value)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationMutualTlCertificateAuthorityArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 uri: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if uri is not None:
-            pulumi.set(__self__, "uri", uri)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        unique identifier of this endpoint configuration
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def uri(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "uri")
-
-    @uri.setter
-    def uri(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "uri", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationOauthArgs:
-    def __init__(__self__, *,
-                 auth_check_interval: Optional[pulumi.Input[int]] = None,
-                 cookie_prefix: Optional[pulumi.Input[str]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 inactivity_timeout: Optional[pulumi.Input[int]] = None,
-                 maximum_duration: Optional[pulumi.Input[int]] = None,
-                 options_passthrough: Optional[pulumi.Input[bool]] = None,
-                 providers: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderArgs']]]] = None):
-        """
-        :param pulumi.Input[int] auth_check_interval: Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-        :param pulumi.Input[str] cookie_prefix: the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[int] inactivity_timeout: Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        :param pulumi.Input[int] maximum_duration: Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        :param pulumi.Input[bool] options_passthrough: Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderArgs']]] providers: an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-        """
-        if auth_check_interval is not None:
-            pulumi.set(__self__, "auth_check_interval", auth_check_interval)
-        if cookie_prefix is not None:
-            pulumi.set(__self__, "cookie_prefix", cookie_prefix)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if inactivity_timeout is not None:
-            pulumi.set(__self__, "inactivity_timeout", inactivity_timeout)
-        if maximum_duration is not None:
-            pulumi.set(__self__, "maximum_duration", maximum_duration)
-        if options_passthrough is not None:
-            pulumi.set(__self__, "options_passthrough", options_passthrough)
-        if providers is not None:
-            pulumi.set(__self__, "providers", providers)
-
-    @property
-    @pulumi.getter(name="authCheckInterval")
-    def auth_check_interval(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds after which ngrok guarantees it will refresh user state from the identity provider and recheck whether the user is still authorized to access the endpoint. This is the preferred tunable to use to enforce a minimum amount of time after which a revoked user will no longer be able to access the resource.
-        """
-        return pulumi.get(self, "auth_check_interval")
-
-    @auth_check_interval.setter
-    def auth_check_interval(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "auth_check_interval", value)
-
-    @property
-    @pulumi.getter(name="cookiePrefix")
-    def cookie_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        """
-        return pulumi.get(self, "cookie_prefix")
-
-    @cookie_prefix.setter
-    def cookie_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cookie_prefix", value)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="inactivityTimeout")
-    def inactivity_timeout(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        """
-        return pulumi.get(self, "inactivity_timeout")
-
-    @inactivity_timeout.setter
-    def inactivity_timeout(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "inactivity_timeout", value)
-
-    @property
-    @pulumi.getter(name="maximumDuration")
-    def maximum_duration(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        """
-        return pulumi.get(self, "maximum_duration")
-
-    @maximum_duration.setter
-    def maximum_duration(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "maximum_duration", value)
-
-    @property
-    @pulumi.getter(name="optionsPassthrough")
-    def options_passthrough(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        """
-        return pulumi.get(self, "options_passthrough")
-
-    @options_passthrough.setter
-    def options_passthrough(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "options_passthrough", value)
-
-    @property
-    @pulumi.getter
-    def providers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderArgs']]]]:
-        """
-        an object which defines the identity provider to use for authentication and configuration for who may access the endpoint
-        """
-        return pulumi.get(self, "providers")
-
-    @providers.setter
-    def providers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderArgs']]]]):
-        pulumi.set(self, "providers", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationOauthProviderArgs:
-    def __init__(__self__, *,
-                 facebooks: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderFacebookArgs']]]] = None,
-                 githubs: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGithubArgs']]]] = None,
-                 googles: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGoogleArgs']]]] = None,
-                 microsofts: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderMicrosoftArgs']]]] = None):
-        if facebooks is not None:
-            pulumi.set(__self__, "facebooks", facebooks)
-        if githubs is not None:
-            pulumi.set(__self__, "githubs", githubs)
-        if googles is not None:
-            pulumi.set(__self__, "googles", googles)
-        if microsofts is not None:
-            pulumi.set(__self__, "microsofts", microsofts)
-
-    @property
-    @pulumi.getter
-    def facebooks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderFacebookArgs']]]]:
-        return pulumi.get(self, "facebooks")
-
-    @facebooks.setter
-    def facebooks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderFacebookArgs']]]]):
-        pulumi.set(self, "facebooks", value)
-
-    @property
-    @pulumi.getter
-    def githubs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGithubArgs']]]]:
-        return pulumi.get(self, "githubs")
-
-    @githubs.setter
-    def githubs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGithubArgs']]]]):
-        pulumi.set(self, "githubs", value)
-
-    @property
-    @pulumi.getter
-    def googles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGoogleArgs']]]]:
-        return pulumi.get(self, "googles")
-
-    @googles.setter
-    def googles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGoogleArgs']]]]):
-        pulumi.set(self, "googles", value)
-
-    @property
-    @pulumi.getter
-    def microsofts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderMicrosoftArgs']]]]:
-        return pulumi.get(self, "microsofts")
-
-    @microsofts.setter
-    def microsofts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderMicrosoftArgs']]]]):
-        pulumi.set(self, "microsofts", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationOauthProviderFacebookArgs:
-    def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[str]] = None,
-                 client_secret: Optional[pulumi.Input[str]] = None,
-                 email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 email_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_secret", value)
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_addresses")
-
-    @email_addresses.setter
-    def email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_addresses", value)
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_domains")
-
-    @email_domains.setter
-    def email_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_domains", value)
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "scopes")
-
-    @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "scopes", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationOauthProviderGithubArgs:
-    def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[str]] = None,
-                 client_secret: Optional[pulumi.Input[str]] = None,
-                 email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 email_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if organizations is not None:
-            pulumi.set(__self__, "organizations", organizations)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-        if teams is not None:
-            pulumi.set(__self__, "teams", teams)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_secret", value)
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_addresses")
-
-    @email_addresses.setter
-    def email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_addresses", value)
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_domains")
-
-    @email_domains.setter
-    def email_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_domains", value)
-
-    @property
-    @pulumi.getter
-    def organizations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "organizations")
-
-    @organizations.setter
-    def organizations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "organizations", value)
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "scopes")
-
-    @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "scopes", value)
-
-    @property
-    @pulumi.getter
-    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "teams")
-
-    @teams.setter
-    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "teams", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationOauthProviderGoogleArgs:
-    def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[str]] = None,
-                 client_secret: Optional[pulumi.Input[str]] = None,
-                 email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 email_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_secret", value)
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_addresses")
-
-    @email_addresses.setter
-    def email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_addresses", value)
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_domains")
-
-    @email_domains.setter
-    def email_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_domains", value)
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "scopes")
-
-    @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "scopes", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationOauthProviderMicrosoftArgs:
-    def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[str]] = None,
-                 client_secret: Optional[pulumi.Input[str]] = None,
-                 email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 email_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if email_addresses is not None:
-            pulumi.set(__self__, "email_addresses", email_addresses)
-        if email_domains is not None:
-            pulumi.set(__self__, "email_domains", email_domains)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_secret", value)
-
-    @property
-    @pulumi.getter(name="emailAddresses")
-    def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_addresses")
-
-    @email_addresses.setter
-    def email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_addresses", value)
-
-    @property
-    @pulumi.getter(name="emailDomains")
-    def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "email_domains")
-
-    @email_domains.setter
-    def email_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "email_domains", value)
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "scopes")
-
-    @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "scopes", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationOidcArgs:
-    def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[str]] = None,
-                 client_secret: Optional[pulumi.Input[str]] = None,
-                 cookie_prefix: Optional[pulumi.Input[str]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 inactivity_timeout: Optional[pulumi.Input[int]] = None,
-                 issuer: Optional[pulumi.Input[str]] = None,
-                 maximum_duration: Optional[pulumi.Input[int]] = None,
-                 options_passthrough: Optional[pulumi.Input[bool]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        """
-        :param pulumi.Input[str] client_id: The OIDC app's client ID and OIDC audience.
-        :param pulumi.Input[str] client_secret: The OIDC app's client secret.
-        :param pulumi.Input[str] cookie_prefix: the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[int] inactivity_timeout: Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        :param pulumi.Input[str] issuer: URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-        :param pulumi.Input[int] maximum_duration: Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        :param pulumi.Input[bool] options_passthrough: Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: The set of scopes to request from the OIDC identity provider.
-        """
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
-        if cookie_prefix is not None:
-            pulumi.set(__self__, "cookie_prefix", cookie_prefix)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if inactivity_timeout is not None:
-            pulumi.set(__self__, "inactivity_timeout", inactivity_timeout)
-        if issuer is not None:
-            pulumi.set(__self__, "issuer", issuer)
-        if maximum_duration is not None:
-            pulumi.set(__self__, "maximum_duration", maximum_duration)
-        if options_passthrough is not None:
-            pulumi.set(__self__, "options_passthrough", options_passthrough)
-        if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The OIDC app's client ID and OIDC audience.
-        """
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[str]]:
-        """
-        The OIDC app's client secret.
-        """
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "client_secret", value)
-
-    @property
-    @pulumi.getter(name="cookiePrefix")
-    def cookie_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        """
-        return pulumi.get(self, "cookie_prefix")
-
-    @cookie_prefix.setter
-    def cookie_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cookie_prefix", value)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="inactivityTimeout")
-    def inactivity_timeout(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        """
-        return pulumi.get(self, "inactivity_timeout")
-
-    @inactivity_timeout.setter
-    def inactivity_timeout(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "inactivity_timeout", value)
-
-    @property
-    @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[str]]:
-        """
-        URL of the OIDC "OpenID provider". This is the base URL used for discovery.
-        """
-        return pulumi.get(self, "issuer")
-
-    @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "issuer", value)
-
-    @property
-    @pulumi.getter(name="maximumDuration")
-    def maximum_duration(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        """
-        return pulumi.get(self, "maximum_duration")
-
-    @maximum_duration.setter
-    def maximum_duration(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "maximum_duration", value)
-
-    @property
-    @pulumi.getter(name="optionsPassthrough")
-    def options_passthrough(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        """
-        return pulumi.get(self, "options_passthrough")
-
-    @options_passthrough.setter
-    def options_passthrough(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "options_passthrough", value)
-
-    @property
-    @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The set of scopes to request from the OIDC identity provider.
-        """
-        return pulumi.get(self, "scopes")
-
-    @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "scopes", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationRequestHeaderArgs:
-    def __init__(__self__, *,
-                 add: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        """
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] add: a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] removes: a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-        """
-        if add is not None:
-            pulumi.set(__self__, "add", add)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if removes is not None:
-            pulumi.set(__self__, "removes", removes)
-
-    @property
-    @pulumi.getter
-    def add(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        a map of header key to header value that will be injected into the HTTP Request before being sent to the upstream application server
-        """
-        return pulumi.get(self, "add")
-
-    @add.setter
-    def add(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "add", value)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter
-    def removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        a list of header names that will be removed from the HTTP Request before being sent to the upstream application server
-        """
-        return pulumi.get(self, "removes")
-
-    @removes.setter
-    def removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "removes", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationResponseHeaderArgs:
-    def __init__(__self__, *,
-                 add: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        """
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] add: a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] removes: a list of header names that will be removed from the HTTP Response returned to the HTTP client
-        """
-        if add is not None:
-            pulumi.set(__self__, "add", add)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if removes is not None:
-            pulumi.set(__self__, "removes", removes)
-
-    @property
-    @pulumi.getter
-    def add(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        a map of header key to header value that will be injected into the HTTP Response returned to the HTTP client
-        """
-        return pulumi.get(self, "add")
-
-    @add.setter
-    def add(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "add", value)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter
-    def removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        a list of header names that will be removed from the HTTP Response returned to the HTTP client
-        """
-        return pulumi.get(self, "removes")
-
-    @removes.setter
-    def removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "removes", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationSamlArgs:
-    def __init__(__self__, *,
-                 allow_idp_initiated: Optional[pulumi.Input[bool]] = None,
-                 assertion_consumer_service_url: Optional[pulumi.Input[str]] = None,
-                 authorized_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 cookie_prefix: Optional[pulumi.Input[str]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 entity_id: Optional[pulumi.Input[str]] = None,
-                 force_authn: Optional[pulumi.Input[bool]] = None,
-                 idp_metadata: Optional[pulumi.Input[str]] = None,
-                 idp_metadata_url: Optional[pulumi.Input[str]] = None,
-                 inactivity_timeout: Optional[pulumi.Input[int]] = None,
-                 maximum_duration: Optional[pulumi.Input[int]] = None,
-                 metadata_url: Optional[pulumi.Input[str]] = None,
-                 nameid_format: Optional[pulumi.Input[str]] = None,
-                 options_passthrough: Optional[pulumi.Input[bool]] = None,
-                 request_signing_certificate_pem: Optional[pulumi.Input[str]] = None,
-                 single_logout_url: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[bool] allow_idp_initiated: If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-        :param pulumi.Input[str] assertion_consumer_service_url: The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authorized_groups: If present, only users who are a member of one of the listed groups may access the target endpoint.
-        :param pulumi.Input[str] cookie_prefix: the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[str] entity_id: The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-        :param pulumi.Input[bool] force_authn: If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-        :param pulumi.Input[str] idp_metadata: The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-        :param pulumi.Input[str] idp_metadata_url: The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-        :param pulumi.Input[int] inactivity_timeout: Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        :param pulumi.Input[int] maximum_duration: Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        :param pulumi.Input[str] metadata_url: A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-        :param pulumi.Input[str] nameid_format: Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-        :param pulumi.Input[bool] options_passthrough: Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        :param pulumi.Input[str] request_signing_certificate_pem: PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-        :param pulumi.Input[str] single_logout_url: The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-        """
-        if allow_idp_initiated is not None:
-            pulumi.set(__self__, "allow_idp_initiated", allow_idp_initiated)
-        if assertion_consumer_service_url is not None:
-            pulumi.set(__self__, "assertion_consumer_service_url", assertion_consumer_service_url)
-        if authorized_groups is not None:
-            pulumi.set(__self__, "authorized_groups", authorized_groups)
-        if cookie_prefix is not None:
-            pulumi.set(__self__, "cookie_prefix", cookie_prefix)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if entity_id is not None:
-            pulumi.set(__self__, "entity_id", entity_id)
-        if force_authn is not None:
-            pulumi.set(__self__, "force_authn", force_authn)
-        if idp_metadata is not None:
-            pulumi.set(__self__, "idp_metadata", idp_metadata)
-        if idp_metadata_url is not None:
-            pulumi.set(__self__, "idp_metadata_url", idp_metadata_url)
-        if inactivity_timeout is not None:
-            pulumi.set(__self__, "inactivity_timeout", inactivity_timeout)
-        if maximum_duration is not None:
-            pulumi.set(__self__, "maximum_duration", maximum_duration)
-        if metadata_url is not None:
-            pulumi.set(__self__, "metadata_url", metadata_url)
-        if nameid_format is not None:
-            pulumi.set(__self__, "nameid_format", nameid_format)
-        if options_passthrough is not None:
-            pulumi.set(__self__, "options_passthrough", options_passthrough)
-        if request_signing_certificate_pem is not None:
-            pulumi.set(__self__, "request_signing_certificate_pem", request_signing_certificate_pem)
-        if single_logout_url is not None:
-            pulumi.set(__self__, "single_logout_url", single_logout_url)
-
-    @property
-    @pulumi.getter(name="allowIdpInitiated")
-    def allow_idp_initiated(self) -> Optional[pulumi.Input[bool]]:
-        """
-        If true, the IdP may initiate a login directly (e.g. the user does not need to visit the endpoint first and then be redirected). The IdP should set the `RelayState` parameter to the target URL of the resource they want the user to be redirected to after the SAML login assertion has been processed.
-        """
-        return pulumi.get(self, "allow_idp_initiated")
-
-    @allow_idp_initiated.setter
-    def allow_idp_initiated(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "allow_idp_initiated", value)
-
-    @property
-    @pulumi.getter(name="assertionConsumerServiceUrl")
-    def assertion_consumer_service_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        The public URL of the SP's Assertion Consumer Service. This is where the IdP will redirect to during an authentication flow. This will need to be specified to the IdP as configuration.
-        """
-        return pulumi.get(self, "assertion_consumer_service_url")
-
-    @assertion_consumer_service_url.setter
-    def assertion_consumer_service_url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "assertion_consumer_service_url", value)
-
-    @property
-    @pulumi.getter(name="authorizedGroups")
-    def authorized_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        If present, only users who are a member of one of the listed groups may access the target endpoint.
-        """
-        return pulumi.get(self, "authorized_groups")
-
-    @authorized_groups.setter
-    def authorized_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "authorized_groups", value)
-
-    @property
-    @pulumi.getter(name="cookiePrefix")
-    def cookie_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        the prefix of the session cookie that ngrok sets on the http client to cache authentication. default is 'ngrok.'
-        """
-        return pulumi.get(self, "cookie_prefix")
-
-    @cookie_prefix.setter
-    def cookie_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cookie_prefix", value)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The SP Entity's unique ID. This always takes the form of a URL. In ngrok's implementation, this URL is the same as the metadata URL. This will need to be specified to the IdP as configuration.
-        """
-        return pulumi.get(self, "entity_id")
-
-    @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "entity_id", value)
-
-    @property
-    @pulumi.getter(name="forceAuthn")
-    def force_authn(self) -> Optional[pulumi.Input[bool]]:
-        """
-        If true, indicates that whenever we redirect a user to the IdP for authentication that the IdP must prompt the user for authentication credentials even if the user already has a valid session with the IdP.
-        """
-        return pulumi.get(self, "force_authn")
-
-    @force_authn.setter
-    def force_authn(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_authn", value)
-
-    @property
-    @pulumi.getter(name="idpMetadata")
-    def idp_metadata(self) -> Optional[pulumi.Input[str]]:
-        """
-        The full XML IdP EntityDescriptor. Your IdP may provide this to you as a a file to download or as a URL.
-        """
-        return pulumi.get(self, "idp_metadata")
-
-    @idp_metadata.setter
-    def idp_metadata(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "idp_metadata", value)
-
-    @property
-    @pulumi.getter(name="idpMetadataUrl")
-    def idp_metadata_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        The IdP's metadata URL which returns the XML IdP EntityDescriptor. The IdP's metadata URL specifies how to connect to the IdP as well as its public key which is then used to validate the signature on incoming SAML assertions to the ACS endpoint.
-        """
-        return pulumi.get(self, "idp_metadata_url")
-
-    @idp_metadata_url.setter
-    def idp_metadata_url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "idp_metadata_url", value)
-
-    @property
-    @pulumi.getter(name="inactivityTimeout")
-    def inactivity_timeout(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds of inactivity after which if the user has not accessed the endpoint, their session will time out and they will be forced to reauthenticate.
-        """
-        return pulumi.get(self, "inactivity_timeout")
-
-    @inactivity_timeout.setter
-    def inactivity_timeout(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "inactivity_timeout", value)
-
-    @property
-    @pulumi.getter(name="maximumDuration")
-    def maximum_duration(self) -> Optional[pulumi.Input[int]]:
-        """
-        Integer number of seconds of the maximum duration of an authenticated session. After this period is exceeded, a user must reauthenticate.
-        """
-        return pulumi.get(self, "maximum_duration")
-
-    @maximum_duration.setter
-    def maximum_duration(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "maximum_duration", value)
-
-    @property
-    @pulumi.getter(name="metadataUrl")
-    def metadata_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        A public URL where the SP's metadata is hosted. If an IdP supports dynamic configuration, this is the URL it can use to retrieve the SP metadata.
-        """
-        return pulumi.get(self, "metadata_url")
-
-    @metadata_url.setter
-    def metadata_url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "metadata_url", value)
-
-    @property
-    @pulumi.getter(name="nameidFormat")
-    def nameid_format(self) -> Optional[pulumi.Input[str]]:
-        """
-        Defines the name identifier format the SP expects the IdP to use in its assertions to identify subjects. If unspecified, a default value of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` will be used. A subset of the allowed values enumerated by the SAML specification are supported.
-        """
-        return pulumi.get(self, "nameid_format")
-
-    @nameid_format.setter
-    def nameid_format(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "nameid_format", value)
-
-    @property
-    @pulumi.getter(name="optionsPassthrough")
-    def options_passthrough(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Do not enforce authentication on HTTP OPTIONS requests. necessary if you are supporting CORS.
-        """
-        return pulumi.get(self, "options_passthrough")
-
-    @options_passthrough.setter
-    def options_passthrough(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "options_passthrough", value)
-
-    @property
-    @pulumi.getter(name="requestSigningCertificatePem")
-    def request_signing_certificate_pem(self) -> Optional[pulumi.Input[str]]:
-        """
-        PEM-encoded x.509 certificate of the key pair that is used to sign all SAML requests that the ngrok SP makes to the IdP. Many IdPs do not support request signing verification, but we highly recommend specifying this in the IdP's configuration if it is supported.
-        """
-        return pulumi.get(self, "request_signing_certificate_pem")
-
-    @request_signing_certificate_pem.setter
-    def request_signing_certificate_pem(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "request_signing_certificate_pem", value)
-
-    @property
-    @pulumi.getter(name="singleLogoutUrl")
-    def single_logout_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        The public URL of the SP's Single Logout Service. This is where the IdP will redirect to during a single logout flow. This will optionally need to be specified to the IdP as configuration.
-        """
-        return pulumi.get(self, "single_logout_url")
-
-    @single_logout_url.setter
-    def single_logout_url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "single_logout_url", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationTlsTerminationArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 min_version: Optional[pulumi.Input[str]] = None,
-                 terminate_at: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[str] min_version: The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminate_at` is set to `upstream`.
-        :param pulumi.Input[str] terminate_at: `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if min_version is not None:
-            pulumi.set(__self__, "min_version", min_version)
-        if terminate_at is not None:
-            pulumi.set(__self__, "terminate_at", terminate_at)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="minVersion")
-    def min_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        The minimum TLS version used for termination and advertised to the client during the TLS handshake. if unspecified, ngrok will choose an industry-safe default. This value must be null if `terminate_at` is set to `upstream`.
-        """
-        return pulumi.get(self, "min_version")
-
-    @min_version.setter
-    def min_version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "min_version", value)
-
-    @property
-    @pulumi.getter(name="terminateAt")
-    def terminate_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        `edge` if the ngrok edge should terminate TLS traffic, `upstream` if TLS traffic should be passed through to the upstream ngrok agent / application server for termination. if `upstream` is chosen, most other modules will be disallowed because they rely on the ngrok edge being able to access the underlying traffic.
-        """
-        return pulumi.get(self, "terminate_at")
-
-    @terminate_at.setter
-    def terminate_at(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "terminate_at", value)
-
-
-@pulumi.input_type
-class EndpointConfigurationWebhookValidationArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 provider: Optional[pulumi.Input[str]] = None,
-                 secret: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[bool] enabled: `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        :param pulumi.Input[str] provider: a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-        :param pulumi.Input[str] secret: a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if secret is not None:
-            pulumi.set(__self__, "secret", secret)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `true` if the module will be applied to traffic, `false` to disable. default `true` if unspecified
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter
-    def provider(self) -> Optional[pulumi.Input[str]]:
-        """
-        a string indicating which webhook provider will be sending webhooks to this endpoint. Value must be one of the supported providers: `SLACK`, `SNS`, `STRIPE`, `GITHUB`, `TWILIO`, `SHOPIFY`, `GITLAB`, `INTERCOM`, `SENDGRID`, `XERO`, `PAGERDUTY`.
-        """
-        return pulumi.get(self, "provider")
-
-    @provider.setter
-    def provider(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "provider", value)
-
-    @property
-    @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[str]]:
-        """
-        a string secret used to validate requests from the given provider. All providers except AWS SNS require a secret
-        """
-        return pulumi.get(self, "secret")
-
-    @secret.setter
-    def secret(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret", value)
+    @private_key_type.setter
+    def private_key_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_type", value)
 
 
 @pulumi.input_type
 class EventDestinationTargetArgs:
     def __init__(__self__, *,
                  cloudwatch_logs: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogArgs']]]] = None,
+                 datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetDatadogArgs']]]] = None,
                  debugs: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetDebugArgs']]]] = None,
                  firehoses: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseArgs']]]] = None,
                  kineses: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseArgs']]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogArgs']]] cloudwatch_logs: Configuration used to send events to Amazon CloudWatch Logs.
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetDatadogArgs']]] datadogs: Configuration used to send events to Datadog.
         :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetDebugArgs']]] debugs: Configuration used for internal debugging.
         :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseArgs']]] firehoses: Configuration used to send events to Amazon Kinesis Data Firehose.
         :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseArgs']]] kineses: Configuration used to send events to Amazon Kinesis.
         """
         if cloudwatch_logs is not None:
             pulumi.set(__self__, "cloudwatch_logs", cloudwatch_logs)
+        if datadogs is not None:
+            pulumi.set(__self__, "datadogs", datadogs)
         if debugs is not None:
             pulumi.set(__self__, "debugs", debugs)
         if firehoses is not None:
@@ -1664,6 +108,18 @@ class EventDestinationTargetArgs:
     @cloudwatch_logs.setter
     def cloudwatch_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogArgs']]]]):
         pulumi.set(self, "cloudwatch_logs", value)
+
+    @property
+    @pulumi.getter
+    def datadogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetDatadogArgs']]]]:
+        """
+        Configuration used to send events to Datadog.
+        """
+        return pulumi.get(self, "datadogs")
+
+    @datadogs.setter
+    def datadogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetDatadogArgs']]]]):
+        pulumi.set(self, "datadogs", value)
 
     @property
     @pulumi.getter
@@ -1801,6 +257,59 @@ class EventDestinationTargetCloudwatchLogAuthRoleArgs:
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
         pulumi.set(self, "role_arn", value)
+
+
+@pulumi.input_type
+class EventDestinationTargetDatadogArgs:
+    def __init__(__self__, *,
+                 api_key: Optional[pulumi.Input[str]] = None,
+                 ddsite: Optional[pulumi.Input[str]] = None,
+                 ddtags: Optional[pulumi.Input[str]] = None,
+                 service: Optional[pulumi.Input[str]] = None):
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if ddsite is not None:
+            pulumi.set(__self__, "ddsite", ddsite)
+        if ddtags is not None:
+            pulumi.set(__self__, "ddtags", ddtags)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_key", value)
+
+    @property
+    @pulumi.getter
+    def ddsite(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ddsite")
+
+    @ddsite.setter
+    def ddsite(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ddsite", value)
+
+    @property
+    @pulumi.getter
+    def ddtags(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ddtags")
+
+    @ddtags.setter
+    def ddtags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ddtags", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service", value)
 
 
 @pulumi.input_type
@@ -2181,5 +690,44 @@ class TlsCertificateSubjectAlternativeNameArgs:
     @ips.setter
     def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ips", value)
+
+
+@pulumi.input_type
+class TunnelGroupBackendTunnelArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[str]] = None,
+                 uri: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: a resource identifier
+        :param pulumi.Input[str] uri: a uri for locating a resource
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        a resource identifier
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        a uri for locating a resource
+        """
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uri", value)
 
 

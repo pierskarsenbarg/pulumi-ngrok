@@ -19,6 +19,10 @@ namespace PiersKarsenbarg.Ngrok.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.EventDestinationTargetCloudwatchLog> CloudwatchLogs;
         /// <summary>
+        /// Configuration used to send events to Datadog.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.EventDestinationTargetDatadog> Datadogs;
+        /// <summary>
         /// Configuration used for internal debugging.
         /// </summary>
         public readonly ImmutableArray<Outputs.EventDestinationTargetDebug> Debugs;
@@ -35,6 +39,8 @@ namespace PiersKarsenbarg.Ngrok.Outputs
         private EventDestinationTarget(
             ImmutableArray<Outputs.EventDestinationTargetCloudwatchLog> cloudwatchLogs,
 
+            ImmutableArray<Outputs.EventDestinationTargetDatadog> datadogs,
+
             ImmutableArray<Outputs.EventDestinationTargetDebug> debugs,
 
             ImmutableArray<Outputs.EventDestinationTargetFirehose> firehoses,
@@ -42,6 +48,7 @@ namespace PiersKarsenbarg.Ngrok.Outputs
             ImmutableArray<Outputs.EventDestinationTargetKinese> kineses)
         {
             CloudwatchLogs = cloudwatchLogs;
+            Datadogs = datadogs;
             Debugs = debugs;
             Firehoses = firehoses;
             Kineses = kineses;

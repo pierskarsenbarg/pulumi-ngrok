@@ -52,6 +52,8 @@ type ApiKey struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// arbitrary user-defined data of this API key. optional, max 4096 bytes
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
 	// the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
 	Token pulumi.StringOutput `pulumi:"token"`
 }
@@ -97,6 +99,8 @@ type apiKeyState struct {
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined data of this API key. optional, max 4096 bytes
 	Metadata *string `pulumi:"metadata"`
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId *string `pulumi:"ownerId"`
 	// the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
 	Token *string `pulumi:"token"`
 }
@@ -106,6 +110,8 @@ type ApiKeyState struct {
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined data of this API key. optional, max 4096 bytes
 	Metadata pulumi.StringPtrInput
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrInput
 	// the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
 	Token pulumi.StringPtrInput
 }
@@ -119,6 +125,8 @@ type apiKeyArgs struct {
 	Description *string `pulumi:"description"`
 	// arbitrary user-defined data of this API key. optional, max 4096 bytes
 	Metadata *string `pulumi:"metadata"`
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId *string `pulumi:"ownerId"`
 	// the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
 	Token *string `pulumi:"token"`
 }
@@ -129,6 +137,8 @@ type ApiKeyArgs struct {
 	Description pulumi.StringPtrInput
 	// arbitrary user-defined data of this API key. optional, max 4096 bytes
 	Metadata pulumi.StringPtrInput
+	// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+	OwnerId pulumi.StringPtrInput
 	// the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**
 	Token pulumi.StringPtrInput
 }
@@ -252,6 +262,11 @@ func (o ApiKeyOutput) Description() pulumi.StringPtrOutput {
 // arbitrary user-defined data of this API key. optional, max 4096 bytes
 func (o ApiKeyOutput) Metadata() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
+}
+
+// If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+func (o ApiKeyOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
 }
 
 // the bearer token that can be placed into the Authorization header to authenticate request to the ngrok API. **This value is only available one time, on the API response from key creation. Otherwise it is null.**

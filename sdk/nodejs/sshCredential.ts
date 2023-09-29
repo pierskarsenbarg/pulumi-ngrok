@@ -53,7 +53,7 @@ export class SshCredential extends pulumi.CustomResource {
     }
 
     /**
-     * optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+     * optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
      */
     public readonly acls!: pulumi.Output<string[] | undefined>;
     /**
@@ -64,6 +64,10 @@ export class SshCredential extends pulumi.CustomResource {
      * arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
      */
     public readonly metadata!: pulumi.Output<string | undefined>;
+    /**
+     * If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+     */
+    public readonly ownerId!: pulumi.Output<string | undefined>;
     /**
      * the PEM-encoded public key of the SSH keypair that will be used to authenticate
      */
@@ -85,6 +89,7 @@ export class SshCredential extends pulumi.CustomResource {
             resourceInputs["acls"] = state ? state.acls : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["ownerId"] = state ? state.ownerId : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
             const args = argsOrState as SshCredentialArgs | undefined;
@@ -94,6 +99,7 @@ export class SshCredential extends pulumi.CustomResource {
             resourceInputs["acls"] = args ? args.acls : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -106,7 +112,7 @@ export class SshCredential extends pulumi.CustomResource {
  */
 export interface SshCredentialState {
     /**
-     * optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+     * optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
      */
     acls?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -117,6 +123,10 @@ export interface SshCredentialState {
      * arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
      */
     metadata?: pulumi.Input<string>;
+    /**
+     * If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+     */
+    ownerId?: pulumi.Input<string>;
     /**
      * the PEM-encoded public key of the SSH keypair that will be used to authenticate
      */
@@ -128,7 +138,7 @@ export interface SshCredentialState {
  */
 export interface SshCredentialArgs {
     /**
-     * optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains and addresses the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
+     * optional list of ACL rules. If unspecified, the credential will have no restrictions. The only allowed ACL rule at this time is the `bind` rule. The `bind` rule allows the caller to restrict what domains, addresses, and labels the token is allowed to bind. For example, to allow the token to open a tunnel on example.ngrok.io your ACL would include the rule `bind:example.ngrok.io`. Bind rules for domains may specify a leading wildcard to match multiple domains with a common suffix. For example, you may specify a rule of `bind:*.example.com` which will allow `x.example.com`, `y.example.com`, `*.example.com`, etc. Bind rules for labels may specify a wildcard key and/or value to match multiple labels. For example, you may specify a rule of `bind:*=example` which will allow `x=example`, `y=example`, etc. A rule of `'*'` is equivalent to no acl at all and will explicitly permit all actions.
      */
     acls?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -139,6 +149,10 @@ export interface SshCredentialArgs {
      * arbitrary user-defined machine-readable data of this ssh credential. Optional, max 4096 bytes.
      */
     metadata?: pulumi.Input<string>;
+    /**
+     * If supplied at credential creation, ownership will be assigned to the specified User or Bot. Only admins may specify an owner other than themselves. Defaults to the authenticated User or Bot.
+     */
+    ownerId?: pulumi.Input<string>;
     /**
      * the PEM-encoded public key of the SSH keypair that will be used to authenticate
      */
