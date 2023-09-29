@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reserved Addresses are TCP addresses that can be used to listen for traffic.
@@ -166,6 +167,12 @@ func (i *ReservedAddress) ToReservedAddressOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedAddressOutput)
 }
 
+func (i *ReservedAddress) ToOutput(ctx context.Context) pulumix.Output[*ReservedAddress] {
+	return pulumix.Output[*ReservedAddress]{
+		OutputState: i.ToReservedAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ReservedAddressArrayInput is an input type that accepts ReservedAddressArray and ReservedAddressArrayOutput values.
 // You can construct a concrete instance of `ReservedAddressArrayInput` via:
 //
@@ -189,6 +196,12 @@ func (i ReservedAddressArray) ToReservedAddressArrayOutput() ReservedAddressArra
 
 func (i ReservedAddressArray) ToReservedAddressArrayOutputWithContext(ctx context.Context) ReservedAddressArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedAddressArrayOutput)
+}
+
+func (i ReservedAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReservedAddress] {
+	return pulumix.Output[[]*ReservedAddress]{
+		OutputState: i.ToReservedAddressArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ReservedAddressMapInput is an input type that accepts ReservedAddressMap and ReservedAddressMapOutput values.
@@ -216,6 +229,12 @@ func (i ReservedAddressMap) ToReservedAddressMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedAddressMapOutput)
 }
 
+func (i ReservedAddressMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReservedAddress] {
+	return pulumix.Output[map[string]*ReservedAddress]{
+		OutputState: i.ToReservedAddressMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReservedAddressOutput struct{ *pulumi.OutputState }
 
 func (ReservedAddressOutput) ElementType() reflect.Type {
@@ -228,6 +247,12 @@ func (o ReservedAddressOutput) ToReservedAddressOutput() ReservedAddressOutput {
 
 func (o ReservedAddressOutput) ToReservedAddressOutputWithContext(ctx context.Context) ReservedAddressOutput {
 	return o
+}
+
+func (o ReservedAddressOutput) ToOutput(ctx context.Context) pulumix.Output[*ReservedAddress] {
+	return pulumix.Output[*ReservedAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 // hostname:port of the reserved address that was assigned at creation time
@@ -269,6 +294,12 @@ func (o ReservedAddressArrayOutput) ToReservedAddressArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o ReservedAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReservedAddress] {
+	return pulumix.Output[[]*ReservedAddress]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ReservedAddressArrayOutput) Index(i pulumi.IntInput) ReservedAddressOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReservedAddress {
 		return vs[0].([]*ReservedAddress)[vs[1].(int)]
@@ -287,6 +318,12 @@ func (o ReservedAddressMapOutput) ToReservedAddressMapOutput() ReservedAddressMa
 
 func (o ReservedAddressMapOutput) ToReservedAddressMapOutputWithContext(ctx context.Context) ReservedAddressMapOutput {
 	return o
+}
+
+func (o ReservedAddressMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReservedAddress] {
+	return pulumix.Output[map[string]*ReservedAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReservedAddressMapOutput) MapIndex(k pulumi.StringInput) ReservedAddressOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // IP Policies are reusable groups of CIDR ranges with an `allow` or `deny`
@@ -147,6 +148,12 @@ func (i *IpPolicy) ToIpPolicyOutputWithContext(ctx context.Context) IpPolicyOutp
 	return pulumi.ToOutputWithContext(ctx, i).(IpPolicyOutput)
 }
 
+func (i *IpPolicy) ToOutput(ctx context.Context) pulumix.Output[*IpPolicy] {
+	return pulumix.Output[*IpPolicy]{
+		OutputState: i.ToIpPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IpPolicyArrayInput is an input type that accepts IpPolicyArray and IpPolicyArrayOutput values.
 // You can construct a concrete instance of `IpPolicyArrayInput` via:
 //
@@ -170,6 +177,12 @@ func (i IpPolicyArray) ToIpPolicyArrayOutput() IpPolicyArrayOutput {
 
 func (i IpPolicyArray) ToIpPolicyArrayOutputWithContext(ctx context.Context) IpPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpPolicyArrayOutput)
+}
+
+func (i IpPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpPolicy] {
+	return pulumix.Output[[]*IpPolicy]{
+		OutputState: i.ToIpPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IpPolicyMapInput is an input type that accepts IpPolicyMap and IpPolicyMapOutput values.
@@ -197,6 +210,12 @@ func (i IpPolicyMap) ToIpPolicyMapOutputWithContext(ctx context.Context) IpPolic
 	return pulumi.ToOutputWithContext(ctx, i).(IpPolicyMapOutput)
 }
 
+func (i IpPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpPolicy] {
+	return pulumix.Output[map[string]*IpPolicy]{
+		OutputState: i.ToIpPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IpPolicyOutput struct{ *pulumi.OutputState }
 
 func (IpPolicyOutput) ElementType() reflect.Type {
@@ -209,6 +228,12 @@ func (o IpPolicyOutput) ToIpPolicyOutput() IpPolicyOutput {
 
 func (o IpPolicyOutput) ToIpPolicyOutputWithContext(ctx context.Context) IpPolicyOutput {
 	return o
+}
+
+func (o IpPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*IpPolicy] {
+	return pulumix.Output[*IpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // this field is deprecated. Please leave it empty and use the ip policy rule object's "action" field instead. It is temporarily retained for backwards compatibility reasons.
@@ -240,6 +265,12 @@ func (o IpPolicyArrayOutput) ToIpPolicyArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o IpPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpPolicy] {
+	return pulumix.Output[[]*IpPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IpPolicyArrayOutput) Index(i pulumi.IntInput) IpPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpPolicy {
 		return vs[0].([]*IpPolicy)[vs[1].(int)]
@@ -258,6 +289,12 @@ func (o IpPolicyMapOutput) ToIpPolicyMapOutput() IpPolicyMapOutput {
 
 func (o IpPolicyMapOutput) ToIpPolicyMapOutputWithContext(ctx context.Context) IpPolicyMapOutput {
 	return o
+}
+
+func (o IpPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpPolicy] {
+	return pulumix.Output[map[string]*IpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IpPolicyMapOutput) MapIndex(k pulumi.StringInput) IpPolicyOutput {
