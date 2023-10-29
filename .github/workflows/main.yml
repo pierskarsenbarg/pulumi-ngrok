@@ -127,7 +127,7 @@ jobs:
         echo 'EOF' >> $GITHUB_ENV
     - if: github.event_name == 'pull_request'
       name: Comment on PR with Details of Schema Check
-      uses: thollander/actions-comment-pull-request@v2.4.2
+      uses: thollander/actions-comment-pull-request@v2.4.3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         message: |
