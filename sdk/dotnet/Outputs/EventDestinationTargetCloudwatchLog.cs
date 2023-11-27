@@ -14,7 +14,13 @@ namespace PiersKarsenbarg.Ngrok.Outputs
     [OutputType]
     public sealed class EventDestinationTargetCloudwatchLog
     {
+        /// <summary>
+        /// Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        /// </summary>
         public readonly ImmutableArray<Outputs.EventDestinationTargetCloudwatchLogAuth> Auths;
+        /// <summary>
+        /// An Amazon Resource Name specifying the CloudWatch Logs group to deposit events into.
+        /// </summary>
         public readonly string? LogGroupArn;
 
         [OutputConstructor]

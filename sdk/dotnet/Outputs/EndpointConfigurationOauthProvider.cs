@@ -14,9 +14,21 @@ namespace PiersKarsenbarg.Ngrok.Outputs
     [OutputType]
     public sealed class EndpointConfigurationOauthProvider
     {
+        /// <summary>
+        /// configuration for using facebook as the identity provider
+        /// </summary>
         public readonly ImmutableArray<Outputs.EndpointConfigurationOauthProviderFacebook> Facebooks;
+        /// <summary>
+        /// configuration for using github as the identity provider
+        /// </summary>
         public readonly ImmutableArray<Outputs.EndpointConfigurationOauthProviderGithub> Githubs;
+        /// <summary>
+        /// configuration for using google as the identity provider
+        /// </summary>
         public readonly ImmutableArray<Outputs.EndpointConfigurationOauthProviderGoogle> Googles;
+        /// <summary>
+        /// configuration for using microsoft as the identity provider
+        /// </summary>
         public readonly ImmutableArray<Outputs.EndpointConfigurationOauthProviderMicrosoft> Microsofts;
 
         [OutputConstructor]

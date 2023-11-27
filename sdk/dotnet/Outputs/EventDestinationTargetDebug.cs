@@ -14,7 +14,13 @@ namespace PiersKarsenbarg.Ngrok.Outputs
     [OutputType]
     public sealed class EventDestinationTargetDebug
     {
+        /// <summary>
+        /// URL to send events to.
+        /// </summary>
         public readonly string? CallbackUrl;
+        /// <summary>
+        /// Whether or not to output to publisher service logs.
+        /// </summary>
         public readonly bool? Log;
 
         [OutputConstructor]

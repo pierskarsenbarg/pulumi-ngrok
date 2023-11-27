@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Endpoint Configurations are a reusable group of modules that encapsulate how
@@ -56,7 +55,7 @@ import (
 type EndpointConfiguration struct {
 	pulumi.CustomResourceState
 
-	// backend module configuration or `null`
+	// backend to be used to back this endpoint
 	Backends EndpointConfigurationBackendArrayOutput `pulumi:"backends"`
 	// basic auth module configuration or `null`
 	BasicAuths EndpointConfigurationBasicAuthArrayOutput `pulumi:"basicAuths"`
@@ -122,7 +121,7 @@ func GetEndpointConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EndpointConfiguration resources.
 type endpointConfigurationState struct {
-	// backend module configuration or `null`
+	// backend to be used to back this endpoint
 	Backends []EndpointConfigurationBackend `pulumi:"backends"`
 	// basic auth module configuration or `null`
 	BasicAuths []EndpointConfigurationBasicAuth `pulumi:"basicAuths"`
@@ -159,7 +158,7 @@ type endpointConfigurationState struct {
 }
 
 type EndpointConfigurationState struct {
-	// backend module configuration or `null`
+	// backend to be used to back this endpoint
 	Backends EndpointConfigurationBackendArrayInput
 	// basic auth module configuration or `null`
 	BasicAuths EndpointConfigurationBasicAuthArrayInput
@@ -200,7 +199,7 @@ func (EndpointConfigurationState) ElementType() reflect.Type {
 }
 
 type endpointConfigurationArgs struct {
-	// backend module configuration or `null`
+	// backend to be used to back this endpoint
 	Backends []EndpointConfigurationBackend `pulumi:"backends"`
 	// basic auth module configuration or `null`
 	BasicAuths []EndpointConfigurationBasicAuth `pulumi:"basicAuths"`
@@ -238,7 +237,7 @@ type endpointConfigurationArgs struct {
 
 // The set of arguments for constructing a EndpointConfiguration resource.
 type EndpointConfigurationArgs struct {
-	// backend module configuration or `null`
+	// backend to be used to back this endpoint
 	Backends EndpointConfigurationBackendArrayInput
 	// basic auth module configuration or `null`
 	BasicAuths EndpointConfigurationBasicAuthArrayInput
@@ -297,12 +296,6 @@ func (i *EndpointConfiguration) ToEndpointConfigurationOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationOutput)
 }
 
-func (i *EndpointConfiguration) ToOutput(ctx context.Context) pulumix.Output[*EndpointConfiguration] {
-	return pulumix.Output[*EndpointConfiguration]{
-		OutputState: i.ToEndpointConfigurationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EndpointConfigurationArrayInput is an input type that accepts EndpointConfigurationArray and EndpointConfigurationArrayOutput values.
 // You can construct a concrete instance of `EndpointConfigurationArrayInput` via:
 //
@@ -326,12 +319,6 @@ func (i EndpointConfigurationArray) ToEndpointConfigurationArrayOutput() Endpoin
 
 func (i EndpointConfigurationArray) ToEndpointConfigurationArrayOutputWithContext(ctx context.Context) EndpointConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationArrayOutput)
-}
-
-func (i EndpointConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointConfiguration] {
-	return pulumix.Output[[]*EndpointConfiguration]{
-		OutputState: i.ToEndpointConfigurationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EndpointConfigurationMapInput is an input type that accepts EndpointConfigurationMap and EndpointConfigurationMapOutput values.
@@ -359,12 +346,6 @@ func (i EndpointConfigurationMap) ToEndpointConfigurationMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointConfigurationMapOutput)
 }
 
-func (i EndpointConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointConfiguration] {
-	return pulumix.Output[map[string]*EndpointConfiguration]{
-		OutputState: i.ToEndpointConfigurationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EndpointConfigurationOutput struct{ *pulumi.OutputState }
 
 func (EndpointConfigurationOutput) ElementType() reflect.Type {
@@ -379,13 +360,7 @@ func (o EndpointConfigurationOutput) ToEndpointConfigurationOutputWithContext(ct
 	return o
 }
 
-func (o EndpointConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointConfiguration] {
-	return pulumix.Output[*EndpointConfiguration]{
-		OutputState: o.OutputState,
-	}
-}
-
-// backend module configuration or `null`
+// backend to be used to back this endpoint
 func (o EndpointConfigurationOutput) Backends() EndpointConfigurationBackendArrayOutput {
 	return o.ApplyT(func(v *EndpointConfiguration) EndpointConfigurationBackendArrayOutput { return v.Backends }).(EndpointConfigurationBackendArrayOutput)
 }
@@ -492,12 +467,6 @@ func (o EndpointConfigurationArrayOutput) ToEndpointConfigurationArrayOutputWith
 	return o
 }
 
-func (o EndpointConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointConfiguration] {
-	return pulumix.Output[[]*EndpointConfiguration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EndpointConfigurationArrayOutput) Index(i pulumi.IntInput) EndpointConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointConfiguration {
 		return vs[0].([]*EndpointConfiguration)[vs[1].(int)]
@@ -516,12 +485,6 @@ func (o EndpointConfigurationMapOutput) ToEndpointConfigurationMapOutput() Endpo
 
 func (o EndpointConfigurationMapOutput) ToEndpointConfigurationMapOutputWithContext(ctx context.Context) EndpointConfigurationMapOutput {
 	return o
-}
-
-func (o EndpointConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointConfiguration] {
-	return pulumix.Output[map[string]*EndpointConfiguration]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EndpointConfigurationMapOutput) MapIndex(k pulumi.StringInput) EndpointConfigurationOutput {

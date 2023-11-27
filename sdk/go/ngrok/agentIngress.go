@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -174,12 +173,6 @@ func (i *AgentIngress) ToAgentIngressOutputWithContext(ctx context.Context) Agen
 	return pulumi.ToOutputWithContext(ctx, i).(AgentIngressOutput)
 }
 
-func (i *AgentIngress) ToOutput(ctx context.Context) pulumix.Output[*AgentIngress] {
-	return pulumix.Output[*AgentIngress]{
-		OutputState: i.ToAgentIngressOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AgentIngressArrayInput is an input type that accepts AgentIngressArray and AgentIngressArrayOutput values.
 // You can construct a concrete instance of `AgentIngressArrayInput` via:
 //
@@ -203,12 +196,6 @@ func (i AgentIngressArray) ToAgentIngressArrayOutput() AgentIngressArrayOutput {
 
 func (i AgentIngressArray) ToAgentIngressArrayOutputWithContext(ctx context.Context) AgentIngressArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AgentIngressArrayOutput)
-}
-
-func (i AgentIngressArray) ToOutput(ctx context.Context) pulumix.Output[[]*AgentIngress] {
-	return pulumix.Output[[]*AgentIngress]{
-		OutputState: i.ToAgentIngressArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AgentIngressMapInput is an input type that accepts AgentIngressMap and AgentIngressMapOutput values.
@@ -236,12 +223,6 @@ func (i AgentIngressMap) ToAgentIngressMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(AgentIngressMapOutput)
 }
 
-func (i AgentIngressMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AgentIngress] {
-	return pulumix.Output[map[string]*AgentIngress]{
-		OutputState: i.ToAgentIngressMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AgentIngressOutput struct{ *pulumi.OutputState }
 
 func (AgentIngressOutput) ElementType() reflect.Type {
@@ -254,12 +235,6 @@ func (o AgentIngressOutput) ToAgentIngressOutput() AgentIngressOutput {
 
 func (o AgentIngressOutput) ToAgentIngressOutputWithContext(ctx context.Context) AgentIngressOutput {
 	return o
-}
-
-func (o AgentIngressOutput) ToOutput(ctx context.Context) pulumix.Output[*AgentIngress] {
-	return pulumix.Output[*AgentIngress]{
-		OutputState: o.OutputState,
-	}
 }
 
 // timestamp when the Agent Ingress was created, RFC 3339 format
@@ -311,12 +286,6 @@ func (o AgentIngressArrayOutput) ToAgentIngressArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o AgentIngressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AgentIngress] {
-	return pulumix.Output[[]*AgentIngress]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AgentIngressArrayOutput) Index(i pulumi.IntInput) AgentIngressOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AgentIngress {
 		return vs[0].([]*AgentIngress)[vs[1].(int)]
@@ -335,12 +304,6 @@ func (o AgentIngressMapOutput) ToAgentIngressMapOutput() AgentIngressMapOutput {
 
 func (o AgentIngressMapOutput) ToAgentIngressMapOutputWithContext(ctx context.Context) AgentIngressMapOutput {
 	return o
-}
-
-func (o AgentIngressMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AgentIngress] {
-	return pulumix.Output[map[string]*AgentIngress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AgentIngressMapOutput) MapIndex(k pulumi.StringInput) AgentIngressOutput {

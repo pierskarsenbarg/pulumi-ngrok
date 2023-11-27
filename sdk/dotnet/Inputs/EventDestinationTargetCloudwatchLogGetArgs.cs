@@ -15,12 +15,19 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     {
         [Input("auths")]
         private InputList<Inputs.EventDestinationTargetCloudwatchLogAuthGetArgs>? _auths;
+
+        /// <summary>
+        /// Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        /// </summary>
         public InputList<Inputs.EventDestinationTargetCloudwatchLogAuthGetArgs> Auths
         {
             get => _auths ?? (_auths = new InputList<Inputs.EventDestinationTargetCloudwatchLogAuthGetArgs>());
             set => _auths = value;
         }
 
+        /// <summary>
+        /// An Amazon Resource Name specifying the CloudWatch Logs group to deposit events into.
+        /// </summary>
         [Input("logGroupArn")]
         public Input<string>? LogGroupArn { get; set; }
 

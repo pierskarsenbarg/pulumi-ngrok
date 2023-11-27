@@ -15,12 +15,19 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     {
         [Input("auths")]
         private InputList<Inputs.EventDestinationTargetKineseAuthGetArgs>? _auths;
+
+        /// <summary>
+        /// Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        /// </summary>
         public InputList<Inputs.EventDestinationTargetKineseAuthGetArgs> Auths
         {
             get => _auths ?? (_auths = new InputList<Inputs.EventDestinationTargetKineseAuthGetArgs>());
             set => _auths = value;
         }
 
+        /// <summary>
+        /// An Amazon Resource Name specifying the Kinesis stream to deposit events into.
+        /// </summary>
         [Input("streamArn")]
         public Input<string>? StreamArn { get; set; }
 

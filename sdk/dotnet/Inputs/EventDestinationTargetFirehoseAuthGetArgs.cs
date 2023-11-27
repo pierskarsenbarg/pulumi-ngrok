@@ -15,6 +15,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     {
         [Input("creds")]
         private InputList<Inputs.EventDestinationTargetFirehoseAuthCredGetArgs>? _creds;
+
+        /// <summary>
+        /// Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        /// </summary>
         public InputList<Inputs.EventDestinationTargetFirehoseAuthCredGetArgs> Creds
         {
             get => _creds ?? (_creds = new InputList<Inputs.EventDestinationTargetFirehoseAuthCredGetArgs>());
@@ -23,6 +27,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("roles")]
         private InputList<Inputs.EventDestinationTargetFirehoseAuthRoleGetArgs>? _roles;
+
+        /// <summary>
+        /// A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        /// </summary>
         public InputList<Inputs.EventDestinationTargetFirehoseAuthRoleGetArgs> Roles
         {
             get => _roles ?? (_roles = new InputList<Inputs.EventDestinationTargetFirehoseAuthRoleGetArgs>());

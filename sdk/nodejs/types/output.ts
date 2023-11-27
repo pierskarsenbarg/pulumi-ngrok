@@ -18,9 +18,12 @@ export interface EndpointConfigurationBackend {
 
 export interface EndpointConfigurationBackendBackend {
     /**
-     * unique identifier of this endpoint configuration
+     * a resource identifier
      */
     id: string;
+    /**
+     * a uri for locating a resource
+     */
     uri: string;
 }
 
@@ -87,9 +90,12 @@ export interface EndpointConfigurationIpPolicy {
 
 export interface EndpointConfigurationIpPolicyIpPolicy {
     /**
-     * unique identifier of this endpoint configuration
+     * a resource identifier
      */
     id: string;
+    /**
+     * a uri for locating a resource
+     */
     uri: string;
 }
 
@@ -106,9 +112,12 @@ export interface EndpointConfigurationLogging {
 
 export interface EndpointConfigurationLoggingEventStream {
     /**
-     * unique identifier of this endpoint configuration
+     * a resource identifier
      */
     id: string;
+    /**
+     * a uri for locating a resource
+     */
     uri: string;
 }
 
@@ -125,9 +134,12 @@ export interface EndpointConfigurationMutualTl {
 
 export interface EndpointConfigurationMutualTlCertificateAuthority {
     /**
-     * unique identifier of this endpoint configuration
+     * a resource identifier
      */
     id: string;
+    /**
+     * a uri for locating a resource
+     */
     uri: string;
 }
 
@@ -163,43 +175,121 @@ export interface EndpointConfigurationOauth {
 }
 
 export interface EndpointConfigurationOauthProvider {
+    /**
+     * configuration for using facebook as the identity provider
+     */
     facebooks?: outputs.EndpointConfigurationOauthProviderFacebook[];
+    /**
+     * configuration for using github as the identity provider
+     */
     githubs?: outputs.EndpointConfigurationOauthProviderGithub[];
+    /**
+     * configuration for using google as the identity provider
+     */
     googles?: outputs.EndpointConfigurationOauthProviderGoogle[];
+    /**
+     * configuration for using microsoft as the identity provider
+     */
     microsofts?: outputs.EndpointConfigurationOauthProviderMicrosoft[];
 }
 
 export interface EndpointConfigurationOauthProviderFacebook {
+    /**
+     * the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, clientSecret must be present as well.
+     */
     clientId?: string;
+    /**
+     * the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `clientId`.
+     */
     clientSecret?: string;
+    /**
+     * a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailAddresses?: string[];
+    /**
+     * a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailDomains?: string[];
+    /**
+     * a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `clientId` and `clientSecret` to set scopes)
+     */
     scopes?: string[];
 }
 
 export interface EndpointConfigurationOauthProviderGithub {
+    /**
+     * the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, clientSecret must be present as well.
+     */
     clientId?: string;
+    /**
+     * the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `clientId`.
+     */
     clientSecret?: string;
+    /**
+     * a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailAddresses?: string[];
+    /**
+     * a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailDomains?: string[];
+    /**
+     * a list of github org identifiers. users who are members of any of the listed organizations will be allowed access. identifiers should be the organization's 'slug'
+     */
     organizations?: string[];
+    /**
+     * a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `clientId` and `clientSecret` to set scopes)
+     */
     scopes?: string[];
+    /**
+     * a list of github teams identifiers. users will be allowed access to the endpoint if they are a member of any of these teams. identifiers should be in the 'slug' format qualified with the org name, e.g. `org-name/team-name`
+     */
     teams?: string[];
 }
 
 export interface EndpointConfigurationOauthProviderGoogle {
+    /**
+     * the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, clientSecret must be present as well.
+     */
     clientId?: string;
+    /**
+     * the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `clientId`.
+     */
     clientSecret?: string;
+    /**
+     * a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailAddresses?: string[];
+    /**
+     * a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailDomains?: string[];
+    /**
+     * a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `clientId` and `clientSecret` to set scopes)
+     */
     scopes?: string[];
 }
 
 export interface EndpointConfigurationOauthProviderMicrosoft {
+    /**
+     * the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, clientSecret must be present as well.
+     */
     clientId?: string;
+    /**
+     * the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `clientId`.
+     */
     clientSecret?: string;
+    /**
+     * a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailAddresses?: string[];
+    /**
+     * a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+     */
     emailDomains?: string[];
+    /**
+     * a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `clientId` and `clientSecret` to set scopes)
+     */
     scopes?: string[];
 }
 
@@ -389,64 +479,133 @@ export interface EventDestinationTarget {
 }
 
 export interface EventDestinationTargetCloudwatchLog {
+    /**
+     * Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+     */
     auths?: outputs.EventDestinationTargetCloudwatchLogAuth[];
+    /**
+     * An Amazon Resource Name specifying the CloudWatch Logs group to deposit events into.
+     */
     logGroupArn?: string;
 }
 
 export interface EventDestinationTargetCloudwatchLogAuth {
+    /**
+     * Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+     */
     creds?: outputs.EventDestinationTargetCloudwatchLogAuthCred[];
+    /**
+     * A role for ngrok to assume on your behalf to deposit events into your AWS account.
+     */
     roles?: outputs.EventDestinationTargetCloudwatchLogAuthRole[];
 }
 
 export interface EventDestinationTargetCloudwatchLogAuthCred {
+    /**
+     * The ID portion of an AWS access key.
+     */
     awsAccessKeyId: string;
+    /**
+     * The secret portion of an AWS access key.
+     */
     awsSecretAccessKey: string;
 }
 
 export interface EventDestinationTargetCloudwatchLogAuthRole {
+    /**
+     * An ARN that specifies the role that ngrok should use to deliver to the configured target.
+     */
     roleArn: string;
 }
 
 export interface EventDestinationTargetDebug {
+    /**
+     * URL to send events to.
+     */
     callbackUrl?: string;
+    /**
+     * Whether or not to output to publisher service logs.
+     */
     log?: boolean;
 }
 
 export interface EventDestinationTargetFirehose {
+    /**
+     * Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+     */
     auths?: outputs.EventDestinationTargetFirehoseAuth[];
+    /**
+     * An Amazon Resource Name specifying the Firehose delivery stream to deposit events into.
+     */
     deliveryStreamArn?: string;
 }
 
 export interface EventDestinationTargetFirehoseAuth {
+    /**
+     * Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+     */
     creds?: outputs.EventDestinationTargetFirehoseAuthCred[];
+    /**
+     * A role for ngrok to assume on your behalf to deposit events into your AWS account.
+     */
     roles?: outputs.EventDestinationTargetFirehoseAuthRole[];
 }
 
 export interface EventDestinationTargetFirehoseAuthCred {
+    /**
+     * The ID portion of an AWS access key.
+     */
     awsAccessKeyId: string;
+    /**
+     * The secret portion of an AWS access key.
+     */
     awsSecretAccessKey: string;
 }
 
 export interface EventDestinationTargetFirehoseAuthRole {
+    /**
+     * An ARN that specifies the role that ngrok should use to deliver to the configured target.
+     */
     roleArn: string;
 }
 
 export interface EventDestinationTargetKinese {
+    /**
+     * Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+     */
     auths?: outputs.EventDestinationTargetKineseAuth[];
+    /**
+     * An Amazon Resource Name specifying the Kinesis stream to deposit events into.
+     */
     streamArn?: string;
 }
 
 export interface EventDestinationTargetKineseAuth {
+    /**
+     * Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+     */
     creds?: outputs.EventDestinationTargetKineseAuthCred[];
+    /**
+     * A role for ngrok to assume on your behalf to deposit events into your AWS account.
+     */
     roles?: outputs.EventDestinationTargetKineseAuthRole[];
 }
 
 export interface EventDestinationTargetKineseAuthCred {
+    /**
+     * The ID portion of an AWS access key.
+     */
     awsAccessKeyId: string;
+    /**
+     * The secret portion of an AWS access key.
+     */
     awsSecretAccessKey: string;
 }
 
 export interface EventDestinationTargetKineseAuthRole {
+    /**
+     * An ARN that specifies the role that ngrok should use to deliver to the configured target.
+     */
     roleArn: string;
 }
 

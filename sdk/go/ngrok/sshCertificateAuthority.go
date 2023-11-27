@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // An SSH Certificate Authority is a pair of an SSH Certificate and its private
@@ -186,12 +185,6 @@ func (i *SshCertificateAuthority) ToSshCertificateAuthorityOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SshCertificateAuthorityOutput)
 }
 
-func (i *SshCertificateAuthority) ToOutput(ctx context.Context) pulumix.Output[*SshCertificateAuthority] {
-	return pulumix.Output[*SshCertificateAuthority]{
-		OutputState: i.ToSshCertificateAuthorityOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SshCertificateAuthorityArrayInput is an input type that accepts SshCertificateAuthorityArray and SshCertificateAuthorityArrayOutput values.
 // You can construct a concrete instance of `SshCertificateAuthorityArrayInput` via:
 //
@@ -215,12 +208,6 @@ func (i SshCertificateAuthorityArray) ToSshCertificateAuthorityArrayOutput() Ssh
 
 func (i SshCertificateAuthorityArray) ToSshCertificateAuthorityArrayOutputWithContext(ctx context.Context) SshCertificateAuthorityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SshCertificateAuthorityArrayOutput)
-}
-
-func (i SshCertificateAuthorityArray) ToOutput(ctx context.Context) pulumix.Output[[]*SshCertificateAuthority] {
-	return pulumix.Output[[]*SshCertificateAuthority]{
-		OutputState: i.ToSshCertificateAuthorityArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SshCertificateAuthorityMapInput is an input type that accepts SshCertificateAuthorityMap and SshCertificateAuthorityMapOutput values.
@@ -248,12 +235,6 @@ func (i SshCertificateAuthorityMap) ToSshCertificateAuthorityMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SshCertificateAuthorityMapOutput)
 }
 
-func (i SshCertificateAuthorityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshCertificateAuthority] {
-	return pulumix.Output[map[string]*SshCertificateAuthority]{
-		OutputState: i.ToSshCertificateAuthorityMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SshCertificateAuthorityOutput struct{ *pulumi.OutputState }
 
 func (SshCertificateAuthorityOutput) ElementType() reflect.Type {
@@ -266,12 +247,6 @@ func (o SshCertificateAuthorityOutput) ToSshCertificateAuthorityOutput() SshCert
 
 func (o SshCertificateAuthorityOutput) ToSshCertificateAuthorityOutputWithContext(ctx context.Context) SshCertificateAuthorityOutput {
 	return o
-}
-
-func (o SshCertificateAuthorityOutput) ToOutput(ctx context.Context) pulumix.Output[*SshCertificateAuthority] {
-	return pulumix.Output[*SshCertificateAuthority]{
-		OutputState: o.OutputState,
-	}
 }
 
 // human-readable description of this SSH Certificate Authority. optional, max 255 bytes.
@@ -323,12 +298,6 @@ func (o SshCertificateAuthorityArrayOutput) ToSshCertificateAuthorityArrayOutput
 	return o
 }
 
-func (o SshCertificateAuthorityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SshCertificateAuthority] {
-	return pulumix.Output[[]*SshCertificateAuthority]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SshCertificateAuthorityArrayOutput) Index(i pulumi.IntInput) SshCertificateAuthorityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SshCertificateAuthority {
 		return vs[0].([]*SshCertificateAuthority)[vs[1].(int)]
@@ -347,12 +316,6 @@ func (o SshCertificateAuthorityMapOutput) ToSshCertificateAuthorityMapOutput() S
 
 func (o SshCertificateAuthorityMapOutput) ToSshCertificateAuthorityMapOutputWithContext(ctx context.Context) SshCertificateAuthorityMapOutput {
 	return o
-}
-
-func (o SshCertificateAuthorityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshCertificateAuthority] {
-	return pulumix.Output[map[string]*SshCertificateAuthority]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SshCertificateAuthorityMapOutput) MapIndex(k pulumi.StringInput) SshCertificateAuthorityOutput {

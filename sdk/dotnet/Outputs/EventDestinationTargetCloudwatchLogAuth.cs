@@ -14,7 +14,13 @@ namespace PiersKarsenbarg.Ngrok.Outputs
     [OutputType]
     public sealed class EventDestinationTargetCloudwatchLogAuth
     {
+        /// <summary>
+        /// Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        /// </summary>
         public readonly ImmutableArray<Outputs.EventDestinationTargetCloudwatchLogAuthCred> Creds;
+        /// <summary>
+        /// A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        /// </summary>
         public readonly ImmutableArray<Outputs.EventDestinationTargetCloudwatchLogAuthRole> Roles;
 
         [OutputConstructor]

@@ -14,6 +14,9 @@ namespace PiersKarsenbarg.Ngrok.Outputs
     [OutputType]
     public sealed class EventDestinationTargetKineseAuthRole
     {
+        /// <summary>
+        /// An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        /// </summary>
         public readonly string RoleArn;
 
         [OutputConstructor]

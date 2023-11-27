@@ -15,6 +15,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     {
         [Input("facebooks")]
         private InputList<Inputs.EndpointConfigurationOauthProviderFacebookArgs>? _facebooks;
+
+        /// <summary>
+        /// configuration for using facebook as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderFacebookArgs> Facebooks
         {
             get => _facebooks ?? (_facebooks = new InputList<Inputs.EndpointConfigurationOauthProviderFacebookArgs>());
@@ -23,6 +27,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("githubs")]
         private InputList<Inputs.EndpointConfigurationOauthProviderGithubArgs>? _githubs;
+
+        /// <summary>
+        /// configuration for using github as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderGithubArgs> Githubs
         {
             get => _githubs ?? (_githubs = new InputList<Inputs.EndpointConfigurationOauthProviderGithubArgs>());
@@ -31,6 +39,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("googles")]
         private InputList<Inputs.EndpointConfigurationOauthProviderGoogleArgs>? _googles;
+
+        /// <summary>
+        /// configuration for using google as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderGoogleArgs> Googles
         {
             get => _googles ?? (_googles = new InputList<Inputs.EndpointConfigurationOauthProviderGoogleArgs>());
@@ -39,6 +51,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("microsofts")]
         private InputList<Inputs.EndpointConfigurationOauthProviderMicrosoftArgs>? _microsofts;
+
+        /// <summary>
+        /// configuration for using microsoft as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderMicrosoftArgs> Microsofts
         {
             get => _microsofts ?? (_microsofts = new InputList<Inputs.EndpointConfigurationOauthProviderMicrosoftArgs>());
