@@ -149,11 +149,11 @@ jobs:
         dotnetversion:
         - 6.0.302
         goversion:
-        - 1.19.x
+        - 1.20.x
         nodeversion:
-        - 18.x
+        - 20.x
         pythonversion:
-        - "3.7"
+        - "3.11"
   test:
     name: test
     needs: build_sdk
@@ -229,16 +229,16 @@ jobs:
         dotnetversion:
         - 6.0.302
         goversion:
-        - 1.19.x
+        - 1.20.x
         language:
         - nodejs
         - python
         - dotnet
         - go
         nodeversion:
-        - 18.x
+        - 20.x
         pythonversion:
-        - "3.7"
+        - "3.11"
 name: main
 "on":
   push:
