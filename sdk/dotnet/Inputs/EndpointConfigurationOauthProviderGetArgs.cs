@@ -15,6 +15,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     {
         [Input("facebooks")]
         private InputList<Inputs.EndpointConfigurationOauthProviderFacebookGetArgs>? _facebooks;
+
+        /// <summary>
+        /// configuration for using facebook as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderFacebookGetArgs> Facebooks
         {
             get => _facebooks ?? (_facebooks = new InputList<Inputs.EndpointConfigurationOauthProviderFacebookGetArgs>());
@@ -23,6 +27,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("githubs")]
         private InputList<Inputs.EndpointConfigurationOauthProviderGithubGetArgs>? _githubs;
+
+        /// <summary>
+        /// configuration for using github as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderGithubGetArgs> Githubs
         {
             get => _githubs ?? (_githubs = new InputList<Inputs.EndpointConfigurationOauthProviderGithubGetArgs>());
@@ -31,6 +39,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("googles")]
         private InputList<Inputs.EndpointConfigurationOauthProviderGoogleGetArgs>? _googles;
+
+        /// <summary>
+        /// configuration for using google as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderGoogleGetArgs> Googles
         {
             get => _googles ?? (_googles = new InputList<Inputs.EndpointConfigurationOauthProviderGoogleGetArgs>());
@@ -39,6 +51,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("microsofts")]
         private InputList<Inputs.EndpointConfigurationOauthProviderMicrosoftGetArgs>? _microsofts;
+
+        /// <summary>
+        /// configuration for using microsoft as the identity provider
+        /// </summary>
         public InputList<Inputs.EndpointConfigurationOauthProviderMicrosoftGetArgs> Microsofts
         {
             get => _microsofts ?? (_microsofts = new InputList<Inputs.EndpointConfigurationOauthProviderMicrosoftGetArgs>());

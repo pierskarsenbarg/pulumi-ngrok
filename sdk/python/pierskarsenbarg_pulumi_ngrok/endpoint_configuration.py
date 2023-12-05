@@ -35,7 +35,7 @@ class EndpointConfigurationArgs:
                  webhook_validations: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationWebhookValidationArgs']]]] = None):
         """
         The set of arguments for constructing a EndpointConfiguration resource.
-        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendArgs']]] backends: backend module configuration or `null`
+        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendArgs']]] backends: backend to be used to back this endpoint
         :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBasicAuthArgs']]] basic_auths: basic auth module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationCircuitBreakerArgs']]] circuit_breakers: circuit breaker module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationCompressionArgs']]] compressions: compression module configuration or `null`
@@ -92,7 +92,7 @@ class EndpointConfigurationArgs:
     @pulumi.getter
     def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendArgs']]]]:
         """
-        backend module configuration or `null`
+        backend to be used to back this endpoint
         """
         return pulumi.get(self, "backends")
 
@@ -315,7 +315,7 @@ class _EndpointConfigurationState:
                  webhook_validations: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationWebhookValidationArgs']]]] = None):
         """
         Input properties used for looking up and filtering EndpointConfiguration resources.
-        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendArgs']]] backends: backend module configuration or `null`
+        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendArgs']]] backends: backend to be used to back this endpoint
         :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBasicAuthArgs']]] basic_auths: basic auth module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationCircuitBreakerArgs']]] circuit_breakers: circuit breaker module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationCompressionArgs']]] compressions: compression module configuration or `null`
@@ -372,7 +372,7 @@ class _EndpointConfigurationState:
     @pulumi.getter
     def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationBackendArgs']]]]:
         """
-        backend module configuration or `null`
+        backend to be used to back this endpoint
         """
         return pulumi.get(self, "backends")
 
@@ -620,7 +620,7 @@ class EndpointConfiguration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationBackendArgs']]]] backends: backend module configuration or `null`
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationBackendArgs']]]] backends: backend to be used to back this endpoint
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationBasicAuthArgs']]]] basic_auths: basic auth module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationCircuitBreakerArgs']]]] circuit_breakers: circuit breaker module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationCompressionArgs']]]] compressions: compression module configuration or `null`
@@ -758,7 +758,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationBackendArgs']]]] backends: backend module configuration or `null`
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationBackendArgs']]]] backends: backend to be used to back this endpoint
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationBasicAuthArgs']]]] basic_auths: basic auth module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationCircuitBreakerArgs']]]] circuit_breakers: circuit breaker module configuration or `null`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointConfigurationCompressionArgs']]]] compressions: compression module configuration or `null`
@@ -803,7 +803,7 @@ class EndpointConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def backends(self) -> pulumi.Output[Optional[Sequence['outputs.EndpointConfigurationBackend']]]:
         """
-        backend module configuration or `null`
+        backend to be used to back this endpoint
         """
         return pulumi.get(self, "backends")
 

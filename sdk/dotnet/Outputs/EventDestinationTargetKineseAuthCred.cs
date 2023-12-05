@@ -14,7 +14,13 @@ namespace PiersKarsenbarg.Ngrok.Outputs
     [OutputType]
     public sealed class EventDestinationTargetKineseAuthCred
     {
+        /// <summary>
+        /// The ID portion of an AWS access key.
+        /// </summary>
         public readonly string AwsAccessKeyId;
+        /// <summary>
+        /// The secret portion of an AWS access key.
+        /// </summary>
         public readonly string AwsSecretAccessKey;
 
         [OutputConstructor]

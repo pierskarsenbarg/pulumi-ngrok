@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reserved Domains are hostnames that you can listen for traffic on. Domains
@@ -224,12 +223,6 @@ func (i *ReservedDomain) ToReservedDomainOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedDomainOutput)
 }
 
-func (i *ReservedDomain) ToOutput(ctx context.Context) pulumix.Output[*ReservedDomain] {
-	return pulumix.Output[*ReservedDomain]{
-		OutputState: i.ToReservedDomainOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ReservedDomainArrayInput is an input type that accepts ReservedDomainArray and ReservedDomainArrayOutput values.
 // You can construct a concrete instance of `ReservedDomainArrayInput` via:
 //
@@ -253,12 +246,6 @@ func (i ReservedDomainArray) ToReservedDomainArrayOutput() ReservedDomainArrayOu
 
 func (i ReservedDomainArray) ToReservedDomainArrayOutputWithContext(ctx context.Context) ReservedDomainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedDomainArrayOutput)
-}
-
-func (i ReservedDomainArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReservedDomain] {
-	return pulumix.Output[[]*ReservedDomain]{
-		OutputState: i.ToReservedDomainArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ReservedDomainMapInput is an input type that accepts ReservedDomainMap and ReservedDomainMapOutput values.
@@ -286,12 +273,6 @@ func (i ReservedDomainMap) ToReservedDomainMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedDomainMapOutput)
 }
 
-func (i ReservedDomainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReservedDomain] {
-	return pulumix.Output[map[string]*ReservedDomain]{
-		OutputState: i.ToReservedDomainMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ReservedDomainOutput struct{ *pulumi.OutputState }
 
 func (ReservedDomainOutput) ElementType() reflect.Type {
@@ -304,12 +285,6 @@ func (o ReservedDomainOutput) ToReservedDomainOutput() ReservedDomainOutput {
 
 func (o ReservedDomainOutput) ToReservedDomainOutputWithContext(ctx context.Context) ReservedDomainOutput {
 	return o
-}
-
-func (o ReservedDomainOutput) ToOutput(ctx context.Context) pulumix.Output[*ReservedDomain] {
-	return pulumix.Output[*ReservedDomain]{
-		OutputState: o.OutputState,
-	}
 }
 
 // DNS CNAME target for the host _acme-challenge.example.com, where example.com is your reserved domain name. This is required to issue certificates for wildcard, non-ngrok reserved domains. Must be null for non-wildcard domains and ngrok subdomains.
@@ -383,12 +358,6 @@ func (o ReservedDomainArrayOutput) ToReservedDomainArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o ReservedDomainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReservedDomain] {
-	return pulumix.Output[[]*ReservedDomain]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ReservedDomainArrayOutput) Index(i pulumi.IntInput) ReservedDomainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReservedDomain {
 		return vs[0].([]*ReservedDomain)[vs[1].(int)]
@@ -407,12 +376,6 @@ func (o ReservedDomainMapOutput) ToReservedDomainMapOutput() ReservedDomainMapOu
 
 func (o ReservedDomainMapOutput) ToReservedDomainMapOutputWithContext(ctx context.Context) ReservedDomainMapOutput {
 	return o
-}
-
-func (o ReservedDomainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReservedDomain] {
-	return pulumix.Output[map[string]*ReservedDomain]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ReservedDomainMapOutput) MapIndex(k pulumi.StringInput) ReservedDomainOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ngrok/sdk/go/ngrok/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // SSH Host Certificates along with the corresponding private key allows an SSH
@@ -220,12 +219,6 @@ func (i *SshHostCertificate) ToSshHostCertificateOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SshHostCertificateOutput)
 }
 
-func (i *SshHostCertificate) ToOutput(ctx context.Context) pulumix.Output[*SshHostCertificate] {
-	return pulumix.Output[*SshHostCertificate]{
-		OutputState: i.ToSshHostCertificateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SshHostCertificateArrayInput is an input type that accepts SshHostCertificateArray and SshHostCertificateArrayOutput values.
 // You can construct a concrete instance of `SshHostCertificateArrayInput` via:
 //
@@ -249,12 +242,6 @@ func (i SshHostCertificateArray) ToSshHostCertificateArrayOutput() SshHostCertif
 
 func (i SshHostCertificateArray) ToSshHostCertificateArrayOutputWithContext(ctx context.Context) SshHostCertificateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SshHostCertificateArrayOutput)
-}
-
-func (i SshHostCertificateArray) ToOutput(ctx context.Context) pulumix.Output[[]*SshHostCertificate] {
-	return pulumix.Output[[]*SshHostCertificate]{
-		OutputState: i.ToSshHostCertificateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SshHostCertificateMapInput is an input type that accepts SshHostCertificateMap and SshHostCertificateMapOutput values.
@@ -282,12 +269,6 @@ func (i SshHostCertificateMap) ToSshHostCertificateMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SshHostCertificateMapOutput)
 }
 
-func (i SshHostCertificateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshHostCertificate] {
-	return pulumix.Output[map[string]*SshHostCertificate]{
-		OutputState: i.ToSshHostCertificateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SshHostCertificateOutput struct{ *pulumi.OutputState }
 
 func (SshHostCertificateOutput) ElementType() reflect.Type {
@@ -300,12 +281,6 @@ func (o SshHostCertificateOutput) ToSshHostCertificateOutput() SshHostCertificat
 
 func (o SshHostCertificateOutput) ToSshHostCertificateOutputWithContext(ctx context.Context) SshHostCertificateOutput {
 	return o
-}
-
-func (o SshHostCertificateOutput) ToOutput(ctx context.Context) pulumix.Output[*SshHostCertificate] {
-	return pulumix.Output[*SshHostCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 // the signed SSH certificate in OpenSSH Authorized Keys format. this value should be placed in a `-cert.pub` certificate file on disk that should be referenced in your `sshdConfig` configuration file with a `HostCertificate` directive
@@ -367,12 +342,6 @@ func (o SshHostCertificateArrayOutput) ToSshHostCertificateArrayOutputWithContex
 	return o
 }
 
-func (o SshHostCertificateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SshHostCertificate] {
-	return pulumix.Output[[]*SshHostCertificate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SshHostCertificateArrayOutput) Index(i pulumi.IntInput) SshHostCertificateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SshHostCertificate {
 		return vs[0].([]*SshHostCertificate)[vs[1].(int)]
@@ -391,12 +360,6 @@ func (o SshHostCertificateMapOutput) ToSshHostCertificateMapOutput() SshHostCert
 
 func (o SshHostCertificateMapOutput) ToSshHostCertificateMapOutputWithContext(ctx context.Context) SshHostCertificateMapOutput {
 	return o
-}
-
-func (o SshHostCertificateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SshHostCertificate] {
-	return pulumix.Output[map[string]*SshHostCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SshHostCertificateMapOutput) MapIndex(k pulumi.StringInput) SshHostCertificateOutput {

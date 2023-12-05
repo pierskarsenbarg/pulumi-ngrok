@@ -15,12 +15,19 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     {
         [Input("auths")]
         private InputList<Inputs.EventDestinationTargetFirehoseAuthGetArgs>? _auths;
+
+        /// <summary>
+        /// Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        /// </summary>
         public InputList<Inputs.EventDestinationTargetFirehoseAuthGetArgs> Auths
         {
             get => _auths ?? (_auths = new InputList<Inputs.EventDestinationTargetFirehoseAuthGetArgs>());
             set => _auths = value;
         }
 
+        /// <summary>
+        /// An Amazon Resource Name specifying the Firehose delivery stream to deposit events into.
+        /// </summary>
         [Input("deliveryStreamArn")]
         public Input<string>? DeliveryStreamArn { get; set; }
 

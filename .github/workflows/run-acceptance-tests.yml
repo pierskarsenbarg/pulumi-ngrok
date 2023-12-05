@@ -175,11 +175,11 @@ jobs:
         dotnetversion:
         - 6.0.302
         goversion:
-        - 1.19.x
+        - 1.20.x
         nodeversion:
-        - 18.x
+        - 20.x
         pythonversion:
-        - "3.7"
+        - "3.11"
   test:
     if: github.event_name == 'repository_dispatch' || github.event.pull_request.head.repo.full_name
       == github.repository
@@ -259,16 +259,16 @@ jobs:
         dotnetversion:
         - 6.0.302
         goversion:
-        - 1.19.x
+        - 1.20.x
         language:
         - nodejs
         - python
         - dotnet
         - go
         nodeversion:
-        - 18.x
+        - 20.x
         pythonversion:
-        - "3.7"
+        - "3.11"
 name: run-acceptance-tests
 "on":
   pull_request:

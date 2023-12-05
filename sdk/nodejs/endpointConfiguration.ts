@@ -58,7 +58,7 @@ export class EndpointConfiguration extends pulumi.CustomResource {
     }
 
     /**
-     * backend module configuration or `null`
+     * backend to be used to back this endpoint
      */
     public readonly backends!: pulumi.Output<outputs.EndpointConfigurationBackend[] | undefined>;
     /**
@@ -186,7 +186,7 @@ export class EndpointConfiguration extends pulumi.CustomResource {
  */
 export interface EndpointConfigurationState {
     /**
-     * backend module configuration or `null`
+     * backend to be used to back this endpoint
      */
     backends?: pulumi.Input<pulumi.Input<inputs.EndpointConfigurationBackend>[]>;
     /**
@@ -260,7 +260,7 @@ export interface EndpointConfigurationState {
  */
 export interface EndpointConfigurationArgs {
     /**
-     * backend module configuration or `null`
+     * backend to be used to back this endpoint
      */
     backends?: pulumi.Input<pulumi.Input<inputs.EndpointConfigurationBackend>[]>;
     /**

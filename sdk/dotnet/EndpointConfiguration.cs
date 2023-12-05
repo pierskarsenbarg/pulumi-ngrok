@@ -52,7 +52,7 @@ namespace PiersKarsenbarg.Ngrok
     public partial class EndpointConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// backend module configuration or `null`
+        /// backend to be used to back this endpoint
         /// </summary>
         [Output("backends")]
         public Output<ImmutableArray<Outputs.EndpointConfigurationBackend>> Backends { get; private set; } = null!;
@@ -204,7 +204,7 @@ namespace PiersKarsenbarg.Ngrok
         private InputList<Inputs.EndpointConfigurationBackendArgs>? _backends;
 
         /// <summary>
-        /// backend module configuration or `null`
+        /// backend to be used to back this endpoint
         /// </summary>
         public InputList<Inputs.EndpointConfigurationBackendArgs> Backends
         {
@@ -398,7 +398,7 @@ namespace PiersKarsenbarg.Ngrok
         private InputList<Inputs.EndpointConfigurationBackendGetArgs>? _backends;
 
         /// <summary>
-        /// backend module configuration or `null`
+        /// backend to be used to back this endpoint
         /// </summary>
         public InputList<Inputs.EndpointConfigurationBackendGetArgs> Backends
         {

@@ -15,9 +15,12 @@ namespace PiersKarsenbarg.Ngrok.Outputs
     public sealed class EndpointConfigurationMutualTlCertificateAuthority
     {
         /// <summary>
-        /// unique identifier of this endpoint configuration
+        /// a resource identifier
         /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// a uri for locating a resource
+        /// </summary>
         public readonly string? Uri;
 
         [OutputConstructor]

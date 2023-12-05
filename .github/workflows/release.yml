@@ -197,11 +197,11 @@ jobs:
         dotnetversion:
         - 6.0.302
         goversion:
-        - 1.19.x
+        - 1.20.x
         nodeversion:
-        - 18.x
+        - 20.x
         pythonversion:
-        - "3.7"
+        - "3.11"
   publish_sdk:
     name: publish_sdk
     needs: publish
@@ -294,11 +294,11 @@ jobs:
         dotnetversion:
         - 6.0.302
         goversion:
-        - 1.19.x
+        - 1.20.x
         nodeversion:
-        - 18.x
+        - 20.x
         pythonversion:
-        - "3.7"
+        - "3.11"
   # test:
   #   name: test
   #   needs: build_sdk

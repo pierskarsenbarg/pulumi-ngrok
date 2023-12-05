@@ -13,9 +13,15 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
     public sealed class EventDestinationTargetFirehoseAuthCredArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID portion of an AWS access key.
+        /// </summary>
         [Input("awsAccessKeyId", required: true)]
         public Input<string> AwsAccessKeyId { get; set; } = null!;
 
+        /// <summary>
+        /// The secret portion of an AWS access key.
+        /// </summary>
         [Input("awsSecretAccessKey", required: true)]
         public Input<string> AwsSecretAccessKey { get; set; } = null!;
 

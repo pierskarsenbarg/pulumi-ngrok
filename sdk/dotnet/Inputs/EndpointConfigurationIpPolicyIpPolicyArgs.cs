@@ -14,11 +14,14 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     public sealed class EndpointConfigurationIpPolicyIpPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// unique identifier of this endpoint configuration
+        /// a resource identifier
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// a uri for locating a resource
+        /// </summary>
         [Input("uri")]
         public Input<string>? Uri { get; set; }
 

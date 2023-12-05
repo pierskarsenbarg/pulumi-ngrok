@@ -90,10 +90,11 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
+                    "description": "a resource identifier\n"
                 },
                 "uri": {
                     "type": "string",
+                    "description": "a uri for locating a resource\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -193,10 +194,11 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
+                    "description": "a resource identifier\n"
                 },
                 "uri": {
                     "type": "string",
+                    "description": "a uri for locating a resource\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -238,10 +240,11 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
+                    "description": "a resource identifier\n"
                 },
                 "uri": {
                     "type": "string",
+                    "description": "a uri for locating a resource\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -283,10 +286,11 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "unique identifier of this endpoint configuration\n"
+                    "description": "a resource identifier\n"
                 },
                 "uri": {
                     "type": "string",
+                    "description": "a uri for locating a resource\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -342,25 +346,29 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderFacebook:EndpointConfigurationOauthProviderFacebook"
-                    }
+                    },
+                    "description": "configuration for using facebook as the identity provider\n"
                 },
                 "githubs": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderGithub:EndpointConfigurationOauthProviderGithub"
-                    }
+                    },
+                    "description": "configuration for using github as the identity provider\n"
                 },
                 "googles": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderGoogle:EndpointConfigurationOauthProviderGoogle"
-                    }
+                    },
+                    "description": "configuration for using google as the identity provider\n"
                 },
                 "microsofts": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EndpointConfigurationOauthProviderMicrosoft:EndpointConfigurationOauthProviderMicrosoft"
-                    }
+                    },
+                    "description": "configuration for using microsoft as the identity provider\n"
                 }
             },
             "type": "object"
@@ -368,29 +376,34 @@
         "ngrok:index/EndpointConfigurationOauthProviderFacebook:EndpointConfigurationOauthProviderFacebook": {
             "properties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.\n"
                 },
                 "clientSecret": {
                     "type": "string",
+                    "description": "the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.\n",
                     "secret": true
                 },
                 "emailAddresses": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "emailDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email domains of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)\n"
                 }
             },
             "type": "object"
@@ -398,41 +411,48 @@
         "ngrok:index/EndpointConfigurationOauthProviderGithub:EndpointConfigurationOauthProviderGithub": {
             "properties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.\n"
                 },
                 "clientSecret": {
                     "type": "string",
+                    "description": "the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.\n",
                     "secret": true
                 },
                 "emailAddresses": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "emailDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email domains of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "organizations": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of github org identifiers. users who are members of any of the listed organizations will be allowed access. identifiers should be the organization's 'slug'\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)\n"
                 },
                 "teams": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of github teams identifiers. users will be allowed access to the endpoint if they are a member of any of these teams. identifiers should be in the 'slug' format qualified with the org name, e.g. `org-name/team-name`\n"
                 }
             },
             "type": "object"
@@ -440,29 +460,34 @@
         "ngrok:index/EndpointConfigurationOauthProviderGoogle:EndpointConfigurationOauthProviderGoogle": {
             "properties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.\n"
                 },
                 "clientSecret": {
                     "type": "string",
+                    "description": "the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.\n",
                     "secret": true
                 },
                 "emailAddresses": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "emailDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email domains of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)\n"
                 }
             },
             "type": "object"
@@ -470,29 +495,34 @@
         "ngrok:index/EndpointConfigurationOauthProviderMicrosoft:EndpointConfigurationOauthProviderMicrosoft": {
             "properties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.\n"
                 },
                 "clientSecret": {
                     "type": "string",
+                    "description": "the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.\n",
                     "secret": true
                 },
                 "emailAddresses": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "emailDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of email domains of users authenticated by identity provider who are allowed access to the endpoint\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)\n"
                 }
             },
             "type": "object"
@@ -750,10 +780,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetCloudwatchLogAuth:EventDestinationTargetCloudwatchLogAuth"
-                    }
+                    },
+                    "description": "Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.\n"
                 },
                 "logGroupArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An Amazon Resource Name specifying the CloudWatch Logs group to deposit events into.\n"
                 }
             },
             "type": "object"
@@ -764,13 +796,15 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetCloudwatchLogAuthCred:EventDestinationTargetCloudwatchLogAuthCred"
-                    }
+                    },
+                    "description": "Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetCloudwatchLogAuthRole:EventDestinationTargetCloudwatchLogAuthRole"
-                    }
+                    },
+                    "description": "A role for ngrok to assume on your behalf to deposit events into your AWS account.\n"
                 }
             },
             "type": "object"
@@ -778,10 +812,12 @@
         "ngrok:index/EventDestinationTargetCloudwatchLogAuthCred:EventDestinationTargetCloudwatchLogAuthCred": {
             "properties": {
                 "awsAccessKeyId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID portion of an AWS access key.\n"
                 },
                 "awsSecretAccessKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The secret portion of an AWS access key.\n"
                 }
             },
             "type": "object",
@@ -793,7 +829,8 @@
         "ngrok:index/EventDestinationTargetCloudwatchLogAuthRole:EventDestinationTargetCloudwatchLogAuthRole": {
             "properties": {
                 "roleArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An ARN that specifies the role that ngrok should use to deliver to the configured target.\n"
                 }
             },
             "type": "object",
@@ -804,10 +841,12 @@
         "ngrok:index/EventDestinationTargetDebug:EventDestinationTargetDebug": {
             "properties": {
                 "callbackUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "URL to send events to.\n"
                 },
                 "log": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Whether or not to output to publisher service logs.\n"
                 }
             },
             "type": "object"
@@ -818,10 +857,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetFirehoseAuth:EventDestinationTargetFirehoseAuth"
-                    }
+                    },
+                    "description": "Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.\n"
                 },
                 "deliveryStreamArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An Amazon Resource Name specifying the Firehose delivery stream to deposit events into.\n"
                 }
             },
             "type": "object"
@@ -832,13 +873,15 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetFirehoseAuthCred:EventDestinationTargetFirehoseAuthCred"
-                    }
+                    },
+                    "description": "Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetFirehoseAuthRole:EventDestinationTargetFirehoseAuthRole"
-                    }
+                    },
+                    "description": "A role for ngrok to assume on your behalf to deposit events into your AWS account.\n"
                 }
             },
             "type": "object"
@@ -846,10 +889,12 @@
         "ngrok:index/EventDestinationTargetFirehoseAuthCred:EventDestinationTargetFirehoseAuthCred": {
             "properties": {
                 "awsAccessKeyId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID portion of an AWS access key.\n"
                 },
                 "awsSecretAccessKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The secret portion of an AWS access key.\n"
                 }
             },
             "type": "object",
@@ -861,7 +906,8 @@
         "ngrok:index/EventDestinationTargetFirehoseAuthRole:EventDestinationTargetFirehoseAuthRole": {
             "properties": {
                 "roleArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An ARN that specifies the role that ngrok should use to deliver to the configured target.\n"
                 }
             },
             "type": "object",
@@ -875,10 +921,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetKineseAuth:EventDestinationTargetKineseAuth"
-                    }
+                    },
+                    "description": "Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.\n"
                 },
                 "streamArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An Amazon Resource Name specifying the Kinesis stream to deposit events into.\n"
                 }
             },
             "type": "object"
@@ -889,13 +937,15 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetKineseAuthCred:EventDestinationTargetKineseAuthCred"
-                    }
+                    },
+                    "description": "Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ngrok:index/EventDestinationTargetKineseAuthRole:EventDestinationTargetKineseAuthRole"
-                    }
+                    },
+                    "description": "A role for ngrok to assume on your behalf to deposit events into your AWS account.\n"
                 }
             },
             "type": "object"
@@ -903,10 +953,12 @@
         "ngrok:index/EventDestinationTargetKineseAuthCred:EventDestinationTargetKineseAuthCred": {
             "properties": {
                 "awsAccessKeyId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID portion of an AWS access key.\n"
                 },
                 "awsSecretAccessKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The secret portion of an AWS access key.\n"
                 }
             },
             "type": "object",
@@ -918,7 +970,8 @@
         "ngrok:index/EventDestinationTargetKineseAuthRole:EventDestinationTargetKineseAuthRole": {
             "properties": {
                 "roleArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An ARN that specifies the role that ngrok should use to deliver to the configured target.\n"
                 }
             },
             "type": "object",
@@ -1339,7 +1392,7 @@
                     "items": {
                         "$ref": "#/types/ngrok:index/EndpointConfigurationBackend:EndpointConfigurationBackend"
                     },
-                    "description": "backend module configuration or `null`\n"
+                    "description": "backend to be used to back this endpoint\n"
                 },
                 "basicAuths": {
                     "type": "array",
@@ -1451,7 +1504,7 @@
                     "items": {
                         "$ref": "#/types/ngrok:index/EndpointConfigurationBackend:EndpointConfigurationBackend"
                     },
-                    "description": "backend module configuration or `null`\n"
+                    "description": "backend to be used to back this endpoint\n"
                 },
                 "basicAuths": {
                     "type": "array",
@@ -1566,7 +1619,7 @@
                         "items": {
                             "$ref": "#/types/ngrok:index/EndpointConfigurationBackend:EndpointConfigurationBackend"
                         },
-                        "description": "backend module configuration or `null`\n"
+                        "description": "backend to be used to back this endpoint\n"
                     },
                     "basicAuths": {
                         "type": "array",

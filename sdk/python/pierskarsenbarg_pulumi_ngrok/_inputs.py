@@ -97,7 +97,8 @@ class EndpointConfigurationBackendBackendArgs:
                  id: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
+        :param pulumi.Input[str] id: a resource identifier
+        :param pulumi.Input[str] uri: a uri for locating a resource
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -108,7 +109,7 @@ class EndpointConfigurationBackendBackendArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        unique identifier of this endpoint configuration
+        a resource identifier
         """
         return pulumi.get(self, "id")
 
@@ -119,6 +120,9 @@ class EndpointConfigurationBackendBackendArgs:
     @property
     @pulumi.getter
     def uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        a uri for locating a resource
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -364,7 +368,8 @@ class EndpointConfigurationIpPolicyIpPolicyArgs:
                  id: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
+        :param pulumi.Input[str] id: a resource identifier
+        :param pulumi.Input[str] uri: a uri for locating a resource
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -375,7 +380,7 @@ class EndpointConfigurationIpPolicyIpPolicyArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        unique identifier of this endpoint configuration
+        a resource identifier
         """
         return pulumi.get(self, "id")
 
@@ -386,6 +391,9 @@ class EndpointConfigurationIpPolicyIpPolicyArgs:
     @property
     @pulumi.getter
     def uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        a uri for locating a resource
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -438,7 +446,8 @@ class EndpointConfigurationLoggingEventStreamArgs:
                  id: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
+        :param pulumi.Input[str] id: a resource identifier
+        :param pulumi.Input[str] uri: a uri for locating a resource
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -449,7 +458,7 @@ class EndpointConfigurationLoggingEventStreamArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        unique identifier of this endpoint configuration
+        a resource identifier
         """
         return pulumi.get(self, "id")
 
@@ -460,6 +469,9 @@ class EndpointConfigurationLoggingEventStreamArgs:
     @property
     @pulumi.getter
     def uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        a uri for locating a resource
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -512,7 +524,8 @@ class EndpointConfigurationMutualTlCertificateAuthorityArgs:
                  id: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: unique identifier of this endpoint configuration
+        :param pulumi.Input[str] id: a resource identifier
+        :param pulumi.Input[str] uri: a uri for locating a resource
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -523,7 +536,7 @@ class EndpointConfigurationMutualTlCertificateAuthorityArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        unique identifier of this endpoint configuration
+        a resource identifier
         """
         return pulumi.get(self, "id")
 
@@ -534,6 +547,9 @@ class EndpointConfigurationMutualTlCertificateAuthorityArgs:
     @property
     @pulumi.getter
     def uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        a uri for locating a resource
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -667,6 +683,12 @@ class EndpointConfigurationOauthProviderArgs:
                  githubs: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGithubArgs']]]] = None,
                  googles: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGoogleArgs']]]] = None,
                  microsofts: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderMicrosoftArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderFacebookArgs']]] facebooks: configuration for using facebook as the identity provider
+        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGithubArgs']]] githubs: configuration for using github as the identity provider
+        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGoogleArgs']]] googles: configuration for using google as the identity provider
+        :param pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderMicrosoftArgs']]] microsofts: configuration for using microsoft as the identity provider
+        """
         if facebooks is not None:
             pulumi.set(__self__, "facebooks", facebooks)
         if githubs is not None:
@@ -679,6 +701,9 @@ class EndpointConfigurationOauthProviderArgs:
     @property
     @pulumi.getter
     def facebooks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderFacebookArgs']]]]:
+        """
+        configuration for using facebook as the identity provider
+        """
         return pulumi.get(self, "facebooks")
 
     @facebooks.setter
@@ -688,6 +713,9 @@ class EndpointConfigurationOauthProviderArgs:
     @property
     @pulumi.getter
     def githubs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGithubArgs']]]]:
+        """
+        configuration for using github as the identity provider
+        """
         return pulumi.get(self, "githubs")
 
     @githubs.setter
@@ -697,6 +725,9 @@ class EndpointConfigurationOauthProviderArgs:
     @property
     @pulumi.getter
     def googles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderGoogleArgs']]]]:
+        """
+        configuration for using google as the identity provider
+        """
         return pulumi.get(self, "googles")
 
     @googles.setter
@@ -706,6 +737,9 @@ class EndpointConfigurationOauthProviderArgs:
     @property
     @pulumi.getter
     def microsofts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EndpointConfigurationOauthProviderMicrosoftArgs']]]]:
+        """
+        configuration for using microsoft as the identity provider
+        """
         return pulumi.get(self, "microsofts")
 
     @microsofts.setter
@@ -721,6 +755,13 @@ class EndpointConfigurationOauthProviderFacebookArgs:
                  email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] client_id: the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        :param pulumi.Input[str] client_secret: the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_addresses: a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_domains: a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -735,6 +776,9 @@ class EndpointConfigurationOauthProviderFacebookArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -744,6 +788,9 @@ class EndpointConfigurationOauthProviderFacebookArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -753,6 +800,9 @@ class EndpointConfigurationOauthProviderFacebookArgs:
     @property
     @pulumi.getter(name="emailAddresses")
     def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_addresses")
 
     @email_addresses.setter
@@ -762,6 +812,9 @@ class EndpointConfigurationOauthProviderFacebookArgs:
     @property
     @pulumi.getter(name="emailDomains")
     def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_domains")
 
     @email_domains.setter
@@ -771,6 +824,9 @@ class EndpointConfigurationOauthProviderFacebookArgs:
     @property
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
@@ -788,6 +844,15 @@ class EndpointConfigurationOauthProviderGithubArgs:
                  organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] client_id: the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        :param pulumi.Input[str] client_secret: the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_addresses: a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_domains: a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: a list of github org identifiers. users who are members of any of the listed organizations will be allowed access. identifiers should be the organization's 'slug'
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] teams: a list of github teams identifiers. users will be allowed access to the endpoint if they are a member of any of these teams. identifiers should be in the 'slug' format qualified with the org name, e.g. `org-name/team-name`
+        """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -806,6 +871,9 @@ class EndpointConfigurationOauthProviderGithubArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -815,6 +883,9 @@ class EndpointConfigurationOauthProviderGithubArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -824,6 +895,9 @@ class EndpointConfigurationOauthProviderGithubArgs:
     @property
     @pulumi.getter(name="emailAddresses")
     def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_addresses")
 
     @email_addresses.setter
@@ -833,6 +907,9 @@ class EndpointConfigurationOauthProviderGithubArgs:
     @property
     @pulumi.getter(name="emailDomains")
     def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_domains")
 
     @email_domains.setter
@@ -842,6 +919,9 @@ class EndpointConfigurationOauthProviderGithubArgs:
     @property
     @pulumi.getter
     def organizations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of github org identifiers. users who are members of any of the listed organizations will be allowed access. identifiers should be the organization's 'slug'
+        """
         return pulumi.get(self, "organizations")
 
     @organizations.setter
@@ -851,6 +931,9 @@ class EndpointConfigurationOauthProviderGithubArgs:
     @property
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
@@ -860,6 +943,9 @@ class EndpointConfigurationOauthProviderGithubArgs:
     @property
     @pulumi.getter
     def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of github teams identifiers. users will be allowed access to the endpoint if they are a member of any of these teams. identifiers should be in the 'slug' format qualified with the org name, e.g. `org-name/team-name`
+        """
         return pulumi.get(self, "teams")
 
     @teams.setter
@@ -875,6 +961,13 @@ class EndpointConfigurationOauthProviderGoogleArgs:
                  email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] client_id: the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        :param pulumi.Input[str] client_secret: the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_addresses: a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_domains: a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -889,6 +982,9 @@ class EndpointConfigurationOauthProviderGoogleArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -898,6 +994,9 @@ class EndpointConfigurationOauthProviderGoogleArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -907,6 +1006,9 @@ class EndpointConfigurationOauthProviderGoogleArgs:
     @property
     @pulumi.getter(name="emailAddresses")
     def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_addresses")
 
     @email_addresses.setter
@@ -916,6 +1018,9 @@ class EndpointConfigurationOauthProviderGoogleArgs:
     @property
     @pulumi.getter(name="emailDomains")
     def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_domains")
 
     @email_domains.setter
@@ -925,6 +1030,9 @@ class EndpointConfigurationOauthProviderGoogleArgs:
     @property
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
@@ -940,6 +1048,13 @@ class EndpointConfigurationOauthProviderMicrosoftArgs:
                  email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] client_id: the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        :param pulumi.Input[str] client_secret: the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_addresses: a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] email_domains: a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -954,6 +1069,9 @@ class EndpointConfigurationOauthProviderMicrosoftArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -963,6 +1081,9 @@ class EndpointConfigurationOauthProviderMicrosoftArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -972,6 +1093,9 @@ class EndpointConfigurationOauthProviderMicrosoftArgs:
     @property
     @pulumi.getter(name="emailAddresses")
     def email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_addresses")
 
     @email_addresses.setter
@@ -981,6 +1105,9 @@ class EndpointConfigurationOauthProviderMicrosoftArgs:
     @property
     @pulumi.getter(name="emailDomains")
     def email_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        """
         return pulumi.get(self, "email_domains")
 
     @email_domains.setter
@@ -990,6 +1117,9 @@ class EndpointConfigurationOauthProviderMicrosoftArgs:
     @property
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
@@ -1707,6 +1837,10 @@ class EventDestinationTargetCloudwatchLogArgs:
     def __init__(__self__, *,
                  auths: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthArgs']]]] = None,
                  log_group_arn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthArgs']]] auths: Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        :param pulumi.Input[str] log_group_arn: An Amazon Resource Name specifying the CloudWatch Logs group to deposit events into.
+        """
         if auths is not None:
             pulumi.set(__self__, "auths", auths)
         if log_group_arn is not None:
@@ -1715,6 +1849,9 @@ class EventDestinationTargetCloudwatchLogArgs:
     @property
     @pulumi.getter
     def auths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthArgs']]]]:
+        """
+        Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        """
         return pulumi.get(self, "auths")
 
     @auths.setter
@@ -1724,6 +1861,9 @@ class EventDestinationTargetCloudwatchLogArgs:
     @property
     @pulumi.getter(name="logGroupArn")
     def log_group_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        An Amazon Resource Name specifying the CloudWatch Logs group to deposit events into.
+        """
         return pulumi.get(self, "log_group_arn")
 
     @log_group_arn.setter
@@ -1736,6 +1876,10 @@ class EventDestinationTargetCloudwatchLogAuthArgs:
     def __init__(__self__, *,
                  creds: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthCredArgs']]]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthRoleArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthCredArgs']]] creds: Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthRoleArgs']]] roles: A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        """
         if creds is not None:
             pulumi.set(__self__, "creds", creds)
         if roles is not None:
@@ -1744,6 +1888,9 @@ class EventDestinationTargetCloudwatchLogAuthArgs:
     @property
     @pulumi.getter
     def creds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthCredArgs']]]]:
+        """
+        Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        """
         return pulumi.get(self, "creds")
 
     @creds.setter
@@ -1753,6 +1900,9 @@ class EventDestinationTargetCloudwatchLogAuthArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetCloudwatchLogAuthRoleArgs']]]]:
+        """
+        A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -1765,12 +1915,19 @@ class EventDestinationTargetCloudwatchLogAuthCredArgs:
     def __init__(__self__, *,
                  aws_access_key_id: pulumi.Input[str],
                  aws_secret_access_key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] aws_access_key_id: The ID portion of an AWS access key.
+        :param pulumi.Input[str] aws_secret_access_key: The secret portion of an AWS access key.
+        """
         pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
         pulumi.set(__self__, "aws_secret_access_key", aws_secret_access_key)
 
     @property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> pulumi.Input[str]:
+        """
+        The ID portion of an AWS access key.
+        """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
@@ -1780,6 +1937,9 @@ class EventDestinationTargetCloudwatchLogAuthCredArgs:
     @property
     @pulumi.getter(name="awsSecretAccessKey")
     def aws_secret_access_key(self) -> pulumi.Input[str]:
+        """
+        The secret portion of an AWS access key.
+        """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
@@ -1791,11 +1951,17 @@ class EventDestinationTargetCloudwatchLogAuthCredArgs:
 class EventDestinationTargetCloudwatchLogAuthRoleArgs:
     def __init__(__self__, *,
                  role_arn: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] role_arn: An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        """
         pulumi.set(__self__, "role_arn", role_arn)
 
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> pulumi.Input[str]:
+        """
+        An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
@@ -1808,6 +1974,10 @@ class EventDestinationTargetDebugArgs:
     def __init__(__self__, *,
                  callback_url: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] callback_url: URL to send events to.
+        :param pulumi.Input[bool] log: Whether or not to output to publisher service logs.
+        """
         if callback_url is not None:
             pulumi.set(__self__, "callback_url", callback_url)
         if log is not None:
@@ -1816,6 +1986,9 @@ class EventDestinationTargetDebugArgs:
     @property
     @pulumi.getter(name="callbackUrl")
     def callback_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL to send events to.
+        """
         return pulumi.get(self, "callback_url")
 
     @callback_url.setter
@@ -1825,6 +1998,9 @@ class EventDestinationTargetDebugArgs:
     @property
     @pulumi.getter
     def log(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not to output to publisher service logs.
+        """
         return pulumi.get(self, "log")
 
     @log.setter
@@ -1837,6 +2013,10 @@ class EventDestinationTargetFirehoseArgs:
     def __init__(__self__, *,
                  auths: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthArgs']]]] = None,
                  delivery_stream_arn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthArgs']]] auths: Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        :param pulumi.Input[str] delivery_stream_arn: An Amazon Resource Name specifying the Firehose delivery stream to deposit events into.
+        """
         if auths is not None:
             pulumi.set(__self__, "auths", auths)
         if delivery_stream_arn is not None:
@@ -1845,6 +2025,9 @@ class EventDestinationTargetFirehoseArgs:
     @property
     @pulumi.getter
     def auths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthArgs']]]]:
+        """
+        Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        """
         return pulumi.get(self, "auths")
 
     @auths.setter
@@ -1854,6 +2037,9 @@ class EventDestinationTargetFirehoseArgs:
     @property
     @pulumi.getter(name="deliveryStreamArn")
     def delivery_stream_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        An Amazon Resource Name specifying the Firehose delivery stream to deposit events into.
+        """
         return pulumi.get(self, "delivery_stream_arn")
 
     @delivery_stream_arn.setter
@@ -1866,6 +2052,10 @@ class EventDestinationTargetFirehoseAuthArgs:
     def __init__(__self__, *,
                  creds: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthCredArgs']]]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthRoleArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthCredArgs']]] creds: Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthRoleArgs']]] roles: A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        """
         if creds is not None:
             pulumi.set(__self__, "creds", creds)
         if roles is not None:
@@ -1874,6 +2064,9 @@ class EventDestinationTargetFirehoseAuthArgs:
     @property
     @pulumi.getter
     def creds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthCredArgs']]]]:
+        """
+        Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        """
         return pulumi.get(self, "creds")
 
     @creds.setter
@@ -1883,6 +2076,9 @@ class EventDestinationTargetFirehoseAuthArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetFirehoseAuthRoleArgs']]]]:
+        """
+        A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -1895,12 +2091,19 @@ class EventDestinationTargetFirehoseAuthCredArgs:
     def __init__(__self__, *,
                  aws_access_key_id: pulumi.Input[str],
                  aws_secret_access_key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] aws_access_key_id: The ID portion of an AWS access key.
+        :param pulumi.Input[str] aws_secret_access_key: The secret portion of an AWS access key.
+        """
         pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
         pulumi.set(__self__, "aws_secret_access_key", aws_secret_access_key)
 
     @property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> pulumi.Input[str]:
+        """
+        The ID portion of an AWS access key.
+        """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
@@ -1910,6 +2113,9 @@ class EventDestinationTargetFirehoseAuthCredArgs:
     @property
     @pulumi.getter(name="awsSecretAccessKey")
     def aws_secret_access_key(self) -> pulumi.Input[str]:
+        """
+        The secret portion of an AWS access key.
+        """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
@@ -1921,11 +2127,17 @@ class EventDestinationTargetFirehoseAuthCredArgs:
 class EventDestinationTargetFirehoseAuthRoleArgs:
     def __init__(__self__, *,
                  role_arn: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] role_arn: An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        """
         pulumi.set(__self__, "role_arn", role_arn)
 
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> pulumi.Input[str]:
+        """
+        An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
@@ -1938,6 +2150,10 @@ class EventDestinationTargetKineseArgs:
     def __init__(__self__, *,
                  auths: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthArgs']]]] = None,
                  stream_arn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthArgs']]] auths: Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        :param pulumi.Input[str] stream_arn: An Amazon Resource Name specifying the Kinesis stream to deposit events into.
+        """
         if auths is not None:
             pulumi.set(__self__, "auths", auths)
         if stream_arn is not None:
@@ -1946,6 +2162,9 @@ class EventDestinationTargetKineseArgs:
     @property
     @pulumi.getter
     def auths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthArgs']]]]:
+        """
+        Configuration for how to authenticate into your AWS account. Exactly one of `role` or `creds` should be configured.
+        """
         return pulumi.get(self, "auths")
 
     @auths.setter
@@ -1955,6 +2174,9 @@ class EventDestinationTargetKineseArgs:
     @property
     @pulumi.getter(name="streamArn")
     def stream_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        An Amazon Resource Name specifying the Kinesis stream to deposit events into.
+        """
         return pulumi.get(self, "stream_arn")
 
     @stream_arn.setter
@@ -1967,6 +2189,10 @@ class EventDestinationTargetKineseAuthArgs:
     def __init__(__self__, *,
                  creds: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthCredArgs']]]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthRoleArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthCredArgs']]] creds: Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        :param pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthRoleArgs']]] roles: A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        """
         if creds is not None:
             pulumi.set(__self__, "creds", creds)
         if roles is not None:
@@ -1975,6 +2201,9 @@ class EventDestinationTargetKineseAuthArgs:
     @property
     @pulumi.getter
     def creds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthCredArgs']]]]:
+        """
+        Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        """
         return pulumi.get(self, "creds")
 
     @creds.setter
@@ -1984,6 +2213,9 @@ class EventDestinationTargetKineseAuthArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventDestinationTargetKineseAuthRoleArgs']]]]:
+        """
+        A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -1996,12 +2228,19 @@ class EventDestinationTargetKineseAuthCredArgs:
     def __init__(__self__, *,
                  aws_access_key_id: pulumi.Input[str],
                  aws_secret_access_key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] aws_access_key_id: The ID portion of an AWS access key.
+        :param pulumi.Input[str] aws_secret_access_key: The secret portion of an AWS access key.
+        """
         pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
         pulumi.set(__self__, "aws_secret_access_key", aws_secret_access_key)
 
     @property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> pulumi.Input[str]:
+        """
+        The ID portion of an AWS access key.
+        """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
@@ -2011,6 +2250,9 @@ class EventDestinationTargetKineseAuthCredArgs:
     @property
     @pulumi.getter(name="awsSecretAccessKey")
     def aws_secret_access_key(self) -> pulumi.Input[str]:
+        """
+        The secret portion of an AWS access key.
+        """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
@@ -2022,11 +2264,17 @@ class EventDestinationTargetKineseAuthCredArgs:
 class EventDestinationTargetKineseAuthRoleArgs:
     def __init__(__self__, *,
                  role_arn: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] role_arn: An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        """
         pulumi.set(__self__, "role_arn", role_arn)
 
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> pulumi.Input[str]:
+        """
+        An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter

@@ -15,6 +15,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
     {
         [Input("creds")]
         private InputList<Inputs.EventDestinationTargetCloudwatchLogAuthCredArgs>? _creds;
+
+        /// <summary>
+        /// Credentials to your AWS account if you prefer ngrok to sign in with long-term access keys.
+        /// </summary>
         public InputList<Inputs.EventDestinationTargetCloudwatchLogAuthCredArgs> Creds
         {
             get => _creds ?? (_creds = new InputList<Inputs.EventDestinationTargetCloudwatchLogAuthCredArgs>());
@@ -23,6 +27,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("roles")]
         private InputList<Inputs.EventDestinationTargetCloudwatchLogAuthRoleArgs>? _roles;
+
+        /// <summary>
+        /// A role for ngrok to assume on your behalf to deposit events into your AWS account.
+        /// </summary>
         public InputList<Inputs.EventDestinationTargetCloudwatchLogAuthRoleArgs> Roles
         {
             get => _roles ?? (_roles = new InputList<Inputs.EventDestinationTargetCloudwatchLogAuthRoleArgs>());

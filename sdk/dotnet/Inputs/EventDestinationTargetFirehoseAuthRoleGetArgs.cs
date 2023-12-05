@@ -13,6 +13,9 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
     public sealed class EventDestinationTargetFirehoseAuthRoleGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An ARN that specifies the role that ngrok should use to deliver to the configured target.
+        /// </summary>
         [Input("roleArn", required: true)]
         public Input<string> RoleArn { get; set; } = null!;
 

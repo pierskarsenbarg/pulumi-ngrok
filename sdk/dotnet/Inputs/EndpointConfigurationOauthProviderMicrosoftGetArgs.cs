@@ -13,11 +13,18 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
     public sealed class EndpointConfigurationOauthProviderMicrosoftGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// the OAuth app client ID. retrieve it from the identity provider's dashboard where you created your own OAuth app. optional. if unspecified, ngrok will use its own managed oauth application which has additional restrictions. see the OAuth module docs for more details. if present, client_secret must be present as well.
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         [Input("clientSecret")]
         private Input<string>? _clientSecret;
+
+        /// <summary>
+        /// the OAuth app client secret. retrieve if from the identity provider's dashboard where you created your own OAuth app. optional, see all of the caveats in the docs for `client_id`.
+        /// </summary>
         public Input<string>? ClientSecret
         {
             get => _clientSecret;
@@ -30,6 +37,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("emailAddresses")]
         private InputList<string>? _emailAddresses;
+
+        /// <summary>
+        /// a list of email addresses of users authenticated by identity provider who are allowed access to the endpoint
+        /// </summary>
         public InputList<string> EmailAddresses
         {
             get => _emailAddresses ?? (_emailAddresses = new InputList<string>());
@@ -38,6 +49,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("emailDomains")]
         private InputList<string>? _emailDomains;
+
+        /// <summary>
+        /// a list of email domains of users authenticated by identity provider who are allowed access to the endpoint
+        /// </summary>
         public InputList<string> EmailDomains
         {
             get => _emailDomains ?? (_emailDomains = new InputList<string>());
@@ -46,6 +61,10 @@ namespace PiersKarsenbarg.Ngrok.Inputs
 
         [Input("scopes")]
         private InputList<string>? _scopes;
+
+        /// <summary>
+        /// a list of provider-specific OAuth scopes with the permissions your OAuth app would like to ask for. these may not be set if you are using the ngrok-managed oauth app (i.e. you must pass both `client_id` and `client_secret` to set scopes)
+        /// </summary>
         public InputList<string> Scopes
         {
             get => _scopes ?? (_scopes = new InputList<string>());
